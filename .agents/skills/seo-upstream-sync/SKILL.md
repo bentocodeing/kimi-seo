@@ -49,7 +49,9 @@ changes and the fork's naming per the invariants above. Hot spots:
 `README.md`, `install.sh`, `install.ps1`, `.claude-plugin/plugin.json`,
 `pyproject.toml`, `skills/*/SKILL.md` (description lines), `docs/`,
 `.github/workflows/ci.yml` (the fork triggers CI on `[main, kimi]`;
-upstream only has `main` — keep both entries).
+upstream only has `main` — keep both entries), `.gitignore` (the fork drops
+the upstream `site/` ignore because `site/` hosts the Laravel website —
+never re-add it).
 
 If the merge is too messy to resolve confidently: `git merge --abort` and
 report the conflicting files — do not guess.

@@ -175,7 +175,19 @@ agents/                    # 18 subagents
 scripts/                   # 53 Python scripts, including the managed runtime
 schema/                    # JSON-LD templates
 extensions/                # 8 MCP extensions: DataForSEO, Firecrawl, Banana, Ahrefs, SE Ranking, Profound, Bing Webmaster, Unlighthouse
+site/                      # Laravel marketing + docs site (landing, rendered docs, ad slots, admin)
 ```
+
+## Website (`site/`)
+
+The `site/` directory is a self-contained Laravel app (SQLite, Blade +
+Tailwind, no starter kits) that serves the product landing page, renders the
+repo markdown docs at `/docs/{slug}` (mapping in `site/config/docs.php`), and
+manages advertising slots (`ads` + `ad_inquiries` tables, `/advertise` form,
+`/admin` dashboard behind HTTP Basic auth via `ADMIN_USERNAME`/`ADMIN_PASSWORD`
+env vars). It is fork-only: upstream never touches it, so it cannot create
+merge conflicts during syncs. Setup and deploy notes: `site/README.md`.
+Run its tests with `cd site && php artisan test`.
 
 ## Key Principles
 

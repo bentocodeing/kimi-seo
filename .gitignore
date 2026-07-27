@@ -145,9 +145,6 @@ ECOMMERCE-ANALYSIS*.md
 Google-API-Setup-Guide-*.html
 scripts/generate_setup_guide.py
 
-# Generated site builds
-site/
-
 # Git worktrees (isolated workspaces for parallel branch work)
 .worktrees/
 

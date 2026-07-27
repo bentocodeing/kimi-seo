@@ -1,0 +1,110 @@
+@import 'tailwindcss';
+
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+        'Courier New', monospace;
+
+    --color-ink-950: #0a0a0c;
+    --color-ink-900: #101014;
+    --color-ink-800: #17171d;
+    --color-ink-700: #22222a;
+    --color-ink-600: #32323c;
+    --color-ink-400: #8b8b98;
+    --color-ink-300: #b6b6c2;
+    --color-ink-100: #ececf1;
+
+    --color-accent-300: #9ecbff;
+    --color-accent-400: #7ab8ff;
+    --color-accent-500: #5ea2f7;
+    --color-accent-600: #3f83e0;
+    --color-accent-700: #2f6bc0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #fafafa;
+    color: #18181b;
+}
+
+.dark body {
+    background-color: var(--color-ink-950);
+    color: var(--color-ink-100);
+}
+
+::selection {
+    background-color: var(--color-accent-600);
+    color: #fff;
+}
+
+@layer components {
+    /* Surfaces */
+    .card {
+        @apply rounded-xl border border-zinc-200 bg-white dark:border-ink-700 dark:bg-ink-900;
+    }
+
+    /* Text */
+    .heading {
+        @apply text-zinc-900 dark:text-ink-100;
+    }
+    .muted {
+        @apply text-zinc-600 dark:text-ink-400;
+    }
+    .muted-strong {
+        @apply text-zinc-700 dark:text-ink-300;
+    }
+
+    /* Accent text (links, mono highlights) */
+    .accent-text {
+        @apply text-accent-700 dark:text-accent-400;
+    }
+    .accent-text-hover {
+        @apply text-accent-700 hover:text-accent-600 dark:text-accent-400 dark:hover:text-accent-300;
+    }
+
+    /* Buttons */
+    .btn-primary {
+        @apply rounded-lg bg-accent-600 px-6 py-3 text-sm font-semibold text-white hover:bg-accent-500 transition-colors;
+    }
+    .btn-outline {
+        @apply rounded-lg border border-zinc-300 px-6 py-3 text-sm font-semibold text-zinc-800 hover:border-accent-600/60 hover:text-accent-700 transition-colors dark:border-ink-600 dark:text-ink-100 dark:hover:text-accent-300;
+    }
+    .btn-sm-outline {
+        @apply rounded border border-zinc-300 px-2.5 py-1 text-xs text-zinc-700 hover:border-accent-600/60 dark:border-ink-600 dark:text-ink-300;
+    }
+    .btn-sm-danger {
+        @apply rounded border border-red-400/60 px-2.5 py-1 text-xs text-red-600 hover:bg-red-50 dark:border-red-500/50 dark:text-red-300 dark:hover:bg-red-500/10;
+    }
+
+    /* Forms */
+    .label {
+        @apply block text-sm font-medium text-zinc-700 dark:text-ink-300 mb-1.5;
+    }
+    .input {
+        @apply w-full rounded-lg border border-zinc-300 bg-white px-3.5 py-2.5 text-sm text-zinc-900 placeholder-zinc-400 focus:border-accent-500 focus:outline-none dark:border-ink-600 dark:bg-ink-900 dark:text-ink-100 dark:placeholder-ink-400;
+    }
+
+    /* Nav links */
+    .nav-link {
+        @apply text-zinc-600 hover:text-zinc-900 transition-colors dark:text-ink-300 dark:hover:text-white;
+    }
+
+    /* Flash messages */
+    .flash-success {
+        @apply rounded-lg border border-accent-600/40 bg-accent-600/10 px-4 py-3 text-sm text-accent-700 dark:text-accent-300;
+    }
+    .flash-error {
+        @apply rounded-lg border border-red-400/50 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-500/40 dark:bg-red-500/10 dark:text-red-300;
+    }
+}
