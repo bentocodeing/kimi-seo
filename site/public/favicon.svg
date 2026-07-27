@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Kimi SEO">
+  <title>Kimi SEO</title>
+  <desc>Terminal prompt glyph in the brand accent blue.</desc>
+  <path d="M13 16 L32 32 L13 48" fill="none" stroke="#5ea2f7" stroke-width="7"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="37" y="41" width="16" height="7" rx="3.5" fill="#5ea2f7"/>
+</svg>

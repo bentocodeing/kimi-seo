@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Admin — Kimi SEO')</title>
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <script>
         (function () {
             var theme = 'light';
@@ -18,10 +20,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen font-sans antialiased">
-    <header class="border-b border-zinc-200 dark:border-ink-800">
+    <header data-sticky-header class="site-header sticky top-0 z-40 border-b border-zinc-200 bg-[#fafafa]/80 backdrop-blur dark:border-ink-800 dark:bg-ink-950/80">
         <nav class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4 text-sm">
-            <a href="{{ route('admin.dashboard') }}" class="font-mono font-semibold heading">
-                <span class="accent-text">&gt;_</span> Kimi SEO <span class="muted">admin</span>
+            <a href="{{ route('admin.dashboard') }}" class="font-mono font-semibold heading flex items-center gap-2">
+                <x-logo class="w-5 h-5 rounded" /> Kimi SEO <span class="muted">admin</span>
             </a>
             <div class="flex items-center gap-4">
                 <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'text-accent-700 dark:text-accent-300' : 'nav-link' }}">Dashboard</a>

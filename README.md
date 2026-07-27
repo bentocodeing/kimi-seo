@@ -25,8 +25,6 @@
 
 Google Search Console for a site started 23 March 2026 and run on this workflow: total clicks and impressions across its first three months, through 12 June 2026.
 
-> Using Codex instead of Claude Code? Use [Codex SEO](https://github.com/AgriciDaniel/codex-seo), the Codex-first port with TOML agents, plugin packaging, deterministic runners, and the same SEO workflow surface.
-
 ## Who this is for
 
 - **SEO agencies running 5+ client sites.** Replace quarterly deep audits with weekly automated runs. Same team capacity, 4× audit cadence, every recommendation comes with a falsifiability check the client can verify.
@@ -38,8 +36,6 @@ Google Search Console for a site started 23 March 2026 and run on this workflow:
 Run a full audit and watch parallel agents fan out across the site:
 
 ![Kimi SEO /seo audit demo: parallel subagents producing a prioritized action plan](screenshots/seo-audit-demo.gif)
-
-[Watch the full demo on YouTube](https://www.youtube.com/watch?v=COMnNlUakQk)
 
 ## Table of Contents
 
@@ -68,7 +64,7 @@ Run a full audit and watch parallel agents fan out across the site:
 
 ## Installation
 
-> ℹ️ **You are on the Kimi fork.** The commands below install from [`bentocodeing/kimi-seo`](https://github.com/bentocodeing/kimi-seo) — MIT, public releases, no membership required. For the original Claude Code version, see upstream: [`AgriciDaniel/claude-seo`](https://github.com/AgriciDaniel/claude-seo).
+> ℹ️ **You are on the Kimi fork.** The commands below install from [`bentocodeing/kimi-seo`](https://github.com/bentocodeing/kimi-seo) — MIT, public releases, no membership required. Upstream project: [`AgriciDaniel/claude-seo`](https://github.com/AgriciDaniel/claude-seo).
 
 ### Plugin Install (Kimi Code, recommended)
 
@@ -91,8 +87,6 @@ git clone --depth 1 --branch kimi https://github.com/bentocodeing/kimi-seo.git
 bash kimi-seo/install.sh
 ```
 
-(Pass `--claude` to target the Claude Code layout instead, for upstream parity.)
-
 <details>
 <summary>One-liner (curl, review then run)</summary>
 
@@ -113,16 +107,6 @@ powershell -ExecutionPolicy Bypass -File kimi-seo\install.ps1
 ```
 
 > **Why `git clone` instead of `irm | iex`?** Kimi Code's own security guardrails flag `irm ... | iex` as a supply chain risk: downloading and executing remote code without verification. The `git clone` approach lets you inspect `kimi-seo\install.ps1` before running it.
-
-### Plugin Install (Claude Code marketplace, upstream)
-
-The Claude Code plugin marketplace distributes the **upstream** version, not this fork:
-
-```bash
-/plugin marketplace add AgriciDaniel/claude-seo
-/plugin install claude-seo@agricidaniel-claude-seo
-/seo setup
-```
 
 ## Quick Start
 
@@ -306,7 +290,7 @@ Other audit outputs follow the same shape: `FULL-AUDIT-REPORT.md` (umbrella audi
 
 ![Kimi SEO audit signal flow: /seo audit enters the orchestrator, fans out to 25 sub-skills and up to 15 parallel audit agents, and converges through the scoring engine into a prioritized report](assets/signal-flow.svg)
 
-The plugin follows the [Agent Skills standard](https://docs.claude.com/en/docs/claude-code/skills) with a 3-layer architecture (directive, orchestration, execution). Skills and agents are auto-discovered from `skills/seo-*/` and `agents/seo-*.md`. The orchestrator (`skills/seo/SKILL.md`) handles industry detection (SaaS, local, ecommerce, publisher, agency), parallel sub-agent dispatch up to 15 simultaneously, and synthesis through the [10-principle framework](#methodology) before emitting the action plan. Full architecture: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+The plugin follows the open Agent Skills standard (SKILL.md format) with a 3-layer architecture (directive, orchestration, execution). Skills and agents are auto-discovered from `skills/seo-*/` and `agents/seo-*.md`. The orchestrator (`skills/seo/SKILL.md`) handles industry detection (SaaS, local, ecommerce, publisher, agency), parallel sub-agent dispatch up to 15 simultaneously, and synthesis through the [10-principle framework](#methodology) before emitting the action plan. Full architecture: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## Methodology
 
@@ -405,7 +389,7 @@ Full Firecrawl docs: [extensions/firecrawl/README.md](extensions/firecrawl/READM
 
 ### Banana: AI image generation
 
-SEO image generation (OG previews, blog heroes, product photos, infographics) via the [Claude Banana](https://github.com/AgriciDaniel/banana-claude) Creative Director pipeline.
+SEO image generation (OG previews, blog heroes, product photos, infographics) via the [Banana](https://github.com/AgriciDaniel/banana-claude) Creative Director pipeline.
 
 ```bash
 ./extensions/banana/install.sh
@@ -428,15 +412,12 @@ Setup walkthroughs live under `extensions/<name>/docs/`; integration notes: [doc
 
 ## Ecosystem
 
-Kimi SEO is part of a family of Kimi Code skills that interoperate cleanly:
+Kimi SEO sits in a small ecosystem of related projects it interoperates with:
 
-| Skill | What it does | How it connects |
-|-------|-------------|-----------------|
+| Project | What it does | How it connects |
+|---------|-------------|-----------------|
 | [Kimi SEO](https://github.com/bentocodeing/kimi-seo) | SEO analysis, audits, schema, GEO | Core. Analyzes sites and generates action plans. |
-| [Claude Blog](https://github.com/AgriciDaniel/claude-blog) | Blog writing, optimization, scoring | Companion. Writes content optimized by SEO findings. |
-| [Claude Banana](https://github.com/AgriciDaniel/banana-claude) | AI image generation via Gemini | Shared. Generates images for SEO assets and blog posts. |
-| [Codex SEO](https://github.com/AgriciDaniel/codex-seo) | Codex-first SEO skill suite | Port. Same SEO system adapted for Codex skills, TOML agents, deterministic runners. |
-| [AI Marketing Claude](https://github.com/zubair-trabzada/ai-marketing-claude) | Copywriting, emails, social, ads, funnels, CRO | Community. Post-audit marketing action from SEO findings. |
+| [`AgriciDaniel/claude-seo`](https://github.com/AgriciDaniel/claude-seo) | The upstream project this fork tracks | Origin of the SEO workflow; the fork's `main` branch mirrors its releases. |
 | [FLOW](https://github.com/AgriciDaniel/flow) | Evidence-led SEO framework (41 AI prompts, CC BY 4.0) | Knowledge base. Powers `seo-flow` prompts. |
 
 **Workflow example:**
@@ -444,7 +425,7 @@ Kimi SEO is part of a family of Kimi Code skills that interoperate cleanly:
 1. `/seo audit https://example.com`: identify content gaps and technical issues
 2. `/seo backlinks https://example.com`: analyze link profile and competitor gaps
 3. `/seo geo https://example.com/blog/post`: score AI-citation readiness
-4. `/blog write "target keyword"`: create SEO-optimized blog post (Claude Blog)
+4. `/seo content-brief "target keyword"`: produce a brief for the next post
 5. `/seo image-gen hero "blog topic"`: generate hero image (Banana extension)
 
 ## Documentation
@@ -509,7 +490,7 @@ Contributions welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before sub
 
 ## Author
 
-Built by **[Agrici Daniel](https://agricidaniel.com/about)**, AI Workflow Architect. Single maintainer, open to community contributions via the [Pro Skool community](https://www.skool.com/ai-marketing-hub-pro). Background in marketing automation, AI-assisted content workflows, and open-source tooling for Claude Code.
+Built by **[Agrici Daniel](https://agricidaniel.com/about)**, AI Workflow Architect. Single maintainer, open to community contributions via the [Pro Skool community](https://www.skool.com/ai-marketing-hub-pro). Background in marketing automation, AI-assisted content workflows, and open-source tooling for AI coding agents.
 
 - [Blog](https://agricidaniel.com/blog): deep dives on AI marketing automation
 - [AI Marketing Hub (free)](https://www.skool.com/ai-marketing-hub): open community

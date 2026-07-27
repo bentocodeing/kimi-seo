@@ -108,3 +108,198 @@ body {
         @apply rounded-lg border border-red-400/50 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-500/40 dark:bg-red-500/10 dark:text-red-300;
     }
 }
+
+/* --------------------------------------------------------------------------
+ * Landing page animations (all disabled under prefers-reduced-motion)
+ * -------------------------------------------------------------------------- */
+
+/* Hero entrance: fade + slide up, staggered via .anim-d* delays */
+@keyframes rise-in {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.anim-rise {
+    animation: rise-in 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+.anim-d1 { animation-delay: 0.1s; }
+.anim-d2 { animation-delay: 0.2s; }
+.anim-d3 { animation-delay: 0.35s; }
+.anim-d4 { animation-delay: 0.5s; }
+
+/* Terminal typing effect: the full command is always in the DOM; the
+   animation only reveals it progressively. Blinking caret via border. */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 58ch; }
+}
+@keyframes caret-blink {
+    0%, 100% { border-right-color: var(--color-accent-500); }
+    50% { border-right-color: transparent; }
+}
+
+.terminal-typing {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom;
+    border-right: 2px solid transparent;
+    animation:
+        typing 1.8s steps(57, end) 0.7s both,
+        caret-blink 1s step-end 0.7s infinite;
+}
+
+/* Small screens: skip typing so the command never gets clipped */
+@media (max-width: 640px) {
+    .terminal-typing {
+        width: auto;
+        animation: caret-blink 1s step-end infinite;
+    }
+}
+
+/* Header wordmark: short one-shot typing on page load. The caret flashes
+   a few times then returns to its transparent base color. */
+@keyframes typing-logo {
+    from { width: 0; }
+    to { width: 8ch; }
+}
+.logo-typing {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom;
+    border-right: 2px solid transparent;
+    animation:
+        typing-logo 0.9s steps(8, end) 0.15s both,
+        caret-blink 0.6s step-end 0.15s 4;
+}
+
+/* Scroll reveal: the .reveal hiding class is only added by JS, so without
+   JS (or without IntersectionObserver) content is always visible. */
+.reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+
+/* Architecture diagram */
+/* Base connector: drawn once when the section scrolls into view.
+   Uses pathLength="100" so dasharray/offset can use simple 0-100 values.
+   Default state is fully drawn (no-JS friendly). */
+@keyframes draw-line {
+    to { stroke-dashoffset: 0; }
+}
+.diagram-draw {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 0;
+}
+.reveal .diagram-draw {
+    stroke-dashoffset: 100;
+}
+.reveal.is-visible .diagram-draw {
+    animation: draw-line 0.9s ease-out 0.2s forwards;
+}
+
+/* Moving dashes on top of the base line: data flowing through the graph */
+@keyframes dash-flow {
+    to { stroke-dashoffset: -14; }
+}
+.diagram-flow {
+    stroke-dasharray: 3 11;
+    stroke-dashoffset: 0;
+    animation: dash-flow 1.1s linear infinite;
+}
+
+/* Soft pulse halo behind each node */
+@keyframes node-pulse {
+    0%, 100% { opacity: 0.25; }
+    50% { opacity: 0.7; }
+}
+.diagram-node-halo {
+    animation: node-pulse 2.6s ease-in-out infinite;
+}
+
+/* Reduced motion: show the final state of everything, animate nothing */
+@media (prefers-reduced-motion: reduce) {
+    .anim-rise,
+    .terminal-typing,
+    .logo-typing,
+    .reveal,
+    .diagram-draw,
+    .diagram-flow,
+    .diagram-node-halo,
+    .back-to-top,
+    .site-header {
+        animation: none !important;
+        transition: none !important;
+    }
+    .anim-rise,
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    .terminal-typing,
+    .logo-typing {
+        width: auto !important;
+        border-right-color: transparent !important;
+    }
+    .reveal .diagram-draw,
+    .diagram-draw {
+        stroke-dashoffset: 0 !important;
+    }
+    .diagram-flow {
+        stroke-dashoffset: 0 !important;
+    }
+}
+
+/* Staggered halo pulse delays for the diagram nodes */
+.diagram-halo-d1 { animation-delay: 0.3s; }
+.diagram-halo-d2 { animation-delay: 0.6s; }
+.diagram-halo-d3 { animation-delay: 0.9s; }
+.diagram-halo-d4 { animation-delay: 1.2s; }
+.diagram-halo-d5 { animation-delay: 1.5s; }
+.diagram-halo-d6 { animation-delay: 1.8s; }
+
+/* Copy-to-clipboard button feedback (hero terminal) */
+.copy-btn .icon-check,
+.copy-btn .copy-tooltip {
+    display: none;
+}
+.copy-btn.copied .icon-copy {
+    display: none;
+}
+.copy-btn.copied .icon-check,
+.copy-btn.copied .copy-tooltip {
+    display: block;
+}
+
+/* Sticky header: subtle shadow once the page is scrolled */
+.site-header {
+    transition: box-shadow 0.3s ease;
+}
+.site-header.is-scrolled {
+    box-shadow: 0 1px 10px rgb(0 0 0 / 0.07);
+}
+.dark .site-header.is-scrolled {
+    box-shadow: 0 1px 10px rgb(0 0 0 / 0.45);
+}
+
+/* Back-to-top floating button (toggled via JS, visible by default rules) */
+.back-to-top {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.back-to-top.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}

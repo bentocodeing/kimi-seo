@@ -2,14 +2,14 @@
 
 ## Overview
 
-Kimi SEO follows Anthropic's official Claude Code skill specification with a modular, multi-skill architecture.
+Kimi SEO follows the open Agent Skills specification (SKILL.md format) with a modular, multi-skill architecture.
 
 ## Directory Structure
 
 The plugin ships 25 sub-skills (21 core + 1 orchestrator + 1 framework integration + 2 extension mirrors) and 18 sub-agents (15 core + 1 framework integration + 2 extension mirrors).
 
 ```
-~/.claude/plugins/.../kimi-seo/
+~/.kimi-code/plugins/managed/kimi-seo/   # Kimi Code managed plugins directory
 ├── skills/
 │   ├── seo/                    # Main orchestrator
 │   │   ├── SKILL.md
@@ -229,8 +229,8 @@ Bundled tools are dispatched through `bin/kimi-seo` and
 The launcher resolves Python 3.10 or newer, while the standard-library runtime
 provides three operations: `run`, `setup`, and read-only `doctor`.
 
-Plugin environments live under persistent `CLAUDE_PLUGIN_DATA`. Manual installs
-keep the compatible `~/.claude/skills/seo/.venv` location. A state marker records
+Plugin environments live under the plugin manager's persistent data directory.
+Manual installs keep the compatible `~/.kimi-code/skills/seo/.venv` location. A state marker records
 the runtime schema, requirements SHA-256, Python major and minor version, public
 plugin version, and browser state. Requirements, runtime-schema, or Python ABI
 changes require explicit setup; a version-only difference remains compatible and
@@ -331,5 +331,5 @@ extensions/
 3. Own `uninstall.sh` (and `uninstall.ps1` where present) that reverses installation
 4. Installs the sub-skill mirror to the plugin's skill directory
 5. Installs the sub-agent mirror to the plugin's agent directory (extensions that ship one; lighter extensions are skill-only)
-6. Merges MCP config into `~/.claude/settings.json` non-destructively
+6. Merges MCP config into the Kimi Code MCP settings file non-destructively
 7. MCP server versions are pinned (`@<version>`) for supply-chain stability

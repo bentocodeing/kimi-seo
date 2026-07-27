@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" width="880" height="500" role="img"
+     aria-label="Kimi SEO terminal demo: prioritized action plan with severity tags and a score projection"
+     font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace">
+  <title>Kimi SEO — audit action-plan demo</title>
+  <desc>Dark terminal window. After running /seo audit, a prioritized action plan prints: findings tagged CRITICAL, HIGH and MEDIUM, each with a falsifiability check, ending in a score projection.</desc>
+  <style>
+    text { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace; }
+
+    /* ---- loop: 11s. Content fades out 9.6s -> 10.3s, blank beat, restart ---- */
+    .scene { animation: scene-fade 11s linear infinite; }
+    @keyframes scene-fade {
+      0%, 87.2% { opacity: 1; }
+      93.6%, 100% { opacity: 0; }
+    }
+
+    /* ---- appear-at-T helpers (times as % of 11s) ---- */
+    .a { opacity: 0; animation-duration: 11s; animation-timing-function: linear; animation-iteration-count: infinite; }
+    @keyframes k-prompt { 0%, 0.4% { opacity: 0; } 1.1%, 100% { opacity: 1; } }
+    @keyframes k-hdr    { 0%, 21.8% { opacity: 0; } 23.2%, 100% { opacity: 1; } }
+    @keyframes k-f1     { 0%, 27.3% { opacity: 0; } 28.7%, 100% { opacity: 1; } }
+    @keyframes k-f1c    { 0%, 30.9% { opacity: 0; } 32.3%, 100% { opacity: 1; } }
+    @keyframes k-f2     { 0%, 38.2% { opacity: 0; } 39.6%, 100% { opacity: 1; } }
+    @keyframes k-f2c    { 0%, 41.8% { opacity: 0; } 43.2%, 100% { opacity: 1; } }
+    @keyframes k-f3     { 0%, 49.1% { opacity: 0; } 50.5%, 100% { opacity: 1; } }
+    @keyframes k-f3c    { 0%, 52.7% { opacity: 0; } 54.1%, 100% { opacity: 1; } }
+    @keyframes k-f4     { 0%, 60%   { opacity: 0; } 61.4%, 100% { opacity: 1; } }
+    @keyframes k-f4c    { 0%, 63.6% { opacity: 0; } 65%, 100% { opacity: 1; } }
+    @keyframes k-score  { 0%, 70.9% { opacity: 0; } 72.3%, 100% { opacity: 1; } }
+    @keyframes k-p2     { 0%, 76.4% { opacity: 0; } 77.8%, 100% { opacity: 1; } }
+
+    /* ---- typing: 35 chars, 0.2s -> 2.2s (1.8% -> 20% of loop) ---- */
+    .type-clip rect { animation: typew 11s steps(35, end) infinite; }
+    @keyframes typew {
+      0%, 1.8% { width: 0; }
+      20%, 100% { width: 320px; }
+    }
+    .caret {
+      animation:
+        caret-move 11s steps(35, end) infinite,
+        caret-blink 1s step-end infinite;
+    }
+    @keyframes caret-move {
+      0%, 1.8% { x: 52px; }
+      20%, 100% { x: 367px; }
+    }
+    @keyframes caret-blink {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0; }
+    }
+    .caret2 { animation: caret-blink 1s step-end infinite; }
+    /* line-1 caret retires once the report starts printing */
+    .caret1-wrap { animation: caret1-life 11s linear infinite; }
+    @keyframes caret1-life {
+      0%, 21.8% { opacity: 1; }
+      22.8%, 100% { opacity: 0; }
+    }
+  </style>
+
+  <!-- backdrop -->
+  <rect width="880" height="500" fill="#0a0a0c"/>
+
+  <!-- terminal window -->
+  <rect x="14" y="14" width="852" height="472" rx="12" fill="#101014" stroke="#22222a"/>
+  <!-- title bar -->
+  <path d="M14 26 a12 12 0 0 1 12 -12 h828 a12 12 0 0 1 12 12 v24 h-852 z" fill="#17171d"/>
+  <line x1="14" y1="50" x2="866" y2="50" stroke="#22222a"/>
+  <circle cx="36" cy="32" r="5" fill="#32323c"/>
+  <circle cx="56" cy="32" r="5" fill="#32323c"/>
+  <circle cx="76" cy="32" r="5" fill="#32323c"/>
+  <text x="96" y="36" font-size="11" fill="#8b8b98">kimi</text>
+
+  <g class="scene" font-size="15">
+    <!-- line 1: prompt + typed command -->
+    <text class="a" style="animation-name: k-prompt" x="32" y="88" fill="#7ab8ff">❯</text>
+    <clipPath id="cmdclip" class="type-clip" clipPathUnits="userSpaceOnUse">
+      <rect x="52" y="72" width="0" height="22"/>
+    </clipPath>
+    <text x="52" y="88" fill="#ececf1" clip-path="url(#cmdclip)">/seo audit https://rankenstein.pro</text>
+    <g class="caret1-wrap"><rect class="caret" x="52" y="74" width="9" height="18" fill="#5ea2f7"/></g>
+
+    <!-- report header -->
+    <text class="a" style="animation-name: k-hdr" x="32" y="124"><tspan fill="#4ade80">✓</tspan><tspan fill="#8b8b98"> 5 agents complete — prioritized action plan:</tspan></text>
+
+    <!-- finding 1 -->
+    <text class="a" style="animation-name: k-f1" x="32" y="162"><tspan fill="#f87171">[CRITICAL]</tspan><tspan fill="#ececf1">  /pricing missing &lt;title&gt; + meta description</tspan></text>
+    <text class="a" style="animation-name: k-f1c" x="52" y="186" fill="#8b8b98">↳ falsifiable: view-source has no &lt;title&gt; in &lt;head&gt;</text>
+
+    <!-- finding 2 -->
+    <text class="a" style="animation-name: k-f2" x="32" y="222"><tspan fill="#5ea2f7">[HIGH]    </tspan><tspan fill="#ececf1">  14 product images missing alt text</tspan></text>
+    <text class="a" style="animation-name: k-f2c" x="52" y="246" fill="#8b8b98">↳ falsifiable: crawl counts 14 &lt;img&gt; without alt</text>
+
+    <!-- finding 3 -->
+    <text class="a" style="animation-name: k-f3" x="32" y="282"><tspan fill="#8b8b98">[MEDIUM]  </tspan><tspan fill="#ececf1">  no FAQ schema on /docs (AI Overview eligible)</tspan></text>
+    <text class="a" style="animation-name: k-f3c" x="52" y="306" fill="#8b8b98">↳ falsifiable: validator.schema.org shows 0 FAQ entities</text>
+
+    <!-- finding 4 -->
+    <text class="a" style="animation-name: k-f4" x="32" y="342"><tspan fill="#8b8b98">[MEDIUM]  </tspan><tspan fill="#ececf1">  sitemap lastmod stale on 6 URLs</tspan></text>
+    <text class="a" style="animation-name: k-f4c" x="52" y="366" fill="#8b8b98">↳ falsifiable: lastmod &lt; last deploy date in sitemap.xml</text>
+
+    <!-- score -->
+    <text class="a" style="animation-name: k-score" x="32" y="410"><tspan fill="#ececf1">Score: </tspan><tspan fill="#f87171">72/100</tspan><tspan fill="#ececf1">  →  projected </tspan><tspan fill="#4ade80">90+</tspan><tspan fill="#ececf1"> after fixes</tspan></text>
+
+    <!-- fresh prompt -->
+    <text class="a" style="animation-name: k-p2" x="32" y="448" fill="#7ab8ff">❯</text>
+    <g class="a" style="animation-name: k-p2"><rect class="caret2" x="52" y="434" width="9" height="18" fill="#5ea2f7"/></g>
+  </g>
+</svg>

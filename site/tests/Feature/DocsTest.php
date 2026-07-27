@@ -35,4 +35,23 @@ class DocsTest extends TestCase
     {
         $this->get('/docs/does-not-exist')->assertNotFound();
     }
+
+    public function test_repo_relative_images_are_rewritten_to_the_media_route(): void
+    {
+        // README.md (getting-started) embeds assets/cover.svg.
+        $this->get('/docs/getting-started')
+            ->assertOk()
+            ->assertSee('/media/assets/cover.svg', false)
+            ->assertDontSee('src="assets/cover.svg', false);
+    }
+
+    public function test_repo_internal_markdown_links_are_rewritten_to_docs_pages(): void
+    {
+        // README.md links to docs/INSTALLATION.md and docs/COMMANDS.md.
+        $this->get('/docs/getting-started')
+            ->assertOk()
+            ->assertSee('href="/docs/installation"', false)
+            ->assertSee('href="/docs/commands"', false)
+            ->assertDontSee('href="docs/INSTALLATION.md"', false);
+    }
 }

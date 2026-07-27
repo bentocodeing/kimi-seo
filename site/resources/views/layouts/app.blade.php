@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Kimi SEO — SEO analysis suite for Kimi Code CLI')</title>
     <meta name="description" content="@yield('meta_description', 'Kimi SEO is a free, open-source SEO analysis plugin for Kimi Code CLI: 25 skills, 18 subagents, 53 scripts.')">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <script>
         (function () {
             var theme = 'light';
@@ -19,11 +21,11 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen font-sans antialiased flex flex-col">
-    <header class="border-b border-zinc-200 dark:border-ink-800">
+    <header data-sticky-header class="site-header sticky top-0 z-40 border-b border-zinc-200 bg-[#fafafa]/80 backdrop-blur dark:border-ink-800 dark:bg-ink-950/80">
         <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
             <a href="{{ route('home') }}" class="flex items-center gap-2 font-mono text-sm sm:text-base font-semibold tracking-tight heading">
-                <span class="accent-text">&gt;_</span>
-                <span>Kimi&nbsp;SEO</span>
+                <x-logo />
+                <span class="logo-typing">Kimi&nbsp;SEO</span>
             </a>
             <div class="flex items-center gap-4 sm:gap-6 text-sm">
                 <a href="{{ route('docs.index') }}" class="nav-link">Docs</a>
@@ -53,7 +55,7 @@
     <footer class="border-t border-zinc-200 dark:border-ink-800 mt-20">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 grid gap-8 sm:grid-cols-3 text-sm">
             <div>
-                <p class="font-mono font-semibold mb-2 heading"><span class="accent-text">&gt;_</span> Kimi SEO</p>
+                <p class="font-mono font-semibold mb-2 heading flex items-center gap-2"><x-logo class="w-5 h-5 rounded" /> Kimi SEO</p>
                 <p class="muted leading-relaxed">
                     Free, open-source SEO analysis suite for
                     <a href="{{ config('kimiseo.kimi_code_url') }}" target="_blank" rel="noopener" class="muted-strong hover:text-accent-700 dark:hover:text-accent-300 underline underline-offset-2">Kimi Code CLI</a>.
@@ -78,5 +80,6 @@
             </div>
         </div>
     </footer>
+    <x-back-to-top />
 </body>
 </html>

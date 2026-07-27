@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" width="880" height="500" role="img"
+     aria-label="Kimi SEO terminal demo: typing /seo audit, parallel agents running, report written"
+     font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace">
+  <title>Kimi SEO — /seo audit demo</title>
+  <desc>Dark terminal window. The command /seo audit https://rankenstein.pro is typed, the orchestrator detects the industry, five agents run in parallel, and a summary line confirms the report.</desc>
+  <style>
+    text { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace; }
+
+    /* ---- loop: 10s. Content fades out 9.0s -> 9.7s, blank beat, restart ---- */
+    .scene { animation: scene-fade 10s linear infinite; }
+    @keyframes scene-fade {
+      0%, 90%   { opacity: 1; }
+      97%, 100% { opacity: 0; }
+    }
+
+    /* ---- generic appear-at-T helpers (times as % of 10s) ---- */
+    .a { opacity: 0; animation-duration: 10s; animation-timing-function: linear; animation-iteration-count: infinite; }
+    @keyframes k-prompt { 0%, 0.4% { opacity: 0; } 1.2%, 100% { opacity: 1; } }
+    @keyframes k-l2     { 0%, 27%  { opacity: 0; } 28.5%, 100% { opacity: 1; } }
+    @keyframes k-l3     { 0%, 32%  { opacity: 0; } 33.5%, 100% { opacity: 1; } }
+    @keyframes k-ag1    { 0%, 37%  { opacity: 0; } 38.5%, 100% { opacity: 1; } }
+    @keyframes k-ag1ok  { 0%, 41%  { opacity: 0; } 42.5%, 100% { opacity: 1; } }
+    @keyframes k-ag2    { 0%, 44%  { opacity: 0; } 45.5%, 100% { opacity: 1; } }
+    @keyframes k-ag2ok  { 0%, 48%  { opacity: 0; } 49.5%, 100% { opacity: 1; } }
+    @keyframes k-ag3    { 0%, 51%  { opacity: 0; } 52.5%, 100% { opacity: 1; } }
+    @keyframes k-ag3ok  { 0%, 55%  { opacity: 0; } 56.5%, 100% { opacity: 1; } }
+    @keyframes k-ag4    { 0%, 58%  { opacity: 0; } 59.5%, 100% { opacity: 1; } }
+    @keyframes k-ag4ok  { 0%, 62%  { opacity: 0; } 63.5%, 100% { opacity: 1; } }
+    @keyframes k-ag5    { 0%, 65%  { opacity: 0; } 66.5%, 100% { opacity: 1; } }
+    @keyframes k-ag5ok  { 0%, 69%  { opacity: 0; } 70.5%, 100% { opacity: 1; } }
+    @keyframes k-sum    { 0%, 74%  { opacity: 0; } 75.5%, 100% { opacity: 1; } }
+    @keyframes k-p2     { 0%, 78%  { opacity: 0; } 79.5%, 100% { opacity: 1; } }
+
+    /* ---- typing: 35 chars, 0.3s -> 2.3s (3% -> 23% of loop) ---- */
+    .type-clip rect { animation: typew 10s steps(35, end) infinite; }
+    @keyframes typew {
+      0%, 3%   { width: 0; }
+      23%, 100% { width: 320px; }
+    }
+    .caret {
+      animation:
+        caret-move 10s steps(35, end) infinite,
+        caret-blink 1s step-end infinite;
+    }
+    @keyframes caret-move {
+      0%, 3%   { x: 52px; }
+      23%, 100% { x: 367px; }
+    }
+    @keyframes caret-blink {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0; }
+    }
+    .caret2 { animation: caret-blink 1s step-end infinite; }
+    /* line-1 caret retires once output starts printing */
+    .caret1-wrap { animation: caret1-life 10s linear infinite; }
+    @keyframes caret1-life {
+      0%, 27%   { opacity: 1; }
+      28%, 100% { opacity: 0; }
+    }
+  </style>
+
+  <!-- backdrop -->
+  <rect width="880" height="500" fill="#0a0a0c"/>
+
+  <!-- terminal window -->
+  <rect x="14" y="14" width="852" height="472" rx="12" fill="#101014" stroke="#22222a"/>
+  <!-- title bar -->
+  <path d="M14 26 a12 12 0 0 1 12 -12 h828 a12 12 0 0 1 12 12 v24 h-852 z" fill="#17171d"/>
+  <line x1="14" y1="50" x2="866" y2="50" stroke="#22222a"/>
+  <circle cx="36" cy="32" r="5" fill="#32323c"/>
+  <circle cx="56" cy="32" r="5" fill="#32323c"/>
+  <circle cx="76" cy="32" r="5" fill="#32323c"/>
+  <text x="96" y="36" font-size="11" fill="#8b8b98">kimi</text>
+
+  <g class="scene" font-size="15">
+    <!-- line 1: prompt + typed command -->
+    <text class="a" style="animation-name: k-prompt" x="32" y="90" fill="#7ab8ff">❯</text>
+    <clipPath id="cmdclip" class="type-clip" clipPathUnits="userSpaceOnUse">
+      <rect x="52" y="74" width="0" height="22"/>
+    </clipPath>
+    <text x="52" y="90" fill="#ececf1" clip-path="url(#cmdclip)">/seo audit https://rankenstein.pro</text>
+    <g class="caret1-wrap"><rect class="caret" x="52" y="76" width="9" height="18" fill="#5ea2f7"/></g>
+
+    <!-- line 2: industry detection -->
+    <text class="a" style="animation-name: k-l2" x="32" y="128" fill="#8b8b98">▸ industry detected: saas · b2b platform</text>
+
+    <!-- line 3: dispatch -->
+    <text class="a" style="animation-name: k-l3" x="32" y="156" fill="#8b8b98">▸ dispatching 5 agents in parallel…</text>
+
+    <!-- agents -->
+    <text class="a" style="animation-name: k-ag1" x="52" y="194" fill="#ececf1">▸ technical</text>
+    <text class="a" style="animation-name: k-ag1ok" x="220" y="194"><tspan fill="#4ade80">✓</tspan><tspan fill="#8b8b98"> 0.4s</tspan></text>
+
+    <text class="a" style="animation-name: k-ag2" x="52" y="224" fill="#ececf1">▸ content</text>
+    <text class="a" style="animation-name: k-ag2ok" x="220" y="224"><tspan fill="#4ade80">✓</tspan><tspan fill="#8b8b98"> 0.6s</tspan></text>
+
+    <text class="a" style="animation-name: k-ag3" x="52" y="254" fill="#ececf1">▸ schema</text>
+    <text class="a" style="animation-name: k-ag3ok" x="220" y="254"><tspan fill="#4ade80">✓</tspan><tspan fill="#8b8b98"> 0.3s</tspan></text>
+
+    <text class="a" style="animation-name: k-ag4" x="52" y="284" fill="#ececf1">▸ geo</text>
+    <text class="a" style="animation-name: k-ag4ok" x="220" y="284"><tspan fill="#4ade80">✓</tspan><tspan fill="#8b8b98"> 0.5s</tspan></text>
+
+    <text class="a" style="animation-name: k-ag5" x="52" y="314" fill="#ececf1">▸ backlinks</text>
+    <text class="a" style="animation-name: k-ag5ok" x="220" y="314"><tspan fill="#4ade80">✓</tspan><tspan fill="#8b8b98"> 0.7s</tspan></text>
+
+    <!-- summary -->
+    <text class="a" style="animation-name: k-sum" x="32" y="356"><tspan fill="#4ade80">✓</tspan><tspan fill="#ececf1"> 25 skills · report written → </tspan><tspan fill="#7ab8ff">FULL-AUDIT-REPORT.md</tspan></text>
+
+    <!-- fresh prompt -->
+    <text class="a" style="animation-name: k-p2" x="32" y="396" fill="#7ab8ff">❯</text>
+    <g class="a" style="animation-name: k-p2"><rect class="caret2" x="52" y="382" width="9" height="18" fill="#5ea2f7"/></g>
+  </g>
+</svg>

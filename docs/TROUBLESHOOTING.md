@@ -8,29 +8,28 @@
 
 **Solutions:**
 
-For plugin installs, verify and reinstall through Claude Code:
-```bash
-/plugin list
-/plugin marketplace add AgriciDaniel/claude-seo
-/plugin install claude-seo@agricidaniel-claude-seo
+For plugin installs, verify and reinstall through Kimi Code:
+```
+/plugins install https://github.com/bentocodeing/kimi-seo
+/reload
 ```
 
 For manual installs:
 
 1. Verify installation:
 ```bash
-ls ~/.claude/skills/seo/SKILL.md
+ls ~/.kimi-code/skills/seo/SKILL.md
 ```
 
 2. Check SKILL.md has proper frontmatter:
 ```bash
-head -5 ~/.claude/skills/seo/SKILL.md
+head -5 ~/.kimi-code/skills/seo/SKILL.md
 ```
 Should start with `---` followed by YAML.
 
-3. Restart Claude Code:
+3. Restart Kimi Code:
 ```bash
-claude
+kimi
 ```
 
 4. Re-run installer:
@@ -58,8 +57,8 @@ Dependencies belong in the managed runtime. For a plugin install, run:
 
 For a manual install, run:
 ```bash
-~/.claude/skills/seo/bin/kimi-seo doctor
-~/.claude/skills/seo/bin/kimi-seo setup
+~/.kimi-code/skills/seo/bin/kimi-seo doctor
+~/.kimi-code/skills/seo/bin/kimi-seo setup
 ```
 
 Do not install individual packages, use `pip --user`, or create a PATH shim.
@@ -70,20 +69,21 @@ Do not install individual packages, use `pip --user`, or create a PATH shim.
 
 **Solution:** For plugin installs, reinstall the plugin first:
 
-```bash
-/plugin install claude-seo@agricidaniel-claude-seo
+```
+/plugins install https://github.com/bentocodeing/kimi-seo
+/reload
 ```
 
 For manual installs, requirements.txt is copied to the skill directory:
 
 ```bash
-ls ~/.claude/skills/seo/requirements.txt
+ls ~/.kimi-code/skills/seo/requirements.txt
 ```
 
 If missing, download it directly:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/AgriciDaniel/claude-seo/main/requirements.txt \
-  -o ~/.claude/skills/seo/requirements.txt
+curl -fsSL https://raw.githubusercontent.com/bentocodeing/kimi-seo/kimi/requirements.txt \
+  -o ~/.kimi-code/skills/seo/requirements.txt
 ```
 
 ### Windows Python Detection Issues
@@ -117,7 +117,7 @@ interpreter and persistent browser directory:
 
 **Solution:**
 ```bash
-chmod +x ~/.claude/skills/seo/scripts/*.py
+chmod +x ~/.kimi-code/skills/seo/scripts/*.py
 ```
 
 ---
@@ -130,23 +130,25 @@ chmod +x ~/.claude/skills/seo/scripts/*.py
 
 **Solution:**
 
-For plugin installs, check `/plugin list` and reinstall `claude-seo@agricidaniel-claude-seo`; subagents load from the plugin, not `~/.claude/agents/`.
+For plugin installs, check the installed plugin list and reinstall via
+`/plugins install https://github.com/bentocodeing/kimi-seo` followed by
+`/reload`; subagents load from the plugin, not `~/.agents/agents/`.
 
 For manual installs:
 
 1. Verify agent files exist:
 ```bash
-ls ~/.claude/agents/seo-*.md
+ls ~/.agents/agents/seo-*.md
 ```
 
 2. Check agent frontmatter:
 ```bash
-head -5 ~/.claude/agents/seo-technical.md
+head -5 ~/.agents/agents/seo-technical.md
 ```
 
 3. Re-install agents:
 ```bash
-cp /path/to/kimi-seo/agents/*.md ~/.claude/agents/
+cp /path/to/kimi-seo/agents/*.md ~/.agents/agents/
 ```
 
 ---
@@ -197,19 +199,19 @@ cp /path/to/kimi-seo/agents/*.md ~/.claude/agents/
 
 2. **GitHub Issues:** Report bugs at the repository
 
-3. **Logs:** Check Claude Code's output for error details
+3. **Logs:** Check Kimi Code's output for error details
 
 ## Debug Mode
 
-To see detailed output, check Claude Code's internal logs or run scripts directly:
+To see detailed output, check Kimi Code's internal logs or run scripts directly:
 
 ```bash
 # Test fetch
-python3 ~/.claude/skills/seo/scripts/fetch_page.py https://example.com
+python3 ~/.kimi-code/skills/seo/scripts/fetch_page.py https://example.com
 
 # Test parse
-python3 ~/.claude/skills/seo/scripts/parse_html.py page.html --json
+python3 ~/.kimi-code/skills/seo/scripts/parse_html.py page.html --json
 
 # Test screenshot
-python3 ~/.claude/skills/seo/scripts/capture_screenshot.py https://example.com
+python3 ~/.kimi-code/skills/seo/scripts/capture_screenshot.py https://example.com
 ```

@@ -73,7 +73,7 @@ suite is now at 410 tests.
 | New | What it does |
 |---|---|
 | `python3 scripts/parasite_risk.py` | Site-reputation-abuse risk scanner per Nov 2024 Google policy |
-| `extensions/ahrefs/` | Official `@ahrefs/mcp` server wired into Claude Code |
+| `extensions/ahrefs/` | Official `@ahrefs/mcp` server wired into Kimi Code |
 | `extensions/seranking/` | AI Share-of-Voice across ChatGPT/Gemini/Perplexity/AI Overviews/AI Mode |
 | `extensions/profound/` | Time-series LLM citation tracker |
 | `extensions/bing-webmaster/` | Bing Webmaster + IndexNow unified |

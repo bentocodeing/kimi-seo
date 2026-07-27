@@ -15,6 +15,10 @@ Route::get('/', function () {
 Route::get('/docs', [DocsController::class, 'index'])->name('docs.index');
 Route::get('/docs/{slug}', [DocsController::class, 'show'])->name('docs.show');
 
+Route::get('/media/{path}', [\App\Http\Controllers\MediaController::class, 'show'])
+    ->where('path', '.+')
+    ->name('media');
+
 Route::get('/advertise', [AdvertiseController::class, 'create'])->name('advertise');
 Route::post('/advertise', [AdvertiseController::class, 'store'])->name('advertise.store');
 

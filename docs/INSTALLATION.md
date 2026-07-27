@@ -1,5 +1,7 @@
 # Installation Guide
 
+> This guide covers the Kimi fork. Upstream project: [`AgriciDaniel/claude-seo`](https://github.com/AgriciDaniel/claude-seo).
+
 ## Prerequisites
 
 - **Python 3.10+** with pip
@@ -38,22 +40,6 @@ virtual environment and browser to Kimi SEO's persistent data directory. Use
 `~/.kimi-code/skills/` and each `agents/*.md` into `~/.agents/agents/`, where
 Kimi Code discovers them without the plugin manager. Runtime files (scripts,
 schema templates, `bin/kimi-seo`) land under `~/.kimi-code/skills/seo/`.
-Pass `--claude` to target the Claude Code layout (`~/.claude/skills/`,
-`~/.claude/agents/`) instead.
-
-### Plugin Install (Claude Code marketplace, upstream)
-
-This installs the **upstream** Claude Code version, not the Kimi fork. Inside Claude Code:
-
-```
-/plugin marketplace add AgriciDaniel/claude-seo
-/plugin install claude-seo@agricidaniel-claude-seo
-/seo setup
-```
-
-Plugin installation does not run package managers. `/seo setup` is an explicit,
-one-time provisioning step that writes the virtual environment and browser only
-to Claude's persistent plugin data. Use `/seo doctor` for a read-only check.
 
 ### Manual Install (Unix, macOS, Linux)
 
@@ -98,11 +84,11 @@ cd kimi-seo
 3. **Verify the managed runtime**
 
 The installer delegates dependency and Chromium provisioning to the same runtime
-used by every skill. It creates `~/.claude/skills/seo/.venv/` and never falls
+used by every skill. It creates `~/.kimi-code/skills/seo/.venv/` and never falls
 back to global or user package installation.
 
 ```bash
-~/.claude/skills/seo/bin/kimi-seo doctor
+~/.kimi-code/skills/seo/bin/kimi-seo doctor
 ```
 
 If core setup failed, rerun the inspected installer. If only Chromium failed,
@@ -119,9 +105,6 @@ With the default Kimi target, the installer copies files to:
 | Subagents | `~/.agents/agents/seo-*.md` |
 | Runtime launcher | `~/.kimi-code/skills/seo/bin/kimi-seo` |
 | Isolated Python | `~/.kimi-code/skills/seo/.venv/` |
-
-With `--claude`, the same layout lands under `~/.claude/skills/` and
-`~/.claude/agents/` instead.
 
 ## Verify Installation
 
@@ -141,12 +124,7 @@ You should see a help message or prompt for a URL.
 
 ## Uninstallation
 
-If installed as a plugin:
-
-```
-/plugin uninstall claude-seo@agricidaniel-claude-seo
-/plugin marketplace remove AgriciDaniel/claude-seo
-```
+If installed as a plugin, uninstall it through the Kimi Code plugin manager (see `/plugins`).
 
 If installed manually, run the uninstaller from a fresh clone:
 
@@ -155,7 +133,7 @@ git clone --depth 1 --branch kimi https://github.com/bentocodeing/kimi-seo.git
 bash kimi-seo/uninstall.sh
 ```
 
-`uninstall.sh` removes all installed sub-skills, sub-agents, and the plugin's MCP entries from `~/.claude/settings.json`. Do not maintain a hand-coded `rm` list. The shipped uninstaller is the canonical source.
+`uninstall.sh` removes all installed sub-skills, sub-agents, and the plugin's MCP entries from the Kimi Code MCP settings file. Do not maintain a hand-coded `rm` list. The shipped uninstaller is the canonical source.
 
 ## Upgrading
 
@@ -165,7 +143,7 @@ Caution: Prefer downloading, inspecting, then running remote scripts; the pipe-t
 
 ```bash
 # Uninstall current version
-curl -fsSL https://raw.githubusercontent.com/AgriciDaniel/claude-seo/main/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/bentocodeing/kimi-seo/kimi/uninstall.sh | bash
 
 # Install new version
 curl -fsSL https://raw.githubusercontent.com/bentocodeing/kimi-seo/kimi/install.sh | bash
@@ -178,7 +156,7 @@ curl -fsSL https://raw.githubusercontent.com/bentocodeing/kimi-seo/kimi/install.
 Ensure the skill is installed in the correct location:
 
 ```bash
-ls ~/.claude/skills/seo/SKILL.md
+ls ~/.kimi-code/skills/seo/SKILL.md
 ```
 
 If the file doesn't exist, re-run the installer.
@@ -188,7 +166,7 @@ If the file doesn't exist, re-run the installer.
 Run the managed setup again:
 
 ```bash
-~/.claude/skills/seo/bin/kimi-seo setup
+~/.kimi-code/skills/seo/bin/kimi-seo setup
 ```
 
 ### Playwright screenshot errors
@@ -196,8 +174,8 @@ Run the managed setup again:
 Run the managed setup again and inspect the result:
 
 ```bash
-~/.claude/skills/seo/bin/kimi-seo setup
-~/.claude/skills/seo/bin/kimi-seo doctor
+~/.kimi-code/skills/seo/bin/kimi-seo setup
+~/.kimi-code/skills/seo/bin/kimi-seo doctor
 ```
 
 ### Permission errors on Unix
@@ -205,5 +183,5 @@ Run the managed setup again and inspect the result:
 Make sure scripts are executable:
 
 ```bash
-chmod +x ~/.claude/skills/seo/scripts/*.py
+chmod +x ~/.kimi-code/skills/seo/scripts/*.py
 ```

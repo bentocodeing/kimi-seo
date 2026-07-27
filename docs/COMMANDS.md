@@ -360,11 +360,11 @@ Backlink profile analysis with a 3-tier data cascade: free (Common Crawl + verif
 
 ### `/seo cluster [command] <seed-keyword>`
 
-SERP-based semantic topic clustering for content architecture planning. Built on the Pro Hub Challenge Semantic Cluster Engine. Subcommands: `plan <seed>` (full planning workflow; also `plan --from strategy` to import a `/seo plan` output), `execute` (create content via claude-blog or output briefs), `map` (regenerate the interactive visualization). Bare `/seo cluster <seed>` is shorthand for `plan`.
+SERP-based semantic topic clustering for content architecture planning. Built on the Pro Hub Challenge Semantic Cluster Engine. Subcommands: `plan <seed>` (full planning workflow; also `plan --from strategy` to import a `/seo plan` output), `execute` (create content via a blog-writing skill or output briefs), `map` (regenerate the interactive visualization). Bare `/seo cluster <seed>` is shorthand for `plan`.
 
 **Examples:**
 ```
-/seo cluster plan "claude code skills"
+/seo cluster plan "kimi code skills"
 /seo cluster plan --from strategy
 /seo cluster execute
 /seo cluster map

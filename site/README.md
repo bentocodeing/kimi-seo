@@ -81,6 +81,20 @@ password. The admin area provides:
 (`../README.md`, `../docs/*.md`). Pages are rendered with Laravel's bundled
 league/commonmark via `Str::markdown()`. Unknown slugs return 404.
 
+After rendering, two rewrite passes run in `DocsController`:
+
+- `src="assets/…"` / `src="screenshots/…"` (repo-relative images) are
+  rewritten to `/media/{path}` — a whitelisted route (`MediaController`)
+  that serves files only from the repo-root `assets/` and `screenshots/`
+  directories (realpath containment check, image MIME types only,
+  `Cache-Control: public, max-age=86400`).
+- `href="docs/X.md"` / `href="X.md"` links between repo markdown files are
+  rewritten to their `/docs/{slug}` equivalents when the file has a docs
+  page (other `.md` links are left untouched).
+
+The landing page also serves the animated terminal demos
+(`assets/demo-command.svg`, `assets/demo-audit.svg`) through `/media/…`.
+
 ## Tests
 
 ```bash

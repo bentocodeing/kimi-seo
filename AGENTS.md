@@ -184,10 +184,14 @@ The `site/` directory is a self-contained Laravel app (SQLite, Blade +
 Tailwind, no starter kits) that serves the product landing page, renders the
 repo markdown docs at `/docs/{slug}` (mapping in `site/config/docs.php`), and
 manages advertising slots (`ads` + `ad_inquiries` tables, `/advertise` form,
-`/admin` dashboard behind HTTP Basic auth via `ADMIN_USERNAME`/`ADMIN_PASSWORD`
-env vars). It is fork-only: upstream never touches it, so it cannot create
-merge conflicts during syncs. Setup and deploy notes: `site/README.md`.
-Run its tests with `cd site && php artisan test`.
+`/admin` dashboard behind Fortify session auth; the single admin user is
+seeded from `ADMIN_EMAIL`/`ADMIN_PASSWORD` env vars). Repo-relative images in
+the markdown (`assets/…`, `screenshots/…`) are rewritten to `/media/{path}`,
+a whitelisted, realpath-contained route that serves files only from those two
+repo-root directories; inter-document markdown links are rewritten to their
+`/docs/{slug}` equivalents. It is fork-only: upstream never touches it, so it
+cannot create merge conflicts during syncs. Setup and deploy notes:
+`site/README.md`. Run its tests with `cd site && php artisan test`.
 
 ## Key Principles
 
