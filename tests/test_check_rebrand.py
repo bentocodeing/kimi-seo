@@ -55,3 +55,49 @@ def test_required_artifacts_present():
 def test_checker_scans_whole_tree():
     _, result = run_checker()
     assert result["files_scanned"] > 300
+
+
+CANARY = os.path.join(REPO, ".secret-canary-tmp")
+
+
+def run_checker_with_canary(content):
+    with open(CANARY, "w", encoding="utf-8") as fh:
+        fh.write(content)
+    try:
+        return run_checker()
+    finally:
+        os.unlink(CANARY)
+
+
+def leaked_secrets_check(result):
+    return next(c for c in result["checks"]
+                if c["name"] == "forbidden:leaked-secrets")
+
+
+def test_secret_canary_detected():
+    fake_keys = (
+        'KIMI_KEY = "sk-a1b2c3d4e5f6g7h8i9j0"\n'      # sk-* shape
+        'GOOGLE = "AIzaSyA1b2c3d4e5f6g7h8i9j0k1l2m3n4o5pqr"\n'  # AIza* shape
+        'GITHUB = "ghp_a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r"\n'
+        "-----BEGIN PRIVATE KEY-----\n"
+        'api_key = "X9vQw2Er5Ty8Ui1Op4As6Df7Gh"\n'     # high-entropy literal
+    )
+    _, result = run_checker_with_canary(fake_keys)
+    check = leaked_secrets_check(result)
+    assert check["status"] == "FAIL"
+    assert result["status"] == "FAIL"
+    assert len(check["findings"]) >= 5  # one per planted secret line
+
+
+def test_secret_placeholders_not_flagged():
+    placeholders = (
+        'KIMI_KEY = "sk-your-key-here"\n'
+        'api_key = "<your-api-key>"\n'
+        "api_key = \"${KIMI_API_KEY}\"\n"
+        'access_token = "xxxxxxxxxxxxxxxxxxxxxxxx"\n'
+        'password = "example-password-value"\n'
+    )
+    proc, result = run_checker_with_canary(placeholders)
+    check = leaked_secrets_check(result)
+    assert check["status"] == "PASS", check["findings"]
+    assert proc.returncode == 0

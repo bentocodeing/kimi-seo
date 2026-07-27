@@ -31,6 +31,15 @@ Required patterns (fail if missing):
   - ``bin/kimi-seo`` exists and is executable
   - ``kimi.plugin.json`` exists at repo root with ``"name": "kimi-seo"``
 
+Leaked-secret scan (fail on any hit):
+  Generic credential shapes — sk-*, Google AIza*, GitHub gh*_*/github_pat_*,
+  AWS AKIA*, Slack xox*, private-key blocks, and long literal values assigned
+  to api_key/secret/token/password-style variables. This scan applies to
+  EVERY text file (the attribution allowlist only covers branding, never
+  secrets) except this script and its test, which carry patterns/fixtures as
+  literals. Placeholder values (your-key, <...>, ${...}, example, dummy…)
+  and low-entropy values are not flagged.
+
 Usage:
     python3 scripts/check_rebrand.py [--json]
     ./bin/kimi-seo run check_rebrand.py
@@ -88,6 +97,41 @@ FORBIDDEN = [
      "old display brand (must be Kimi SEO)"),
 ]
 ENV_VAR_RE = re.compile(r"\b(CLAUDE_SEO_[A-Z0-9_]+)")
+
+# --- Leaked-secret detection -------------------------------------------------
+# Generic credential shapes only. These patterns must NEVER be tuned to a
+# maintainer's real keys: the point is to catch any committed credential that
+# looks like a credential.
+SECRET_PATTERNS = [
+    ("sk-* API key", re.compile(r"\bsk-[A-Za-z0-9]{16,}")),
+    ("Google API key", re.compile(r"\bAIza[0-9A-Za-z_-]{35}")),
+    ("GitHub token", re.compile(
+        r"\b(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{22,})")),
+    ("AWS access key", re.compile(r"\bAKIA[0-9A-Z]{16}\b")),
+    ("Slack token", re.compile(r"\bxox[baprs]-[A-Za-z0-9-]{10,}")),
+    ("private key block", re.compile(
+        r"-----BEGIN (?:RSA |EC |OPENSSH |PGP )?PRIVATE KEY-----")),
+]
+# Long literal assigned to a credential-named variable: api_key = "…",
+# access_token: "…", AUTH_PASSWORD='…', etc.
+SECRET_ASSIGN_RE = re.compile(
+    r"(?i)\b(?:api[_-]?key|api[_-]?secret|secret[_-]?key|access[_-]?token|"
+    r"auth[_-]?token|client[_-]?secret|password)\b[\s\"']*[:=][\s\"']*"
+    r"([A-Za-z0-9/+_=-]{20,})")
+PLACEHOLDER_VALUE_RE = re.compile(
+    r"(?i)^(?:\$|<|\{|%|your\b|xxx|\*+|placeholder|example|sample|dummy|"
+    r"changeme|redacted|replace|insert|todo|none|null|false|true|abcd)")
+
+
+def looks_like_placeholder(value):
+    if PLACEHOLDER_VALUE_RE.match(value):
+        return True
+    return len(set(value.lower())) <= 3  # low-entropy filler e.g. aaaa…, 123123…
+
+
+# Files carrying patterns/fixtures as literals — excluded from the secret scan
+# only (not from the branding allowlist logic above, which has its own list).
+SECRET_SCAN_EXCLUDE = {"scripts/check_rebrand.py", "tests/test_check_rebrand.py"}
 
 
 def repo_files():
@@ -169,6 +213,32 @@ def check_forbidden(files):
     return results
 
 
+def check_secrets(files):
+    """Leaked-credential scan over every text file (attribution allowlist
+    does NOT apply — secrets are never OK, whatever the file)."""
+    findings = []
+    for rel in files:
+        if rel in SECRET_SCAN_EXCLUDE:
+            continue
+        text = read_text(rel)
+        if text is None:
+            continue
+        for lineno, line in enumerate(text.splitlines(), 1):
+            for label, pattern in SECRET_PATTERNS:
+                if pattern.search(line):
+                    findings.append(f"{rel}:{lineno}: {label}")
+                    break
+            else:
+                match = SECRET_ASSIGN_RE.search(line)
+                if match and not looks_like_placeholder(match.group(1)):
+                    findings.append(f"{rel}:{lineno}: credential-named "
+                                    f"variable with high-entropy literal")
+    return [{"name": "forbidden:leaked-secrets",
+             "why": "no API keys, tokens or private keys may be committed",
+             "status": "FAIL" if findings else "PASS",
+             "findings": findings}]
+
+
 def check_required(files):
     results = []
 
@@ -215,7 +285,8 @@ def main():
     args = ap.parse_args()
 
     files = repo_files()
-    checks = check_forbidden(files) + check_required(files)
+    checks = (check_forbidden(files) + check_required(files)
+              + check_secrets(files))
     failed = [c for c in checks if c["status"] == "FAIL"]
     result = {"status": "FAIL" if failed else "PASS",
               "checks": checks, "files_scanned": len(files)}

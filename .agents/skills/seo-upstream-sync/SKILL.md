@@ -60,12 +60,23 @@ merge range for `Claude SEO`, `.config/claude-seo`, `bin/claude-seo`,
 hit except allowlisted attribution content (CHANGELOG.md, CONTRIBUTORS.md,
 CITATION.cff, LICENSE.txt files, lines naming upstream URLs/forks).
 
-## 5. Verify — all three must hold before any release step
+## 5. Verify — all four must hold before any release step
 
-- `./bin/kimi-seo run check_rebrand.py` → PASS (exit 0)
+- `./bin/kimi-seo run check_rebrand.py` → PASS (exit 0). This includes the
+  `forbidden:leaked-secrets` scan: generic credential shapes (sk-*, Google
+  AIza*, GitHub gh*_*/github_pat_*, AWS AKIA*, Slack xox*, private-key
+  blocks, high-entropy literals assigned to api_key/secret/token/password
+  variables) must not appear anywhere in the tree, branding allowlist
+  included. If it FAILs, stop: do not "fix" by allowlisting — find who
+  introduced the file (upstream? a conflict resolution? the user?) and get
+  it removed or moved to `~/.config/kimi-seo/` (outside the repo).
 - `.venv/bin/python -m pytest tests/ -q` → green except the 2 known
   `tests/test_sync_flow.py` GitHub rate-limit failures
 - `./bin/kimi-seo run portability_check.py` → pass
+- Secrets hygiene: credentials NEVER live in the repo — not in commits, not
+  in docs, not in examples. Never paste, print, or commit a real key while
+  resolving this sync; never tune the detection patterns to match (or
+  exclude) anyone's actual keys. Placeholders only (`sk-your-key-here`).
 
 ## 6. Release
 
