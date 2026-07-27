@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Kimi SEO fork releases
+### v1.0.0 (2026-07-27)
+- Fork rebrand of upstream claude-seo v2.2.4: Kimi SEO naming, `~/.config/kimi-seo`, `bin/kimi-seo` CLI, native Kimi Code plugin manifest (`kimi.plugin.json`), Kimi-first installers.
+- Full upstream attribution retained; see "Forked from" note in README.
+
 ## [2.2.4] - 2026-07-20
 
 Community maintenance release following a full review of every open issue and pull request.

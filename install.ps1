@@ -1,5 +1,12 @@
 # Kimi SEO Installer for Windows
 # PowerShell installation script
+#
+# Kimi Code is the primary install target. Pass -Claude to install into the
+# Claude Code layout instead (upstream parity).
+
+param(
+    [switch]$Claude
+)
 
 $ErrorActionPreference = "Stop"
 
@@ -111,14 +118,20 @@ try {
 }
 
 # Set paths
-$SkillDir = "$env:USERPROFILE\.claude\skills\seo"
-$AgentDir = "$env:USERPROFILE\.claude\agents"
-$RepoUrl = "https://github.com/AgriciDaniel/claude-seo"
+if ($Claude) {
+    $SkillsHome = "$env:USERPROFILE\.claude\skills"
+    $AgentDir = "$env:USERPROFILE\.claude\agents"
+} else {
+    $SkillsHome = "$env:USERPROFILE\.kimi-code\skills"
+    $AgentDir = "$env:USERPROFILE\.agents\agents"
+}
+$SkillDir = "$SkillsHome\seo"
+$RepoUrl = "https://github.com/bentocodeing/kimi-seo"
 # Pin to a specific release tag to prevent silent updates from main.
 # This default MUST be bumped on every release. CI guard
-# (tests/test_manifest_consistency.py) enforces this matches plugin.json.
+# (tests/test_manifest_consistency.py) enforces this matches kimi.plugin.json.
 # Override: $env:KIMI_SEO_TAG = 'main'; .\install.ps1
-$RepoTag = if ($env:KIMI_SEO_TAG) { $env:KIMI_SEO_TAG } else { 'v2.2.4' }
+$RepoTag = if ($env:KIMI_SEO_TAG) { $env:KIMI_SEO_TAG } else { 'v1.0.0' }
 
 # Create directories
 New-Item -ItemType Directory -Force -Path $SkillDir | Out-Null
@@ -130,7 +143,7 @@ if (Test-Path $TempDir) {
     Remove-Item -Recurse -Force $TempDir
 }
 
-$keepTemp = ($env:CLAUDE_SEO_KEEP_TEMP -eq '1')
+$keepTemp = ($env:KIMI_SEO_KEEP_TEMP -eq '1') -or ($env:CLAUDE_SEO_KEEP_TEMP -eq '1')
 
 try {
     Write-Host ">> Downloading Kimi SEO ($RepoTag)..." -ForegroundColor Yellow
@@ -151,7 +164,7 @@ try {
     $SkillsPath = "$TempDir\skills"
     if (Test-Path $SkillsPath) {
         Get-ChildItem -Directory $SkillsPath | ForEach-Object {
-            $target = "$env:USERPROFILE\.claude\skills\$($_.Name)"
+            $target = "$SkillsHome\$($_.Name)"
             New-Item -ItemType Directory -Force -Path $target | Out-Null
             Copy-Item -Recurse -Force "$($_.FullName)\*" $target
         }
@@ -216,7 +229,7 @@ try {
             $extSkills = Join-Path $extDir 'skills'
             if (Test-Path $extSkills) {
                 Get-ChildItem -Directory $extSkills | ForEach-Object {
-                    $target = "$env:USERPROFILE\.claude\skills\$($_.Name)"
+                    $target = "$SkillsHome\$($_.Name)"
                     New-Item -ItemType Directory -Force -Path $target | Out-Null
                     Copy-Item -Recurse -Force "$($_.FullName)\*" $target
                 }
@@ -253,15 +266,24 @@ try {
     if (Test-Path $pluginManifest) {
         Copy-Item -Force $pluginManifest (Join-Path $SkillDir 'runtime-plugin.json')
     }
+    $kimiManifest = Join-Path $TempDir 'kimi.plugin.json'
+    if (Test-Path $kimiManifest) {
+        Copy-Item -Force $kimiManifest (Join-Path $SkillDir 'kimi.plugin.json')
+    }
 
     # Manual installs do not receive plugin bin/ PATH injection. Rewrite only
-    # the canonical runtime token in installed Markdown. Claude Code's Bash tool
+    # the canonical runtime token in installed Markdown. Kimi Code's Bash tool
     # expands $HOME on Windows as well as Unix.
-    $manualRunner = '"$HOME/.claude/skills/seo/bin/kimi-seo" run'
+    if ($Claude) {
+        $manualBin = '$HOME/.claude/skills/seo/bin/kimi-seo'
+    } else {
+        $manualBin = '$HOME/.kimi-code/skills/seo/bin/kimi-seo'
+    }
+    $manualRunner = "`"$manualBin`" run"
     $installedDocs = @()
     Get-ChildItem -Path $SkillsPath -Directory | ForEach-Object {
         $sourceRoot = $_.FullName
-        $targetRoot = "$env:USERPROFILE\.claude\skills\$($_.Name)"
+        $targetRoot = "$SkillsHome\$($_.Name)"
         $installedDocs += Get-ChildItem -Path $sourceRoot -Recurse -File -Filter '*.md' | ForEach-Object {
             $relative = $_.FullName.Substring($sourceRoot.Length).TrimStart('\','/')
             Get-Item (Join-Path $targetRoot $relative) -ErrorAction SilentlyContinue
@@ -272,7 +294,7 @@ try {
         $extSkills = Join-Path $_.FullName 'skills'
         Get-ChildItem -Path $extSkills -Directory -ErrorAction SilentlyContinue | ForEach-Object {
             $sourceRoot = $_.FullName
-            $targetRoot = "$env:USERPROFILE\.claude\skills\$($_.Name)"
+            $targetRoot = "$SkillsHome\$($_.Name)"
             $installedDocs += Get-ChildItem -Path $sourceRoot -Recurse -File -Filter '*.md' | ForEach-Object {
                 $relative = $_.FullName.Substring($sourceRoot.Length).TrimStart('\','/')
                 Get-Item (Join-Path $targetRoot $relative) -ErrorAction SilentlyContinue
@@ -297,8 +319,8 @@ try {
     $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
     $installedDocs | ForEach-Object {
         $text = [System.IO.File]::ReadAllText($_.FullName)
-        $manualSetup = '"$HOME/.claude/skills/seo/bin/kimi-seo" setup'
-        $manualDoctor = '"$HOME/.claude/skills/seo/bin/kimi-seo" doctor'
+        $manualSetup = "`"$manualBin`" setup"
+        $manualDoctor = "`"$manualBin`" doctor"
         $updated = $text.Replace('kimi-seo run', $manualRunner)
         $updated = $updated.Replace('kimi-seo setup', $manualSetup)
         $updated = $updated.Replace('kimi-seo doctor', $manualDoctor)
@@ -332,10 +354,23 @@ try {
 }
 
 Write-Host ""
-Write-Host "[+] Kimi SEO installed successfully!" -ForegroundColor Green
-Write-Host ""
-Write-Host "Usage:" -ForegroundColor Cyan
-Write-Host "  1. Start Claude Code:  claude"
-Write-Host "  2. Run commands:       /seo audit https://example.com"
+if ($Claude) {
+    Write-Host "[+] Kimi SEO installed successfully (claude target)!" -ForegroundColor Green
+    Write-Host ""
+    Write-Host "Usage:" -ForegroundColor Cyan
+    Write-Host "  1. Start Claude Code:  claude"
+    Write-Host "  2. Run commands:       /seo audit https://example.com"
+} else {
+    Write-Host "[+] Kimi SEO installed successfully (kimi target)!" -ForegroundColor Green
+    Write-Host ""
+    Write-Host "Usage:" -ForegroundColor Cyan
+    Write-Host "  1. Start Kimi Code:    kimi"
+    Write-Host "  2. Reload skills:      /reload"
+    Write-Host "  3. Run commands:       /seo audit https://example.com"
+    Write-Host ""
+    Write-Host "Managed alternative (recommended): install as a Kimi Code plugin instead:" -ForegroundColor Cyan
+    Write-Host "  /plugins install $RepoUrl"
+    Write-Host "  /reload"
+}
 Write-Host ""
 Write-Host "Python deps location: $installedReqFile" -ForegroundColor Gray

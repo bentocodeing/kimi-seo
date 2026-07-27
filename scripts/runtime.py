@@ -38,7 +38,7 @@ ALLOWED_CORE_SCRIPTS = frozenset(
         "indexnow_submit.py", "iptc_ai_label.py", "keyword_planner.py",
         "lcp_subparts.py", "moz_api.py", "nlp_analyze.py", "pagespeed_check.py",
         "parasite_risk.py", "parse_html.py", "preload_check.py", "render_page.py",
-        "portability_check.py", "consistency_check.py",
+        "portability_check.py", "consistency_check.py", "check_rebrand.py",
         "schema_ecommerce_validate.py", "schema_generate.py", "seo_updates.py",
         "sitemap_discovery.py", "sync_flow.py", "ucp_check.py", "unlighthouse_run.py",
         "url_safety.py", "validate_backlink_report.py", "verify_backlinks.py",
@@ -65,7 +65,7 @@ def _root() -> Path:
 
 
 def _plugin_version(root: Path) -> str:
-    for manifest in (root / ".claude-plugin" / "plugin.json", root / "runtime-plugin.json"):
+    for manifest in (root / "kimi.plugin.json", root / ".claude-plugin" / "plugin.json", root / "runtime-plugin.json"):
         try:
             value = json.loads(manifest.read_text(encoding="utf-8")).get("version")
             if isinstance(value, str):
@@ -110,7 +110,9 @@ def _configured_data_dir(raw: str) -> Path:
 
 
 def _data_dir(root: Path) -> tuple[Path, str]:
-    override = os.environ.get("CLAUDE_SEO_DATA_DIR")
+    # KIMI_SEO_DATA_DIR takes precedence; CLAUDE_SEO_DATA_DIR is a fallback
+    # for configurations carried over from upstream claude-seo.
+    override = os.environ.get("KIMI_SEO_DATA_DIR") or os.environ.get("CLAUDE_SEO_DATA_DIR")
     if override:
         return _configured_data_dir(override), "override"
     plugin_data = os.environ.get("CLAUDE_PLUGIN_DATA")

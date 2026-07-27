@@ -5,14 +5,30 @@ set -euo pipefail
 # Wraps everything in main() to prevent partial execution on network failure
 
 main() {
-    SKILL_DIR="${HOME}/.claude/skills/seo"
-    AGENT_DIR="${HOME}/.claude/agents"
+    # Kimi Code is the primary install target. Pass --claude to install into
+    # the Claude Code layout instead (upstream parity).
+    TARGET="kimi"
+    for arg in "$@"; do
+        case "${arg}" in
+            --claude) TARGET="claude" ;;
+            *) echo "Unknown option: ${arg} (supported: --claude)"; exit 1 ;;
+        esac
+    done
+
+    if [ "${TARGET}" = "claude" ]; then
+        SKILLS_HOME="${HOME}/.claude/skills"
+        AGENT_DIR="${HOME}/.claude/agents"
+    else
+        SKILLS_HOME="${HOME}/.kimi-code/skills"
+        AGENT_DIR="${HOME}/.agents/agents"
+    fi
+    SKILL_DIR="${SKILLS_HOME}/seo"
     REPO_URL="https://github.com/bentocodeing/kimi-seo"
     # Pin to a specific release tag to prevent silent updates from main.
     # This default MUST be bumped on every release. CI guard
-    # (tests/test_manifest_consistency.py) enforces this matches plugin.json.
+    # (tests/test_manifest_consistency.py) enforces this matches kimi.plugin.json.
     # Override: KIMI_SEO_TAG=main bash install.sh
-    REPO_TAG="${KIMI_SEO_TAG:-v2.2.4}"
+    REPO_TAG="${KIMI_SEO_TAG:-v1.0.0}"
 
     echo "════════════════════════════════════════"
     echo "║   Kimi SEO - Installer             ║"
@@ -44,7 +60,7 @@ main() {
     if [ -d "${TEMP_DIR}/kimi-seo/skills" ]; then
         for skill_dir in "${TEMP_DIR}/kimi-seo/skills"/*/; do
             skill_name=$(basename "${skill_dir}")
-            target="${HOME}/.claude/skills/${skill_name}"
+            target="${SKILLS_HOME}/${skill_name}"
             mkdir -p "${target}"
             cp -r "${skill_dir}"* "${target}/"
         done
@@ -87,7 +103,11 @@ main() {
         chmod +x "${SKILL_DIR}/hooks/"*.sh 2>/dev/null || true
         chmod +x "${SKILL_DIR}/hooks/"*.py 2>/dev/null || true
         # Manual installs copy hook files only; enforcement loads through the plugin manifest.
-        echo "  Note: hook enforcement requires plugin install (/plugin install ${REPO_URL}); manual hook copy is best-effort."
+        if [ "${TARGET}" = "claude" ]; then
+            echo "  Note: hook enforcement requires plugin install (/plugin install); manual hook copy is best-effort."
+        else
+            echo "  Note: hook enforcement requires plugin install (/plugins install ${REPO_URL}); manual hook copy is best-effort."
+        fi
     fi
 
     # Copy extensions (optional add-ons: dataforseo, banana)
@@ -101,7 +121,7 @@ main() {
                 for ext_skill in "${ext_dir}skills"/*/; do
                     [ -d "${ext_skill}" ] || continue
                     ext_skill_name=$(basename "${ext_skill}")
-                    target="${HOME}/.claude/skills/${ext_skill_name}"
+                    target="${SKILLS_HOME}/${ext_skill_name}"
                     mkdir -p "${target}"
                     cp -r "${ext_skill}"* "${target}/"
                 done
@@ -126,15 +146,21 @@ main() {
     # Copy requirements.txt to skill dir so users can retry later
     cp "${TEMP_DIR}/kimi-seo/requirements.txt" "${SKILL_DIR}/requirements.txt" 2>/dev/null || true
     cp "${TEMP_DIR}/kimi-seo/.claude-plugin/plugin.json" "${SKILL_DIR}/runtime-plugin.json" 2>/dev/null || true
+    cp "${TEMP_DIR}/kimi-seo/kimi.plugin.json" "${SKILL_DIR}/kimi.plugin.json" 2>/dev/null || true
 
     # Manual installs cannot rely on plugin bin/ PATH injection. Rewrite only
     # exact files copied from this checkout during this install.
+    if [ "${TARGET}" = "claude" ]; then
+        MANUAL_BIN='$HOME/.claude/skills/seo/bin/kimi-seo'
+    else
+        MANUAL_BIN='$HOME/.kimi-code/skills/seo/bin/kimi-seo'
+    fi
     rewrite_doc() {
         local doc="$1" temp_doc
         temp_doc="${doc}.kimi-seo-tmp"
-        sed -e 's#kimi-seo run#"$HOME/.claude/skills/seo/bin/kimi-seo" run#g' \
-            -e 's#kimi-seo setup#"$HOME/.claude/skills/seo/bin/kimi-seo" setup#g' \
-            -e 's#kimi-seo doctor#"$HOME/.claude/skills/seo/bin/kimi-seo" doctor#g' \
+        sed -e "s#kimi-seo run#\"${MANUAL_BIN}\" run#g" \
+            -e "s#kimi-seo setup#\"${MANUAL_BIN}\" setup#g" \
+            -e "s#kimi-seo doctor#\"${MANUAL_BIN}\" doctor#g" \
             "${doc}" > "${temp_doc}"
         mv "${temp_doc}" "${doc}"
     }
@@ -143,7 +169,7 @@ main() {
         skill_name=$(basename "${source_root}")
         while IFS= read -r -d '' source_doc; do
             relative_doc=${source_doc#"${source_root}/"}
-            doc="${HOME}/.claude/skills/${skill_name}/${relative_doc}"
+            doc="${SKILLS_HOME}/${skill_name}/${relative_doc}"
             [ -f "${doc}" ] && rewrite_doc "${doc}"
         done < <(find "${source_root}" -type f -name '*.md' -print0)
     done
@@ -152,7 +178,7 @@ main() {
         skill_name=$(basename "${source_root}")
         while IFS= read -r -d '' source_doc; do
             relative_doc=${source_doc#"${source_root}/"}
-            doc="${HOME}/.claude/skills/${skill_name}/${relative_doc}"
+            doc="${SKILLS_HOME}/${skill_name}/${relative_doc}"
             [ -f "${doc}" ] && rewrite_doc "${doc}"
         done < <(find "${source_root}" -type f -name '*.md' -print0)
     done
@@ -184,11 +210,21 @@ main() {
     fi
 
     echo ""
-    echo "✓ Kimi SEO installed successfully!"
+    echo "✓ Kimi SEO installed successfully (${TARGET} target)!"
     echo ""
     echo "Usage:"
-    echo "  1. Start Claude Code:  claude"
-    echo "  2. Run commands:       /seo audit https://example.com"
+    if [ "${TARGET}" = "claude" ]; then
+        echo "  1. Start Claude Code:  claude"
+        echo "  2. Run commands:       /seo audit https://example.com"
+    else
+        echo "  1. Start Kimi Code:    kimi"
+        echo "  2. Reload skills:      /reload"
+        echo "  3. Run commands:       /seo audit https://example.com"
+        echo ""
+        echo "Managed alternative (recommended): install as a Kimi Code plugin instead:"
+        echo "  /plugins install ${REPO_URL}"
+        echo "  /reload"
+    fi
     echo ""
     echo "Python deps location: ${SKILL_DIR}/requirements.txt"
     echo "Inspect remote scripts before piping them to bash."

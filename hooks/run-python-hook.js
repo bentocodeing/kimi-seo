@@ -9,6 +9,15 @@ function stripWrappingQuotes(value) {
 
 function pythonCandidates() {
   const candidates = [];
+  // KIMI_SEO_PYTHON takes precedence; CLAUDE_SEO_PYTHON remains as a
+  // fallback for configurations carried over from upstream claude-seo.
+  if (process.env.KIMI_SEO_PYTHON) {
+    candidates.push({
+      label: "KIMI_SEO_PYTHON",
+      exe: stripWrappingQuotes(process.env.KIMI_SEO_PYTHON),
+      args: [],
+    });
+  }
   if (process.env.CLAUDE_SEO_PYTHON) {
     candidates.push({
       label: "CLAUDE_SEO_PYTHON",
@@ -57,7 +66,7 @@ function main() {
   }
 
   console.error(
-    "Kimi SEO hook could not find Python. Tried CLAUDE_SEO_PYTHON, py -3, python3, python.",
+    "Kimi SEO hook could not find Python. Tried KIMI_SEO_PYTHON, CLAUDE_SEO_PYTHON, py -3, python3, python.",
   );
   process.exit(1);
 }

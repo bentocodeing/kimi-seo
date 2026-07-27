@@ -11,6 +11,36 @@ Optional:
 
 ## Quick Install
 
+### Plugin Install (Kimi Code, recommended)
+
+Inside Kimi Code:
+
+```
+/plugins install https://github.com/bentocodeing/kimi-seo
+/reload
+/seo setup
+```
+
+Kimi Code copies the repository into its managed plugins directory
+(`~/.kimi-code/plugins/managed/kimi-seo/`) and reads `kimi.plugin.json` from
+the plugin root: the `skills/` and `plugin-skills/` skill roots, the
+session-start orientation skill (`kimi-seo-runtime`), and the schema
+validation hook (`PostToolUse` on `Edit|Write`). Hook commands run with the
+plugin root as working directory.
+
+`/seo setup` is an explicit, one-time provisioning step that writes the
+virtual environment and browser to Kimi SEO's persistent data directory. Use
+`/seo doctor` for a read-only check.
+
+### Manual skills/agents layout (Kimi Code, no plugin manager)
+
+`install.sh` (default target) copies each `skills/seo*` directory into
+`~/.kimi-code/skills/` and each `agents/*.md` into `~/.agents/agents/`, where
+Kimi Code discovers them without the plugin manager. Runtime files (scripts,
+schema templates, `bin/kimi-seo`) land under `~/.kimi-code/skills/seo/`.
+Pass `--claude` to target the Claude Code layout (`~/.claude/skills/`,
+`~/.claude/agents/`) instead.
+
 ### Plugin Install (Claude Code marketplace, upstream)
 
 This installs the **upstream** Claude Code version, not the Kimi fork. Inside Claude Code:
@@ -80,15 +110,18 @@ the installer reports a degraded result and raw-fetch analysis remains available
 
 ## Installation Paths
 
-The installer copies files to:
+With the default Kimi target, the installer copies files to:
 
 | Component | Path |
 |-----------|------|
-| Main skill | `~/.claude/skills/seo/` |
-| Sub-skills | `~/.claude/skills/seo-*/` |
-| Subagents | `~/.claude/agents/seo-*.md` |
-| Runtime launcher | `~/.claude/skills/seo/bin/kimi-seo` |
-| Isolated Python | `~/.claude/skills/seo/.venv/` |
+| Main skill | `~/.kimi-code/skills/seo/` |
+| Sub-skills | `~/.kimi-code/skills/seo-*/` |
+| Subagents | `~/.agents/agents/seo-*.md` |
+| Runtime launcher | `~/.kimi-code/skills/seo/bin/kimi-seo` |
+| Isolated Python | `~/.kimi-code/skills/seo/.venv/` |
+
+With `--claude`, the same layout lands under `~/.claude/skills/` and
+`~/.claude/agents/` instead.
 
 ## Verify Installation
 

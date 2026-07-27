@@ -40,8 +40,35 @@ def test_schema_hook_uses_exec_form_args_and_tool_input_placeholder() -> None:
 
 def test_hook_launcher_documents_python_probe_order() -> None:
     text = HOOK_LAUNCHER.read_text(encoding="utf-8")
-    for marker in ("CLAUDE_SEO_PYTHON", "py", "-3", "python3", "python"):
+    for marker in ("KIMI_SEO_PYTHON", "CLAUDE_SEO_PYTHON", "py", "-3", "python3", "python"):
         assert marker in text
+
+
+def test_hook_launcher_prefers_kimi_python_override(tmp_path: Path) -> None:
+    node = shutil.which("node")
+    if not node:
+        pytest.skip("node is not available in this test environment")
+
+    script = tmp_path / "block.py"
+    script.write_text(
+        "import sys\n"
+        "assert sys.argv[1] == 'payload'\n"
+        "sys.exit(2)\n",
+        encoding="utf-8",
+    )
+    env = os.environ.copy()
+    env["KIMI_SEO_PYTHON"] = sys.executable
+    env["CLAUDE_SEO_PYTHON"] = "/nonexistent/claude-python"
+
+    proc = subprocess.run(
+        [node, str(HOOK_LAUNCHER), str(script), "payload"],
+        env=env,
+        capture_output=True,
+        text=True,
+        timeout=15,
+    )
+
+    assert proc.returncode == 2
 
 
 def test_hook_launcher_preserves_blocking_exit_code_two(tmp_path: Path) -> None:

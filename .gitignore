@@ -179,3 +179,7 @@ id_rsa
 id_rsa.*
 id_ed25519
 id_ed25519.*
+
+# Kimi SEO managed runtime artifacts
+ms-playwright/
+runtime-state.json

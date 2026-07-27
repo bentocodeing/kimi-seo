@@ -16,6 +16,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PLUGIN_JSON = REPO_ROOT / ".claude-plugin" / "plugin.json"
+KIMI_PLUGIN_JSON = REPO_ROOT / "kimi.plugin.json"
 MARKETPLACE_JSON = REPO_ROOT / ".claude-plugin" / "marketplace.json"
 CITATION_CFF = REPO_ROOT / "CITATION.cff"
 
@@ -134,14 +135,18 @@ def test_version_triangulation():
     )
 
 
-def test_pyproject_version_matches_plugin_json():
-    """pyproject.toml version must equal plugin.json version.
+def test_pyproject_version_matches_kimi_plugin_json():
+    """pyproject.toml version must equal kimi.plugin.json version.
+
+    The fork releases on its own version line (v1.0.0+) tracked in
+    kimi.plugin.json and pyproject.toml, while .claude-plugin/plugin.json
+    keeps tracking the upstream version for compatibility.
 
     Background: pyproject.toml drifted to 1.9.6 while plugin.json was at
     1.9.8. The original triangulation test only covered CITATION.cff,
     so pyproject.toml drift slipped past CI. This guard closes that gap.
     """
-    plugin = json.loads(PLUGIN_JSON.read_text(encoding="utf-8"))
+    plugin = json.loads(KIMI_PLUGIN_JSON.read_text(encoding="utf-8"))
     pyproject_text = (REPO_ROOT / "pyproject.toml").read_text(encoding="utf-8")
     pyproject_match = re.search(
         r'^version\s*=\s*"([^"]+)"', pyproject_text, re.MULTILINE
@@ -150,20 +155,20 @@ def test_pyproject_version_matches_plugin_json():
     plugin_version = plugin["version"]
     pyproject_version = pyproject_match.group(1)
     assert plugin_version == pyproject_version, (
-        f"plugin.json version is {plugin_version} but pyproject.toml has "
-        f"{pyproject_version}. Bump pyproject.toml on every release."
+        f"kimi.plugin.json version is {plugin_version} but pyproject.toml has "
+        f"{pyproject_version}. Bump pyproject.toml on every fork release."
     )
 
 
 def test_install_scripts_default_tag_matches_plugin_version():
-    """install.sh and install.ps1 default REPO_TAG must equal v{plugin version}.
+    """install.sh and install.ps1 default REPO_TAG must equal v{kimi.plugin.json version}.
 
     Background: install.sh and install.ps1 default tag was v1.9.0 while
     plugin.json shipped at 1.9.8 (4 missed bumps across v1.9.5/.6/.7/.8).
     Manual-install users via curl | bash got 8 versions stale. This guard
-    forces the default tag to track plugin.json on every release.
+    forces the default tag to track the fork release on every release.
     """
-    plugin = json.loads(PLUGIN_JSON.read_text(encoding="utf-8"))
+    plugin = json.loads(KIMI_PLUGIN_JSON.read_text(encoding="utf-8"))
     expected_tag = f"v{plugin['version']}"
 
     sh_text = (REPO_ROOT / "install.sh").read_text(encoding="utf-8")
@@ -439,3 +444,76 @@ def test_reference_files_have_at_least_one_link():
         + "\n\nFix: link the file from its parent SKILL.md, a related "
           "reference doc, or a top-level doc — or delete if obsolete."
     )
+
+
+def test_kimi_plugin_json_required_fields_and_name_format():
+    """kimi.plugin.json must satisfy the Kimi Code manifest contract."""
+    plugin = json.loads(KIMI_PLUGIN_JSON.read_text(encoding="utf-8"))
+    name = plugin.get("name", "")
+    assert re.fullmatch(r"[a-z0-9][a-z0-9_-]{0,63}", name), (
+        f"kimi.plugin.json name {name!r} must match [a-z0-9][a-z0-9_-]{{0,63}}"
+    )
+    for field in ("version", "description", "license", "homepage", "author"):
+        assert plugin.get(field), f"kimi.plugin.json missing required field: {field}"
+    interface = plugin.get("interface")
+    assert isinstance(interface, dict), "kimi.plugin.json missing interface object"
+    assert interface.get("displayName"), "interface.displayName must be non-empty"
+
+
+def test_kimi_plugin_json_skills_paths_exist():
+    """Every kimi.plugin.json skills root must exist and contain SKILL.md dirs."""
+    plugin = json.loads(KIMI_PLUGIN_JSON.read_text(encoding="utf-8"))
+    skills = plugin.get("skills")
+    assert isinstance(skills, list) and skills, "kimi.plugin.json needs a skills list"
+    for entry in skills:
+        assert entry.startswith("./"), f"skills path must be relative: {entry!r}"
+        root = (REPO_ROOT / entry).resolve()
+        assert root.is_dir(), f"skills root does not exist: {entry}"
+        assert root.is_relative_to(REPO_ROOT), f"skills path escapes repo: {entry}"
+        has_skill = (root / "SKILL.md").is_file() or any(
+            (child / "SKILL.md").is_file()
+            for child in root.iterdir()
+            if child.is_dir()
+        )
+        assert has_skill, f"skills root {entry} contains no SKILL.md"
+
+
+def test_kimi_plugin_json_session_start_skill_exists():
+    """sessionStart.skill must resolve to a SKILL.md inside a declared skills root."""
+    plugin = json.loads(KIMI_PLUGIN_JSON.read_text(encoding="utf-8"))
+    session_start = plugin.get("sessionStart")
+    assert isinstance(session_start, dict), "kimi.plugin.json missing sessionStart"
+    skill_name = session_start.get("skill")
+    assert skill_name, "sessionStart.skill must be non-empty"
+
+    skills = plugin.get("skills") or []
+    candidates = []
+    for entry in skills:
+        root = REPO_ROOT / entry
+        candidates.append(root / "SKILL.md")  # skills root that is itself a skill dir
+        candidates.append(root / skill_name / "SKILL.md")
+    found = [c for c in candidates if c.is_file()]
+    assert found, (
+        f"sessionStart skill {skill_name!r} not found under any skills root {skills}"
+    )
+    for candidate in found:
+        frontmatter = _extract_frontmatter(candidate.read_text(encoding="utf-8"))
+        if re.search(rf"^name:\s*{re.escape(skill_name)}\s*$", frontmatter, re.MULTILINE):
+            return
+    raise AssertionError(
+        f"sessionStart skill {skill_name!r}: no SKILL.md with matching frontmatter name"
+    )
+
+
+def test_kimi_plugin_json_hook_command_paths_exist():
+    """Every ./-relative path in kimi.plugin.json hook commands must exist."""
+    plugin = json.loads(KIMI_PLUGIN_JSON.read_text(encoding="utf-8"))
+    hooks = plugin.get("hooks")
+    assert isinstance(hooks, list) and hooks, "kimi.plugin.json needs a hooks list"
+    for hook in hooks:
+        for field in ("event", "command"):
+            assert hook.get(field), f"hook entry missing {field}: {hook!r}"
+        for token in re.findall(r"\./[^\s\"']+", hook["command"]):
+            assert (REPO_ROOT / token).is_file(), (
+                f"hook command references missing path: {token}"
+            )

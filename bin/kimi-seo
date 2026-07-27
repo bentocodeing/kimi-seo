@@ -13,6 +13,16 @@ fi
 
 # An override is an executable path, not a shell command. Keeping it as one
 # array element prevents command injection and supports paths containing spaces.
+# KIMI_SEO_PYTHON takes precedence; CLAUDE_SEO_PYTHON is kept as a fallback
+# for users migrating from the upstream claude-seo configuration.
+if [[ -n "${KIMI_SEO_PYTHON:-}" ]]; then
+    if "${KIMI_SEO_PYTHON}" -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 10) else 1)' >/dev/null 2>&1; then
+        exec "${KIMI_SEO_PYTHON}" "${runtime}" "$@"
+    fi
+    echo "KIMI_SEO_PYTHON is not a usable Python 3.10+ executable." >&2
+    exit 2
+fi
+
 if [[ -n "${CLAUDE_SEO_PYTHON:-}" ]]; then
     if "${CLAUDE_SEO_PYTHON}" -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 10) else 1)' >/dev/null 2>&1; then
         exec "${CLAUDE_SEO_PYTHON}" "${runtime}" "$@"
@@ -31,5 +41,5 @@ if command -v python >/dev/null 2>&1 && python -c 'import sys; raise SystemExit(
     exec python "${runtime}" "$@"
 fi
 
-echo "Kimi SEO requires Python 3.10 or newer. Tried CLAUDE_SEO_PYTHON, py -3, python3, and python." >&2
+echo "Kimi SEO requires Python 3.10 or newer. Tried KIMI_SEO_PYTHON, CLAUDE_SEO_PYTHON, py -3, python3, and python." >&2
 exit 2

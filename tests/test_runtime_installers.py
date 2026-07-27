@@ -17,6 +17,15 @@ def test_unix_installer_delegates_to_runtime_without_global_pip() -> None:
     assert 'find "${HOME}/.claude/skills"' not in text
 
 
+def test_unix_installer_targets_kimi_by_default_with_claude_opt_in() -> None:
+    text = (ROOT / "install.sh").read_text(encoding="utf-8")
+    assert 'SKILLS_HOME="${HOME}/.kimi-code/skills"' in text
+    assert 'AGENT_DIR="${HOME}/.agents/agents"' in text
+    assert "--claude" in text
+    assert 'SKILLS_HOME="${HOME}/.claude/skills"' in text
+    assert "/plugins install" in text
+
+
 def test_windows_installer_delegates_to_runtime_without_path_mutation() -> None:
     text = (ROOT / "install.ps1").read_text(encoding="utf-8")
     assert "scripts\\runtime.py" in text
@@ -27,6 +36,9 @@ def test_windows_installer_delegates_to_runtime_without_path_mutation() -> None:
     assert "version_info >= (3, 10)" in text
     assert "$runtime.ExitCode -ne 0 -and $runtime.ExitCode -ne 10" in text
     assert "-Directory -Filter 'seo*'" not in text
+    assert ".kimi-code\\skills" in text
+    assert ".agents\\agents" in text
+    assert "[switch]$Claude" in text
 
 
 def test_launcher_is_executable_and_uses_safe_exec() -> None:

@@ -1,0 +1,50 @@
+{
+  "name": "kimi-seo",
+  "version": "1.0.0",
+  "description": "Tier-4 SEO analysis suite for Kimi Code CLI — 25 skills, 53 scripts. Fork of claude-seo by @AgriciDaniel.",
+  "keywords": [
+    "seo",
+    "technical-seo",
+    "content-quality",
+    "e-e-a-t",
+    "schema-markup",
+    "core-web-vitals",
+    "local-seo",
+    "geo",
+    "ai-search",
+    "sitemap",
+    "hreflang",
+    "backlinks",
+    "ecommerce-seo",
+    "semantic-clustering",
+    "drift-monitoring",
+    "google-search-console",
+    "pagespeed",
+    "kimi-code"
+  ],
+  "author": {
+    "name": "bentocodeing",
+    "url": "https://github.com/bentocodeing"
+  },
+  "homepage": "https://github.com/bentocodeing/kimi-seo",
+  "license": "MIT",
+  "interface": {
+    "displayName": "Kimi SEO",
+    "shortDescription": "Tier-4 SEO analysis suite: audits, schema, GEO, content, local, backlinks.",
+    "longDescription": "Kimi SEO runs 25 sub-skills and 18 specialist agents across technical SEO, content quality (E-E-A-T), Schema.org markup, AI search optimization (GEO), local SEO, e-commerce, and international SEO. Every audit produces a prioritized, falsifiable action plan grounded in primary-source guidance from Google. Fork of claude-seo by @AgriciDaniel.",
+    "developerName": "bentocodeing (fork of claude-seo by @AgriciDaniel)",
+    "websiteURL": "https://github.com/bentocodeing/kimi-seo"
+  },
+  "skills": ["./skills/", "./plugin-skills/"],
+  "sessionStart": {
+    "skill": "kimi-seo-runtime"
+  },
+  "hooks": [
+    {
+      "event": "PostToolUse",
+      "matcher": "Edit|Write",
+      "command": "node ./hooks/run-python-hook.js ./hooks/validate-schema.py",
+      "timeout": 30
+    }
+  ]
+}

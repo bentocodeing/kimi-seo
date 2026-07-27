@@ -137,7 +137,13 @@ bash install.sh
 
 ## Architecture
 
+Kimi Code is the primary harness for this fork: the repo ships a native
+`kimi.plugin.json` manifest and installs via `/plugins install`. The Claude
+Code compatibility files (`.claude-plugin/`) are kept for upstream parity.
+
 ```
+kimi.plugin.json           # Native Kimi Code plugin manifest (skills, sessionStart, hooks)
+plugin-skills/kimi-seo-runtime/  # Session-start orientation skill (loaded at session start)
 skills/                    # 25 sub-skills (auto-discovered)
   seo/SKILL.md            # Main orchestrator + routing
   seo-cluster/            # Semantic clustering (v1.9.0)
@@ -165,6 +171,7 @@ skills/                    # 25 sub-skills (auto-discovered)
   seo-dataforseo/         # DataForSEO (extension)
   seo-image-gen/          # AI images (extension)
 agents/                    # 18 subagents
+.agents/skills/seo-upstream-sync/  # Maintainer skill: sync from upstream claude-seo
 scripts/                   # 53 Python scripts, including the managed runtime
 schema/                    # JSON-LD templates
 extensions/                # 8 MCP extensions: DataForSEO, Firecrawl, Banana, Ahrefs, SE Ranking, Profound, Bing Webmaster, Unlighthouse

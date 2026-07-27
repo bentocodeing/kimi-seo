@@ -70,24 +70,28 @@ Run a full audit and watch parallel agents fan out across the site:
 
 > ℹ️ **You are on the Kimi fork.** The commands below install from [`bentocodeing/kimi-seo`](https://github.com/bentocodeing/kimi-seo) — MIT, public releases, no membership required. For the original Claude Code version, see upstream: [`AgriciDaniel/claude-seo`](https://github.com/AgriciDaniel/claude-seo).
 
-### Plugin Install (Claude Code marketplace)
+### Plugin Install (Kimi Code, recommended)
 
-The Claude Code plugin marketplace distributes the **upstream** version, not this fork:
+Inside Kimi Code, install this fork directly from GitHub:
 
-```bash
-/plugin marketplace add AgriciDaniel/claude-seo
-/plugin install claude-seo@agricidaniel-claude-seo
+```
+/plugins install https://github.com/bentocodeing/kimi-seo
+/reload
 /seo setup
 ```
 
-For the Kimi-branded fork, use the manual install below.
+The plugin manager copies the repo to Kimi Code's managed plugins directory and loads `kimi.plugin.json`: all 25 skills, the session-start orientation skill, and the schema-validation hook. `/seo setup` is an explicit, one-time provisioning step for the isolated Python runtime.
 
 ### Manual Install (Unix / macOS / Linux)
+
+For a git-checkout install into `~/.kimi-code/skills/` and `~/.agents/agents/`:
 
 ```bash
 git clone --depth 1 --branch kimi https://github.com/bentocodeing/kimi-seo.git
 bash kimi-seo/install.sh
 ```
+
+(Pass `--claude` to target the Claude Code layout instead, for upstream parity.)
 
 <details>
 <summary>One-liner (curl, review then run)</summary>
@@ -109,6 +113,16 @@ powershell -ExecutionPolicy Bypass -File kimi-seo\install.ps1
 ```
 
 > **Why `git clone` instead of `irm | iex`?** Kimi Code's own security guardrails flag `irm ... | iex` as a supply chain risk: downloading and executing remote code without verification. The `git clone` approach lets you inspect `kimi-seo\install.ps1` before running it.
+
+### Plugin Install (Claude Code marketplace, upstream)
+
+The Claude Code plugin marketplace distributes the **upstream** version, not this fork:
+
+```bash
+/plugin marketplace add AgriciDaniel/claude-seo
+/plugin install claude-seo@agricidaniel-claude-seo
+/seo setup
+```
 
 ## Quick Start
 
