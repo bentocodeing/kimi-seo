@@ -4,16 +4,16 @@
 
 - **Python 3.10+** with pip
 - **Git** for cloning the repository
-- **Claude Code CLI** installed and configured
+- **Kimi Code CLI** installed and configured
 
 Optional:
 - **Playwright Chromium** - install.sh attempts this automatically; failure is non-fatal; needed only for SPA rendering and screenshots
 
 ## Quick Install
 
-### Plugin Install (Claude Code 1.0.33+)
+### Plugin Install (Claude Code marketplace, upstream)
 
-The recommended path. Inside Claude Code:
+This installs the **upstream** Claude Code version, not the Kimi fork. Inside Claude Code:
 
 ```
 /plugin marketplace add AgriciDaniel/claude-seo
@@ -28,14 +28,14 @@ to Claude's persistent plugin data. Use `/seo doctor` for a read-only check.
 ### Manual Install (Unix, macOS, Linux)
 
 ```bash
-git clone --depth 1 https://github.com/AgriciDaniel/claude-seo.git
-bash claude-seo/install.sh
+git clone --depth 1 --branch kimi https://github.com/bentocodeing/kimi-seo.git
+bash kimi-seo/install.sh
 ```
 
 Review-then-run alternative:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/AgriciDaniel/claude-seo/main/install.sh > install.sh
+curl -fsSL https://raw.githubusercontent.com/bentocodeing/kimi-seo/kimi/install.sh > install.sh
 cat install.sh        # review
 bash install.sh       # run when satisfied
 rm install.sh
@@ -44,19 +44,19 @@ rm install.sh
 ### Manual Install (Windows, PowerShell)
 
 ```powershell
-git clone --depth 1 https://github.com/AgriciDaniel/claude-seo.git
-powershell -ExecutionPolicy Bypass -File claude-seo\install.ps1
+git clone --depth 1 --branch kimi https://github.com/bentocodeing/kimi-seo.git
+powershell -ExecutionPolicy Bypass -File kimi-seo\install.ps1
 ```
 
-The Windows path uses `git clone` rather than `irm | iex` because Claude Code's own security guardrails flag piped remote-script execution. Inspect `install.ps1` before running.
+The Windows path uses `git clone` rather than `irm | iex` because Kimi Code's own security guardrails flag piped remote-script execution. Inspect `install.ps1` before running.
 
 ## Manual Installation
 
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/AgriciDaniel/claude-seo.git
-cd claude-seo
+git clone --branch kimi https://github.com/bentocodeing/kimi-seo.git
+cd kimi-seo
 ```
 
 2. **Run the installer**
@@ -92,10 +92,10 @@ The installer copies files to:
 
 ## Verify Installation
 
-1. Start Claude Code:
+1. Start Kimi Code:
 
 ```bash
-claude
+kimi
 ```
 
 2. Check that the skill is loaded:
@@ -118,8 +118,8 @@ If installed as a plugin:
 If installed manually, run the uninstaller from a fresh clone:
 
 ```bash
-git clone --depth 1 https://github.com/AgriciDaniel/claude-seo.git
-bash claude-seo/uninstall.sh
+git clone --depth 1 --branch kimi https://github.com/bentocodeing/kimi-seo.git
+bash kimi-seo/uninstall.sh
 ```
 
 `uninstall.sh` removes all installed sub-skills, sub-agents, and the plugin's MCP entries from `~/.claude/settings.json`. Do not maintain a hand-coded `rm` list. The shipped uninstaller is the canonical source.
@@ -135,7 +135,7 @@ Caution: Prefer downloading, inspecting, then running remote scripts; the pipe-t
 curl -fsSL https://raw.githubusercontent.com/AgriciDaniel/claude-seo/main/uninstall.sh | bash
 
 # Install new version
-curl -fsSL https://raw.githubusercontent.com/AgriciDaniel/claude-seo/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/bentocodeing/kimi-seo/kimi/install.sh | bash
 ```
 
 ## Troubleshooting

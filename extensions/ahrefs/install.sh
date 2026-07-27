@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Claude SEO — Ahrefs extension installer.
+# Kimi SEO — Ahrefs extension installer.
 #
 # Wires the official @ahrefs/mcp server into ~/.claude/settings.json and
 # copies the seo-ahrefs mirror skill into ~/.claude/skills/.
@@ -12,7 +12,7 @@ main() {
     SETTINGS_JSON="${HOME}/.claude/settings.json"
 
     echo "════════════════════════════════════════"
-    echo "║   Claude SEO — Ahrefs extension      ║"
+    echo "║   Kimi SEO — Ahrefs extension      ║"
     echo "════════════════════════════════════════"
 
     command -v python3 >/dev/null 2>&1 || {
@@ -23,8 +23,8 @@ main() {
     }
 
     if [ ! -d "${SKILL_DIR}/seo" ]; then
-        echo "✗ claude-seo base plugin not installed."
-        echo "  Install it first: curl -fsSL https://raw.githubusercontent.com/AgriciDaniel/claude-seo/main/install.sh | bash"
+        echo "✗ kimi-seo base plugin not installed."
+        echo "  Install it first: curl -fsSL https://raw.githubusercontent.com/bentocodeing/kimi-seo/kimi/install.sh | bash"
         exit 1
     fi
 

@@ -168,14 +168,14 @@ def test_install_scripts_default_tag_matches_plugin_version():
 
     sh_text = (REPO_ROOT / "install.sh").read_text(encoding="utf-8")
     sh_match = re.search(
-        r'REPO_TAG="\$\{CLAUDE_SEO_TAG:-([^}]+)\}"', sh_text
+        r'REPO_TAG="\$\{KIMI_SEO_TAG:-([^}]+)\}"', sh_text
     )
     assert sh_match, "install.sh has no recognizable REPO_TAG default"
     sh_tag = sh_match.group(1)
     assert sh_tag == expected_tag, (
         f"install.sh default tag is {sh_tag} but plugin.json is at "
         f"version {plugin['version']} (expected {expected_tag}). "
-        f"Bump install.sh's CLAUDE_SEO_TAG default on every release."
+        f"Bump install.sh's KIMI_SEO_TAG default on every release."
     )
 
     ps_text = (REPO_ROOT / "install.ps1").read_text(encoding="utf-8")

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Banana Image Generation Extension Installer for Claude SEO
+# Banana Image Generation Extension Installer for Kimi SEO
 # Wraps everything in main() to prevent partial execution on network failure
 
 main() {
@@ -12,17 +12,17 @@ main() {
 
     echo "════════════════════════════════════════"
     echo "║  Banana Image Gen - SEO Extension    ║"
-    echo "║  For Claude SEO                      ║"
+    echo "║  For Kimi SEO                      ║"
     echo "════════════════════════════════════════"
     echo ""
 
     # Check prerequisites
     if [ ! -d "${SEO_SKILL_DIR}" ]; then
-        echo "✗ Claude SEO is not installed."
-        echo "  Install it first: curl -fsSL https://raw.githubusercontent.com/AgriciDaniel/claude-seo/main/install.sh | bash"
+        echo "✗ Kimi SEO is not installed."
+        echo "  Install it first: curl -fsSL https://raw.githubusercontent.com/bentocodeing/kimi-seo/kimi/install.sh | bash"
         exit 1
     fi
-    echo "✓ Claude SEO detected"
+    echo "✓ Kimi SEO detected"
 
     if ! command -v node >/dev/null 2>&1; then
         echo "✗ Node.js is required but not installed."
@@ -54,7 +54,7 @@ main() {
         SOURCE_DIR="${SCRIPT_DIR}/extensions/banana"
     else
         echo "✗ Cannot find extension source files."
-        echo "  Run this script from the claude-seo repo: ./extensions/banana/install.sh"
+        echo "  Run this script from the kimi-seo repo: ./extensions/banana/install.sh"
         exit 1
     fi
 
@@ -158,7 +158,7 @@ PY
     # not receive plugin bin/ PATH injection.
     for installed_doc in "${SKILL_DIR}/SKILL.md" "${SKILL_DIR}/references/"*.md "${AGENT_DIR}/seo-image-gen.md"; do
         [ -f "${installed_doc}" ] || continue
-        temp_doc="${installed_doc}.claude-seo-tmp"
+        temp_doc="${installed_doc}.kimi-seo-tmp"
         sed -e 's#claude-seo run#"$HOME/.claude/skills/seo/bin/claude-seo" run#g' \
             -e 's#claude-seo setup#"$HOME/.claude/skills/seo/bin/claude-seo" setup#g' \
             -e 's#claude-seo doctor#"$HOME/.claude/skills/seo/bin/claude-seo" doctor#g' \

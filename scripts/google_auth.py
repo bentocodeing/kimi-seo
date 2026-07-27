@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Google API credential management for Claude SEO.
+Google API credential management for Kimi SEO.
 
 Loads and validates credentials for Google Search Console, PageSpeed Insights,
 CrUX, Indexing API, and GA4. Supports service accounts, OAuth web credentials
@@ -23,8 +23,8 @@ import sys
 import time
 from typing import Optional
 
-CONFIG_PATH = os.path.expanduser("~/.config/claude-seo/google-api.json")
-TOKEN_PATH = os.path.expanduser("~/.config/claude-seo/oauth-token.json")
+CONFIG_PATH = os.path.expanduser("~/.config/kimi-seo/google-api.json")
+TOKEN_PATH = os.path.expanduser("~/.config/kimi-seo/oauth-token.json")
 
 # Service-to-scope mapping
 SCOPES = {
@@ -93,7 +93,7 @@ def load_config() -> dict:
     """
     Load configuration from config file with environment variable fallbacks.
 
-    Reads ~/.config/claude-seo/google-api.json first. Any missing fields
+    Reads ~/.config/kimi-seo/google-api.json first. Any missing fields
     are filled from environment variables.
 
     Returns:
@@ -760,8 +760,8 @@ Google SEO API Setup Instructions
      Paste email, set Viewer role
 
 6. CREATE CONFIG FILE
-   mkdir -p ~/.config/claude-seo
-   Save to ~/.config/claude-seo/google-api.json:
+   mkdir -p ~/.config/kimi-seo
+   Save to ~/.config/kimi-seo/google-api.json:
 
    {
      "service_account_path": "/path/to/service_account.json",
@@ -783,7 +783,7 @@ ENVIRONMENT VARIABLE ALTERNATIVES:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Google API credential management for Claude SEO"
+        description="Google API credential management for Kimi SEO"
     )
     parser.add_argument(
         "--check",

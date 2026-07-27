@@ -24,7 +24,7 @@ For each audited page, evaluate:
 
 ## Output Format
 
-Match existing claude-seo patterns:
+Match existing kimi-seo patterns:
 
 ### Image Audit Summary
 

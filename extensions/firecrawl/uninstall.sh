@@ -29,4 +29,4 @@ fi
 
 echo ""
 echo "v Firecrawl extension uninstalled."
-echo "  Core Claude SEO skills are unchanged."
+echo "  Core Kimi SEO skills are unchanged."

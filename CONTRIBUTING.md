@@ -1,4 +1,4 @@
-# Contributing to claude-seo
+# Contributing to kimi-seo
 
 Thanks for your interest in contributing! Here's how to get involved.
 
@@ -28,8 +28,8 @@ Use [GitHub Discussions](https://github.com/AgriciDaniel/claude-seo/discussions)
 #### Option A: Local install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/claude-seo.git
-cd claude-seo
+git clone https://github.com/YOUR_USERNAME/kimi-seo.git
+cd kimi-seo
 bash install.sh
 ```
 
@@ -67,7 +67,7 @@ install chromium`). No additional setup needed for either.
 
 ## Community Extensions (Pro Hub Challenge)
 
-Claude SEO accepts community-built extensions through challenges and PRs.
+Kimi SEO accepts community-built extensions through challenges and PRs.
 v1.9.0 integrated 5 challenge submissions and v1.9.7 added 9 community pull
 requests from 7 contributors. See [CONTRIBUTORS.md](CONTRIBUTORS.md) for the
 full credits.

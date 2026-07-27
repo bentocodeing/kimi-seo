@@ -1,21 +1,19 @@
-![Claude SEO cover: a Claude Code command palette with /seo audit, schema, geo, content, and backlinks commands over a dark CRT panel](assets/cover.svg)
+![Kimi SEO cover: a Kimi Code command palette with /seo audit, schema, geo, content, and backlinks commands over a dark CRT panel](assets/cover.svg)
 
-# Claude SEO: SEO Skill for Claude Code
+# Kimi SEO: SEO Skill for Kimi Code
 
-**Claude SEO is an open-source SEO analysis plugin for [Claude Code](https://claude.ai/claude-code).** It runs 25 sub-skills and 18 specialist agents in parallel across technical SEO, content quality (E-E-A-T), Schema.org markup, AI search optimization (GEO), local SEO, e-commerce, and international SEO. Every audit produces a prioritized action plan with testable recommendations grounded in primary-source guidance from Google.
+**Kimi SEO is an open-source SEO analysis plugin for Kimi Code (Moonshot AI).** It runs 25 sub-skills and 18 specialist agents in parallel across technical SEO, content quality (E-E-A-T), Schema.org markup, AI search optimization (GEO), local SEO, e-commerce, and international SEO. Every audit produces a prioritized action plan with testable recommendations grounded in primary-source guidance from Google.
 
-[![CI](https://github.com/AgriciDaniel/claude-seo/actions/workflows/ci.yml/badge.svg)](https://github.com/AgriciDaniel/claude-seo/actions/workflows/ci.yml)
-[![Claude Code Skill](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://claude.ai/claude-code)
+[![Forked from claude-seo](https://img.shields.io/badge/forked%20from-AgriciDaniel%2Fclaude--seo-lightgrey)](https://github.com/AgriciDaniel/claude-seo)
+[![CI](https://github.com/bentocodeing/kimi-seo/actions/workflows/ci.yml/badge.svg)](https://github.com/bentocodeing/kimi-seo/actions/workflows/ci.yml)
+[![Kimi Code Skill](https://img.shields.io/badge/Kimi%20Code-Skill-blue)](https://www.kimi.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/github/v/release/AgriciDaniel/claude-seo)](https://github.com/AgriciDaniel/claude-seo/releases)
+[![Version](https://img.shields.io/github/v/release/bentocodeing/kimi-seo)](https://github.com/bentocodeing/kimi-seo/releases)
 [![Tests](https://img.shields.io/badge/tests-410%20passing-brightgreen)](tests/)
-[![Community](https://img.shields.io/badge/AI%20Marketing%20Hub-Pro%20community-purple)](https://www.skool.com/ai-marketing-hub-pro)
 
-> **Two versions of this skill.**
-> - 🌐 **Public open-source** → [`AgriciDaniel/claude-seo`](https://github.com/AgriciDaniel/claude-seo): MIT, public releases, no membership. Use this if you want stable + downloadable.
-> - 🔒 **Community private mirror** → [`AI-Marketing-Hub/claude-seo`](https://github.com/AI-Marketing-Hub/claude-seo): early access to upcoming features and direct collaboration with the [AI Marketing Hub Pro](https://www.skool.com/ai-marketing-hub-pro) community. Requires membership.
+> **Kimi SEO is a fork of [`AgriciDaniel/claude-seo`](https://github.com/AgriciDaniel/claude-seo)**, adapted for [Kimi Code](https://www.kimi.com) (Moonshot AI). All credit for the original SEO workflow goes to [@AgriciDaniel](https://github.com/AgriciDaniel) and the [upstream contributors](CONTRIBUTORS.md). The `main` branch tracks upstream releases; the `kimi` branch carries the Kimi rebrand and adaptations.
 
-### Why Claude SEO
+### Why Kimi SEO
 
 - **AI-search first.** Aligned with [Google's AI Optimization Guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide). Question-based citability scoring, primary-source evidence on llms.txt, IPTC `TrainedAlgorithmicMedia` for AI-generated product images, agent-friendly page checks per [web.dev](https://web.dev/).
 - **Parallel execution.** Full site audits spawn up to 15 specialist agents simultaneously. Site-level audits complete in minutes rather than hours.
@@ -35,11 +33,11 @@ Google Search Console for a site started 23 March 2026 and run on this workflow:
 - **In-house SEO leads at SaaS / publisher / e-commerce companies.** Second-pair-of-eyes before executive reviews. Catches what GSC and Lighthouse hide: schema deprecation, AI-citability gaps, expired-domain heritage risk, parasite-SEO exposure, machine-translation drift.
 - **Freelance SEO consultants.** Anchor day-one client scope with a 15-minute audit and a real 0-100 score. Win the engagement with concrete proof of value before you spend an hour writing the proposal.
 
-![Claude SEO /seo command demo in Claude Code terminal](screenshots/seo-command-demo.gif)
+![Kimi SEO /seo command demo in Kimi Code terminal](screenshots/seo-command-demo.gif)
 
 Run a full audit and watch parallel agents fan out across the site:
 
-![Claude SEO /seo audit demo: parallel subagents producing a prioritized action plan](screenshots/seo-audit-demo.gif)
+![Kimi SEO /seo audit demo: parallel subagents producing a prioritized action plan](screenshots/seo-audit-demo.gif)
 
 [Watch the full demo on YouTube](https://www.youtube.com/watch?v=COMnNlUakQk)
 
@@ -70,14 +68,11 @@ Run a full audit and watch parallel agents fan out across the site:
 
 ## Installation
 
-> ℹ️ **Which version are you installing?**
->
-> - **Public open-source (default).** The commands below install from [`AgriciDaniel/claude-seo`](https://github.com/AgriciDaniel/claude-seo) — MIT, public releases, no membership required.
-> - **AI Marketing Hub Pro member?** Install the community version with early access instead: swap `AgriciDaniel/claude-seo` for `AI-Marketing-Hub/claude-seo` and the plugin slug `claude-seo@agricidaniel-claude-seo` for `claude-seo@ai-marketing-hub-claude-seo`. Requires `gh auth login` (or PAT) with access to the `AI-Marketing-Hub` org. If `/plugin marketplace add` 404s, DM in the [Skool community](https://www.skool.com/ai-marketing-hub-pro) to get added.
+> ℹ️ **You are on the Kimi fork.** The commands below install from [`bentocodeing/kimi-seo`](https://github.com/bentocodeing/kimi-seo) — MIT, public releases, no membership required. For the original Claude Code version, see upstream: [`AgriciDaniel/claude-seo`](https://github.com/AgriciDaniel/claude-seo).
 
-### Plugin Install (Claude Code 1.0.33+)
+### Plugin Install (Claude Code marketplace)
 
-The fastest path. One-time marketplace add, then plugin install:
+The Claude Code plugin marketplace distributes the **upstream** version, not this fork:
 
 ```bash
 /plugin marketplace add AgriciDaniel/claude-seo
@@ -85,22 +80,20 @@ The fastest path. One-time marketplace add, then plugin install:
 /seo setup
 ```
 
-The explicit setup step creates an isolated Python environment in Claude's
-persistent plugin data and installs Playwright Chromium. Check it at any time
-with `/seo doctor`. No global Python packages or PATH shims are created.
+For the Kimi-branded fork, use the manual install below.
 
 ### Manual Install (Unix / macOS / Linux)
 
 ```bash
-git clone --depth 1 https://github.com/AgriciDaniel/claude-seo.git
-bash claude-seo/install.sh
+git clone --depth 1 --branch kimi https://github.com/bentocodeing/kimi-seo.git
+bash kimi-seo/install.sh
 ```
 
 <details>
 <summary>One-liner (curl, review then run)</summary>
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/AgriciDaniel/claude-seo/main/install.sh > install.sh
+curl -fsSL https://raw.githubusercontent.com/bentocodeing/kimi-seo/kimi/install.sh > install.sh
 cat install.sh        # review before running
 bash install.sh
 rm install.sh
@@ -111,17 +104,17 @@ rm install.sh
 ### Windows (PowerShell)
 
 ```powershell
-git clone --depth 1 https://github.com/AgriciDaniel/claude-seo.git
-powershell -ExecutionPolicy Bypass -File claude-seo\install.ps1
+git clone --depth 1 --branch kimi https://github.com/bentocodeing/kimi-seo.git
+powershell -ExecutionPolicy Bypass -File kimi-seo\install.ps1
 ```
 
-> **Why `git clone` instead of `irm | iex`?** Claude Code's own security guardrails flag `irm ... | iex` as a supply chain risk: downloading and executing remote code without verification. The `git clone` approach lets you inspect `claude-seo\install.ps1` before running it.
+> **Why `git clone` instead of `irm | iex`?** Kimi Code's own security guardrails flag `irm ... | iex` as a supply chain risk: downloading and executing remote code without verification. The `git clone` approach lets you inspect `kimi-seo\install.ps1` before running it.
 
 ## Quick Start
 
 ```bash
-# Start Claude Code
-claude
+# Start Kimi Code
+kimi
 
 # Full site audit: parallel sub-agents produce a prioritized action plan
 /seo audit https://example.com
@@ -141,7 +134,7 @@ claude
 
 ## Commands
 
-![Claude SEO sub-skill ecosystem: 25 modules grouped into 8 categories (audit, content, schema, technical, AI search, local + maps, commerce + intl, extensions) around the central orchestrator](assets/sub-skills.svg)
+![Kimi SEO sub-skill ecosystem: 25 modules grouped into 8 categories (audit, content, schema, technical, AI search, local + maps, commerce + intl, extensions) around the central orchestrator](assets/sub-skills.svg)
 
 32 user-invocable `/seo` commands across the orchestrator, its sub-skills, and 8 MCP extensions. Full reference in [docs/COMMANDS.md](docs/COMMANDS.md).
 
@@ -182,23 +175,23 @@ claude
 
 ## Features
 
-### What Core Web Vitals does Claude SEO check?
+### What Core Web Vitals does Kimi SEO check?
 
-Claude SEO measures the current three Core Web Vitals: **LCP** (Largest Contentful Paint, target under 2.5s), **INP** (Interaction to Next Paint, target under 200ms), and **CLS** (Cumulative Layout Shift, target under 0.1). [INP replaced FID](https://web.dev/articles/inp) on March 12, 2024; FID was removed from Chrome's field-data tools (CrUX API, PageSpeed Insights) on September 9, 2024 (Lighthouse is a lab tool and never reported FID), and Claude SEO never references FID. Field data comes from the Chrome User Experience Report (CrUX) when available; lab data falls back to Lighthouse via PageSpeed Insights. LCP can be decomposed into subparts (TTFB, load delay, load duration, render delay) via the `/seo google` CrUX integration to localize bottlenecks. Mobile and desktop are measured separately. CrUX History (25-week trend) is included in the Tier 0 free credential set.
+Kimi SEO measures the current three Core Web Vitals: **LCP** (Largest Contentful Paint, target under 2.5s), **INP** (Interaction to Next Paint, target under 200ms), and **CLS** (Cumulative Layout Shift, target under 0.1). [INP replaced FID](https://web.dev/articles/inp) on March 12, 2024; FID was removed from Chrome's field-data tools (CrUX API, PageSpeed Insights) on September 9, 2024 (Lighthouse is a lab tool and never reported FID), and Kimi SEO never references FID. Field data comes from the Chrome User Experience Report (CrUX) when available; lab data falls back to Lighthouse via PageSpeed Insights. LCP can be decomposed into subparts (TTFB, load delay, load duration, render delay) via the `/seo google` CrUX integration to localize bottlenecks. Mobile and desktop are measured separately. CrUX History (25-week trend) is included in the Tier 0 free credential set.
 
-### How does Claude SEO assess E-E-A-T?
+### How does Kimi SEO assess E-E-A-T?
 
-E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) is evaluated against the Search Quality Rater Guidelines, last updated September 2025 with YMYL expanded to include political and social topics. Experience signals: original research, case studies, first-hand photos. Expertise: author credentials and topical depth. Authoritativeness: external citations and brand mentions. Trustworthiness, the most heavily weighted of the four: contact info, secure HTTPS, transparent corrections, date stamps. Before scoring sub-factors, Claude SEO applies Google's own Who / How / Why heuristic from the [helpful-content guide](https://developers.google.com/search/docs/fundamentals/creating-helpful-content). Generative AI content is fine if it meets Search Essentials; it crosses into spam when used to scale low-value pages, which `seo-content humanize` and `seo-content verify` are designed to detect.
+E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) is evaluated against the Search Quality Rater Guidelines, last updated September 2025 with YMYL expanded to include political and social topics. Experience signals: original research, case studies, first-hand photos. Expertise: author credentials and topical depth. Authoritativeness: external citations and brand mentions. Trustworthiness, the most heavily weighted of the four: contact info, secure HTTPS, transparent corrections, date stamps. Before scoring sub-factors, Kimi SEO applies Google's own Who / How / Why heuristic from the [helpful-content guide](https://developers.google.com/search/docs/fundamentals/creating-helpful-content). Generative AI content is fine if it meets Search Essentials; it crosses into spam when used to scale low-value pages, which `seo-content humanize` and `seo-content verify` are designed to detect.
 
-### What Schema.org types does Claude SEO support?
+### What Schema.org types does Kimi SEO support?
 
-JSON-LD is the preferred format (Google's stated preference). Claude SEO detects, validates, and generates the active Schema.org types documented in [skills/seo/references/schema-types.md](skills/seo/references/schema-types.md), including organization, article, product, local, event, job, course, software/application, service, Q&A, and video patterns. FAQPage: Google stopped showing FAQ rich results for all sites on May 7, 2026; it has no Google rich-result benefit. Keep it only for non-Google or internal semantics if needed. Deprecated and never recommended: HowTo (rich results removed September 2023), SpecialAnnouncement (July 2025), ClaimReview, VehicleListing, EstimatedSalary, LearningVideo, CourseInfo carousel (all retired June 2025). Replacement guidance: [skills/seo-schema/references/deprecated-types-2024-2026.md](skills/seo-schema/references/deprecated-types-2024-2026.md).
+JSON-LD is the preferred format (Google's stated preference). Kimi SEO detects, validates, and generates the active Schema.org types documented in [skills/seo/references/schema-types.md](skills/seo/references/schema-types.md), including organization, article, product, local, event, job, course, software/application, service, Q&A, and video patterns. FAQPage: Google stopped showing FAQ rich results for all sites on May 7, 2026; it has no Google rich-result benefit. Keep it only for non-Google or internal semantics if needed. Deprecated and never recommended: HowTo (rich results removed September 2023), SpecialAnnouncement (July 2025), ClaimReview, VehicleListing, EstimatedSalary, LearningVideo, CourseInfo carousel (all retired June 2025). Replacement guidance: [skills/seo-schema/references/deprecated-types-2024-2026.md](skills/seo-schema/references/deprecated-types-2024-2026.md).
 
-### How does Claude SEO optimize for AI search?
+### How does Kimi SEO optimize for AI search?
 
-Aligned with [Google's AI Optimization Guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide), which states that "AEO" and "GEO" are rebranded labels for SEO. AI Overviews and AI Mode are grounded in the same ranking systems as classic Search; pages must be indexed and eligible for snippet display to appear in any AI feature. Claude SEO scores passage citability (optimal 134-167 word self-contained answer blocks), question-based heading hierarchy, attribution density, structured data coverage, and entity presence across Wikipedia, Reddit, YouTube, and LinkedIn. The `seo-geo` skill includes evidence-based reframes of three popular myths: llms.txt is not currently a citation lever ([primary-source evidence](skills/seo-geo/references/llmstxt-evidence.md)), content chunking is not required, and AI-specific keyword rewriting is unnecessary because synonym understanding is sufficient.
+Aligned with [Google's AI Optimization Guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide), which states that "AEO" and "GEO" are rebranded labels for SEO. AI Overviews and AI Mode are grounded in the same ranking systems as classic Search; pages must be indexed and eligible for snippet display to appear in any AI feature. Kimi SEO scores passage citability (optimal 134-167 word self-contained answer blocks), question-based heading hierarchy, attribution density, structured data coverage, and entity presence across Wikipedia, Reddit, YouTube, and LinkedIn. The `seo-geo` skill includes evidence-based reframes of three popular myths: llms.txt is not currently a citation lever ([primary-source evidence](skills/seo-geo/references/llmstxt-evidence.md)), content chunking is not required, and AI-specific keyword rewriting is unnecessary because synonym understanding is sufficient.
 
-### Which Google SEO APIs does Claude SEO integrate with?
+### Which Google SEO APIs does Kimi SEO integrate with?
 
 A 4-tier credential system lets you start with zero keys and add data as needed. Every tier delivers real value at its level:
 
@@ -209,18 +202,18 @@ A 4-tier credential system lets you start with zero keys and add data as needed.
 | 2 | + GA4 property config | + GA4 organic traffic, top landing pages, device / country breakdown |
 | 3 | + Ads developer token | + Keyword Planner search volume and competition data |
 
-PDF reports are generated via [WeasyPrint](https://weasyprint.org/) (A4 layout) with matplotlib charts at 200 DPI. Run `/seo google setup` for the credential wizard. All credentials live under `~/.config/claude-seo/` with `0o600` permissions; nothing is checked into the repo.
+PDF reports are generated via [WeasyPrint](https://weasyprint.org/) (A4 layout) with matplotlib charts at 200 DPI. Run `/seo google setup` for the credential wizard. All credentials live under `~/.config/kimi-seo/` with `0o600` permissions; nothing is checked into the repo.
 
-### How does Claude SEO handle local SEO?
+### How does Kimi SEO handle local SEO?
 
-Three layers. **Google Business Profile signals**: categories, hours, photos, posts, products, attributes. **NAP consistency** across citations: name, address, phone matched against major directories with deviation flagging. **Review intelligence**: rating trends, sentiment, response coverage. For multi-location businesses, Claude SEO enforces a 30-page warning threshold and a 50-page hard stop to prevent doorway-page violations (configurable). The `/seo maps` workflow adds geo-grid rank tracking, GBP profile auditing, and competitor radius mapping. Local schema generation covers `LocalBusiness` with all required and recommended properties (geo coordinates, opening hours, areaServed). Phase F (v2) added a GBP deprecation linter that detects retired chat-field references and `.business.site` URLs.
+Three layers. **Google Business Profile signals**: categories, hours, photos, posts, products, attributes. **NAP consistency** across citations: name, address, phone matched against major directories with deviation flagging. **Review intelligence**: rating trends, sentiment, response coverage. For multi-location businesses, Kimi SEO enforces a 30-page warning threshold and a 50-page hard stop to prevent doorway-page violations (configurable). The `/seo maps` workflow adds geo-grid rank tracking, GBP profile auditing, and competitor radius mapping. Local schema generation covers `LocalBusiness` with all required and recommended properties (geo coordinates, opening hours, areaServed). Phase F (v2) added a GBP deprecation linter that detects retired chat-field references and `.business.site` URLs.
 
 ## Compared to manual / agency / commercial tools
 
-| | Manual audit | Agency engagement | Commercial SEO audit tool | **Claude SEO** |
+| | Manual audit | Agency engagement | Commercial SEO audit tool | **Kimi SEO** |
 |---|---|---|---|---|
 | **Time per audit** | 4-8 hrs senior SEO time | 1-3 weeks turnaround | 10-45 min crawl + report | **10-15 min** |
-| **Cost** | High (billable hours) | $2k-$15k+ project | $99-$999/mo subscription | **Free skill + Claude Code subscription** |
+| **Cost** | High (billable hours) | $2k-$15k+ project | $99-$999/mo subscription | **Free skill + Kimi Code subscription** |
 | **Repeatable** | Inconsistent across analysts | Inconsistent across engagements | Yes | **Yes, deterministic + scriptable** |
 | **Output format** | Wall-of-findings PDF | Branded slide deck | Web dashboard, CSV exports | **Markdown + PDF + JSON, local files** |
 | **Custom benchmarks** | Manual per analyst | Agency-specific frameworks | Vendor-fixed | **Edit local SKILL.md** |
@@ -241,7 +234,7 @@ Three layers. **Google Business Profile signals**: categories, hours, photos, po
 
 ## Sample Output
 
-Claude SEO writes real markdown reports as its primary deliverable. Below is the first ~50 lines of a `/seo schema https://rankenstein.pro/about` audit verbatim. The actual structure, headers, and grading format the plugin produces follows.
+Kimi SEO writes real markdown reports as its primary deliverable. Below is the first ~50 lines of a `/seo schema https://rankenstein.pro/about` audit verbatim. The actual structure, headers, and grading format the plugin produces follows.
 
 <details>
 <summary><code>SCHEMA-REPORT.md</code>: first 50 lines of a real audit</summary>
@@ -297,13 +290,13 @@ Other audit outputs follow the same shape: `FULL-AUDIT-REPORT.md` (umbrella audi
 
 ## Architecture
 
-![Claude SEO audit signal flow: /seo audit enters the orchestrator, fans out to 25 sub-skills and up to 15 parallel audit agents, and converges through the scoring engine into a prioritized report](assets/signal-flow.svg)
+![Kimi SEO audit signal flow: /seo audit enters the orchestrator, fans out to 25 sub-skills and up to 15 parallel audit agents, and converges through the scoring engine into a prioritized report](assets/signal-flow.svg)
 
 The plugin follows the [Agent Skills standard](https://docs.claude.com/en/docs/claude-code/skills) with a 3-layer architecture (directive, orchestration, execution). Skills and agents are auto-discovered from `skills/seo-*/` and `agents/seo-*.md`. The orchestrator (`skills/seo/SKILL.md`) handles industry detection (SaaS, local, ecommerce, publisher, agency), parallel sub-agent dispatch up to 15 simultaneously, and synthesis through the [10-principle framework](#methodology) before emitting the action plan. Full architecture: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## Methodology
 
-![Claude SEO 10-principle methodology: PERCEIVE, ANALYZE, VALIDATE, and ACT phases with 10 principles arranged by quadrant](assets/framework.svg)
+![Kimi SEO 10-principle methodology: PERCEIVE, ANALYZE, VALIDATE, and ACT phases with 10 principles arranged by quadrant](assets/framework.svg)
 
 Every audit walks 10 principles grouped into four phases. Each emitted recommendation carries four fields: the first-principle observation it rests on, its dependency relationship to other recommendations, a "how would we know this failed?" check, and a leading indicator to monitor.
 
@@ -349,29 +342,29 @@ Two real boundaries worth being upfront about.
 ## Requirements
 
 - Python 3.10+
-- Claude Code CLI
+- Kimi Code CLI
 - Optional: Playwright Chromium — install.sh offers to install it (you can skip the prompt); needed only for SPA rendering and screenshots
 - Optional: Google API credentials for enriched CWV / GSC / GA4 data (see `/seo google setup`)
 
 ## Uninstall
 
 ```bash
-git clone --depth 1 https://github.com/AgriciDaniel/claude-seo.git
-bash claude-seo/uninstall.sh
+git clone --depth 1 --branch kimi https://github.com/bentocodeing/kimi-seo.git
+bash kimi-seo/uninstall.sh
 ```
 
 <details>
 <summary>One-liner (curl)</summary>
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/AgriciDaniel/claude-seo/main/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/bentocodeing/kimi-seo/kimi/uninstall.sh | bash
 ```
 
 </details>
 
 ## Extensions
 
-Optional MCP servers add live data to the audit pipeline. Claude SEO ships extensions for 8 servers; the plugin core works without any of them.
+Optional MCP servers add live data to the audit pipeline. Kimi SEO ships extensions for 8 servers; the plugin core works without any of them.
 
 ### DataForSEO
 
@@ -421,11 +414,11 @@ Setup walkthroughs live under `extensions/<name>/docs/`; integration notes: [doc
 
 ## Ecosystem
 
-Claude SEO is part of a family of Claude Code skills that interoperate cleanly:
+Kimi SEO is part of a family of Kimi Code skills that interoperate cleanly:
 
 | Skill | What it does | How it connects |
 |-------|-------------|-----------------|
-| [Claude SEO](https://github.com/AgriciDaniel/claude-seo) | SEO analysis, audits, schema, GEO | Core. Analyzes sites and generates action plans. |
+| [Kimi SEO](https://github.com/bentocodeing/kimi-seo) | SEO analysis, audits, schema, GEO | Core. Analyzes sites and generates action plans. |
 | [Claude Blog](https://github.com/AgriciDaniel/claude-blog) | Blog writing, optimization, scoring | Companion. Writes content optimized by SEO findings. |
 | [Claude Banana](https://github.com/AgriciDaniel/banana-claude) | AI image generation via Gemini | Shared. Generates images for SEO assets and blog posts. |
 | [Codex SEO](https://github.com/AgriciDaniel/codex-seo) | Codex-first SEO skill suite | Port. Same SEO system adapted for Codex skills, TOML agents, deterministic runners. |
@@ -452,29 +445,29 @@ Claude SEO is part of a family of Claude Code skills that interoperate cleanly:
 
 ## FAQ
 
-### What is Claude SEO?
+### What is Kimi SEO?
 
-Claude SEO is an open-source SEO analysis plugin for Claude Code. It runs 25 sub-skills and 18 specialist agents in parallel across technical SEO, content quality, Schema.org markup, AI search optimization, local SEO, e-commerce, and international SEO. Audits produce a prioritized action plan where each recommendation carries the first-principle observation it rests on, its dependency relationship to other recommendations, a "how would we know this failed?" check, and a leading indicator. The plugin is MIT-licensed, ships zero proprietary tracking, and works without third-party API enrichment; audits still contact the target URLs you analyze. Aligned with [Google's AI Optimization Guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide) and the September 2025 Quality Rater Guidelines.
+Kimi SEO is an open-source SEO analysis plugin for Kimi Code. It runs 25 sub-skills and 18 specialist agents in parallel across technical SEO, content quality, Schema.org markup, AI search optimization, local SEO, e-commerce, and international SEO. Audits produce a prioritized action plan where each recommendation carries the first-principle observation it rests on, its dependency relationship to other recommendations, a "how would we know this failed?" check, and a leading indicator. The plugin is MIT-licensed, ships zero proprietary tracking, and works without third-party API enrichment; audits still contact the target URLs you analyze. Aligned with [Google's AI Optimization Guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide) and the September 2025 Quality Rater Guidelines.
 
-### How is Claude SEO different from Screaming Frog or Ahrefs Site Audit?
+### How is Kimi SEO different from Screaming Frog or Ahrefs Site Audit?
 
-Different surface area, different tradeoffs. **Screaming Frog** crawls deeper and faster at the link-graph level; it is purpose-built as a crawler and Claude SEO does not attempt to replace it. **Ahrefs Site Audit** brings a proprietary backlink index and link intelligence; Claude SEO integrates with Ahrefs via its MCP extension rather than competing. Where Claude SEO leads: conversational LLM-native workflow, recommendation falsifiability (every finding carries an explicit failure-mode check), open-source MIT licensing with zero per-domain pricing, AI search optimization aligned with Google's primary-source guidance, and primary-source schema-deprecation tracking. Use Screaming Frog or Ahrefs for what they are best at; use Claude SEO when you want LLM-driven synthesis, conversational iteration, and AI-search-first audits in the same environment as your other Claude Code workflows.
+Different surface area, different tradeoffs. **Screaming Frog** crawls deeper and faster at the link-graph level; it is purpose-built as a crawler and Kimi SEO does not attempt to replace it. **Ahrefs Site Audit** brings a proprietary backlink index and link intelligence; Kimi SEO integrates with Ahrefs via its MCP extension rather than competing. Where Kimi SEO leads: conversational LLM-native workflow, recommendation falsifiability (every finding carries an explicit failure-mode check), open-source MIT licensing with zero per-domain pricing, AI search optimization aligned with Google's primary-source guidance, and primary-source schema-deprecation tracking. Use Screaming Frog or Ahrefs for what they are best at; use Kimi SEO when you want LLM-driven synthesis, conversational iteration, and AI-search-first audits in the same environment as your other Kimi Code workflows.
 
-### Does Claude SEO work on single-page applications (Next.js, React, Vue)?
+### Does Kimi SEO work on single-page applications (Next.js, React, Vue)?
 
 Yes. Phase A of v2 shipped a shared headless renderer (`scripts/render_page.py`) backed by Playwright Chromium. Audit subagents call `render_page.py --mode auto`, which auto-detects SPA hallmarks (empty `<div id="root">` shells, single bundle script, hydration markers) and switches to a rendered fetch. The lower-level `scripts/fetch_page.py` wrapper supports `--render auto` as an opt-in wrapper mode; its default is `--render never` for raw HTTP. Use `render_page.py --mode always` or `fetch_page.py --render always` to force rendering. Content extraction uses [trafilatura](https://github.com/adbar/trafilatura) for boilerplate removal. Publication dates come from [htmldate](https://github.com/adbar/htmldate). Known nuance: pages with scroll-bound hydration or post-interaction content fetches still produce noisy findings; see the [Limitations](#limitations) section for the recommended `seo-visual` cross-check workflow on those edge cases.
 
-### What Google APIs does Claude SEO use, and are they required?
+### What Google APIs does Kimi SEO use, and are they required?
 
-None are required. Claude SEO is fully functional with zero API keys. A 4-tier credential system lets you upgrade gradually: Tier 0 (API key only) unlocks PageSpeed Insights, CrUX, and CrUX History (25-week trend data). Tier 1 (+ OAuth or service account) adds Search Console with queries, URL Inspection, sitemap status, and the Indexing API for eligible JobPosting pages or BroadcastEvent in VideoObject pages; the API does not guarantee indexing. Tier 2 (+ GA4 property config) adds organic traffic, top landing pages, and device / country breakdowns. Tier 3 (+ Ads developer token) adds Keyword Planner search volume and competition data. The credential setup wizard runs via `/seo google setup`. All credentials live under `~/.config/claude-seo/` with `0o600` file permissions; nothing is checked into the repo and nothing is transmitted beyond Google's own endpoints.
+None are required. Kimi SEO is fully functional with zero API keys. A 4-tier credential system lets you upgrade gradually: Tier 0 (API key only) unlocks PageSpeed Insights, CrUX, and CrUX History (25-week trend data). Tier 1 (+ OAuth or service account) adds Search Console with queries, URL Inspection, sitemap status, and the Indexing API for eligible JobPosting pages or BroadcastEvent in VideoObject pages; the API does not guarantee indexing. Tier 2 (+ GA4 property config) adds organic traffic, top landing pages, and device / country breakdowns. Tier 3 (+ Ads developer token) adds Keyword Planner search volume and competition data. The credential setup wizard runs via `/seo google setup`. All credentials live under `~/.config/kimi-seo/` with `0o600` file permissions; nothing is checked into the repo and nothing is transmitted beyond Google's own endpoints.
 
-### Is Claude SEO free?
+### Is Kimi SEO free?
 
 Yes. MIT licensed, fully open source, no per-domain pricing, no telemetry, no API quotas imposed by the plugin itself. The core plugin and all 25 sub-skills work without any paid service. Some optional MCP extensions wrap paid services (DataForSEO, Ahrefs, Profound, SE Ranking) where you bring your own account credentials; their use is opt-in and the plugin works fully without them. Google APIs (PageSpeed Insights, Search Console, Indexing, GA4) are free from Google with normal account quota limits and require your own credentials. If you want commercial support or enterprise features beyond the open-source plugin, that is not part of this project.
 
-### How is Claude SEO different from regular SEO tools when it comes to AI search?
+### How is Kimi SEO different from regular SEO tools when it comes to AI search?
 
-Most SEO tools treat AI search as a separate optimization discipline. Claude SEO follows [Google's own position](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide) that AEO and GEO are rebranded labels for SEO. AI Overviews and AI Mode are grounded in the same ranking systems as classic Search; the eligibility floor is normal indexation. Claude SEO scores passage citability (134-167 word self-contained answer blocks), question-based heading hierarchy, attribution density, and entity presence across Wikipedia, Reddit, YouTube, and LinkedIn. It explicitly rejects three influencer myths: llms.txt as a citation lever, content chunking for AI, and AI-specific keyword rewriting. For commerce sites, Claude SEO audits the IPTC `TrainedAlgorithmicMedia` requirement on AI-generated product images per Google Merchant Center policy.
+Most SEO tools treat AI search as a separate optimization discipline. Kimi SEO follows [Google's own position](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide) that AEO and GEO are rebranded labels for SEO. AI Overviews and AI Mode are grounded in the same ranking systems as classic Search; the eligibility floor is normal indexation. Kimi SEO scores passage citability (134-167 word self-contained answer blocks), question-based heading hierarchy, attribution density, and entity presence across Wikipedia, Reddit, YouTube, and LinkedIn. It explicitly rejects three influencer myths: llms.txt as a citation lever, content chunking for AI, and AI-specific keyword rewriting. For commerce sites, Kimi SEO audits the IPTC `TrainedAlgorithmicMedia` requirement on AI-generated product images per Google Merchant Center policy.
 
 ## Community Contributors
 

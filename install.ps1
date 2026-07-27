@@ -1,11 +1,11 @@
-# Claude SEO Installer for Windows
+# Kimi SEO Installer for Windows
 # PowerShell installation script
 
 $ErrorActionPreference = "Stop"
 
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "|   Claude SEO - Installer             |" -ForegroundColor Cyan
-Write-Host "|   Claude Code SEO Skill              |" -ForegroundColor Cyan
+Write-Host "|   Kimi SEO - Installer             |" -ForegroundColor Cyan
+Write-Host "|   Kimi Code SEO Skill              |" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -117,15 +117,15 @@ $RepoUrl = "https://github.com/AgriciDaniel/claude-seo"
 # Pin to a specific release tag to prevent silent updates from main.
 # This default MUST be bumped on every release. CI guard
 # (tests/test_manifest_consistency.py) enforces this matches plugin.json.
-# Override: $env:CLAUDE_SEO_TAG = 'main'; .\install.ps1
-$RepoTag = if ($env:CLAUDE_SEO_TAG) { $env:CLAUDE_SEO_TAG } else { 'v2.2.4' }
+# Override: $env:KIMI_SEO_TAG = 'main'; .\install.ps1
+$RepoTag = if ($env:KIMI_SEO_TAG) { $env:KIMI_SEO_TAG } else { 'v2.2.4' }
 
 # Create directories
 New-Item -ItemType Directory -Force -Path $SkillDir | Out-Null
 New-Item -ItemType Directory -Force -Path $AgentDir | Out-Null
 
 # Clone to temp directory
-$TempDir = Join-Path $env:TEMP "claude-seo-install"
+$TempDir = Join-Path $env:TEMP "kimi-seo-install"
 if (Test-Path $TempDir) {
     Remove-Item -Recurse -Force $TempDir
 }
@@ -133,7 +133,7 @@ if (Test-Path $TempDir) {
 $keepTemp = ($env:CLAUDE_SEO_KEEP_TEMP -eq '1')
 
 try {
-    Write-Host ">> Downloading Claude SEO ($RepoTag)..." -ForegroundColor Yellow
+    Write-Host ">> Downloading Kimi SEO ($RepoTag)..." -ForegroundColor Yellow
     $clone = Invoke-External -Exe 'git' -Args @('clone','--depth','1','--branch',$RepoTag,$RepoUrl,$TempDir) -Quiet
     if ($clone.ExitCode -ne 0) {
         throw "git clone failed. Output:`n$($clone.Output -join "`n")"
@@ -191,9 +191,9 @@ try {
     # Copy the stable launcher used by skill and agent instructions.
     $BinPath = Join-Path $TempDir 'bin'
     $SkillBin = Join-Path $SkillDir 'bin'
-    if (Test-Path (Join-Path $BinPath 'claude-seo')) {
+    if (Test-Path (Join-Path $BinPath 'kimi-seo')) {
         New-Item -ItemType Directory -Force -Path $SkillBin | Out-Null
-        Copy-Item -Force (Join-Path $BinPath 'claude-seo') (Join-Path $SkillBin 'claude-seo')
+        Copy-Item -Force (Join-Path $BinPath 'kimi-seo') (Join-Path $SkillBin 'kimi-seo')
     }
 
     # Copy hooks
@@ -332,7 +332,7 @@ try {
 }
 
 Write-Host ""
-Write-Host "[+] Claude SEO installed successfully!" -ForegroundColor Green
+Write-Host "[+] Kimi SEO installed successfully!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Usage:" -ForegroundColor Cyan
 Write-Host "  1. Start Claude Code:  claude"

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Claude SEO — Profound (LLM citation tracker) extension installer.
+# Kimi SEO — Profound (LLM citation tracker) extension installer.
 #
 # Profound tracks brand citation rates across major LLMs and exposes
 # them as structured time-series. Pairs with seo-seranking (which
@@ -11,11 +11,11 @@ main() {
     SETTINGS_JSON="${HOME}/.claude/settings.json"
 
     echo "════════════════════════════════════════"
-    echo "║   Claude SEO — Profound extension    ║"
+    echo "║   Kimi SEO — Profound extension    ║"
     echo "════════════════════════════════════════"
 
     command -v python3 >/dev/null 2>&1 || { echo "✗ Python 3 required."; exit 1; }
-    [ ! -d "${SKILL_DIR}/seo" ] && { echo "✗ claude-seo base not installed."; exit 1; }
+    [ ! -d "${SKILL_DIR}/seo" ] && { echo "✗ kimi-seo base not installed."; exit 1; }
 
     SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" >/dev/null 2>&1 && pwd)"
 

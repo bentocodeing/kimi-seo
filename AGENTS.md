@@ -1,4 +1,4 @@
-# Claude SEO: Multi-Platform Agent Instructions
+# Kimi SEO: Multi-Platform Agent Instructions
 
 > For **Cursor**, **Cursor Cloud Agents**, **Google Antigravity**, **Gemini CLI**,
 > **Grok Build**,
@@ -23,7 +23,7 @@ descriptive comments) that other harnesses may ignore but do not reject.
 
 ### Per-harness notes
 
-| Harness | How to load claude-seo |
+| Harness | How to load kimi-seo |
 |---|---|
 | **Cursor** | Symlink or copy `skills/` and `agents/` into `.cursor/rules/`. Commands are invoked as text prompts; the harness reads `SKILL.md` body as system context. |
 | **Cursor Cloud Agents** | Push the repo; Cloud Agents read `AGENTS.md` automatically at session start. |
@@ -36,7 +36,7 @@ descriptive comments) that other harnesses may ignore but do not reject.
 
 ### Tool-name compatibility
 
-Where claude-seo skills mention Claude Code tools (`Read`, `Write`, `Edit`,
+Where kimi-seo skills mention Claude Code tools (`Read`, `Write`, `Edit`,
 `Bash`, `Glob`, `Grep`, `WebFetch`), each harness typically has an equivalent:
 
 | Claude Code | Codex | Cline | Aider | Cursor / Antigravity |
@@ -54,7 +54,7 @@ in case a recipe needs a specific call.
 
 ## Overview
 
-Claude SEO is a Tier 4 SEO analysis skill with 25 sub-skills (21 core + 1 orchestrator +
+Kimi SEO is a Tier 4 SEO analysis skill with 25 sub-skills (21 core + 1 orchestrator +
 1 framework integration + 2 extension mirrors), 18 sub-agents (15 core + 1 framework
 integration + 2 extension mirrors), and 53 Python execution scripts.
 
@@ -129,7 +129,7 @@ DATAFORSEO_USERNAME=user DATAFORSEO_PASSWORD=pass ./bin/claude-seo run dataforse
 ## Using with Google Antigravity
 
 Antigravity discovers this project via `.claude-plugin/plugin.json`.
-Place the repo in `~/.gemini/antigravity/plugins/claude-seo/` or install via:
+Place the repo in `~/.gemini/antigravity/plugins/kimi-seo/` or install via:
 
 ```bash
 bash install.sh
@@ -175,7 +175,7 @@ extensions/                # 8 MCP extensions: DataForSEO, Firecrawl, Banana, Ah
 1. **Progressive Disclosure**: Read SKILL.md for routing, load references on demand
 2. **Industry Detection**: Auto-detect SaaS, e-commerce, local, publisher, agency
 3. **Security**: All scripts call `validate_url()` for SSRF protection
-4. **Config location**: `~/.config/claude-seo/` for API credentials
+4. **Config location**: `~/.config/kimi-seo/` for API credentials
 
 ## Credits
 

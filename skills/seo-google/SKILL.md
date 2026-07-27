@@ -19,7 +19,7 @@ metadata:
 # Google SEO APIs
 
 Direct access to Google's own SEO data. Bridges the gap between crawl-based
-analysis (existing claude-seo skills) and Google's real-time field data: actual
+analysis (existing kimi-seo skills) and Google's real-time field data: actual
 Chrome user metrics, real indexation status, search performance, and organic traffic.
 
 All APIs are free. Setup requires a Google Cloud project with API key and/or
@@ -32,7 +32,7 @@ Before executing any command, check credentials:
 claude-seo run google_auth.py --check --json
 ```
 
-Config file: `~/.config/claude-seo/google-api.json`
+Config file: `~/.config/kimi-seo/google-api.json`
 ```json
 {
   "service_account_path": "/path/to/service_account.json",

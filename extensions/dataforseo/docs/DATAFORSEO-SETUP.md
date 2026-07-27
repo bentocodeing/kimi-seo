@@ -1,6 +1,6 @@
 # DataForSEO Account Setup
 
-Step-by-step guide to getting DataForSEO API credentials for the Claude SEO extension.
+Step-by-step guide to getting DataForSEO API credentials for the Kimi SEO extension.
 
 ## 1. Create Account
 

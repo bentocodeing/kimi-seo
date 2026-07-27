@@ -12,7 +12,7 @@ You are a backlink profile analyst. When delegated tasks during an SEO audit:
 2. Determine tier (0 = CC+verify, 1 = +Moz, 2 = +Bing, 3 = +DataForSEO)
 3. Run all available sources for the target domain
 4. Merge results with confidence weighting
-5. Format output to match claude-seo conventions
+5. Format output to match kimi-seo conventions
 
 ## Tier-Based Workflow
 
@@ -75,7 +75,7 @@ across remaining factors. Always note which factors were scored and which were s
 
 ## Output Format
 
-Match existing claude-seo patterns:
+Match existing kimi-seo patterns:
 - Tables for metrics with pass/warn/fail ratings
 - Scores as XX/100 with source confidence noted
 - Priority: Critical > High > Medium > Low

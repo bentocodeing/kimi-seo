@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1460 420" width="100%"
      preserveAspectRatio="xMidYMid meet" role="img"
-     aria-label="Claude SEO audit signal flow: /seo audit enters, crawls the site, fans out through the orchestrator to 25 sub-skills, 6 parallel audit agents, and AI-search analysis, converges through scoring, and ripens into a prioritized report.">
-  <title>Claude SEO audit signal flow</title>
+     aria-label="Kimi SEO audit signal flow: /seo audit enters, crawls the site, fans out through the orchestrator to 25 sub-skills, 6 parallel audit agents, and AI-search analysis, converges through scoring, and ripens into a prioritized report.">
+  <title>Kimi SEO audit signal flow</title>
   <defs>
     <filter id="glow" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="3.6"/></filter>
     <filter id="aurora" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="75"/></filter>

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Firecrawl Extension Installer for Claude SEO
+# Firecrawl Extension Installer for Kimi SEO
 # Wraps everything in main() to prevent partial execution on network failure
 
 main() {
@@ -12,17 +12,17 @@ main() {
 
     echo "════════════════════════════════════════"
     echo "║   Firecrawl Extension - Installer    ║"
-    echo "║   For Claude SEO                     ║"
+    echo "║   For Kimi SEO                     ║"
     echo "════════════════════════════════════════"
     echo ""
 
     # Check prerequisites
     if [ ! -d "${SEO_SKILL_DIR}" ]; then
-        echo "x Claude SEO is not installed."
-        echo "  Install it first: curl -fsSL https://raw.githubusercontent.com/AgriciDaniel/claude-seo/main/install.sh | bash"
+        echo "x Kimi SEO is not installed."
+        echo "  Install it first: curl -fsSL https://raw.githubusercontent.com/bentocodeing/kimi-seo/kimi/install.sh | bash"
         exit 1
     fi
-    echo "v Claude SEO detected"
+    echo "v Kimi SEO detected"
 
     if ! command -v node >/dev/null 2>&1; then
         echo "x Node.js is required but not installed."
@@ -68,7 +68,7 @@ main() {
         SOURCE_DIR="${SCRIPT_DIR}/extensions/firecrawl"
     else
         echo "x Cannot find extension source files."
-        echo "  Run this script from the claude-seo repo: ./extensions/firecrawl/install.sh"
+        echo "  Run this script from the kimi-seo repo: ./extensions/firecrawl/install.sh"
         exit 1
     fi
 

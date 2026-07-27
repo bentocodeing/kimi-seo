@@ -7,7 +7,7 @@ tags:
   - framework
 ---
 
-![Claude SEO 10-principle methodology: PERCEIVE, ANALYZE, VALIDATE, ACT](../../../assets/framework.svg)
+![Kimi SEO 10-principle methodology: PERCEIVE, ANALYZE, VALIDATE, ACT](../../../assets/framework.svg)
 
 # FLOW Framework
 

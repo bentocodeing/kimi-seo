@@ -1,4 +1,4 @@
-# Firecrawl Extension Uninstaller for Claude SEO (Windows)
+# Firecrawl Extension Uninstaller for Kimi SEO (Windows)
 $ErrorActionPreference = 'Stop'
 
 Write-Host "Removing Firecrawl extension..." -ForegroundColor Yellow
@@ -22,4 +22,4 @@ if (Test-Path $SettingsFile) {
 
 Write-Host ""
 Write-Host "v Firecrawl extension uninstalled." -ForegroundColor Green
-Write-Host "  Core Claude SEO skills are unchanged."
+Write-Host "  Core Kimi SEO skills are unchanged."

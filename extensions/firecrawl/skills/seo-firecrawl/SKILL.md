@@ -15,7 +15,7 @@ metadata:
   category: seo
 ---
 
-# Firecrawl Extension for Claude SEO
+# Firecrawl Extension for Kimi SEO
 
 This skill requires the Firecrawl extension to be installed:
 ```bash

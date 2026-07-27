@@ -1,6 +1,6 @@
 # Public + private repo workflow
 
-claude-seo is mirrored across two GitHub remotes. This document is the
+kimi-seo is mirrored across two GitHub remotes. This document is the
 canonical reference for how work flows between them.
 
 ## Topology
@@ -106,7 +106,7 @@ one file on one commit:
 
 | File | `aimh` (private) | `origin` (public) |
 |---|---|---|
-| `.claude-plugin/marketplace.json` `name` | `ai-marketing-hub-claude-seo` | `agricidaniel-claude-seo` |
+| `.claude-plugin/marketplace.json` `name` | `ai-marketing-hub-kimi-seo` | `agricidaniel-kimi-seo` |
 | `.claude-plugin/marketplace.json` `owner.name` | `AI Marketing Hub` | `AgriciDaniel` |
 
 Everything else (including `README.md`) is shared and public-first: the

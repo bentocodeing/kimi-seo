@@ -92,7 +92,7 @@ After any analysis command completes, offer to generate a PDF report via `script
 ## Synthesis Methodology
 
 Audits are not just findings, they are findings synthesized into a coherent
-strategy. claude-seo uses a 10-principle thinking framework grouped into four
+strategy. kimi-seo uses a 10-principle thinking framework grouped into four
 phases: **PERCEIVE** (observe-external · observe-internal · listen),
 **ANALYZE** (think · connect-lateral · connect-system), **VALIDATE** (feel ·
 accept), **ACT** (create · grow).

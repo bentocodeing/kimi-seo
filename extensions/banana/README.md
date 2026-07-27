@@ -1,4 +1,4 @@
-# Banana Image Generation Extension for Claude SEO
+# Banana Image Generation Extension for Kimi SEO
 
 Generate production-ready SEO images using AI: OG/social previews, blog heroes,
 product photography, infographics, and more. Powered by Google Gemini via the
@@ -9,7 +9,7 @@ banana Creative Director pipeline.
 > This extension wraps [Claude Banana](https://github.com/AgriciDaniel/banana-claude)
 > for SEO-specific use cases. Install the standalone skill for general-purpose image generation.
 
-- **Claude SEO** installed (`~/.claude/skills/seo/`)
+- **Kimi SEO** installed (`~/.claude/skills/seo/`)
 - **Node.js 20+** with npx
 - **Google AI API key** (free at [aistudio.google.com/apikey](https://aistudio.google.com/apikey))
 - **ImageMagick** (optional, for post-processing)
@@ -21,7 +21,7 @@ banana Creative Director pipeline.
 ```
 
 The installer will:
-1. Verify Claude SEO is installed
+1. Verify Kimi SEO is installed
 2. Prompt for your Google AI API key (if nanobanana-mcp not already configured)
 3. Install the `seo-image-gen` skill and agent
 4. Configure the MCP server in `~/.claude/settings.json`

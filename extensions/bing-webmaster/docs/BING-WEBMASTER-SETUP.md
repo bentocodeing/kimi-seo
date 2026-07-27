@@ -4,7 +4,7 @@
 
 1. **Bing Webmaster Tools API**: inbound links, crawl stats, search
    keywords, and competitor link comparison via
-   `scripts/bing_webmaster.py` (already shipped with claude-seo).
+   `scripts/bing_webmaster.py` (already shipped with kimi-seo).
 2. **IndexNow URL submission** for Amazon, Bing, Naver, Seznam.cz,
    Yandex, and Yep via `scripts/indexnow_submit.py`.
 3. A unified `seo-bing` skill that routes the right command at the

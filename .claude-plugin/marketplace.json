@@ -1,17 +1,17 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "agricidaniel-claude-seo",
+  "name": "agricidaniel-kimi-seo",
   "owner": {
     "name": "AgriciDaniel"
   },
   "metadata": {
-    "description": "Comprehensive SEO analysis plugin for Claude Code. 25 sub-skills and 18 sub-agents, plus 8 optional MCP extensions (DataForSEO, Firecrawl, Banana, Ahrefs, SE Ranking, Profound, Bing Webmaster, Unlighthouse). v2.2.4 adds a managed cross-platform runtime and safe sitemap discovery, and repairs GSC pagination, Bing endpoints, extension paths, Windows portability, SPA rendering, and JSON-LD extraction."
+    "description": "Comprehensive SEO analysis plugin for Kimi Code. 25 sub-skills and 18 sub-agents, plus 8 optional MCP extensions (DataForSEO, Firecrawl, Banana, Ahrefs, SE Ranking, Profound, Bing Webmaster, Unlighthouse). v2.2.4 adds a managed cross-platform runtime and safe sitemap discovery, and repairs GSC pagination, Bing endpoints, extension paths, Windows portability, SPA rendering, and JSON-LD extraction."
   },
   "plugins": [
     {
-      "name": "claude-seo",
+      "name": "kimi-seo",
       "source": "./",
-      "description": "Comprehensive SEO analysis plugin for Claude Code. 25 sub-skills and 18 sub-agents, plus 8 optional MCP extensions. v2.2.4 adds a managed cross-platform runtime and safe sitemap discovery, and repairs GSC pagination, Bing endpoints, extension paths, Windows portability, SPA rendering, JSON-LD extraction, and DataForSEO permissions.",
+      "description": "Comprehensive SEO analysis plugin for Kimi Code. 25 sub-skills and 18 sub-agents, plus 8 optional MCP extensions. v2.2.4 adds a managed cross-platform runtime and safe sitemap discovery, and repairs GSC pagination, Bing endpoints, extension paths, Windows portability, SPA rendering, JSON-LD extraction, and DataForSEO permissions.",
       "author": {
         "name": "AgriciDaniel",
         "url": "https://github.com/AgriciDaniel"

@@ -1,8 +1,8 @@
-# Claude SEO: Universal SEO Analysis Skill
+# Kimi SEO: Universal SEO Analysis Skill
 
 ## Project Overview
 
-This repository contains **Claude SEO**, a Tier 4 Claude Code skill for comprehensive
+This repository contains **Kimi SEO**, a Tier 4 Kimi Code skill for comprehensive
 SEO analysis across all industries. It follows the Agent Skills open standard and the
 3-layer architecture (directive, orchestration, execution). 25 sub-skills (21 core +
 1 orchestrator + 1 framework integration + 2 extension mirrors), 18 sub-agents (15 core +
@@ -16,7 +16,7 @@ SEO, and international SEO with cultural adaptation profiles.
 ## Architecture
 
 ```
-claude-seo/
+kimi-seo/
   CLAUDE.md                          # Project instructions (this file)
   CONTRIBUTORS.md                    # Community credits (Pro Hub Challenge)
   AGENTS.md                          # Multi-platform agent instructions (Cursor, Antigravity)
@@ -204,7 +204,7 @@ claude-seo/
 - **URL validation**: All scripts that connect to user-supplied URLs must use `scripts/url_safety.py` (`validate_url_strict()` plus the pinned safe request helpers). This blocks private IPs, loopback, metadata endpoints, redirect rebinding, and DNS rebinding.
 - **OAuth tokens**: Never store `client_secret` in the token file. Read it from the client_secret.json file at runtime.
 - **No hardcoded paths**: Use `os.path.dirname(os.path.abspath(__file__))` for relative paths, never a user-specific absolute path
-- **Config location**: `~/.config/claude-seo/google-api.json` and `~/.config/claude-seo/backlinks-api.json` (user-space, not in repo)
+- **Config location**: `~/.config/kimi-seo/google-api.json` and `~/.config/kimi-seo/backlinks-api.json` (user-space, not in repo)
 
 ## Report Generation Rules
 

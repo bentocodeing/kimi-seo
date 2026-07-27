@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Bing Webmaster Tools API client for Claude SEO.
+Bing Webmaster Tools API client for Kimi SEO.
 
 Queries the Bing Webmaster API for inbound link data, referring domain counts,
 and comparison between properties accessible to the same API account.

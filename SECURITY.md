@@ -17,7 +17,7 @@ When reporting, please include:
 
 ## Coordinated disclosure
 
-claude-seo follows a **90-day coordinated disclosure** policy.
+kimi-seo follows a **90-day coordinated disclosure** policy.
 
 | Day | Event |
 |---:|---|
@@ -39,9 +39,9 @@ If a fix cannot be shipped within 90 days, the maintainer will request an extens
 
 ## Threat model
 
-claude-seo is a research and audit toolkit that runs on a user's workstation. It accepts user-supplied URLs and credentials, and issues HTTP requests against arbitrary internet hosts. The threat model has three primary attacker types:
+kimi-seo is a research and audit toolkit that runs on a user's workstation. It accepts user-supplied URLs and credentials, and issues HTTP requests against arbitrary internet hosts. The threat model has three primary attacker types:
 
-1. **Malicious audit target.** A site the user points claude-seo at attempts to leak local-network or cloud-metadata data via SSRF chains: private IP literals, decimal/hex/octal IPv4, FQDN trailing dot, 30x redirects to private IPs, DNS rebinding (initial public resolution → later private), IPv4-mapped IPv6, dual-stack hosts with one private record.
+1. **Malicious audit target.** A site the user points kimi-seo at attempts to leak local-network or cloud-metadata data via SSRF chains: private IP literals, decimal/hex/octal IPv4, FQDN trailing dot, 30x redirects to private IPs, DNS rebinding (initial public resolution → later private), IPv4-mapped IPv6, dual-stack hosts with one private record.
 
    **Mitigation:** `scripts/url_safety.py` is the canonical pre-flight + DNS-pinned fetch layer. Every URL-fetching script in this repository validates through it. See `tests/test_url_safety.py` for the regression suite (91 cases across 31 test functions, covering each bypass class).
 
@@ -49,13 +49,13 @@ claude-seo is a research and audit toolkit that runs on a user's workstation. It
 
    **Mitigation status:** SHA-256 manifest tooling shipped in v2.0.0; install script verification is tracked for v2.3. Until install scripts verify manifests, users may install by cloning the tag explicitly and inspecting the diff against the previous release.
 
-3. **Local privilege escalation against stored credentials.** The OAuth token at `~/.config/claude-seo/oauth-token.json` is the most sensitive on-disk artifact.
+3. **Local privilege escalation against stored credentials.** The OAuth token at `~/.config/kimi-seo/oauth-token.json` is the most sensitive on-disk artifact.
 
    **Mitigation:** v2 forces `0o600` on every write (`os.open` + `os.fchmod`) and remediates legacy `0o644` files in place on first load. Tokens never contain the OAuth `client_secret` — only the access/refresh pair plus expiry metadata.
 
 ## Known residual risks
 
-- **Playwright + Chromium DNS rebinding.** Chromium does its own DNS resolution inside the renderer process. claude-seo's Python-layer DNS pin (`url_safety._pin_dns`) cannot reach it. The Playwright `route()` handler re-validates every subresource host (`make_safe_playwright_route_handler`), which closes the common case, but a true rebinding attacker can still race Chromium's resolver after our pre-flight returns. Mitigation: do not point `/seo` skills at untrusted sites with high-frequency redirects.
+- **Playwright + Chromium DNS rebinding.** Chromium does its own DNS resolution inside the renderer process. kimi-seo's Python-layer DNS pin (`url_safety._pin_dns`) cannot reach it. The Playwright `route()` handler re-validates every subresource host (`make_safe_playwright_route_handler`), which closes the common case, but a true rebinding attacker can still race Chromium's resolver after our pre-flight returns. Mitigation: do not point `/seo` skills at untrusted sites with high-frequency redirects.
 - **IPv6-only audit targets.** The strict validator queries `family=AF_INET` for the initial resolution. Hosts with AAAA records only will surface as "DNS resolution failed". This is **fail-closed** by design — we'd rather refuse than connect to an unvalidated IPv6 endpoint. Tracked for a future patch (full dual-stack pinning, similar to the Playwright handler which already uses `AF_UNSPEC`).
 - **Windows file permissions.** `os.fchmod(fd, 0o600)` is a no-op on Windows for non-ACL filesystems. Users on Windows should rely on per-user directory ACLs instead of POSIX mode bits.
 
@@ -82,6 +82,6 @@ If you are auditing, these are the high-leverage files:
 ## Security-relevant practices
 
 - No credentials or API keys are committed to this repository. `.gitignore` blocks every known credential filename pattern.
-- Install scripts write only to user-level directories under `~/.claude/` and `~/.config/claude-seo/`.
+- Install scripts write only to user-level directories under `~/.claude/` and `~/.config/kimi-seo/`.
 - Python dependencies install into an isolated virtual environment. Plugin installs use persistent `CLAUDE_PLUGIN_DATA`; manual installs use `~/.claude/skills/seo/.venv/`. The runtime never falls back to global or user package installation.
 - Every new fetcher must route through `scripts/url_safety.py` — there is no exception for "trusted" URLs.

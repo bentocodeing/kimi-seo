@@ -96,7 +96,7 @@ sitemap-validation-report.md
 
 # Temporary download directories
 claude-ads-main/
-claude-seo-main/
+kimi-seo-main/
 
 # Root-level duplicate media files (originals live in screenshots/)
 Cover Image.jpeg
@@ -152,8 +152,8 @@ site/
 .worktrees/
 
 # Marketing / promo artifacts (don't ship with the repo)
-claude-seo-slides/
-claude-seo-v*-release.html
+kimi-seo-slides/
+kimi-seo-v*-release.html
 video-script-*.md
 youtube-shorts-*.md
 youtube-description*.md

@@ -17,7 +17,7 @@ metadata:
 
 # FLOW Framework: Find · Leverage · Optimize · Win
 
-FLOW is an evidence-led SEO operating model built for the AI-search era. Claude SEO
+FLOW is an evidence-led SEO operating model built for the AI-search era. Kimi SEO
 integrates the FLOW prompt library (41 prompts across 5 stages) so every analysis can
 be driven by structured, evidence-backed AI prompts rather than improvised queries.
 

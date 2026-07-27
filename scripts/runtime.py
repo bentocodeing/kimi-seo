@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Cross-platform runtime for Claude SEO's bundled Python scripts.
+"""Cross-platform runtime for Kimi SEO's bundled Python scripts.
 
 This module deliberately uses only the Python standard library. It is launched
 by ``bin/claude-seo`` under a base Python, then dispatches work through the
@@ -123,7 +123,7 @@ def _data_dir(root: Path) -> tuple[Path, str]:
             base = Path.home() / "Library" / "Application Support"
         else:
             base = Path(os.environ.get("XDG_DATA_HOME", Path.home() / ".local" / "share"))
-        return (base / "claude-seo").resolve(), "plugin-fallback"
+        return (base / "kimi-seo").resolve(), "plugin-fallback"
     return root, "manual"
 
 
@@ -231,7 +231,7 @@ class SetupLock:
             except OSError:
                 age = 0
             if age <= LOCK_STALE_SECONDS:
-                raise RuntimeError("another Claude SEO setup is already running")
+                raise RuntimeError("another Kimi SEO setup is already running")
             self.path.unlink(missing_ok=True)
             with self.path.open("x", encoding="utf-8") as handle:
                 handle.write(f"{os.getpid()}\n{int(time.time())}\n")
@@ -258,7 +258,7 @@ def command_setup(args: argparse.Namespace) -> int:
     had_previous = final_venv.exists()
     try:
         with SetupLock(data_dir / ".setup.lock"):
-            print("Creating isolated Claude SEO environment...")
+            print("Creating isolated Kimi SEO environment...")
             _run_checked([sys.executable, "-m", "venv", str(staged)], env=env, stage="virtual environment creation")
             staged_python = _venv_python(staged)
             _run_checked(
@@ -301,10 +301,10 @@ def command_setup(args: argparse.Namespace) -> int:
                 shutil.rmtree(final_venv, ignore_errors=True)
             if previous_moved and had_previous and backup.exists():
                 backup.replace(final_venv)
-        print(f"Claude SEO setup failed: {_redact(str(exc))}", file=sys.stderr)
+        print(f"Kimi SEO setup failed: {_redact(str(exc))}", file=sys.stderr)
         return 1
     if browser_ready or args.skip_browser:
-        print("Claude SEO runtime is ready.")
+        print("Kimi SEO runtime is ready.")
         return 0
     print("Core runtime is ready, but Chromium is unavailable. Run setup again to enable rendered-page features.", file=sys.stderr)
     return 10
@@ -335,11 +335,11 @@ def command_run(args: argparse.Namespace) -> int:
     try:
         script = _resolve_script(root, args.script, args.extension)
     except ValueError as exc:
-        print(f"Claude SEO runtime: {exc}", file=sys.stderr)
+        print(f"Kimi SEO runtime: {exc}", file=sys.stderr)
         return 2
     status = _status(root)
     if not status["ready"]:
-        print("Claude SEO runtime is not ready. Run `/seo setup` and retry.", file=sys.stderr)
+        print("Kimi SEO runtime is not ready. Run `/seo setup` and retry.", file=sys.stderr)
         return 3
     result = subprocess.run(
         [str(status["python_path"]), str(script), *args.script_args],
@@ -374,7 +374,7 @@ def command_doctor(args: argparse.Namespace) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="claude-seo", description="Claude SEO managed Python runtime")
+    parser = argparse.ArgumentParser(prog="kimi-seo", description="Kimi SEO managed Python runtime")
     sub = parser.add_subparsers(dest="command", required=True)
     setup = sub.add_parser("setup", help="create or refresh the isolated runtime")
     setup.add_argument("--skip-browser", action="store_true")
@@ -396,7 +396,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         return int(args.func(args))
     except (OSError, RuntimeError, ValueError) as exc:
-        print(f"Claude SEO runtime failed: {_redact(str(exc))}", file=sys.stderr)
+        print(f"Kimi SEO runtime failed: {_redact(str(exc))}", file=sys.stderr)
         return 2
 
 

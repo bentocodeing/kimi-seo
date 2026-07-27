@@ -14,7 +14,7 @@ def test_pyproject_has_authors_and_keywords() -> None:
     assert 'authors = [' in text
     assert 'name = "Daniel Agrici"' in text
     assert "email =" not in text
-    for keyword in ("seo", "claude-code", "schema-markup", "e-e-a-t", "geo"):
+    for keyword in ("seo", "kimi-code", "schema-markup", "e-e-a-t", "geo"):
         assert f'"{keyword}"' in text
 
 

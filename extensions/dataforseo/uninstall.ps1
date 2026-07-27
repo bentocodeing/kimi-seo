@@ -1,4 +1,4 @@
-# DataForSEO Extension Uninstaller for Claude SEO (Windows)
+# DataForSEO Extension Uninstaller for Kimi SEO (Windows)
 
 $ErrorActionPreference = "Stop"
 

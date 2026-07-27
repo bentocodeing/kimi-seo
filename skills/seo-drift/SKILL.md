@@ -75,7 +75,7 @@ recommended actions, and cross-skill references.
 All data is stored locally in SQLite:
 
 ```
-~/.cache/claude-seo/drift/baselines.db
+~/.cache/kimi-seo/drift/baselines.db
 ```
 
 ### Tables

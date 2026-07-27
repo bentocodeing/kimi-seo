@@ -1,4 +1,4 @@
-# Claude SEO — Ahrefs extension installer (Windows / PowerShell).
+# Kimi SEO — Ahrefs extension installer (Windows / PowerShell).
 # Mirrors extensions/ahrefs/install.sh.
 [CmdletBinding()]
 param()
@@ -17,7 +17,7 @@ $SkillDir = Join-Path $HOME ".claude/skills"
 $SettingsJson = Join-Path $HOME ".claude/settings.json"
 
 if (-not (Test-Path (Join-Path $SkillDir "seo"))) {
-    throw "claude-seo base plugin not installed."
+    throw "kimi-seo base plugin not installed."
 }
 
 $Token = Read-Host "Ahrefs API token" -AsSecureString

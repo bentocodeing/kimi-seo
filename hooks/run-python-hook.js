@@ -57,7 +57,7 @@ function main() {
   }
 
   console.error(
-    "Claude SEO hook could not find Python. Tried CLAUDE_SEO_PYTHON, py -3, python3, python.",
+    "Kimi SEO hook could not find Python. Tried CLAUDE_SEO_PYTHON, py -3, python3, python.",
   );
   process.exit(1);
 }

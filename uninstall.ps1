@@ -1,5 +1,5 @@
 #!/usr/bin/env pwsh
-# claude-seo manual-install uninstaller (Windows)
+# kimi-seo manual-install uninstaller (Windows)
 #
 # Removes the orchestrator skill (~/.claude/skills/seo), all sub-skills
 # (~/.claude/skills/seo-*), and all sub-agents (~/.claude/agents/seo-*.md).
@@ -22,7 +22,7 @@ function Main {
     $SkillDir = Join-Path $env:USERPROFILE ".claude" "skills"
     $AgentDir = Join-Path $env:USERPROFILE ".claude" "agents"
 
-    Write-Color Cyan "=== Uninstalling claude-seo ==="
+    Write-Color Cyan "=== Uninstalling kimi-seo ==="
     Write-Host ""
 
     $removedSkills = 0
@@ -56,12 +56,12 @@ function Main {
 
     Write-Host ""
     if ($removedSkills -eq 0 -and $removedAgents -eq 0) {
-        Write-Color Yellow "Nothing to remove. Claude SEO does not appear to be installed."
+        Write-Color Yellow "Nothing to remove. Kimi SEO does not appear to be installed."
         Write-Color Yellow "If you installed via /plugin install, run /plugin uninstall instead."
         return
     }
 
-    Write-Color Cyan "=== claude-seo uninstalled ($removedSkills skill dirs, $removedAgents agent files) ==="
+    Write-Color Cyan "=== kimi-seo uninstalled ($removedSkills skill dirs, $removedAgents agent files) ==="
     Write-Host ""
     Write-Color Yellow "Restart Claude Code to complete removal."
 }

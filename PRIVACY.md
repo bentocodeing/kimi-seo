@@ -2,11 +2,11 @@
 
 ## Data Handling
 
-Claude SEO is a Claude Code skill that runs on your local machine. The core skill makes no third-party API calls by default (audits still fetch the target URLs you point them at), and does not collect, store, or transmit any personal data to a vendor.
+Kimi SEO is a Kimi Code skill that runs on your local machine. The core skill makes no third-party API calls by default (audits still fetch the target URLs you point them at), and does not collect, store, or transmit any personal data to a vendor.
 
 ## What Stays Local
 
-- All SEO analysis runs in your Claude Code session
+- All SEO analysis runs in your Kimi Code session
 - HTML parsing, content analysis, and report generation happen locally
 - Generated reports (PDF, HTML, Excel) are saved to your local filesystem
 - No telemetry, analytics, or usage tracking
@@ -58,6 +58,6 @@ Google API usage is governed by [Google's Privacy Policy](https://policies.googl
 
 ## Credentials
 
-- API keys and OAuth tokens are stored locally in `~/.config/claude-seo/` or environment variables
+- API keys and OAuth tokens are stored locally in `~/.config/kimi-seo/` or environment variables
 - Credentials are never committed to the repository (blocked by `.gitignore`)
 - OAuth tokens use refresh tokens and never store client secrets in token files

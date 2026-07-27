@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Claude SEO — SE Ranking extension installer.
+# Kimi SEO — SE Ranking extension installer.
 #
 # SE Ranking's strength for v2: AI Share-of-Voice tracking across
 # ChatGPT, Gemini, Perplexity, AI Overviews, and AI Mode. The gap
@@ -14,13 +14,13 @@ main() {
     SETTINGS_JSON="${HOME}/.claude/settings.json"
 
     echo "════════════════════════════════════════"
-    echo "║ Claude SEO — SE Ranking extension    ║"
+    echo "║ Kimi SEO — SE Ranking extension    ║"
     echo "════════════════════════════════════════"
 
     command -v python3 >/dev/null 2>&1 || { echo "✗ Python 3 required."; exit 1; }
 
     if [ ! -d "${SKILL_DIR}/seo" ]; then
-        echo "✗ claude-seo base plugin not installed."
+        echo "✗ kimi-seo base plugin not installed."
         exit 1
     fi
 
