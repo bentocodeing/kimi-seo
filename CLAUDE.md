@@ -194,7 +194,7 @@ kimi-seo/
 - Scripts must have docstrings, CLI interface, and JSON output
 - Follow kebab-case naming for all skill directories
 - Agents invoked via Agent tool, never via Bash
-- Bundled tools run through `claude-seo run`; plugin state uses `CLAUDE_PLUGIN_DATA`
+- Bundled tools run through `kimi-seo run`; plugin state uses `CLAUDE_PLUGIN_DATA`
 - Manual Python dependencies install into `~/.claude/skills/seo/.venv/`
 - Test with `python3 -m pytest tests/` after changes (if applicable)
 

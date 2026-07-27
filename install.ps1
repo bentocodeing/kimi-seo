@@ -257,7 +257,7 @@ try {
     # Manual installs do not receive plugin bin/ PATH injection. Rewrite only
     # the canonical runtime token in installed Markdown. Claude Code's Bash tool
     # expands $HOME on Windows as well as Unix.
-    $manualRunner = '"$HOME/.claude/skills/seo/bin/claude-seo" run'
+    $manualRunner = '"$HOME/.claude/skills/seo/bin/kimi-seo" run'
     $installedDocs = @()
     Get-ChildItem -Path $SkillsPath -Directory | ForEach-Object {
         $sourceRoot = $_.FullName
@@ -297,11 +297,11 @@ try {
     $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
     $installedDocs | ForEach-Object {
         $text = [System.IO.File]::ReadAllText($_.FullName)
-        $manualSetup = '"$HOME/.claude/skills/seo/bin/claude-seo" setup'
-        $manualDoctor = '"$HOME/.claude/skills/seo/bin/claude-seo" doctor'
-        $updated = $text.Replace('claude-seo run', $manualRunner)
-        $updated = $updated.Replace('claude-seo setup', $manualSetup)
-        $updated = $updated.Replace('claude-seo doctor', $manualDoctor)
+        $manualSetup = '"$HOME/.claude/skills/seo/bin/kimi-seo" setup'
+        $manualDoctor = '"$HOME/.claude/skills/seo/bin/kimi-seo" doctor'
+        $updated = $text.Replace('kimi-seo run', $manualRunner)
+        $updated = $updated.Replace('kimi-seo setup', $manualSetup)
+        $updated = $updated.Replace('kimi-seo doctor', $manualDoctor)
         if ($updated -ne $text) {
             [System.IO.File]::WriteAllText($_.FullName, $updated, $utf8NoBom)
         }

@@ -176,7 +176,7 @@ def check_runtime_invocations(texts):
     bare = re.compile(
         r"\b(?:python3|python|py\s+-3)\s+[^\n`]*?scripts/[A-Za-z0-9_./-]+\.py"
     )
-    runtime = re.compile(r"\bclaude-seo\s+run(?:\s+--extension\s+[a-z0-9-]+)?\s+([A-Za-z0-9_-]+\.py)")
+    runtime = re.compile(r"\bkimi-seo\s+run(?:\s+--extension\s+[a-z0-9-]+)?\s+([A-Za-z0-9_-]+\.py)")
     for f in carriers:
         content = read(f)
         for match in bare.finditer(content):

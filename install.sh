@@ -74,10 +74,10 @@ main() {
 
     # Copy the stable runtime launcher. Manual installs use its explicit path;
     # plugin installs expose the repository bin/ directory automatically.
-    if [ -f "${TEMP_DIR}/kimi-seo/bin/claude-seo" ]; then
+    if [ -f "${TEMP_DIR}/kimi-seo/bin/kimi-seo" ]; then
         mkdir -p "${SKILL_DIR}/bin"
-        cp "${TEMP_DIR}/kimi-seo/bin/claude-seo" "${SKILL_DIR}/bin/claude-seo"
-        chmod +x "${SKILL_DIR}/bin/claude-seo"
+        cp "${TEMP_DIR}/kimi-seo/bin/kimi-seo" "${SKILL_DIR}/bin/kimi-seo"
+        chmod +x "${SKILL_DIR}/bin/kimi-seo"
     fi
 
     # Copy hooks
@@ -132,9 +132,9 @@ main() {
     rewrite_doc() {
         local doc="$1" temp_doc
         temp_doc="${doc}.kimi-seo-tmp"
-        sed -e 's#claude-seo run#"$HOME/.claude/skills/seo/bin/claude-seo" run#g' \
-            -e 's#claude-seo setup#"$HOME/.claude/skills/seo/bin/claude-seo" setup#g' \
-            -e 's#claude-seo doctor#"$HOME/.claude/skills/seo/bin/claude-seo" doctor#g' \
+        sed -e 's#kimi-seo run#"$HOME/.claude/skills/seo/bin/kimi-seo" run#g' \
+            -e 's#kimi-seo setup#"$HOME/.claude/skills/seo/bin/kimi-seo" setup#g' \
+            -e 's#kimi-seo doctor#"$HOME/.claude/skills/seo/bin/kimi-seo" doctor#g' \
             "${doc}" > "${temp_doc}"
         mv "${temp_doc}" "${doc}"
     }
@@ -173,7 +173,7 @@ main() {
 
     echo "→ Creating isolated Python runtime..."
     set +e
-    "${SKILL_DIR}/bin/claude-seo" setup
+    "${SKILL_DIR}/bin/kimi-seo" setup
     runtime_status=$?
     set -e
     if [ "${runtime_status}" -ne 0 ] && [ "${runtime_status}" -ne 10 ]; then

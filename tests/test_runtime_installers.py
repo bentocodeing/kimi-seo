@@ -7,12 +7,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_unix_installer_delegates_to_runtime_without_global_pip() -> None:
     text = (ROOT / "install.sh").read_text(encoding="utf-8")
-    assert '"${SKILL_DIR}/bin/claude-seo" setup' in text
+    assert '"${SKILL_DIR}/bin/kimi-seo" setup' in text
     assert "pip install --user" not in text
     assert "python3 -m venv" not in text
-    assert "claude-seo run" in text
-    assert "claude-seo setup" in text
-    assert "claude-seo doctor" in text
+    assert "kimi-seo run" in text
+    assert "kimi-seo setup" in text
+    assert "kimi-seo doctor" in text
     assert '"${runtime_status}" -ne 0 ] && [ "${runtime_status}" -ne 10' in text
     assert 'find "${HOME}/.claude/skills"' not in text
 
@@ -30,7 +30,7 @@ def test_windows_installer_delegates_to_runtime_without_path_mutation() -> None:
 
 
 def test_launcher_is_executable_and_uses_safe_exec() -> None:
-    launcher = ROOT / "bin/claude-seo"
+    launcher = ROOT / "bin/kimi-seo"
     assert launcher.stat().st_mode & 0o100
     text = launcher.read_text(encoding="utf-8")
     assert 'exec py -3 "${runtime}" "$@"' in text

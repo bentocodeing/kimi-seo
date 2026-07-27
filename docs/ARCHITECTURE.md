@@ -224,7 +224,7 @@ User Request (e.g., /seo page)
 
 ### Managed Python runtime
 
-Bundled tools are dispatched through `bin/claude-seo` and
+Bundled tools are dispatched through `bin/kimi-seo` and
 `scripts/runtime.py`, never through a working-directory-relative Python command.
 The launcher resolves Python 3.10 or newer, while the standard-library runtime
 provides three operations: `run`, `setup`, and read-only `doctor`.

@@ -159,9 +159,9 @@ PY
     for installed_doc in "${SKILL_DIR}/SKILL.md" "${SKILL_DIR}/references/"*.md "${AGENT_DIR}/seo-image-gen.md"; do
         [ -f "${installed_doc}" ] || continue
         temp_doc="${installed_doc}.kimi-seo-tmp"
-        sed -e 's#claude-seo run#"$HOME/.claude/skills/seo/bin/claude-seo" run#g' \
-            -e 's#claude-seo setup#"$HOME/.claude/skills/seo/bin/claude-seo" setup#g' \
-            -e 's#claude-seo doctor#"$HOME/.claude/skills/seo/bin/claude-seo" doctor#g' \
+        sed -e 's#kimi-seo run#"$HOME/.claude/skills/seo/bin/kimi-seo" run#g' \
+            -e 's#kimi-seo setup#"$HOME/.claude/skills/seo/bin/kimi-seo" setup#g' \
+            -e 's#kimi-seo doctor#"$HOME/.claude/skills/seo/bin/kimi-seo" doctor#g' \
             "${installed_doc}" > "${temp_doc}"
         mv "${temp_doc}" "${installed_doc}"
     done
