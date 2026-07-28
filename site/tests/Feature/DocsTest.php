@@ -45,6 +45,25 @@ class DocsTest extends TestCase
             ->assertDontSee('src="assets/cover.svg', false);
     }
 
+    public function test_headings_get_github_style_anchor_ids(): void
+    {
+        $this->get('/docs/getting-started')
+            ->assertOk()
+            ->assertSee('id="quick-start"', false)
+            ->assertSee('id="commands"', false)
+            // Slashes are stripped, leaving double hyphens — GitHub-style.
+            ->assertSee('id="compared-to-manual--agency--commercial-tools"', false);
+    }
+
+    public function test_docs_page_has_right_rail_table_of_contents(): void
+    {
+        $this->get('/docs/getting-started')
+            ->assertOk()
+            ->assertSee('On this page')
+            ->assertSee('href="#quick-start"', false)
+            ->assertSee('href="#commands"', false);
+    }
+
     public function test_repo_internal_markdown_links_are_rewritten_to_docs_pages(): void
     {
         // README.md links to docs/INSTALLATION.md and docs/COMMANDS.md.
