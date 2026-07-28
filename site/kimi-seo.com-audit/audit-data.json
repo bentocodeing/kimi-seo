@@ -1,0 +1,269 @@
+{
+  "summary": {
+    "health_score": 66,
+    "business_type": "Open-source developer tool (product marketing + documentation publisher hybrid)",
+    "domain": "kimi-seo.com",
+    "audit_date": "2026-07-28",
+    "pages_crawled": 11,
+    "data_notes": "Performance is lab-only (Lighthouse local, mobile): PSI keyless quota exhausted and CrUX requires an API key; domain likely too new for field data. Backlinks via Common Crawl web graph only (no Moz/Bing credentials).",
+    "top_findings": [
+      "No XML sitemap (/sitemap.xml -> 404) while domain is absent from Common Crawl web graph (in_crawl: false)",
+      "Zero JSON-LD structured data on all 11 pages (no SoftwareApplication, Organization, BreadcrumbList, TechArticle)",
+      "Identical meta description on all 11 pages",
+      "No Open Graph or Twitter Card meta tags sitewide",
+      "Flagship doc /docs/getting-started weighs 1.83MB: two GIFs (989KB + 680KB), TBT 2470ms, Lighthouse perf 0.66"
+    ],
+    "quick_wins": [
+      "Static /sitemap.xml + Sitemap directive in robots.txt + GSC submission",
+      "Self-referencing canonical tags in base layout",
+      "Unique per-page meta descriptions",
+      "og:/twitter: tags + one 1200x630 OG image",
+      "Create /llms.txt"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 78,
+      "what_works": [
+        "robots.txt allows all; no noindex anywhere; all 11 routes return 200",
+        "Single-hop HTTP->HTTPS and www->apex 301 redirects",
+        "Proper 404 status for missing pages; /admin correctly redirects to /login",
+        "Brotli compression, HTTP/2 + HTTP/3 via Cloudflare, server-rendered HTML, zero console errors"
+      ],
+      "findings": [
+        {
+          "title": "No XML sitemap",
+          "severity": "High",
+          "description": "/sitemap.xml and /sitemap_index.xml return 404; robots.txt has no Sitemap directive; domain absent from Common Crawl web graph, so a sitemap is the primary discovery channel.",
+          "recommendation": "Generate /sitemap.xml for the 11 routes, add Sitemap directive to robots.txt, submit to GSC and Bing WMT."
+        },
+        {
+          "title": "Missing HSTS",
+          "severity": "Medium",
+          "description": "No Strict-Transport-Security header on any response.",
+          "recommendation": "Enable HSTS max-age=31536000; includeSubDomains at the Cloudflare edge."
+        },
+        {
+          "title": "Missing CSP, Referrer-Policy, Permissions-Policy",
+          "severity": "Medium",
+          "description": "Baseline headers present (X-Frame-Options, nosniff, XSS) but no Content-Security-Policy, Referrer-Policy, or Permissions-Policy.",
+          "recommendation": "Add report-only CSP then enforce; add Referrer-Policy: strict-origin-when-cross-origin and minimal Permissions-Policy."
+        },
+        {
+          "title": "Short cache lifetime on fingerprinted assets",
+          "severity": "Low",
+          "description": "Vite content-hashed /build/ assets served with max-age=14400 (4h).",
+          "recommendation": "Serve /build/ with max-age=31536000, immutable."
+        },
+        {
+          "title": "HTML never edge-cached",
+          "severity": "Low",
+          "description": "cf-cache-status: DYNAMIC and cache-control: no-cache, private on every page (Laravel session/XSRF cookies on anonymous views).",
+          "recommendation": "Avoid starting sessions for anonymous marketing/docs GETs, then enable edge caching."
+        }
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 72,
+      "what_works": [
+        "Substantial docs corpus: getting-started 5137 words, commands 3428 words",
+        "Human-written, non-duplicated body content, appropriate technical readability",
+        "Coherent docs information architecture with strong internal linking"
+      ],
+      "findings": [
+        {
+          "title": "No trust/footer pages",
+          "severity": "Medium",
+          "description": "No About, License, Privacy, or Contact pages; weakens E-E-A-T trust evaluation next to a monetization page (/advertise).",
+          "recommendation": "Add footer links: About/Maintainer, License (MIT), Privacy, Contact."
+        },
+        {
+          "title": "No authorship or freshness signals on docs",
+          "severity": "Medium",
+          "description": "Docs pages carry no author and no datePublished/dateModified.",
+          "recommendation": "Surface Last updated (from repo mtime) and maintainer attribution per doc."
+        },
+        {
+          "title": "Thin docs hub",
+          "severity": "Medium",
+          "description": "/docs is 133 words, navigation-only.",
+          "recommendation": "Add 200-400 words framing the documentation above the link list."
+        },
+        {
+          "title": "No non-brand content surface",
+          "severity": "Low",
+          "description": "Corpus targets only brand/product queries; no blog, changelog, or use-case pages.",
+          "recommendation": "Add changelog + 2-3 problem-aware articles targeting category queries (Phase 3)."
+        }
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 68,
+      "what_works": [
+        "Unique, well-formed titles on all pages (20-47 chars)",
+        "Exactly one h1 per page; no skipped heading levels",
+        "100% image alt coverage (15/15); no orphan pages"
+      ],
+      "findings": [
+        {
+          "title": "Identical meta description on all 11 pages",
+          "severity": "High",
+          "description": "Every page serves the same 107-char description; Google will rewrite or ignore it, costing SERP CTR.",
+          "recommendation": "Per-page descriptions in Blade templates; derive docs descriptions from markdown intro or frontmatter."
+        },
+        {
+          "title": "No Open Graph / Twitter Card tags",
+          "severity": "High",
+          "description": "Zero og:/twitter: tags sitewide; shared links render as bare URLs in the channels where a CLI dev tool spreads.",
+          "recommendation": "Add og:title/description/type/url/image + twitter:card summary_large_image with a 1200x630 OG image."
+        },
+        {
+          "title": "No canonical tags",
+          "severity": "Medium",
+          "description": "No link rel=canonical on any page; docs content also lives in the GitHub repo, creating duplicate-content ambiguity risk.",
+          "recommendation": "Emit self-referencing canonicals in the base layout."
+        }
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 15,
+      "what_works": [
+        "No invalid markup (none exists to be wrong)"
+      ],
+      "findings": [
+        {
+          "title": "Zero structured data sitewide",
+          "severity": "High",
+          "description": "0 JSON-LD blocks on all 11 pages; no SoftwareApplication, WebSite, Organization, BreadcrumbList, or TechArticle; entity ambiguous vs. the Kimi assistant brand.",
+          "recommendation": "Ship JSON-LD @graph: SoftwareApplication+WebSite+Organization on home; TechArticle+BreadcrumbList on docs. Do NOT use HowTo (deprecated) or FAQPage (rich results retired 2026-05-07)."
+        }
+      ]
+    },
+    {
+      "name": "Performance (CWV)",
+      "score": 88,
+      "what_works": [
+        "10/11 routes at 0.95-1.00 mobile Lighthouse performance; CLS 0 everywhere",
+        "No render-blocking resources, no unused JS, HTTP/2+h3, Brotli"
+      ],
+      "findings": [
+        {
+          "title": "Flagship doc is the slowest page",
+          "severity": "High",
+          "description": "/docs/getting-started: 1.83MB total, two animated GIFs (989KB + 680KB), TBT 2470ms, LCP 2.2s, perf 0.66. Lab data only (PSI/CrUX unavailable).",
+          "recommendation": "Replace GIFs with muted looping <video> (mp4/webm) or WebP posters; add srcset/sizes (796KiB flagged savings)."
+        },
+        {
+          "title": "No field CWV data",
+          "severity": "Info",
+          "description": "CrUX/PSI require API key; domain likely too new for field data.",
+          "recommendation": "Configure Google API key and re-run pagespeed_check.py + crux_history.py."
+        }
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "score": 55,
+      "what_works": [
+        "AI crawlers (GPTBot, ClaudeBot, PerplexityBot) fully allowed via robots.txt",
+        "Semantic server-rendered HTML with extractable, self-contained doc sections"
+      ],
+      "findings": [
+        {
+          "title": "No llms.txt",
+          "severity": "Medium",
+          "description": "/llms.txt returns 404.",
+          "recommendation": "Create /llms.txt with product one-liner, docs map, repo URLs, license."
+        },
+        {
+          "title": "No entity disambiguation for AI engines",
+          "severity": "High",
+          "description": "No Organization/SoftwareApplication schema; product name collides with the Kimi assistant brand; no dates/authorship; zero third-party corroboration.",
+          "recommendation": "Ship the JSON-LD entity layer (shared with schema fix) + sameAs GitHub links + visible repo stats."
+        }
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 65,
+      "what_works": [
+        "100% alt text coverage (15/15 images)",
+        "Zero CLS from images sitewide"
+      ],
+      "findings": [
+        {
+          "title": "Oversized animated GIFs on flagship doc",
+          "severity": "High",
+          "description": "seo-audit-demo.gif (989KB) + seo-command-demo.gif (680KB) = 1.67MB of a 1.83MB page.",
+          "recommendation": "Convert to mp4/webm video or WebP posters."
+        },
+        {
+          "title": "No responsive images or modern formats",
+          "severity": "Medium",
+          "description": "Lighthouse flags 796KiB responsive-image savings and 48KiB modern-format savings; no srcset, PNG/GIF only.",
+          "recommendation": "Generate width variants with srcset/sizes; convert statics to WebP."
+        }
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Phase 1: Discovery & Entity",
+        "timeframe": "Week 1",
+        "items": [
+          "Create /sitemap.xml + Sitemap directive in robots.txt + submit to GSC/Bing",
+          "JSON-LD layer: SoftwareApplication+WebSite+Organization (home), TechArticle+BreadcrumbList (docs)",
+          "Self-referencing canonical tags",
+          "Unique meta description per page",
+          "Open Graph/Twitter tags + 1200x630 OG image",
+          "Capture drift baseline (drift_baseline.py)"
+        ]
+      },
+      {
+        "name": "Phase 2: Experience & Trust",
+        "timeframe": "Weeks 2-3",
+        "items": [
+          "Replace GIFs on getting-started with video/WebP posters",
+          "Responsive images (srcset/sizes) + WebP conversion",
+          "Trust pages: About, License, Privacy, Contact in footer",
+          "Last-updated dates + maintainer attribution on docs",
+          "Expand /docs hub with 200-400 words of framing copy",
+          "HSTS + Referrer-Policy + report-only CSP",
+          "a11y fixes: logo aria-label, ad-link contrast",
+          "Immutable 1yr cache for /build/ assets"
+        ]
+      },
+      {
+        "name": "Phase 3: Content & Authority",
+        "timeframe": "Month 2",
+        "items": [
+          "Homepage sample-output section (real audit excerpt)",
+          "Create /llms.txt",
+          "2-3 problem-aware pages targeting non-brand category queries",
+          "Link acquisition: awesome-lists, dev.to/Show HN/Reddit, directories, community",
+          "Changelog/release-notes page"
+        ]
+      },
+      {
+        "name": "Phase 4: Monitoring & Iteration",
+        "timeframe": "Ongoing",
+        "items": [
+          "Configure Google API key; re-run PSI + CrUX for field CWV",
+          "Configure free Moz API; track DA/referring domains monthly",
+          "Drift compare after each template-touching deploy",
+          "Monthly AI-engine attribution probe (ChatGPT/Perplexity)",
+          "Quarterly full audit re-run"
+        ]
+      }
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/"
+  }
+}

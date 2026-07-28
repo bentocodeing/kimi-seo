@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Advertise — Kimi SEO</title>
+    <meta name="description" content="Kimi SEO is a free, open-source SEO analysis plugin for Kimi Code CLI: 25 skills, 18 subagents, 53 scripts.">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <script>
+        (function () {
+            var theme = 'light';
+            try { theme = localStorage.getItem('theme') || 'light'; } catch (e) {}
+            if (theme === 'dark') { document.documentElement.classList.add('dark'); }
+            window.toggleTheme = function () {
+                var dark = document.documentElement.classList.toggle('dark');
+                try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+            };
+        })();
+    </script>
+    <link rel="preload" as="style" href="https://kimi-seo.com/build/assets/app-3xJMJwLJ.css" /><link rel="modulepreload" as="script" href="https://kimi-seo.com/build/assets/app-CYj1iTne.js" /><link rel="stylesheet" href="https://kimi-seo.com/build/assets/app-3xJMJwLJ.css" /><script type="module" src="https://kimi-seo.com/build/assets/app-CYj1iTne.js"></script></head>
+<body class="min-h-screen font-sans antialiased flex flex-col">
+    <header data-sticky-header class="site-header sticky top-0 z-40 border-b border-zinc-200 bg-[#fafafa]/80 backdrop-blur dark:border-ink-800 dark:bg-ink-950/80">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+            <a href="https://kimi-seo.com" class="flex items-center gap-2 font-mono text-sm sm:text-base font-semibold tracking-tight heading">
+                <svg class="w-6 h-6 text-accent-700 dark:text-accent-400" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kimi SEO logo">
+    <path d="M17 21 L30 32 L17 43" fill="none" stroke="currentColor" stroke-width="5.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="34" y="39.25" width="14" height="5.5" rx="2.75" fill="currentColor"/>
+</svg>
+                <span class="logo-typing">Kimi&nbsp;SEO</span>
+            </a>
+            <div class="flex items-center gap-4 sm:gap-6 text-sm">
+                <a href="https://kimi-seo.com/docs" class="nav-link">Docs</a>
+                <a href="https://kimi-seo.com/advertise" class="nav-link">Advertise</a>
+                <a href="https://github.com/bentocodeing/kimi-seo" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-1.5 nav-link">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" clip-rule="evenodd"/></svg>
+                    <span class="hidden sm:inline">GitHub</span>
+                </a>
+                <button type="button" onclick="toggleTheme()" aria-label="Toggle color theme"
+        class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-zinc-300 text-zinc-600 hover:text-zinc-900 hover:border-accent-600/60 transition-colors dark:border-ink-600 dark:text-ink-300 dark:hover:text-white">
+    
+    <svg class="w-4 h-4 dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"/>
+    </svg>
+    
+    <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/>
+    </svg>
+</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-1 w-full">
+        
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 py-14">
+        <h1 class="text-3xl sm:text-4xl font-bold tracking-tight heading">Advertise on Kimi SEO</h1>
+        <p class="mt-4 muted leading-relaxed">
+            Kimi SEO is used by developers and SEO practitioners who live in their terminal.
+            A single, tasteful ad slot is displayed on the landing page and alongside
+            the documentation — no tracking scripts, no pop-ups, just your message in front of
+            a technical audience.
+        </p>
+
+        <div class="mt-8 card p-6">
+            <h2 class="font-semibold text-lg heading">How it works</h2>
+            <ul class="mt-3 space-y-2 text-sm muted-strong list-disc list-inside">
+                <li>One ad slot: landing page + docs sidebar, rotating through all active ads.</li>
+                <li>Static image (uploaded or hosted) with a link of your choice.</li>
+                <li>Clearly labeled as an advertisement. No third-party scripts, no cookies.</li>
+                <li>Send us an inquiry below and we'll get back to you with pricing and availability.</li>
+            </ul>
+        </div>
+
+        <h2 class="mt-12 font-semibold text-xl heading">Contact us</h2>
+
+        
+        <form method="POST" action="https://kimi-seo.com/advertise" class="mt-6 space-y-5">
+            <input type="hidden" name="_token" value="6vudEewAkQ44fxlr7J6qUISaAO7zAnXz7X62p440" autocomplete="off">
+            
+            <div class="hidden" aria-hidden="true">
+                <label for="website">Website</label>
+                <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div>
+                <label for="name" class="label">Name <span class="accent-text">*</span></label>
+                <input type="text" name="name" id="name" value="" required class="input">
+            </div>
+
+            <div>
+                <label for="email" class="label">Email <span class="accent-text">*</span></label>
+                <input type="email" name="email" id="email" value="" required class="input">
+            </div>
+
+            <div>
+                <label for="company" class="label">Company <span class="muted">(optional)</span></label>
+                <input type="text" name="company" id="company" value="" class="input">
+            </div>
+
+            <div>
+                <label for="message" class="label">Message <span class="accent-text">*</span></label>
+                <textarea name="message" id="message" rows="5" required class="input"
+                          placeholder="Tell us about your product and the campaign you have in mind."></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary px-6 py-2.5">
+                Send inquiry
+            </button>
+        </form>
+    </div>
+    </main>
+
+    <footer class="border-t border-zinc-200 dark:border-ink-800 mt-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 grid gap-8 sm:grid-cols-3 text-sm">
+            <div>
+                <p class="font-mono font-semibold mb-2 heading flex items-center gap-2"><svg class="w-6 h-6 text-accent-700 dark:text-accent-400 w-5 h-5 rounded" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kimi SEO logo">
+    <path d="M17 21 L30 32 L17 43" fill="none" stroke="currentColor" stroke-width="5.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="34" y="39.25" width="14" height="5.5" rx="2.75" fill="currentColor"/>
+</svg>
+ Kimi SEO</p>
+                <p class="muted leading-relaxed">
+                    Free, open-source SEO analysis suite for
+                    <a href="https://www.kimi.com/code" target="_blank" rel="noopener" class="muted-strong hover:text-accent-700 dark:hover:text-accent-300 underline underline-offset-2">Kimi Code CLI</a>.
+                    Released under the MIT license.
+                </p>
+            </div>
+            <div>
+                <p class="font-semibold mb-2 muted-strong">Project</p>
+                <ul class="space-y-1.5 muted">
+                    <li><a href="https://github.com/bentocodeing/kimi-seo" target="_blank" rel="noopener" class="hover:text-accent-700 dark:hover:text-accent-300">GitHub repository</a></li>
+                    <li><a href="https://kimi-seo.com/docs" class="hover:text-accent-700 dark:hover:text-accent-300">Documentation</a></li>
+                    <li><a href="https://kimi-seo.com/advertise" class="hover:text-accent-700 dark:hover:text-accent-300">Advertise</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold mb-2 muted-strong">Credits</p>
+                <ul class="space-y-1.5 muted">
+                    <li>Community fork by <a href="https://github.com/bentocodeing/kimi-seo" target="_blank" rel="noopener" class="hover:text-accent-700 dark:hover:text-accent-300">bentocodeing</a></li>
+                    <li>Upstream <a href="https://github.com/AgriciDaniel/claude-seo" target="_blank" rel="noopener" class="hover:text-accent-700 dark:hover:text-accent-300">claude-seo</a> by AgriciDaniel</li>
+                    <li>Not affiliated with Moonshot AI</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <button type="button" data-back-to-top aria-label="Back to top"
+        class="back-to-top fixed bottom-6 right-6 z-40 inline-flex items-center justify-center w-10 h-10 rounded-full border border-zinc-300 bg-white/90 text-zinc-600 shadow-md hover:text-accent-700 hover:border-accent-600/60 backdrop-blur dark:border-ink-600 dark:bg-ink-800/90 dark:text-ink-300 dark:hover:text-accent-300">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5"/>
+    </svg>
+</button>
+</body>
+</html>

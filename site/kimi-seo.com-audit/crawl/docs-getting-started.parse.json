@@ -1,0 +1,638 @@
+{
+  "title": "Getting Started \u2014 Kimi SEO Docs",
+  "meta_description": "Kimi SEO is a free, open-source SEO analysis plugin for Kimi Code CLI: 25 skills, 18 subagents, 53 scripts.",
+  "meta_robots": null,
+  "canonical": null,
+  "h1": [
+    "Kimi SEO: SEO Skill for Kimi Code"
+  ],
+  "h2": [
+    "Who this is for",
+    "Table of Contents",
+    "Installation",
+    "Quick Start",
+    "Commands",
+    "Features",
+    "Compared to manual / agency / commercial tools",
+    "Use cases",
+    "Sample Output",
+    "Architecture",
+    "Methodology",
+    "What's New in v2",
+    "Limitations",
+    "Requirements",
+    "Uninstall",
+    "Extensions",
+    "Ecosystem",
+    "Documentation",
+    "FAQ",
+    "Community Contributors",
+    "License",
+    "Contributing",
+    "Author"
+  ],
+  "h3": [
+    "Why Kimi SEO",
+    "Real results",
+    "Plugin Install (Kimi Code, recommended)",
+    "Manual Install (Unix / macOS / Linux)",
+    "Windows (PowerShell)",
+    "What Core Web Vitals does Kimi SEO check?",
+    "How does Kimi SEO assess E-E-A-T?",
+    "What Schema.org types does Kimi SEO support?",
+    "How does Kimi SEO optimize for AI search?",
+    "Which Google SEO APIs does Kimi SEO integrate with?",
+    "How does Kimi SEO handle local SEO?",
+    "Since v2.0.0",
+    "DataForSEO",
+    "Firecrawl",
+    "Banana: AI image generation",
+    "Ahrefs, SE Ranking, Profound, Bing Webmaster, Unlighthouse (new in v2)",
+    "What is Kimi SEO?",
+    "How is Kimi SEO different from Screaming Frog or Ahrefs Site Audit?",
+    "Does Kimi SEO work on single-page applications (Next.js, React, Vue)?",
+    "What Google APIs does Kimi SEO use, and are they required?",
+    "Is Kimi SEO free?",
+    "How is Kimi SEO different from regular SEO tools when it comes to AI search?"
+  ],
+  "images": [
+    {
+      "src": "https://kimi-seo.com/media/assets/cover.svg",
+      "alt": "Kimi SEO cover: a Kimi Code command palette with /kimi-seo:seo audit, schema, geo, content, and backlinks commands over a dark CRT panel",
+      "width": null,
+      "height": null,
+      "loading": null,
+      "lazy_method": "none"
+    },
+    {
+      "src": "https://img.shields.io/badge/forked%20from-AgriciDaniel%2Fclaude--seo-lightgrey",
+      "alt": "Forked from claude-seo",
+      "width": null,
+      "height": null,
+      "loading": null,
+      "lazy_method": "none"
+    },
+    {
+      "src": "https://github.com/bentocodeing/kimi-seo/actions/workflows/ci.yml/badge.svg",
+      "alt": "CI",
+      "width": null,
+      "height": null,
+      "loading": null,
+      "lazy_method": "none"
+    },
+    {
+      "src": "https://img.shields.io/badge/Kimi%20Code-Skill-blue",
+      "alt": "Kimi Code Skill",
+      "width": null,
+      "height": null,
+      "loading": null,
+      "lazy_method": "none"
+    },
+    {
+      "src": "https://img.shields.io/badge/License-MIT-yellow.svg",
+      "alt": "License: MIT",
+      "width": null,
+      "height": null,
+      "loading": null,
+      "lazy_method": "none"
+    },
+    {
+      "src": "https://img.shields.io/github/v/release/bentocodeing/kimi-seo",
+      "alt": "Version",
+      "width": null,
+      "height": null,
+      "loading": null,
+      "lazy_method": "none"
+    },
+    {
+      "src": "https://img.shields.io/badge/tests-410%20passing-brightgreen",
+      "alt": "Tests",
+      "width": null,
+      "height": null,
+      "loading": null,
+      "lazy_method": "none"
+    },
+    {
+      "src": "https://kimi-seo.com/media/assets/growth-3-months.png",
+      "alt": "Google Search Console clicks and impressions for a three-month-old site climbing from launch to steady organic growth between 23 March and 12 June 2026",
+      "width": null,
+      "height": null,
+      "loading": null,
+      "lazy_method": "none"
+    },
+    {
+      "src": "https://kimi-seo.com/media/screenshots/seo-command-demo.gif",
+      "alt": "Kimi SEO /kimi-seo:seo command demo in Kimi Code terminal",
+      "width": null,
+      "height": null,
+      "loading": null,
+      "lazy_method": "none"
+    },
+    {
+      "src": "https://kimi-seo.com/media/screenshots/seo-audit-demo.gif",
+      "alt": "Kimi SEO /kimi-seo:seo audit demo: parallel subagents producing a prioritized action plan",
+      "width": null,
+      "height": null,
+      "loading": null,
+      "lazy_method": "none"
+    },
+    {
+      "src": "https://kimi-seo.com/media/assets/sub-skills.svg",
+      "alt": "Kimi SEO sub-skill ecosystem: 25 modules grouped into 8 categories (audit, content, schema, technical, AI search, local + maps, commerce + intl, extensions) around the central orchestrator",
+      "width": null,
+      "height": null,
+      "loading": null,
+      "lazy_method": "none"
+    },
+    {
+      "src": "https://kimi-seo.com/media/assets/signal-flow.svg",
+      "alt": "Kimi SEO audit signal flow: /kimi-seo:seo audit enters the orchestrator, fans out to 25 sub-skills and up to 15 parallel audit agents, and converges through the scoring engine into a prioritized report",
+      "width": null,
+      "height": null,
+      "loading": null,
+      "lazy_method": "none"
+    },
+    {
+      "src": "https://kimi-seo.com/media/assets/framework.svg",
+      "alt": "Kimi SEO 10-principle methodology: PERCEIVE, ANALYZE, VALIDATE, and ACT phases with 10 principles arranged by quadrant",
+      "width": null,
+      "height": null,
+      "loading": null,
+      "lazy_method": "none"
+    }
+  ],
+  "links": {
+    "internal": [
+      {
+        "href": "https://kimi-seo.com",
+        "text": "Kimi\u00a0SEO",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs",
+        "text": "Docs",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/advertise",
+        "text": "Advertise",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs",
+        "text": "Overview",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/getting-started",
+        "text": "Getting Started",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/installation",
+        "text": "Installation",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/commands",
+        "text": "Commands",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/architecture",
+        "text": "Architecture",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/mcp-integration",
+        "text": "MCP Integration",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/migration-v1-to-v2",
+        "text": "Migration v1 \u2192 v2",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/troubleshooting",
+        "text": "Troubleshooting",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/workflow",
+        "text": "Workflow",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs",
+        "text": "Overview",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/getting-started",
+        "text": "Getting Started",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/installation",
+        "text": "Installation",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/commands",
+        "text": "Commands",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/architecture",
+        "text": "Architecture",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/mcp-integration",
+        "text": "MCP Integration",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/migration-v1-to-v2",
+        "text": "Migration v1 \u2192 v2",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/troubleshooting",
+        "text": "Troubleshooting",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/workflow",
+        "text": "Workflow",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/advertise",
+        "text": "AdvertisementYour ad here?Reach developers who care about SEO.Advertise with us",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/LICENSE",
+        "text": "",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/tests/",
+        "text": "",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/CONTRIBUTORS.md",
+        "text": "upstream contributors",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/commands",
+        "text": "docs/COMMANDS.md",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/skills/seo/references/schema-types.md",
+        "text": "skills/seo/references/schema-types.md",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/skills/seo-schema/references/deprecated-types-2024-2026.md",
+        "text": "skills/seo-schema/references/deprecated-types-2024-2026.md",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/skills/seo-geo/references/llmstxt-evidence.md",
+        "text": "primary-source evidence",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/architecture",
+        "text": "docs/ARCHITECTURE.md",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/skills/seo/references/thinking-framework.md",
+        "text": "skills/seo/references/thinking-framework.md",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/migration-v1-to-v2",
+        "text": "docs/MIGRATION-v1-to-v2.md",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/extensions/dataforseo/README.md",
+        "text": "extensions/dataforseo/README.md",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/extensions/firecrawl/README.md",
+        "text": "extensions/firecrawl/README.md",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/extensions/banana/README.md",
+        "text": "extensions/banana/README.md",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/mcp-integration",
+        "text": "docs/MCP-INTEGRATION.md",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/installation",
+        "text": "Installation Guide",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/commands",
+        "text": "Commands Reference",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/architecture",
+        "text": "Architecture",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/migration-v1-to-v2",
+        "text": "Migration v1 \u2192 v2",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/mcp-integration",
+        "text": "MCP Integration",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/troubleshooting",
+        "text": "Troubleshooting",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/CONTRIBUTORS.md",
+        "text": "Contributors",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/CONTRIBUTORS.md",
+        "text": "CONTRIBUTORS.md",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/LICENSE",
+        "text": "LICENSE",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/CONTRIBUTING.md",
+        "text": "CONTRIBUTING.md",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/installation",
+        "text": "Installation \u2192",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/advertise",
+        "text": "AdvertisementYour ad here?Reach developers who care about SEO.Advertise with us",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs",
+        "text": "Documentation",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/advertise",
+        "text": "Advertise",
+        "rel": []
+      }
+    ],
+    "external": [
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "GitHub",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/AgriciDaniel/claude-seo",
+        "text": "",
+        "rel": []
+      },
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo/actions/workflows/ci.yml",
+        "text": "",
+        "rel": []
+      },
+      {
+        "href": "https://www.kimi.com",
+        "text": "",
+        "rel": []
+      },
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo/releases",
+        "text": "",
+        "rel": []
+      },
+      {
+        "href": "https://github.com/AgriciDaniel/claude-seo",
+        "text": "AgriciDaniel/claude-seo",
+        "rel": []
+      },
+      {
+        "href": "https://www.kimi.com",
+        "text": "Kimi Code",
+        "rel": []
+      },
+      {
+        "href": "https://github.com/AgriciDaniel",
+        "text": "@AgriciDaniel",
+        "rel": []
+      },
+      {
+        "href": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+        "text": "Google's AI Optimization Guide",
+        "rel": []
+      },
+      {
+        "href": "https://web.dev/",
+        "text": "web.dev",
+        "rel": []
+      },
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "bentocodeing/kimi-seo",
+        "rel": []
+      },
+      {
+        "href": "https://github.com/AgriciDaniel/claude-seo",
+        "text": "AgriciDaniel/claude-seo",
+        "rel": []
+      },
+      {
+        "href": "https://web.dev/articles/inp",
+        "text": "INP replaced FID",
+        "rel": []
+      },
+      {
+        "href": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+        "text": "helpful-content guide",
+        "rel": []
+      },
+      {
+        "href": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+        "text": "Google's AI Optimization Guide",
+        "rel": []
+      },
+      {
+        "href": "https://weasyprint.org/",
+        "text": "WeasyPrint",
+        "rel": []
+      },
+      {
+        "href": "https://github.com/adbar/trafilatura",
+        "text": "trafilatura",
+        "rel": []
+      },
+      {
+        "href": "https://github.com/adbar/htmldate",
+        "text": "htmldate",
+        "rel": []
+      },
+      {
+        "href": "https://developers.google.com/search/blog/2024/11/site-reputation-abuse-update",
+        "text": "site reputation abuse policy",
+        "rel": []
+      },
+      {
+        "href": "https://www.firecrawl.dev/",
+        "text": "Firecrawl",
+        "rel": []
+      },
+      {
+        "href": "https://github.com/AgriciDaniel/banana-claude",
+        "text": "Banana",
+        "rel": []
+      },
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "Kimi SEO",
+        "rel": []
+      },
+      {
+        "href": "https://github.com/AgriciDaniel/claude-seo",
+        "text": "AgriciDaniel/claude-seo",
+        "rel": []
+      },
+      {
+        "href": "https://github.com/AgriciDaniel/flow",
+        "text": "FLOW",
+        "rel": []
+      },
+      {
+        "href": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+        "text": "Google's AI Optimization Guide",
+        "rel": []
+      },
+      {
+        "href": "https://github.com/adbar/trafilatura",
+        "text": "trafilatura",
+        "rel": []
+      },
+      {
+        "href": "https://github.com/adbar/htmldate",
+        "text": "htmldate",
+        "rel": []
+      },
+      {
+        "href": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+        "text": "Google's own position",
+        "rel": []
+      },
+      {
+        "href": "https://www.skool.com/ai-marketing-hub",
+        "text": "AI Marketing Hub",
+        "rel": []
+      },
+      {
+        "href": "https://agricidaniel.com/about",
+        "text": "Agrici Daniel",
+        "rel": []
+      },
+      {
+        "href": "https://www.skool.com/ai-marketing-hub-pro",
+        "text": "Pro Skool community",
+        "rel": []
+      },
+      {
+        "href": "https://agricidaniel.com/blog",
+        "text": "Blog",
+        "rel": []
+      },
+      {
+        "href": "https://www.skool.com/ai-marketing-hub",
+        "text": "AI Marketing Hub (free)",
+        "rel": []
+      },
+      {
+        "href": "https://www.skool.com/ai-marketing-hub-pro",
+        "text": "AI Marketing Hub Pro",
+        "rel": []
+      },
+      {
+        "href": "https://www.youtube.com/@AgriciDaniel",
+        "text": "YouTube",
+        "rel": []
+      },
+      {
+        "href": "https://github.com/AgriciDaniel",
+        "text": "GitHub",
+        "rel": []
+      },
+      {
+        "href": "https://www.kimi.com/code",
+        "text": "Kimi Code CLI",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "GitHub repository",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "bentocodeing",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/AgriciDaniel/claude-seo",
+        "text": "claude-seo",
+        "rel": [
+          "noopener"
+        ]
+      }
+    ]
+  },
+  "schema": [],
+  "open_graph": {},
+  "twitter_card": {},
+  "word_count": 5137,
+  "hreflang": [],
+  "h2_suspicious": [
+    "FAQ"
+  ]
+}

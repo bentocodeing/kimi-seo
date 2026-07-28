@@ -1,0 +1,39 @@
+{
+  "url": "https://kimi-seo.com",
+  "psi": {
+    "mobile": {
+      "url": "https://kimi-seo.com",
+      "strategy": "mobile",
+      "lighthouse_scores": {},
+      "lab_metrics": {},
+      "field_metrics": {},
+      "opportunities": [],
+      "diagnostics": [],
+      "failed_audits": [],
+      "passed_audits_count": 0,
+      "seo_audits": [],
+      "accessibility_audits": [],
+      "audit_details": {},
+      "analysis_timestamp": null,
+      "error": "PSI rate limit exceeded (240 QPM / 25,000 QPD). Wait and retry."
+    },
+    "desktop": {
+      "url": "https://kimi-seo.com",
+      "strategy": "desktop",
+      "lighthouse_scores": {},
+      "lab_metrics": {},
+      "field_metrics": {},
+      "opportunities": [],
+      "diagnostics": [],
+      "failed_audits": [],
+      "passed_audits_count": 0,
+      "seo_audits": [],
+      "accessibility_audits": [],
+      "audit_details": {},
+      "analysis_timestamp": null,
+      "error": "PSI rate limit exceeded (240 QPM / 25,000 QPD). Wait and retry."
+    }
+  },
+  "crux": null,
+  "error": "PSI rate limit exceeded (240 QPM / 25,000 QPD). Wait and retry."
+}

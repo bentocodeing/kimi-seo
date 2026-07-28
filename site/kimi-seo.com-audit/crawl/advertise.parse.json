@@ -1,0 +1,86 @@
+{
+  "title": "Advertise \u2014 Kimi SEO",
+  "meta_description": "Kimi SEO is a free, open-source SEO analysis plugin for Kimi Code CLI: 25 skills, 18 subagents, 53 scripts.",
+  "meta_robots": null,
+  "canonical": null,
+  "h1": [
+    "Advertise on Kimi SEO"
+  ],
+  "h2": [
+    "How it works",
+    "Contact us"
+  ],
+  "h3": [],
+  "images": [],
+  "links": {
+    "internal": [
+      {
+        "href": "https://kimi-seo.com",
+        "text": "Kimi\u00a0SEO",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs",
+        "text": "Docs",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/advertise",
+        "text": "Advertise",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs",
+        "text": "Documentation",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/advertise",
+        "text": "Advertise",
+        "rel": []
+      }
+    ],
+    "external": [
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "GitHub",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://www.kimi.com/code",
+        "text": "Kimi Code CLI",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "GitHub repository",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "bentocodeing",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/AgriciDaniel/claude-seo",
+        "text": "claude-seo",
+        "rel": [
+          "noopener"
+        ]
+      }
+    ]
+  },
+  "schema": [],
+  "open_graph": {},
+  "twitter_card": {},
+  "word_count": 114,
+  "hreflang": []
+}

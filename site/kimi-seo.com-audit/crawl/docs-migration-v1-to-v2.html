@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Migration v1 → v2 — Kimi SEO Docs</title>
+    <meta name="description" content="Kimi SEO is a free, open-source SEO analysis plugin for Kimi Code CLI: 25 skills, 18 subagents, 53 scripts.">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <script>
+        (function () {
+            var theme = 'light';
+            try { theme = localStorage.getItem('theme') || 'light'; } catch (e) {}
+            if (theme === 'dark') { document.documentElement.classList.add('dark'); }
+            window.toggleTheme = function () {
+                var dark = document.documentElement.classList.toggle('dark');
+                try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+            };
+        })();
+    </script>
+    <link rel="preload" as="style" href="https://kimi-seo.com/build/assets/app-3xJMJwLJ.css" /><link rel="modulepreload" as="script" href="https://kimi-seo.com/build/assets/app-CYj1iTne.js" /><link rel="stylesheet" href="https://kimi-seo.com/build/assets/app-3xJMJwLJ.css" /><script type="module" src="https://kimi-seo.com/build/assets/app-CYj1iTne.js"></script></head>
+<body class="min-h-screen font-sans antialiased flex flex-col">
+    <header data-sticky-header class="site-header sticky top-0 z-40 border-b border-zinc-200 bg-[#fafafa]/80 backdrop-blur dark:border-ink-800 dark:bg-ink-950/80">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+            <a href="https://kimi-seo.com" class="flex items-center gap-2 font-mono text-sm sm:text-base font-semibold tracking-tight heading">
+                <svg class="w-6 h-6 text-accent-700 dark:text-accent-400" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kimi SEO logo">
+    <path d="M17 21 L30 32 L17 43" fill="none" stroke="currentColor" stroke-width="5.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="34" y="39.25" width="14" height="5.5" rx="2.75" fill="currentColor"/>
+</svg>
+                <span class="logo-typing">Kimi&nbsp;SEO</span>
+            </a>
+            <div class="flex items-center gap-4 sm:gap-6 text-sm">
+                <a href="https://kimi-seo.com/docs" class="nav-link">Docs</a>
+                <a href="https://kimi-seo.com/advertise" class="nav-link">Advertise</a>
+                <a href="https://github.com/bentocodeing/kimi-seo" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-1.5 nav-link">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" clip-rule="evenodd"/></svg>
+                    <span class="hidden sm:inline">GitHub</span>
+                </a>
+                <button type="button" onclick="toggleTheme()" aria-label="Toggle color theme"
+        class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-zinc-300 text-zinc-600 hover:text-zinc-900 hover:border-accent-600/60 transition-colors dark:border-ink-600 dark:text-ink-300 dark:hover:text-white">
+    
+    <svg class="w-4 h-4 dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"/>
+    </svg>
+    
+    <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/>
+    </svg>
+</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-1 w-full">
+        
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:grid lg:grid-cols-[240px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)_220px] lg:gap-10">
+        
+        <details class="lg:hidden mb-6 card">
+            <summary class="px-4 py-3 text-sm font-semibold cursor-pointer select-none heading">Documentation menu</summary>
+            <nav class="px-4 pb-4">
+                <ul class="space-y-1 text-sm">
+                    <li>
+                        <a href="https://kimi-seo.com/docs" class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">Overview</a>
+                    </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/getting-started"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Getting Started
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/installation"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Installation
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/commands"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Commands
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/architecture"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Architecture
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/mcp-integration"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                MCP Integration
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/migration-v1-to-v2"
+                               class="block rounded px-2 py-1.5 text-accent-700 bg-zinc-100 dark:text-accent-300 dark:bg-ink-800">
+                                Migration v1 → v2
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/troubleshooting"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Troubleshooting
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/workflow"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Workflow
+                            </a>
+                        </li>
+                                    </ul>
+            </nav>
+        </details>
+
+        
+        <aside class="hidden lg:block">
+            <div class="sticky top-8">
+                <p class="font-mono text-xs uppercase tracking-widest muted mb-3">Documentation</p>
+                <nav>
+                    <ul class="space-y-1 text-sm border-l border-zinc-200 dark:border-ink-800">
+                        <li>
+                            <a href="https://kimi-seo.com/docs"
+                               class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Overview
+                            </a>
+                        </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/getting-started"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Getting Started
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/installation"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Installation
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/commands"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Commands
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/architecture"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Architecture
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/mcp-integration"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    MCP Integration
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/migration-v1-to-v2"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-accent-600 text-accent-700 dark:border-accent-500 dark:text-accent-300">
+                                    Migration v1 → v2
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/troubleshooting"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Troubleshooting
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/workflow"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Workflow
+                                </a>
+                            </li>
+                                            </ul>
+                </nav>
+
+                <div class="mt-8">
+                    <div class="">
+    
+    <a href="https://kimi-seo.com/advertise"
+       class="mt-4 block rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-6 text-center hover:border-accent-600/60 transition-colors group dark:border-ink-600 dark:bg-ink-900/50">
+        <span class="block text-[10px] font-mono uppercase tracking-widest muted mb-2">Advertisement</span>
+        <span class="block text-lg font-semibold heading group-hover:text-accent-700 dark:group-hover:text-accent-300 transition-colors">Your ad here?</span>
+        <span class="block mt-1 text-sm muted">Reach developers who care about SEO.</span>
+        <span class="inline-block mt-3 rounded-lg bg-accent-600 px-4 py-1.5 text-sm font-medium text-white group-hover:bg-accent-500 transition-colors">Advertise with us</span>
+    </a>
+</div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="min-w-0">
+                <article class="prose dark:prose-invert max-w-none
+        prose-headings:tracking-tight prose-headings:scroll-mt-20 prose-a:text-accent-700 dark:prose-a:text-accent-400 prose-a:no-underline hover:prose-a:text-accent-600 dark:hover:prose-a:text-accent-300
+        prose-code:text-accent-700 dark:prose-code:text-accent-300 prose-code:before:content-none prose-code:after:content-none
+        prose-pre:bg-zinc-100 prose-pre:text-zinc-800 prose-pre:border prose-pre:border-zinc-200 dark:prose-pre:bg-ink-900 dark:prose-pre:text-ink-100 dark:prose-pre:border-ink-700
+        prose-img:rounded-xl prose-hr:border-zinc-200 dark:prose-hr:border-ink-800 prose-strong:text-zinc-900 dark:prose-strong:text-ink-100
+        prose-table:text-sm prose-th:text-left">
+        <h1 id="migrating-from-kimi-seo-v1x-to-v200">Migrating from kimi-seo v1.x to v2.0.0</h1>
+<p>v2 is <strong>backward-compatible by design</strong>. Every v1.x CLI invocation, every
+script signature, and every skill command still works. The breaking
+changes are limited to two narrow surfaces:</p>
+<ol>
+<li><code>backlinks_auth.py</code>'s legacy fallback (silently allowed private IPs)
+has been removed. If <code>scripts/url_safety.py</code> cannot be imported, the
+module now raises <code>RuntimeError</code> at import time instead of running
+with SSRF protection disabled.</li>
+<li>Six <code>Schema.org</code> rich-result types Google retired in 2025 are now
+marked as Critical findings when the <code>seo-schema</code> skill detects them
+(Vehicle Listing, Claim Review, Estimated Salary, Learning Video,
+Special Announcement, Course Info carousel). Sites still generating
+these in <code>&lt;script type=&quot;application/ld+json&quot;&gt;</code> blocks will see a new
+Critical row in the audit output.</li>
+</ol>
+<p>Everything else is additive — new commands, new scripts, new reference
+files, new extensions. Existing audit reports will look slightly fuller
+but use exactly the same overall structure.</p>
+<p>This guide covers the v1.x → v2.0.0 jump only; the v2.1.0 through v2.2.4
+releases are documented in <a href="../CHANGELOG.md">../CHANGELOG.md</a>, and the
+suite is now at 410 tests.</p>
+<h2 id="whats-new-in-v2">What's new in v2</h2>
+<h3 id="foundation">Foundation</h3>
+<ul>
+<li><strong><code>scripts/url_safety.py</code></strong> is the canonical SSRF + DNS-rebinding
+module. Every fetcher now routes through it. Five distinct bypass
+classes are closed at parse time, including obfuscated IPv4 (decimal,
+hex, octal, leading zeros), FQDN trailing-dot bypasses, and the
+redirect-rebinding chain.</li>
+<li><strong><code>scripts/render_page.py</code></strong> is the shared headless renderer. Every
+fetcher subagent now calls it with <code>--mode auto</code>, so SPA sites (React,
+Next.js, Vue, Nuxt, Svelte, Astro islands) are audited correctly
+without per-skill retrofits.</li>
+<li><strong>OAuth token file permissions</strong> are forced to <code>0o600</code> on every load
+and save. Legacy <code>0o644</code> files (pre-v2 default) are remediated in
+place at the next call to <code>_load_oauth_token</code>.</li>
+</ul>
+<h3 id="content-quality-phase-b">Content quality (Phase B)</h3>
+<table>
+<thead>
+<tr>
+<th>New</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>python3 scripts/content_quality.py</code></td>
+<td>QRG-aligned filler / AI-pattern / information-density scorer</td>
+</tr>
+<tr>
+<td><code>python3 scripts/content_humanize.py</code></td>
+<td>40+ deterministic AI-phrasing replacements</td>
+</tr>
+<tr>
+<td><code>python3 scripts/content_verify.py</code></td>
+<td>Claim extraction + citation-gap detection</td>
+</tr>
+<tr>
+<td><code>python3 scripts/domain_history.py</code></td>
+<td>WHOIS-driven expired-domain abuse check</td>
+</tr>
+<tr>
+<td><code>python3 scripts/seo_updates.py</code></td>
+<td>Primary-source Google updates changelog</td>
+</tr>
+<tr>
+<td><code>data/google-updates.json</code></td>
+<td>18 confirmed Google updates 2024-03 → 2025-12</td>
+</tr>
+</tbody>
+</table>
+<h3 id="technical--cwv-depth-phase-c">Technical / CWV depth (Phase C)</h3>
+<table>
+<thead>
+<tr>
+<th>New</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>python3 scripts/preload_check.py</code></td>
+<td>Speculation Rules + bfcache + prerender + LCP preload audit</td>
+</tr>
+<tr>
+<td><code>python3 scripts/indexnow_submit.py</code></td>
+<td>Submit up to 10k URLs to IndexNow (Bing/Yandex/Seznam/Naver)</td>
+</tr>
+<tr>
+<td><code>python3 scripts/lcp_subparts.py</code></td>
+<td>LCP decomposition via CrUX (TTFB, load delay, load duration, render delay)</td>
+</tr>
+<tr>
+<td><code>python3 scripts/unlighthouse_run.py</code></td>
+<td>Multi-page Lighthouse via the MIT Unlighthouse CLI</td>
+</tr>
+</tbody>
+</table>
+<h3 id="schema-completeness-phase-d">Schema completeness (Phase D)</h3>
+<table>
+<thead>
+<tr>
+<th>New</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>python3 scripts/schema_generate.py reservation/order/discussion/profile</code></td>
+<td>JSON-LD generators for the four high-leverage v2 types</td>
+</tr>
+<tr>
+<td><code>python3 scripts/schema_ecommerce_validate.py</code></td>
+<td>Product schema policy validator (hasMerchantReturnPolicy, shippingDetails, MemberProgram, EU energy class, ProductGroup)</td>
+</tr>
+<tr>
+<td><code>skills/seo-schema/references/deprecated-types-2024-2026.md</code></td>
+<td>Reference: every retired rich-result type with its replacement</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ai-search--5-new-extensions-phase-e">AI search + 5 new extensions (Phase E)</h3>
+<table>
+<thead>
+<tr>
+<th>New</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>python3 scripts/parasite_risk.py</code></td>
+<td>Site-reputation-abuse risk scanner per Nov 2024 Google policy</td>
+</tr>
+<tr>
+<td><code>extensions/ahrefs/</code></td>
+<td>Official <code>@ahrefs/mcp</code> server wired into Kimi Code</td>
+</tr>
+<tr>
+<td><code>extensions/seranking/</code></td>
+<td>AI Share-of-Voice across ChatGPT/Gemini/Perplexity/AI Overviews/AI Mode</td>
+</tr>
+<tr>
+<td><code>extensions/profound/</code></td>
+<td>Time-series LLM citation tracker</td>
+</tr>
+<tr>
+<td><code>extensions/bing-webmaster/</code></td>
+<td>Bing Webmaster + IndexNow unified</td>
+</tr>
+<tr>
+<td><code>extensions/unlighthouse/</code></td>
+<td>MIT multi-page Lighthouse runner</td>
+</tr>
+<tr>
+<td><code>skills/seo-geo/references/llmstxt-evidence.md</code></td>
+<td>Evidence-based reframe: llms.txt is not a citation lever</td>
+</tr>
+</tbody>
+</table>
+<h3 id="local--international--privacy-polish-phase-f">Local + International + Privacy polish (Phase F)</h3>
+<table>
+<thead>
+<tr>
+<th>New</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>python3 scripts/gbp_deprecation_lint.py</code></td>
+<td>Detects retired GBP chat; treats <code>.business.site</code> as unresolved and Q&amp;A as review-only</td>
+</tr>
+<tr>
+<td><code>skills/seo-google/references/dma-consent-mode-v2.md</code></td>
+<td>EU CTR diagnostic + softened cookieless framing</td>
+</tr>
+<tr>
+<td><code>skills/seo-hreflang/references/machine-translation-qa.md</code></td>
+<td>Untranslated-MT detection per Jan 2025 QRG §4.6.5</td>
+</tr>
+</tbody>
+</table>
+<h3 id="multi-platform-portability-phase-g">Multi-platform portability (Phase G)</h3>
+<table>
+<thead>
+<tr>
+<th>New</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AGENTS.md</code> (extended)</td>
+<td>Codex CLI, Cline, Aider added to supported-harnesses list</td>
+</tr>
+<tr>
+<td><code>python3 scripts/portability_check.py</code></td>
+<td>Cross-platform SKILL.md frontmatter lint</td>
+</tr>
+<tr>
+<td>Tool-name compatibility table</td>
+<td>Read/Write/Edit/Bash/Glob/Grep/WebFetch mappings across Codex/Cline/Aider/Cursor/Antigravity</td>
+</tr>
+</tbody>
+</table>
+<h3 id="release-signing-phase-h">Release signing (Phase H)</h3>
+<table>
+<thead>
+<tr>
+<th>New</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>python3 scripts/release_sign.py</code></td>
+<td>Generate a SHA-256 manifest of every git-tracked file</td>
+</tr>
+<tr>
+<td><code>python3 scripts/verify_release.py</code></td>
+<td>Verify a checkout against a signed manifest</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hardening">Hardening</h3>
+<ul>
+<li><strong>DNS rebinding via redirect target</strong> (HIGH severity) — closed.</li>
+<li><strong>Obfuscated IPv4 bypass</strong> in <code>validate_url</code> (HIGH) — closed.</li>
+<li><strong>FQDN trailing-dot bypass</strong> of metadata-endpoint blocklist (HIGH) — closed.</li>
+<li><strong>IPv6 blind spot in Playwright route handler</strong> (MEDIUM) — closed.</li>
+<li><strong>OAuth file-permission TOCTOU</strong> (LOW) — closed.</li>
+<li><strong>Unsigned install scripts:</strong> partially closed; release manifest
+tooling shipped in v2.0.0, install.sh integration tracked for v2.3.</li>
+</ul>
+<h2 id="breaking-changes-full-list">Breaking changes (full list)</h2>
+<p>There are exactly two surface-visible breaks:</p>
+<h3 id="1-backlinks_authpy-hard-fails-without-url_safety">1. <code>backlinks_auth.py</code> hard-fails without <code>url_safety</code></h3>
+<pre><code class="language-python"># v1.x
+from backlinks_auth import validate_url  # silently uses unsafe fallback
+                                          # if url_safety not importable
+
+# v2.x
+from backlinks_auth import validate_url  # raises RuntimeError if
+                                          # url_safety can't be imported
+</code></pre>
+<p>This is the closure of a deferred security item from v1.9.0. The v1.x
+fallback shipped without IP-range checks; we'd rather refuse to run than
+silently allow private-IP fetches.</p>
+<h3 id="2-seo-schema-flags-retired-rich-result-types-as-critical">2. <code>seo-schema</code> flags retired rich-result types as Critical</h3>
+<p>If your generated JSON-LD includes <code>@type: ClaimReview</code>, <code>Vehicle</code>,
+<code>EstimatedSalary</code>, <code>LearningVideo</code>, <code>SpecialAnnouncement</code>, or
+<code>CourseInfo</code> (carousel variant), the new
+<code>scripts/schema_ecommerce_validate.py</code> will emit a <code>Critical</code> finding.</p>
+<p><strong>Action:</strong> consult <code>skills/seo-schema/references/deprecated-types-2024-2026.md</code>
+for the recommended replacement per type. If you need to keep the
+markup for non-Google purposes, you can suppress the finding by removing
+the type from the validator's deprecated list (not recommended — the
+rich result is dead).</p>
+<h2 id="things-that-were-going-to-break-but-didnt">Things that were going to break but didn't</h2>
+<p>We considered but ultimately did <strong>not</strong> break the following:</p>
+<ul>
+<li><code>validate_url</code> boolean return contract. v2 still returns <code>bool</code> for
+back-compat. Use <code>validate_url_strict</code> if you want the new strict
+DNS-rebinding behaviour.</li>
+<li><code>fetch_page()</code> function signature. The <code>--render</code> flag was added at the
+CLI layer only; the underlying function stays raw-mode by default.</li>
+<li><code>capture_screenshot()</code> API. Pre-flight is upgraded but the call
+signature and result dict are unchanged.</li>
+<li>All v1.x command names (<code>/kimi-seo:seo audit</code>, <code>/kimi-seo:seo content</code>, …). Every
+one of them works in v2.</li>
+</ul>
+<h2 id="how-to-upgrade">How to upgrade</h2>
+<p>Caution: Prefer downloading, inspecting, then running remote scripts; the pipe-to-shell form below is the less-safe convenience option.</p>
+<pre><code class="language-bash"># Pull v2.0.0
+curl -fsSL https://raw.githubusercontent.com/bentocodeing/kimi-seo/kimi/install.sh | bash
+
+# Verify the new requirements pin landed
+pip install -r requirements.txt
+
+# Confirm Playwright Chromium is installed (used by render_page)
+playwright install chromium
+
+# Verify manifest consistency
+python3 -m pytest tests/test_manifest_consistency.py -v
+</code></pre>
+<p>That's it. The first time you run anything that touches
+<code>~/.config/kimi-seo/oauth-token.json</code>, v2 will silently re-chmod it
+to <code>0o600</code> — no user action required.</p>
+<h2 id="test-coverage">Test coverage</h2>
+<table>
+<thead>
+<tr>
+<th>Suite</th>
+<th align="right">v1.9.9</th>
+<th align="right">v2.0.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Manifest consistency</td>
+<td align="right">13</td>
+<td align="right">13</td>
+</tr>
+<tr>
+<td>Lazy detection</td>
+<td align="right">11</td>
+<td align="right">11</td>
+</tr>
+<tr>
+<td>Sync FLOW</td>
+<td align="right">15</td>
+<td align="right">15</td>
+</tr>
+<tr>
+<td><strong><code>url_safety</code> (new)</strong></td>
+<td align="right">—</td>
+<td align="right"><strong>83</strong></td>
+</tr>
+<tr>
+<td><strong><code>render_page</code> (new)</strong></td>
+<td align="right">—</td>
+<td align="right"><strong>27</strong></td>
+</tr>
+<tr>
+<td><strong>Content quality (new)</strong></td>
+<td align="right">—</td>
+<td align="right"><strong>25</strong></td>
+</tr>
+<tr>
+<td><strong>Technical depth (new)</strong></td>
+<td align="right">—</td>
+<td align="right"><strong>17</strong></td>
+</tr>
+<tr>
+<td><strong>Schema v2 (new)</strong></td>
+<td align="right">—</td>
+<td align="right"><strong>17</strong></td>
+</tr>
+<tr>
+<td><strong>Parasite risk + extensions (new)</strong></td>
+<td align="right">—</td>
+<td align="right"><strong>22</strong></td>
+</tr>
+<tr>
+<td><strong>GBP lint + polish (new)</strong></td>
+<td align="right">—</td>
+<td align="right"><strong>8</strong></td>
+</tr>
+<tr>
+<td><strong>Portability (new)</strong></td>
+<td align="right">—</td>
+<td align="right"><strong>10</strong></td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td align="right"><strong>39</strong></td>
+<td align="right"><strong>248</strong></td>
+</tr>
+</tbody>
+</table>
+<p>v2 adds 209 new test cases (5.4× the v1 baseline) covering every new
+function's failure modes plus every known SSRF bypass class.</p>
+
+    </article>
+
+    
+    <nav class="mt-12 pt-6 border-t border-zinc-200 dark:border-ink-800 flex items-center justify-between gap-4 text-sm">
+                    <a href="https://kimi-seo.com/docs/mcp-integration" class="muted-strong hover:text-accent-700 dark:hover:text-accent-300 transition-colors">
+                &larr; MCP Integration
+            </a>
+                            <a href="https://kimi-seo.com/docs/troubleshooting" class="muted-strong hover:text-accent-700 dark:hover:text-accent-300 transition-colors">
+                Troubleshooting &rarr;
+            </a>
+            </nav>
+
+            
+            <div class="lg:hidden mt-10 max-w-sm">
+                <div class="">
+    
+    <a href="https://kimi-seo.com/advertise"
+       class="mt-4 block rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-6 text-center hover:border-accent-600/60 transition-colors group dark:border-ink-600 dark:bg-ink-900/50">
+        <span class="block text-[10px] font-mono uppercase tracking-widest muted mb-2">Advertisement</span>
+        <span class="block text-lg font-semibold heading group-hover:text-accent-700 dark:group-hover:text-accent-300 transition-colors">Your ad here?</span>
+        <span class="block mt-1 text-sm muted">Reach developers who care about SEO.</span>
+        <span class="inline-block mt-3 rounded-lg bg-accent-600 px-4 py-1.5 text-sm font-medium text-white group-hover:bg-accent-500 transition-colors">Advertise with us</span>
+    </a>
+</div>
+            </div>
+        </div>
+
+        
+                    <aside class="hidden xl:block xl:pl-6">
+                <nav class="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto overscroll-contain pr-2" aria-label="On this page">
+                    <p class="font-mono text-xs uppercase tracking-widest muted mb-3">On this page</p>
+                    <ul class="space-y-1.5 text-sm border-l border-zinc-200 dark:border-ink-800">
+                                                    <li>
+                                <a href="#whats-new-in-v2"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    What&#039;s new in v2
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#foundation"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Foundation
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#content-quality-phase-b"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Content quality (Phase B)
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#technical--cwv-depth-phase-c"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Technical / CWV depth (Phase C)
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#schema-completeness-phase-d"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Schema completeness (Phase D)
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#ai-search--5-new-extensions-phase-e"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    AI search + 5 new extensions (Phase E)
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#local--international--privacy-polish-phase-f"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Local + International + Privacy polish (Phase F)
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#multi-platform-portability-phase-g"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Multi-platform portability (Phase G)
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#release-signing-phase-h"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Release signing (Phase H)
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#hardening"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Hardening
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#breaking-changes-full-list"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Breaking changes (full list)
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#1-backlinks_authpy-hard-fails-without-url_safety"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    1. backlinks_auth.py hard-fails without url_safety
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#2-seo-schema-flags-retired-rich-result-types-as-critical"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    2. seo-schema flags retired rich-result types as Critical
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#things-that-were-going-to-break-but-didnt"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Things that were going to break but didn&#039;t
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#how-to-upgrade"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    How to upgrade
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#test-coverage"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Test coverage
+                                </a>
+                            </li>
+                                            </ul>
+                </nav>
+            </aside>
+            </div>
+    </main>
+
+    <footer class="border-t border-zinc-200 dark:border-ink-800 mt-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 grid gap-8 sm:grid-cols-3 text-sm">
+            <div>
+                <p class="font-mono font-semibold mb-2 heading flex items-center gap-2"><svg class="w-6 h-6 text-accent-700 dark:text-accent-400 w-5 h-5 rounded" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kimi SEO logo">
+    <path d="M17 21 L30 32 L17 43" fill="none" stroke="currentColor" stroke-width="5.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="34" y="39.25" width="14" height="5.5" rx="2.75" fill="currentColor"/>
+</svg>
+ Kimi SEO</p>
+                <p class="muted leading-relaxed">
+                    Free, open-source SEO analysis suite for
+                    <a href="https://www.kimi.com/code" target="_blank" rel="noopener" class="muted-strong hover:text-accent-700 dark:hover:text-accent-300 underline underline-offset-2">Kimi Code CLI</a>.
+                    Released under the MIT license.
+                </p>
+            </div>
+            <div>
+                <p class="font-semibold mb-2 muted-strong">Project</p>
+                <ul class="space-y-1.5 muted">
+                    <li><a href="https://github.com/bentocodeing/kimi-seo" target="_blank" rel="noopener" class="hover:text-accent-700 dark:hover:text-accent-300">GitHub repository</a></li>
+                    <li><a href="https://kimi-seo.com/docs" class="hover:text-accent-700 dark:hover:text-accent-300">Documentation</a></li>
+                    <li><a href="https://kimi-seo.com/advertise" class="hover:text-accent-700 dark:hover:text-accent-300">Advertise</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold mb-2 muted-strong">Credits</p>
+                <ul class="space-y-1.5 muted">
+                    <li>Community fork by <a href="https://github.com/bentocodeing/kimi-seo" target="_blank" rel="noopener" class="hover:text-accent-700 dark:hover:text-accent-300">bentocodeing</a></li>
+                    <li>Upstream <a href="https://github.com/AgriciDaniel/claude-seo" target="_blank" rel="noopener" class="hover:text-accent-700 dark:hover:text-accent-300">claude-seo</a> by AgriciDaniel</li>
+                    <li>Not affiliated with Moonshot AI</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <button type="button" data-back-to-top aria-label="Back to top"
+        class="back-to-top fixed bottom-6 right-6 z-40 inline-flex items-center justify-center w-10 h-10 rounded-full border border-zinc-300 bg-white/90 text-zinc-600 shadow-md hover:text-accent-700 hover:border-accent-600/60 backdrop-blur dark:border-ink-600 dark:bg-ink-800/90 dark:text-ink-300 dark:hover:text-accent-300">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5"/>
+    </svg>
+</button>
+</body>
+</html>

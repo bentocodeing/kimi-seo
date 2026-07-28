@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Getting Started — Kimi SEO Docs</title>
+    <meta name="description" content="Kimi SEO is a free, open-source SEO analysis plugin for Kimi Code CLI: 25 skills, 18 subagents, 53 scripts.">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <script>
+        (function () {
+            var theme = 'light';
+            try { theme = localStorage.getItem('theme') || 'light'; } catch (e) {}
+            if (theme === 'dark') { document.documentElement.classList.add('dark'); }
+            window.toggleTheme = function () {
+                var dark = document.documentElement.classList.toggle('dark');
+                try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+            };
+        })();
+    </script>
+    <link rel="preload" as="style" href="https://kimi-seo.com/build/assets/app-3xJMJwLJ.css" /><link rel="modulepreload" as="script" href="https://kimi-seo.com/build/assets/app-CYj1iTne.js" /><link rel="stylesheet" href="https://kimi-seo.com/build/assets/app-3xJMJwLJ.css" /><script type="module" src="https://kimi-seo.com/build/assets/app-CYj1iTne.js"></script></head>
+<body class="min-h-screen font-sans antialiased flex flex-col">
+    <header data-sticky-header class="site-header sticky top-0 z-40 border-b border-zinc-200 bg-[#fafafa]/80 backdrop-blur dark:border-ink-800 dark:bg-ink-950/80">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+            <a href="https://kimi-seo.com" class="flex items-center gap-2 font-mono text-sm sm:text-base font-semibold tracking-tight heading">
+                <svg class="w-6 h-6 text-accent-700 dark:text-accent-400" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kimi SEO logo">
+    <path d="M17 21 L30 32 L17 43" fill="none" stroke="currentColor" stroke-width="5.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="34" y="39.25" width="14" height="5.5" rx="2.75" fill="currentColor"/>
+</svg>
+                <span class="logo-typing">Kimi&nbsp;SEO</span>
+            </a>
+            <div class="flex items-center gap-4 sm:gap-6 text-sm">
+                <a href="https://kimi-seo.com/docs" class="nav-link">Docs</a>
+                <a href="https://kimi-seo.com/advertise" class="nav-link">Advertise</a>
+                <a href="https://github.com/bentocodeing/kimi-seo" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-1.5 nav-link">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" clip-rule="evenodd"/></svg>
+                    <span class="hidden sm:inline">GitHub</span>
+                </a>
+                <button type="button" onclick="toggleTheme()" aria-label="Toggle color theme"
+        class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-zinc-300 text-zinc-600 hover:text-zinc-900 hover:border-accent-600/60 transition-colors dark:border-ink-600 dark:text-ink-300 dark:hover:text-white">
+    
+    <svg class="w-4 h-4 dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"/>
+    </svg>
+    
+    <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/>
+    </svg>
+</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-1 w-full">
+        
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:grid lg:grid-cols-[240px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)_220px] lg:gap-10">
+        
+        <details class="lg:hidden mb-6 card">
+            <summary class="px-4 py-3 text-sm font-semibold cursor-pointer select-none heading">Documentation menu</summary>
+            <nav class="px-4 pb-4">
+                <ul class="space-y-1 text-sm">
+                    <li>
+                        <a href="https://kimi-seo.com/docs" class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">Overview</a>
+                    </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/getting-started"
+                               class="block rounded px-2 py-1.5 text-accent-700 bg-zinc-100 dark:text-accent-300 dark:bg-ink-800">
+                                Getting Started
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/installation"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Installation
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/commands"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Commands
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/architecture"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Architecture
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/mcp-integration"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                MCP Integration
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/migration-v1-to-v2"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Migration v1 → v2
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/troubleshooting"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Troubleshooting
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/workflow"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Workflow
+                            </a>
+                        </li>
+                                    </ul>
+            </nav>
+        </details>
+
+        
+        <aside class="hidden lg:block">
+            <div class="sticky top-8">
+                <p class="font-mono text-xs uppercase tracking-widest muted mb-3">Documentation</p>
+                <nav>
+                    <ul class="space-y-1 text-sm border-l border-zinc-200 dark:border-ink-800">
+                        <li>
+                            <a href="https://kimi-seo.com/docs"
+                               class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Overview
+                            </a>
+                        </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/getting-started"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-accent-600 text-accent-700 dark:border-accent-500 dark:text-accent-300">
+                                    Getting Started
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/installation"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Installation
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/commands"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Commands
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/architecture"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Architecture
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/mcp-integration"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    MCP Integration
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/migration-v1-to-v2"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Migration v1 → v2
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/troubleshooting"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Troubleshooting
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/workflow"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Workflow
+                                </a>
+                            </li>
+                                            </ul>
+                </nav>
+
+                <div class="mt-8">
+                    <div class="">
+    
+    <a href="https://kimi-seo.com/advertise"
+       class="mt-4 block rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-6 text-center hover:border-accent-600/60 transition-colors group dark:border-ink-600 dark:bg-ink-900/50">
+        <span class="block text-[10px] font-mono uppercase tracking-widest muted mb-2">Advertisement</span>
+        <span class="block text-lg font-semibold heading group-hover:text-accent-700 dark:group-hover:text-accent-300 transition-colors">Your ad here?</span>
+        <span class="block mt-1 text-sm muted">Reach developers who care about SEO.</span>
+        <span class="inline-block mt-3 rounded-lg bg-accent-600 px-4 py-1.5 text-sm font-medium text-white group-hover:bg-accent-500 transition-colors">Advertise with us</span>
+    </a>
+</div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="min-w-0">
+                <article class="prose dark:prose-invert max-w-none
+        prose-headings:tracking-tight prose-headings:scroll-mt-20 prose-a:text-accent-700 dark:prose-a:text-accent-400 prose-a:no-underline hover:prose-a:text-accent-600 dark:hover:prose-a:text-accent-300
+        prose-code:text-accent-700 dark:prose-code:text-accent-300 prose-code:before:content-none prose-code:after:content-none
+        prose-pre:bg-zinc-100 prose-pre:text-zinc-800 prose-pre:border prose-pre:border-zinc-200 dark:prose-pre:bg-ink-900 dark:prose-pre:text-ink-100 dark:prose-pre:border-ink-700
+        prose-img:rounded-xl prose-hr:border-zinc-200 dark:prose-hr:border-ink-800 prose-strong:text-zinc-900 dark:prose-strong:text-ink-100
+        prose-table:text-sm prose-th:text-left">
+        <p><img src="/media/assets/cover.svg" alt="Kimi SEO cover: a Kimi Code command palette with /kimi-seo:seo audit, schema, geo, content, and backlinks commands over a dark CRT panel" /></p>
+<h1 id="kimi-seo-seo-skill-for-kimi-code">Kimi SEO: SEO Skill for Kimi Code</h1>
+<p><strong>Kimi SEO is an open-source SEO analysis plugin for Kimi Code (Moonshot AI).</strong> It runs 25 sub-skills and 18 specialist agents in parallel across technical SEO, content quality (E-E-A-T), Schema.org markup, AI search optimization (GEO), local SEO, e-commerce, and international SEO. Every audit produces a prioritized action plan with testable recommendations grounded in primary-source guidance from Google.</p>
+<p><a href="https://github.com/AgriciDaniel/claude-seo"><img src="https://img.shields.io/badge/forked%20from-AgriciDaniel%2Fclaude--seo-lightgrey" alt="Forked from claude-seo" /></a>
+<a href="https://github.com/bentocodeing/kimi-seo/actions/workflows/ci.yml"><img src="https://github.com/bentocodeing/kimi-seo/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+<a href="https://www.kimi.com"><img src="https://img.shields.io/badge/Kimi%20Code-Skill-blue" alt="Kimi Code Skill" /></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
+<a href="https://github.com/bentocodeing/kimi-seo/releases"><img src="https://img.shields.io/github/v/release/bentocodeing/kimi-seo" alt="Version" /></a>
+<a href="tests/"><img src="https://img.shields.io/badge/tests-410%20passing-brightgreen" alt="Tests" /></a></p>
+<blockquote>
+<p><strong>Kimi SEO is a fork of <a href="https://github.com/AgriciDaniel/claude-seo"><code>AgriciDaniel/claude-seo</code></a></strong>, adapted for <a href="https://www.kimi.com">Kimi Code</a> (Moonshot AI). All credit for the original SEO workflow goes to <a href="https://github.com/AgriciDaniel">@AgriciDaniel</a> and the <a href="CONTRIBUTORS.md">upstream contributors</a>. The <code>main</code> branch tracks upstream releases; the <code>kimi</code> branch carries the Kimi rebrand and adaptations.</p>
+</blockquote>
+<h3 id="why-kimi-seo">Why Kimi SEO</h3>
+<ul>
+<li><strong>AI-search first.</strong> Aligned with <a href="https://developers.google.com/search/docs/fundamentals/ai-optimization-guide">Google's AI Optimization Guide</a>. Question-based citability scoring, primary-source evidence on llms.txt, IPTC <code>TrainedAlgorithmicMedia</code> for AI-generated product images, agent-friendly page checks per <a href="https://web.dev/">web.dev</a>.</li>
+<li><strong>Parallel execution.</strong> Full site audits spawn up to 15 specialist agents simultaneously. Site-level audits complete in minutes rather than hours.</li>
+<li><strong>Falsifiable, not promotional.</strong> Every recommendation carries the first-principle observation it rests on, its dependency relationships, an explicit &quot;how would we know this failed?&quot; check, and a leading indicator. See <a href="#methodology">Methodology</a>.</li>
+</ul>
+<h3 id="real-results">Real results</h3>
+<p><img src="/media/assets/growth-3-months.png" alt="Google Search Console clicks and impressions for a three-month-old site climbing from launch to steady organic growth between 23 March and 12 June 2026" /></p>
+<p>Google Search Console for a site started 23 March 2026 and run on this workflow: total clicks and impressions across its first three months, through 12 June 2026.</p>
+<h2 id="who-this-is-for">Who this is for</h2>
+<ul>
+<li><strong>SEO agencies running 5+ client sites.</strong> Replace quarterly deep audits with weekly automated runs. Same team capacity, 4× audit cadence, every recommendation comes with a falsifiability check the client can verify.</li>
+<li><strong>In-house SEO leads at SaaS / publisher / e-commerce companies.</strong> Second-pair-of-eyes before executive reviews. Catches what GSC and Lighthouse hide: schema deprecation, AI-citability gaps, expired-domain heritage risk, parasite-SEO exposure, machine-translation drift.</li>
+<li><strong>Freelance SEO consultants.</strong> Anchor day-one client scope with a 15-minute audit and a real 0-100 score. Win the engagement with concrete proof of value before you spend an hour writing the proposal.</li>
+</ul>
+<p><img src="/media/screenshots/seo-command-demo.gif" alt="Kimi SEO /kimi-seo:seo command demo in Kimi Code terminal" /></p>
+<p>Run a full audit and watch parallel agents fan out across the site:</p>
+<p><img src="/media/screenshots/seo-audit-demo.gif" alt="Kimi SEO /kimi-seo:seo audit demo: parallel subagents producing a prioritized action plan" /></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#who-this-is-for">Who this is for</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#quick-start">Quick Start</a></li>
+<li><a href="#commands">Commands</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#compared-to-manual--agency--commercial-tools">Compared to manual / agency / commercial tools</a></li>
+<li><a href="#use-cases">Use cases</a></li>
+<li><a href="#sample-output">Sample Output</a></li>
+<li><a href="#architecture">Architecture</a></li>
+<li><a href="#methodology">Methodology</a></li>
+<li><a href="#whats-new-in-v2">What's New in v2</a></li>
+<li><a href="#limitations">Limitations</a></li>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#uninstall">Uninstall</a></li>
+<li><a href="#extensions">Extensions</a></li>
+<li><a href="#ecosystem">Ecosystem</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#community-contributors">Community Contributors</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#author">Author</a></li>
+</ul>
+<h2 id="installation">Installation</h2>
+<blockquote>
+<p>ℹ️ <strong>You are on the Kimi fork.</strong> The commands below install from <a href="https://github.com/bentocodeing/kimi-seo"><code>bentocodeing/kimi-seo</code></a> — MIT, public releases, no membership required. Upstream project: <a href="https://github.com/AgriciDaniel/claude-seo"><code>AgriciDaniel/claude-seo</code></a>.</p>
+</blockquote>
+<h3 id="plugin-install-kimi-code-recommended">Plugin Install (Kimi Code, recommended)</h3>
+<p>Inside Kimi Code, install this fork directly from GitHub:</p>
+<pre><code>/plugins install https://github.com/bentocodeing/kimi-seo
+/reload
+/kimi-seo:seo setup
+</code></pre>
+<p>The plugin manager copies the repo to Kimi Code's managed plugins directory and loads <code>kimi.plugin.json</code>: all 25 skills, the session-start orientation skill, and the schema-validation hook. <code>/kimi-seo:seo setup</code> is an explicit, one-time provisioning step for the isolated Python runtime.</p>
+<h3 id="manual-install-unix--macos--linux">Manual Install (Unix / macOS / Linux)</h3>
+<p>For a git-checkout install into <code>~/.kimi-code/skills/</code> and <code>~/.agents/agents/</code>:</p>
+<pre><code class="language-bash">git clone --depth 1 --branch kimi https://github.com/bentocodeing/kimi-seo.git
+bash kimi-seo/install.sh
+</code></pre>
+<details>
+<summary>One-liner (curl, review then run)</summary>
+<pre><code class="language-bash">curl -fsSL https://raw.githubusercontent.com/bentocodeing/kimi-seo/kimi/install.sh &gt; install.sh
+cat install.sh        # review before running
+bash install.sh
+rm install.sh
+</code></pre>
+</details>
+<h3 id="windows-powershell">Windows (PowerShell)</h3>
+<pre><code class="language-powershell">git clone --depth 1 --branch kimi https://github.com/bentocodeing/kimi-seo.git
+powershell -ExecutionPolicy Bypass -File kimi-seo\install.ps1
+</code></pre>
+<blockquote>
+<p><strong>Why <code>git clone</code> instead of <code>irm | iex</code>?</strong> Kimi Code's own security guardrails flag <code>irm ... | iex</code> as a supply chain risk: downloading and executing remote code without verification. The <code>git clone</code> approach lets you inspect <code>kimi-seo\install.ps1</code> before running it.</p>
+</blockquote>
+<h2 id="quick-start">Quick Start</h2>
+<blockquote>
+<p><strong>Invocation in Kimi Code:</strong> the commands below are written in their
+documentation shorthand <code>/kimi-seo:seo ...</code>. In the CLI, run them through the plugin
+slash command — <code>/kimi-seo:seo audit https://example.com</code> — or via
+<code>/skill:seo audit https://example.com</code>. You can also simply describe what
+you need in natural language (&quot;audit example.com&quot;) — the <code>seo</code> orchestrator
+skill routes the request automatically. Every audit writes its artifacts
+(<code>FULL-AUDIT-REPORT.md</code>, <code>ACTION-PLAN.md</code>, <code>audit-data.json</code>, <code>findings/</code>,
+<code>screenshots/</code>) into a <code>{domain}-audit/</code> folder in your current project.</p>
+</blockquote>
+<pre><code class="language-bash"># Start Kimi Code
+kimi
+
+# Full site audit: parallel sub-agents produce a prioritized action plan
+/kimi-seo:seo audit https://example.com
+
+# Deep single-page analysis: on-page elements, content quality, schema
+/kimi-seo:seo page https://example.com/about
+
+# Schema markup audit: detect, validate, generate
+/kimi-seo:seo schema https://example.com
+
+# AI search optimization: passage citability + primary-source-aligned recommendations
+/kimi-seo:seo geo https://example.com
+
+# Generate a sitemap with industry templates
+/kimi-seo:seo sitemap generate
+</code></pre>
+<h2 id="commands">Commands</h2>
+<p><img src="/media/assets/sub-skills.svg" alt="Kimi SEO sub-skill ecosystem: 25 modules grouped into 8 categories (audit, content, schema, technical, AI search, local + maps, commerce + intl, extensions) around the central orchestrator" /></p>
+<p>32 user-invocable <code>/kimi-seo:seo</code> commands across the orchestrator, its sub-skills, and 8 MCP extensions. Full reference in <a href="/docs/commands">docs/COMMANDS.md</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/kimi-seo:seo setup</code></td>
+<td>Create or refresh the isolated Python runtime and Chromium</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo doctor</code></td>
+<td>Check runtime readiness without changing the system</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo audit &lt;url&gt;</code></td>
+<td>Full website audit with parallel sub-agent delegation</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo page &lt;url&gt;</code></td>
+<td>Deep single-page analysis</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo technical &lt;url&gt;</code></td>
+<td>Technical SEO audit across 9 categories</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo content &lt;url&gt;</code></td>
+<td>E-E-A-T and content quality analysis</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo content-brief &lt;topic&gt;</code></td>
+<td>Detailed content brief: target keywords, outline, internal links</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo schema &lt;url&gt;</code></td>
+<td>Detect, validate, and generate Schema.org markup</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo geo &lt;url&gt;</code></td>
+<td>AI Overviews / Generative Engine Optimization</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo sitemap &lt;url | generate&gt;</code></td>
+<td>Analyze or generate XML sitemaps</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo images &lt;url&gt;</code></td>
+<td>Image optimization analysis</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo plan &lt;type&gt;</code></td>
+<td>Strategic SEO planning (saas, local, ecommerce, publisher, agency)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo programmatic &lt;url&gt;</code></td>
+<td>Programmatic SEO analysis and planning</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo competitor-pages &lt;url&gt;</code></td>
+<td>Competitor comparison page generation</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo local &lt;url&gt;</code></td>
+<td>Local SEO analysis (GBP, citations, reviews, map pack)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo maps [command]</code></td>
+<td>Maps intelligence (geo-grid, GBP audit, reviews, competitors)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo hreflang &lt;url&gt;</code></td>
+<td>Hreflang / i18n SEO audit and generation</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo google [command]</code></td>
+<td>Google SEO APIs (GSC, PageSpeed, CrUX, Indexing, GA4, PDF reports)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo backlinks &lt;url&gt;</code></td>
+<td>Backlink profile analysis (Moz, Bing, Common Crawl)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo cluster &lt;keyword&gt;</code></td>
+<td>SERP-based semantic clustering</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo sxo &lt;url&gt;</code></td>
+<td>Search Experience Optimization (page-type, user stories, personas)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo drift baseline | compare | history &lt;url&gt;</code></td>
+<td>SEO drift monitoring with SQLite snapshots</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo ecommerce &lt;url&gt;</code></td>
+<td>E-commerce SEO and marketplace intelligence</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo flow [stage]</code></td>
+<td>FLOW framework prompts (CC BY 4.0, evidence-led)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo firecrawl [command] &lt;url&gt;</code></td>
+<td>Full-site crawling (extension)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo dataforseo [command]</code></td>
+<td>Live SEO data (extension)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo image-gen [use-case]</code></td>
+<td>AI image generation for SEO assets (extension)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo ahrefs [command] &lt;url&gt;</code></td>
+<td>Backlinks, organic keywords, and content data via the official Ahrefs MCP (extension)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo seranking [command]</code></td>
+<td>AI Share-of-Voice across ChatGPT, Gemini, Perplexity, AI Overviews, AI Mode (extension)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo profound [command]</code></td>
+<td>LLM citation tracking with time-series data (extension)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo bing [command] &lt;url&gt;</code></td>
+<td>Bing Webmaster Tools + IndexNow URL submission (extension)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo unlighthouse &lt;url&gt;</code></td>
+<td>Multi-page Lighthouse runner, runs locally (extension)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<h3 id="what-core-web-vitals-does-kimi-seo-check">What Core Web Vitals does Kimi SEO check?</h3>
+<p>Kimi SEO measures the current three Core Web Vitals: <strong>LCP</strong> (Largest Contentful Paint, target under 2.5s), <strong>INP</strong> (Interaction to Next Paint, target under 200ms), and <strong>CLS</strong> (Cumulative Layout Shift, target under 0.1). <a href="https://web.dev/articles/inp">INP replaced FID</a> on March 12, 2024; FID was removed from Chrome's field-data tools (CrUX API, PageSpeed Insights) on September 9, 2024 (Lighthouse is a lab tool and never reported FID), and Kimi SEO never references FID. Field data comes from the Chrome User Experience Report (CrUX) when available; lab data falls back to Lighthouse via PageSpeed Insights. LCP can be decomposed into subparts (TTFB, load delay, load duration, render delay) via the <code>/kimi-seo:seo google</code> CrUX integration to localize bottlenecks. Mobile and desktop are measured separately. CrUX History (25-week trend) is included in the Tier 0 free credential set.</p>
+<h3 id="how-does-kimi-seo-assess-e-e-a-t">How does Kimi SEO assess E-E-A-T?</h3>
+<p>E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) is evaluated against the Search Quality Rater Guidelines, last updated September 2025 with YMYL expanded to include political and social topics. Experience signals: original research, case studies, first-hand photos. Expertise: author credentials and topical depth. Authoritativeness: external citations and brand mentions. Trustworthiness, the most heavily weighted of the four: contact info, secure HTTPS, transparent corrections, date stamps. Before scoring sub-factors, Kimi SEO applies Google's own Who / How / Why heuristic from the <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content">helpful-content guide</a>. Generative AI content is fine if it meets Search Essentials; it crosses into spam when used to scale low-value pages, which <code>seo-content humanize</code> and <code>seo-content verify</code> are designed to detect.</p>
+<h3 id="what-schemaorg-types-does-kimi-seo-support">What Schema.org types does Kimi SEO support?</h3>
+<p>JSON-LD is the preferred format (Google's stated preference). Kimi SEO detects, validates, and generates the active Schema.org types documented in <a href="skills/seo/references/schema-types.md">skills/seo/references/schema-types.md</a>, including organization, article, product, local, event, job, course, software/application, service, Q&amp;A, and video patterns. FAQPage: Google stopped showing FAQ rich results for all sites on May 7, 2026; it has no Google rich-result benefit. Keep it only for non-Google or internal semantics if needed. Deprecated and never recommended: HowTo (rich results removed September 2023), SpecialAnnouncement (July 2025), ClaimReview, VehicleListing, EstimatedSalary, LearningVideo, CourseInfo carousel (all retired June 2025). Replacement guidance: <a href="skills/seo-schema/references/deprecated-types-2024-2026.md">skills/seo-schema/references/deprecated-types-2024-2026.md</a>.</p>
+<h3 id="how-does-kimi-seo-optimize-for-ai-search">How does Kimi SEO optimize for AI search?</h3>
+<p>Aligned with <a href="https://developers.google.com/search/docs/fundamentals/ai-optimization-guide">Google's AI Optimization Guide</a>, which states that &quot;AEO&quot; and &quot;GEO&quot; are rebranded labels for SEO. AI Overviews and AI Mode are grounded in the same ranking systems as classic Search; pages must be indexed and eligible for snippet display to appear in any AI feature. Kimi SEO scores passage citability (optimal 134-167 word self-contained answer blocks), question-based heading hierarchy, attribution density, structured data coverage, and entity presence across Wikipedia, Reddit, YouTube, and LinkedIn. The <code>seo-geo</code> skill includes evidence-based reframes of three popular myths: llms.txt is not currently a citation lever (<a href="skills/seo-geo/references/llmstxt-evidence.md">primary-source evidence</a>), content chunking is not required, and AI-specific keyword rewriting is unnecessary because synonym understanding is sufficient.</p>
+<h3 id="which-google-seo-apis-does-kimi-seo-integrate-with">Which Google SEO APIs does Kimi SEO integrate with?</h3>
+<p>A 4-tier credential system lets you start with zero keys and add data as needed. Every tier delivers real value at its level:</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Credentials</th>
+<th>APIs Unlocked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>API key</td>
+<td>PageSpeed Insights, CrUX, CrUX History (25-week trends)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>+ OAuth or Service Account</td>
+<td>+ Search Console (queries, URL Inspection, sitemap status), Indexing API</td>
+</tr>
+<tr>
+<td>2</td>
+<td>+ GA4 property config</td>
+<td>+ GA4 organic traffic, top landing pages, device / country breakdown</td>
+</tr>
+<tr>
+<td>3</td>
+<td>+ Ads developer token</td>
+<td>+ Keyword Planner search volume and competition data</td>
+</tr>
+</tbody>
+</table>
+<p>PDF reports are generated via <a href="https://weasyprint.org/">WeasyPrint</a> (A4 layout) with matplotlib charts at 200 DPI. Run <code>/kimi-seo:seo google setup</code> for the credential wizard. All credentials live under <code>~/.config/kimi-seo/</code> with <code>0o600</code> permissions; nothing is checked into the repo.</p>
+<h3 id="how-does-kimi-seo-handle-local-seo">How does Kimi SEO handle local SEO?</h3>
+<p>Three layers. <strong>Google Business Profile signals</strong>: categories, hours, photos, posts, products, attributes. <strong>NAP consistency</strong> across citations: name, address, phone matched against major directories with deviation flagging. <strong>Review intelligence</strong>: rating trends, sentiment, response coverage. For multi-location businesses, Kimi SEO enforces a 30-page warning threshold and a 50-page hard stop to prevent doorway-page violations (configurable). The <code>/kimi-seo:seo maps</code> workflow adds geo-grid rank tracking, GBP profile auditing, and competitor radius mapping. Local schema generation covers <code>LocalBusiness</code> with all required and recommended properties (geo coordinates, opening hours, areaServed). Phase F (v2) added a GBP deprecation linter that detects retired chat-field references and <code>.business.site</code> URLs.</p>
+<h2 id="compared-to-manual--agency--commercial-tools">Compared to manual / agency / commercial tools</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Manual audit</th>
+<th>Agency engagement</th>
+<th>Commercial SEO audit tool</th>
+<th><strong>Kimi SEO</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Time per audit</strong></td>
+<td>4-8 hrs senior SEO time</td>
+<td>1-3 weeks turnaround</td>
+<td>10-45 min crawl + report</td>
+<td><strong>10-15 min</strong></td>
+</tr>
+<tr>
+<td><strong>Cost</strong></td>
+<td>High (billable hours)</td>
+<td>$2k-$15k+ project</td>
+<td>$99-$999/mo subscription</td>
+<td><strong>Free skill + Kimi Code subscription</strong></td>
+</tr>
+<tr>
+<td><strong>Repeatable</strong></td>
+<td>Inconsistent across analysts</td>
+<td>Inconsistent across engagements</td>
+<td>Yes</td>
+<td><strong>Yes, deterministic + scriptable</strong></td>
+</tr>
+<tr>
+<td><strong>Output format</strong></td>
+<td>Wall-of-findings PDF</td>
+<td>Branded slide deck</td>
+<td>Web dashboard, CSV exports</td>
+<td><strong>Markdown + PDF + JSON, local files</strong></td>
+</tr>
+<tr>
+<td><strong>Custom benchmarks</strong></td>
+<td>Manual per analyst</td>
+<td>Agency-specific frameworks</td>
+<td>Vendor-fixed</td>
+<td><strong>Edit local SKILL.md</strong></td>
+</tr>
+<tr>
+<td><strong>Data leaves machine?</strong></td>
+<td>No (your spreadsheet)</td>
+<td>Yes (sent to agency)</td>
+<td>Yes (uploaded to vendor)</td>
+<td><strong>No, fully local by default</strong></td>
+</tr>
+<tr>
+<td><strong>Lock-in</strong></td>
+<td>None</td>
+<td>High</td>
+<td>High (data-exit friction)</td>
+<td><strong>None. MIT, your files.</strong></td>
+</tr>
+<tr>
+<td><strong>AI search awareness</strong></td>
+<td>Depends on analyst</td>
+<td>Depends on agency seniority</td>
+<td>Lagging (typically 6-12 mo behind)</td>
+<td><strong>Google AI Optimization Guide (May 2026), Sept 2025 QRG, INP-not-FID, GEO/AEO=SEO reframe, llms.txt evidence-based posture</strong></td>
+</tr>
+<tr>
+<td><strong>Falsifiability per finding</strong></td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td><strong>Yes. Every recommendation carries a &quot;how would we know this failed?&quot; check + leading indicator</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Cost benchmarks: manual audit assumes a senior SEO consultant at typical agency billable rates; agency engagement based on common discovery/audit deliverable scopes; commercial-tool subscriptions reflect published mid-tier pricing across the SEO audit category (Ahrefs, Semrush, Sitebulb, Screaming Frog). Your numbers may differ.</p>
+</blockquote>
+<h2 id="use-cases">Use cases</h2>
+<p><strong>SEO agency lead running 10 client sites.</strong> Replaces the quarterly &quot;deep audit&quot; ritual with a weekly Monday-morning <code>/kimi-seo:seo audit</code> run per site. Time to deliver a client health-score email drops from 4 hours to 12 minutes; coverage goes from quarterly to weekly without billing more hours. The drift baseline catches regressions between audits so the client conversation moves from &quot;look at this snapshot&quot; to &quot;here is what changed this week.&quot;</p>
+<p><strong>In-house SEO lead at a 50-person SaaS company.</strong> Runs <code>/kimi-seo:seo audit</code> 24 hours before each quarterly business review. Catches the items the platform UI buries (broken canonical chains on programmatic pages, schema deprecation after Google's June 2025 retirement wave, AI-citability gaps that erode SERP-to-AI-Overview pickup, expired-domain heritage on acquired blog assets) before the CMO asks why organic traffic is down in front of the board.</p>
+<p><strong>Freelance SEO consultant onboarding a new client.</strong> Runs <code>/kimi-seo:seo audit</code> on the discovery call. Anchors the engagement scope with a real 0-100 score, 3 prioritized critical findings, and a falsifiability check on each recommendation, instead of a vague &quot;I'll take a look and get back to you.&quot; Closes more retainers because the proof of value happens during the call, not after the proposal.</p>
+<h2 id="sample-output">Sample Output</h2>
+<p>Kimi SEO writes real markdown reports as its primary deliverable. Below is the first ~50 lines of a <code>/kimi-seo:seo schema https://rankenstein.pro/about</code> audit verbatim. The actual structure, headers, and grading format the plugin produces follows.</p>
+<details>
+<summary><code>SCHEMA-REPORT.md</code>: first 50 lines of a real audit</summary>
+<pre><code class="language-markdown"># Schema Markup Report: rankenstein.pro/about
+
+**URL:** https://rankenstein.pro/about
+**Date:** 2026-02-09
+**Format Detected:** JSON-LD (3 blocks) | No Microdata | No RDFa
+
+---
+
+## Summary
+
+| Metric | Value |
+|--------|-------|
+| **JSON-LD Blocks** | 3 |
+| **Schema Types** | Organization, WebSite, SoftwareApplication |
+| **Critical Issues** | 2 |
+| **Warnings** | 5 |
+| **Passed Checks** | 18 |
+| **Overall Grade** | B+ (solid foundation, actionable gaps) |
+
+---
+
+## Existing Schema Validation
+
+### 1. Organization (`@id: #organization`)
+
+| Property | Value | Status | Notes |
+|----------|-------|--------|-------|
+| `@context` | https://schema.org | Valid | |
+| `@type` | Organization | Valid | Active type |
+| `@id` | https://rankenstein.pro#organization | Good | Enables cross-referencing |
+| `name` | Rankenstein | Valid | |
+| `description` | Present, 200+ chars | Good | Descriptive and keyword-rich |
+| `url` | https://rankenstein.pro | Valid | Absolute URL |
+| `logo` | ImageObject with @id, url, width, height, caption | Excellent | Well-structured |
+| `foundingDate` | &quot;2024&quot; | Imprecise | Year-only accepted but ISO 8601 preferred |
+| `areaServed` | &quot;Worldwide&quot; | Text | Works but `GeoShape` is more semantic |
+| `contactPoint` | email + contactType | Valid | Consider adding `telephone` |
+| `founder` | 1 Person (Daniel Agrici) | Incomplete | Page describes two co-founders; second missing |
+| `sameAs` | 5 social profiles | Good | GitHub, X, LinkedIn, YouTube, Reddit |
+| `knowsAbout` | 6 topics | Good | Relevant topical signals |
+
+**Critical Issue:** The `founder` property only includes Daniel Agrici. Benjamin Samar (Co-Founder &amp; Technical Director) is displayed on the page but absent from the schema. This creates a content-schema mismatch that can confuse search engines.
+</code></pre>
+</details>
+<p>Other audit outputs follow the same shape: <code>FULL-AUDIT-REPORT.md</code> (umbrella audit), <code>GEO-ANALYSIS.md</code> (AI-search readiness), <code>LOCAL-SEO-ANALYSIS.md</code> (GBP and citations), and a production PDF via WeasyPrint + matplotlib (cover, TOC, executive summary, data sections, recommendations, methodology, roughly 32 A4 pages for a full site audit).</p>
+<h2 id="architecture">Architecture</h2>
+<p><img src="/media/assets/signal-flow.svg" alt="Kimi SEO audit signal flow: /kimi-seo:seo audit enters the orchestrator, fans out to 25 sub-skills and up to 15 parallel audit agents, and converges through the scoring engine into a prioritized report" /></p>
+<p>The plugin follows the open Agent Skills standard (SKILL.md format) with a 3-layer architecture (directive, orchestration, execution). Skills and agents are auto-discovered from <code>skills/seo-*/</code> and <code>agents/seo-*.md</code>. The orchestrator (<code>skills/seo/SKILL.md</code>) handles industry detection (SaaS, local, ecommerce, publisher, agency), parallel sub-agent dispatch up to 15 simultaneously, and synthesis through the <a href="#methodology">10-principle framework</a> before emitting the action plan. Full architecture: <a href="/docs/architecture">docs/ARCHITECTURE.md</a>.</p>
+<h2 id="methodology">Methodology</h2>
+<p><img src="/media/assets/framework.svg" alt="Kimi SEO 10-principle methodology: PERCEIVE, ANALYZE, VALIDATE, and ACT phases with 10 principles arranged by quadrant" /></p>
+<p>Every audit walks 10 principles grouped into four phases. Each emitted recommendation carries four fields: the first-principle observation it rests on, its dependency relationship to other recommendations, a &quot;how would we know this failed?&quot; check, and a leading indicator to monitor.</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Principles</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PERCEIVE</strong></td>
+<td>OBSERVE (external) · OBSERVE (internal) · LISTEN</td>
+<td>Collect raw signals; audit your own assumptions; read what the SERP, the brand voice, and the community actually say</td>
+</tr>
+<tr>
+<td><strong>ANALYZE</strong></td>
+<td>THINK · CONNECT (lateral) · CONNECT (system)</td>
+<td>Reduce to first principles; find non-obvious cross-skill links; sequence into a dependency graph</td>
+</tr>
+<tr>
+<td><strong>VALIDATE</strong></td>
+<td>FEEL · ACCEPT</td>
+<td>Pressure-test against UX, brand voice, operator capacity; surface falsifiability</td>
+</tr>
+<tr>
+<td><strong>ACT</strong></td>
+<td>CREATE · GROW</td>
+<td>Ship the artifact; set the feedback loop for the next audit</td>
+</tr>
+</tbody>
+</table>
+<p>Full methodology: <a href="skills/seo/references/thinking-framework.md">skills/seo/references/thinking-framework.md</a>.</p>
+<h2 id="whats-new-in-v2">What's New in v2</h2>
+<p>v2.0.0 is the largest release in the plugin's history. Six build phases, all shipped:</p>
+<ul>
+<li><strong>Phase A: Headless rendering everywhere.</strong> Shared <code>scripts/render_page.py</code> with Playwright Chromium plus <a href="https://github.com/adbar/trafilatura">trafilatura</a> and <a href="https://github.com/adbar/htmldate">htmldate</a>. Every audit subagent gets SPA-aware fetching via <code>--render auto</code> (auto-detected on Next.js, React, Vue, Nuxt, Astro islands). Closes the SPA limitation that capped v1.x.</li>
+<li><strong>Phase B: QRG-aligned content quality gates.</strong> Filler detector and AI-pattern humanizer keyed to QRG §4.6.5 and §4.6.6, claim-verification scanner, expired-domain heritage check via WHOIS, primary-source Google updates changelog.</li>
+<li><strong>Phase C: Technical and CWV depth.</strong> LCP subparts via CrUX (TTFB, load delay, load duration, render delay), Speculation Rules and bfcache detection, IndexNow submitter for Bing / Yandex / Seznam / Naver, Unlighthouse multi-page Lighthouse wrapper.</li>
+<li><strong>Phase D: Schema completeness.</strong> Four explicit generators (Reservation, OrderAction, DiscussionForumPosting, ProfilePage), e-commerce schema validator (<code>hasMerchantReturnPolicy</code>, <code>shippingDetails</code>, <code>MemberProgram</code>, EU <code>energyEfficiencyClass</code>, ProductGroup variants), dual validator (Rich Results Test plus Schema Markup Validator).</li>
+<li><strong>Phase E: AI search reframing and 5 new MCP extensions.</strong> Ahrefs, SE Ranking (AI Share-of-Voice), Profound (LLM citation tracker), Bing Webmaster plus IndexNow, Unlighthouse. Plus the parasite-SEO risk scanner per Google's November 2024 <a href="https://developers.google.com/search/blog/2024/11/site-reputation-abuse-update">site reputation abuse policy</a>.</li>
+<li><strong>Phase F: Local, international, and privacy polish.</strong> Google Business Profile deprecation linter (chat field and <code>.business.site</code> URLs, with Q&amp;A treated as category/region-limited), DMA consent-mode-v2 click-through diagnostic, machine-translation QA flag per January 2025 QRG.</li>
+</ul>
+<p>Test coverage grew from 39 (v1.9.9) to 410 across the v2 line; the url_safety suite alone runs 91 SSRF and DNS-rebinding bypass cases, closing the obfuscated-IPv4, FQDN-trailing-dot, and redirect-rebinding bypass classes. Full migration notes and breaking changes: <a href="/docs/migration-v1-to-v2">docs/MIGRATION-v1-to-v2.md</a>.</p>
+<h3 id="since-v200">Since v2.0.0</h3>
+<ul>
+<li><strong>v2.1.0 (May 2026): currency refresh.</strong> May 2026 core update, Google I/O 2026 (custom version of Gemini 2.5 powers AI Mode), FAQ rich results retired 2026-05-07 (QAPage remains the type for genuine Q&amp;A pages, FAQ markup itself just no longer yields rich results).</li>
+<li><strong>v2.2.0 (June 2026): security + portability.</strong> Installer credential-injection fix, SSRF authority-confusion bypass closed, Google API keys moved to the <code>X-Goog-Api-Key</code> header, secret-scan CI gate, Windows/macOS fixes; suite at 326.</li>
+<li><strong>v2.2.1 (June 2026): Google-currency reconfirmation + full command audit.</strong> Lighthouse 13.4.0 with the new Agentic Browsing category, Google Search ignores llms.txt, an internally-reweighted E-E-A-T scorecard (Trust highest, per Google's 'trust is most important'); every <code>/kimi-seo:seo</code> command and subcommand audited and COMMANDS.md brought to 100% coverage.</li>
+<li><strong>v2.2.2 (July 2026): full-review maintenance.</strong> Corrected GBP Q&amp;A handling, AI Mode model naming, image-model IDs, hook input behavior, and added a strict reference-graph consistency gate.</li>
+<li><strong>v2.2.3 (July 2026): prompt-hygiene alignment.</strong> Normalized emphasis and punctuation across the prompt surface without changing behavior, routing, or output contracts.</li>
+<li><strong>v2.2.4 (July 2026): community maintenance.</strong> Added the managed cross-platform runtime and safe sitemap discovery, repaired GSC pagination and totals, replaced removed Bing endpoints, fixed extension and Windows portability gaps, and reconciled every open issue and pull request.</li>
+</ul>
+<h2 id="limitations">Limitations</h2>
+<p>Two real boundaries worth being upfront about.</p>
+<p><strong>Heavy client-side hydration timing.</strong> Phase A's headless renderer handles most SPAs out of the box (<code>--render auto</code> detects empty <code>&lt;div id=&quot;root&quot;&gt;</code> shells and switches to Playwright). Edge cases that still produce noisy findings: pages with hydration tied to scroll position past the fold, pages that fetch critical content after user interaction (modal opens, tab clicks), pages with race-condition-prone third-party widget mounts. For these, manually triggering the <code>seo-visual</code> subagent and comparing its Playwright snapshot to the raw-HTML subagents' findings is the recommended workflow.</p>
+<p><strong>Local-only without enrichment.</strong> The free tier makes no third-party API calls by default (audits still fetch the target URLs you point them at). Adding Google API credentials (Tier 0 through 3) unlocks real field data and live indexation status; without them, Core Web Vitals are lab estimates only and indexation is inferred from page-level signals. Adding MCP extensions (Ahrefs, DataForSEO, SE Ranking, Profound) similarly unlocks competitive and AI-citation data but requires their respective accounts.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Python 3.10+</li>
+<li>Kimi Code CLI</li>
+<li>Optional: Playwright Chromium — install.sh offers to install it (you can skip the prompt); needed only for SPA rendering and screenshots</li>
+<li>Optional: Google API credentials for enriched CWV / GSC / GA4 data (see <code>/kimi-seo:seo google setup</code>)</li>
+</ul>
+<h2 id="uninstall">Uninstall</h2>
+<pre><code class="language-bash">git clone --depth 1 --branch kimi https://github.com/bentocodeing/kimi-seo.git
+bash kimi-seo/uninstall.sh
+</code></pre>
+<details>
+<summary>One-liner (curl)</summary>
+<pre><code class="language-bash">curl -fsSL https://raw.githubusercontent.com/bentocodeing/kimi-seo/kimi/uninstall.sh | bash
+</code></pre>
+</details>
+<h2 id="extensions">Extensions</h2>
+<p>Optional MCP servers add live data to the audit pipeline. Kimi SEO ships extensions for 8 servers; the plugin core works without any of them.</p>
+<h3 id="dataforseo">DataForSEO</h3>
+<p>Live SERP data, keyword research, backlinks, on-page analysis, content analysis, business listings, AI visibility checks, and LLM mention tracking. 23 data commands across 9 API modules.</p>
+<pre><code class="language-bash">./extensions/dataforseo/install.sh   # requires DataForSEO account
+/kimi-seo:seo dataforseo serp best coffee shops
+/kimi-seo:seo dataforseo ai-mentions your brand
+</code></pre>
+<p>Full DataForSEO docs: <a href="extensions/dataforseo/README.md">extensions/dataforseo/README.md</a>.</p>
+<h3 id="firecrawl">Firecrawl</h3>
+<p>Full-site crawling and URL discovery via the <a href="https://www.firecrawl.dev/">Firecrawl</a> MCP server.</p>
+<pre><code class="language-bash">./extensions/firecrawl/install.sh
+/kimi-seo:seo firecrawl crawl https://example.com
+</code></pre>
+<p>Full Firecrawl docs: <a href="extensions/firecrawl/README.md">extensions/firecrawl/README.md</a>.</p>
+<h3 id="banana-ai-image-generation">Banana: AI image generation</h3>
+<p>SEO image generation (OG previews, blog heroes, product photos, infographics) via the <a href="https://github.com/AgriciDaniel/banana-claude">Banana</a> Creative Director pipeline.</p>
+<pre><code class="language-bash">./extensions/banana/install.sh
+/kimi-seo:seo image-gen og &quot;Professional SaaS dashboard&quot;
+</code></pre>
+<p>Full Banana docs: <a href="extensions/banana/README.md">extensions/banana/README.md</a>.</p>
+<h3 id="ahrefs-se-ranking-profound-bing-webmaster-unlighthouse-new-in-v2">Ahrefs, SE Ranking, Profound, Bing Webmaster, Unlighthouse (new in v2)</h3>
+<p>Five extensions added in Phase E:</p>
+<ul>
+<li><strong>Ahrefs:</strong> official <code>@ahrefs/mcp</code> server with backlink and organic data</li>
+<li><strong>SE Ranking:</strong> AI Share-of-Voice across ChatGPT, Gemini, Perplexity, AI Overviews, AI Mode</li>
+<li><strong>Profound:</strong> LLM citation tracker with time-series data</li>
+<li><strong>Bing Webmaster:</strong> Bing Webmaster Tools plus IndexNow unified</li>
+<li><strong>Unlighthouse:</strong> MIT-licensed multi-page Lighthouse runner</li>
+</ul>
+<p>Setup walkthroughs live under <code>extensions/&lt;name&gt;/docs/</code>; integration notes: <a href="/docs/mcp-integration">docs/MCP-INTEGRATION.md</a>.</p>
+<h2 id="ecosystem">Ecosystem</h2>
+<p>Kimi SEO sits in a small ecosystem of related projects it interoperates with:</p>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>What it does</th>
+<th>How it connects</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/bentocodeing/kimi-seo">Kimi SEO</a></td>
+<td>SEO analysis, audits, schema, GEO</td>
+<td>Core. Analyzes sites and generates action plans.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/AgriciDaniel/claude-seo"><code>AgriciDaniel/claude-seo</code></a></td>
+<td>The upstream project this fork tracks</td>
+<td>Origin of the SEO workflow; the fork's <code>main</code> branch mirrors its releases.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/AgriciDaniel/flow">FLOW</a></td>
+<td>Evidence-led SEO framework (41 AI prompts, CC BY 4.0)</td>
+<td>Knowledge base. Powers <code>seo-flow</code> prompts.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Workflow example:</strong></p>
+<ol>
+<li><code>/kimi-seo:seo audit https://example.com</code>: identify content gaps and technical issues</li>
+<li><code>/kimi-seo:seo backlinks https://example.com</code>: analyze link profile and competitor gaps</li>
+<li><code>/kimi-seo:seo geo https://example.com/blog/post</code>: score AI-citation readiness</li>
+<li><code>/kimi-seo:seo content-brief &quot;target keyword&quot;</code>: produce a brief for the next post</li>
+<li><code>/kimi-seo:seo image-gen hero &quot;blog topic&quot;</code>: generate hero image (Banana extension)</li>
+</ol>
+<h2 id="documentation">Documentation</h2>
+<ul>
+<li><a href="/docs/installation">Installation Guide</a></li>
+<li><a href="/docs/commands">Commands Reference</a>: every <code>/kimi-seo:seo</code> command in depth</li>
+<li><a href="/docs/architecture">Architecture</a>: 3-layer design, auto-discovery, parallel dispatch</li>
+<li><a href="/docs/migration-v1-to-v2">Migration v1 → v2</a>: breaking changes, six phases of work</li>
+<li><a href="/docs/mcp-integration">MCP Integration</a>: integration notes; extension setup lives under <code>extensions/&lt;name&gt;/docs/</code></li>
+<li><a href="/docs/troubleshooting">Troubleshooting</a></li>
+<li><a href="CONTRIBUTORS.md">Contributors</a>: community credits</li>
+</ul>
+<h2 id="faq">FAQ</h2>
+<h3 id="what-is-kimi-seo">What is Kimi SEO?</h3>
+<p>Kimi SEO is an open-source SEO analysis plugin for Kimi Code. It runs 25 sub-skills and 18 specialist agents in parallel across technical SEO, content quality, Schema.org markup, AI search optimization, local SEO, e-commerce, and international SEO. Audits produce a prioritized action plan where each recommendation carries the first-principle observation it rests on, its dependency relationship to other recommendations, a &quot;how would we know this failed?&quot; check, and a leading indicator. The plugin is MIT-licensed, ships zero proprietary tracking, and works without third-party API enrichment; audits still contact the target URLs you analyze. Aligned with <a href="https://developers.google.com/search/docs/fundamentals/ai-optimization-guide">Google's AI Optimization Guide</a> and the September 2025 Quality Rater Guidelines.</p>
+<h3 id="how-is-kimi-seo-different-from-screaming-frog-or-ahrefs-site-audit">How is Kimi SEO different from Screaming Frog or Ahrefs Site Audit?</h3>
+<p>Different surface area, different tradeoffs. <strong>Screaming Frog</strong> crawls deeper and faster at the link-graph level; it is purpose-built as a crawler and Kimi SEO does not attempt to replace it. <strong>Ahrefs Site Audit</strong> brings a proprietary backlink index and link intelligence; Kimi SEO integrates with Ahrefs via its MCP extension rather than competing. Where Kimi SEO leads: conversational LLM-native workflow, recommendation falsifiability (every finding carries an explicit failure-mode check), open-source MIT licensing with zero per-domain pricing, AI search optimization aligned with Google's primary-source guidance, and primary-source schema-deprecation tracking. Use Screaming Frog or Ahrefs for what they are best at; use Kimi SEO when you want LLM-driven synthesis, conversational iteration, and AI-search-first audits in the same environment as your other Kimi Code workflows.</p>
+<h3 id="does-kimi-seo-work-on-single-page-applications-nextjs-react-vue">Does Kimi SEO work on single-page applications (Next.js, React, Vue)?</h3>
+<p>Yes. Phase A of v2 shipped a shared headless renderer (<code>scripts/render_page.py</code>) backed by Playwright Chromium. Audit subagents call <code>render_page.py --mode auto</code>, which auto-detects SPA hallmarks (empty <code>&lt;div id=&quot;root&quot;&gt;</code> shells, single bundle script, hydration markers) and switches to a rendered fetch. The lower-level <code>scripts/fetch_page.py</code> wrapper supports <code>--render auto</code> as an opt-in wrapper mode; its default is <code>--render never</code> for raw HTTP. Use <code>render_page.py --mode always</code> or <code>fetch_page.py --render always</code> to force rendering. Content extraction uses <a href="https://github.com/adbar/trafilatura">trafilatura</a> for boilerplate removal. Publication dates come from <a href="https://github.com/adbar/htmldate">htmldate</a>. Known nuance: pages with scroll-bound hydration or post-interaction content fetches still produce noisy findings; see the <a href="#limitations">Limitations</a> section for the recommended <code>seo-visual</code> cross-check workflow on those edge cases.</p>
+<h3 id="what-google-apis-does-kimi-seo-use-and-are-they-required">What Google APIs does Kimi SEO use, and are they required?</h3>
+<p>None are required. Kimi SEO is fully functional with zero API keys. A 4-tier credential system lets you upgrade gradually: Tier 0 (API key only) unlocks PageSpeed Insights, CrUX, and CrUX History (25-week trend data). Tier 1 (+ OAuth or service account) adds Search Console with queries, URL Inspection, sitemap status, and the Indexing API for eligible JobPosting pages or BroadcastEvent in VideoObject pages; the API does not guarantee indexing. Tier 2 (+ GA4 property config) adds organic traffic, top landing pages, and device / country breakdowns. Tier 3 (+ Ads developer token) adds Keyword Planner search volume and competition data. The credential setup wizard runs via <code>/kimi-seo:seo google setup</code>. All credentials live under <code>~/.config/kimi-seo/</code> with <code>0o600</code> file permissions; nothing is checked into the repo and nothing is transmitted beyond Google's own endpoints.</p>
+<h3 id="is-kimi-seo-free">Is Kimi SEO free?</h3>
+<p>Yes. MIT licensed, fully open source, no per-domain pricing, no telemetry, no API quotas imposed by the plugin itself. The core plugin and all 25 sub-skills work without any paid service. Some optional MCP extensions wrap paid services (DataForSEO, Ahrefs, Profound, SE Ranking) where you bring your own account credentials; their use is opt-in and the plugin works fully without them. Google APIs (PageSpeed Insights, Search Console, Indexing, GA4) are free from Google with normal account quota limits and require your own credentials. If you want commercial support or enterprise features beyond the open-source plugin, that is not part of this project.</p>
+<h3 id="how-is-kimi-seo-different-from-regular-seo-tools-when-it-comes-to-ai-search">How is Kimi SEO different from regular SEO tools when it comes to AI search?</h3>
+<p>Most SEO tools treat AI search as a separate optimization discipline. Kimi SEO follows <a href="https://developers.google.com/search/docs/fundamentals/ai-optimization-guide">Google's own position</a> that AEO and GEO are rebranded labels for SEO. AI Overviews and AI Mode are grounded in the same ranking systems as classic Search; the eligibility floor is normal indexation. Kimi SEO scores passage citability (134-167 word self-contained answer blocks), question-based heading hierarchy, attribution density, and entity presence across Wikipedia, Reddit, YouTube, and LinkedIn. It explicitly rejects three influencer myths: llms.txt as a citation lever, content chunking for AI, and AI-specific keyword rewriting. For commerce sites, Kimi SEO audits the IPTC <code>TrainedAlgorithmicMedia</code> requirement on AI-generated product images per Google Merchant Center policy.</p>
+<h2 id="community-contributors">Community Contributors</h2>
+<p>v1.9.0 includes contributions from the <a href="https://www.skool.com/ai-marketing-hub">AI Marketing Hub</a> Pro Hub Challenge:</p>
+<table>
+<thead>
+<tr>
+<th>Contributor</th>
+<th>Contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lutfiya Miller</strong> (Winner)</td>
+<td>Semantic Cluster Engine → <code>seo-cluster</code></td>
+</tr>
+<tr>
+<td><strong>Florian Schmitz</strong></td>
+<td>SXO Skill → <code>seo-sxo</code></td>
+</tr>
+<tr>
+<td><strong>Dan Colta</strong></td>
+<td>SEO Drift Monitor → <code>seo-drift</code></td>
+</tr>
+<tr>
+<td><strong>Chris Muller</strong></td>
+<td>Multi-lingual SEO → <code>seo-hreflang</code> enhancements</td>
+</tr>
+<tr>
+<td><strong>Matej Marjanovic</strong></td>
+<td>E-commerce + DataForSEO Cost Config → <code>seo-ecommerce</code> + cost guardrails</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="CONTRIBUTORS.md">CONTRIBUTORS.md</a> for full details and original repo links.</p>
+<h2 id="license">License</h2>
+<p>MIT License. See <a href="LICENSE">LICENSE</a> for details.</p>
+<h2 id="contributing">Contributing</h2>
+<p>Contributions welcome. Please read <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> before submitting PRs and include the tests or checks you ran in the PR description.</p>
+<hr />
+<h2 id="author">Author</h2>
+<p>Built by <strong><a href="https://agricidaniel.com/about">Agrici Daniel</a></strong>, AI Workflow Architect. Single maintainer, open to community contributions via the <a href="https://www.skool.com/ai-marketing-hub-pro">Pro Skool community</a>. Background in marketing automation, AI-assisted content workflows, and open-source tooling for AI coding agents.</p>
+<ul>
+<li><a href="https://agricidaniel.com/blog">Blog</a>: deep dives on AI marketing automation</li>
+<li><a href="https://www.skool.com/ai-marketing-hub">AI Marketing Hub (free)</a>: open community</li>
+<li><a href="https://www.skool.com/ai-marketing-hub-pro">AI Marketing Hub Pro</a>: Pro community, early access to this skill</li>
+<li><a href="https://www.youtube.com/@AgriciDaniel">YouTube</a>: tutorials and demos</li>
+<li><a href="https://github.com/AgriciDaniel">GitHub</a>: all open-source tools</li>
+</ul>
+
+    </article>
+
+    
+    <nav class="mt-12 pt-6 border-t border-zinc-200 dark:border-ink-800 flex items-center justify-between gap-4 text-sm">
+                    <span></span>
+                            <a href="https://kimi-seo.com/docs/installation" class="muted-strong hover:text-accent-700 dark:hover:text-accent-300 transition-colors">
+                Installation &rarr;
+            </a>
+            </nav>
+
+            
+            <div class="lg:hidden mt-10 max-w-sm">
+                <div class="">
+    
+    <a href="https://kimi-seo.com/advertise"
+       class="mt-4 block rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-6 text-center hover:border-accent-600/60 transition-colors group dark:border-ink-600 dark:bg-ink-900/50">
+        <span class="block text-[10px] font-mono uppercase tracking-widest muted mb-2">Advertisement</span>
+        <span class="block text-lg font-semibold heading group-hover:text-accent-700 dark:group-hover:text-accent-300 transition-colors">Your ad here?</span>
+        <span class="block mt-1 text-sm muted">Reach developers who care about SEO.</span>
+        <span class="inline-block mt-3 rounded-lg bg-accent-600 px-4 py-1.5 text-sm font-medium text-white group-hover:bg-accent-500 transition-colors">Advertise with us</span>
+    </a>
+</div>
+            </div>
+        </div>
+
+        
+                    <aside class="hidden xl:block xl:pl-6">
+                <nav class="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto overscroll-contain pr-2" aria-label="On this page">
+                    <p class="font-mono text-xs uppercase tracking-widest muted mb-3">On this page</p>
+                    <ul class="space-y-1.5 text-sm border-l border-zinc-200 dark:border-ink-800">
+                                                    <li>
+                                <a href="#why-kimi-seo"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Why Kimi SEO
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#real-results"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Real results
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#who-this-is-for"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Who this is for
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#table-of-contents"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Table of Contents
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#installation"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Installation
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#plugin-install-kimi-code-recommended"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Plugin Install (Kimi Code, recommended)
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#manual-install-unix--macos--linux"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Manual Install (Unix / macOS / Linux)
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#windows-powershell"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Windows (PowerShell)
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#quick-start"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Quick Start
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#commands"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Commands
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#features"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Features
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#what-core-web-vitals-does-kimi-seo-check"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    What Core Web Vitals does Kimi SEO check?
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#how-does-kimi-seo-assess-e-e-a-t"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    How does Kimi SEO assess E-E-A-T?
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#what-schemaorg-types-does-kimi-seo-support"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    What Schema.org types does Kimi SEO support?
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#how-does-kimi-seo-optimize-for-ai-search"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    How does Kimi SEO optimize for AI search?
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#which-google-seo-apis-does-kimi-seo-integrate-with"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Which Google SEO APIs does Kimi SEO integrate with?
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#how-does-kimi-seo-handle-local-seo"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    How does Kimi SEO handle local SEO?
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#compared-to-manual--agency--commercial-tools"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Compared to manual / agency / commercial tools
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#use-cases"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Use cases
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#sample-output"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Sample Output
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#architecture"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Architecture
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#methodology"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Methodology
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#whats-new-in-v2"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    What&#039;s New in v2
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#since-v200"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Since v2.0.0
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#limitations"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Limitations
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#requirements"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Requirements
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#uninstall"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Uninstall
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#extensions"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Extensions
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#dataforseo"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    DataForSEO
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#firecrawl"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Firecrawl
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#banana-ai-image-generation"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Banana: AI image generation
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#ahrefs-se-ranking-profound-bing-webmaster-unlighthouse-new-in-v2"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Ahrefs, SE Ranking, Profound, Bing Webmaster, Unlighthouse (new in v2)
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#ecosystem"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Ecosystem
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#documentation"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Documentation
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#faq"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    FAQ
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#what-is-kimi-seo"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    What is Kimi SEO?
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#how-is-kimi-seo-different-from-screaming-frog-or-ahrefs-site-audit"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    How is Kimi SEO different from Screaming Frog or Ahrefs Site Audit?
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#does-kimi-seo-work-on-single-page-applications-nextjs-react-vue"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Does Kimi SEO work on single-page applications (Next.js, React, Vue)?
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#what-google-apis-does-kimi-seo-use-and-are-they-required"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    What Google APIs does Kimi SEO use, and are they required?
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#is-kimi-seo-free"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Is Kimi SEO free?
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#how-is-kimi-seo-different-from-regular-seo-tools-when-it-comes-to-ai-search"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    How is Kimi SEO different from regular SEO tools when it comes to AI search?
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#community-contributors"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Community Contributors
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#license"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    License
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#contributing"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Contributing
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#author"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Author
+                                </a>
+                            </li>
+                                            </ul>
+                </nav>
+            </aside>
+            </div>
+    </main>
+
+    <footer class="border-t border-zinc-200 dark:border-ink-800 mt-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 grid gap-8 sm:grid-cols-3 text-sm">
+            <div>
+                <p class="font-mono font-semibold mb-2 heading flex items-center gap-2"><svg class="w-6 h-6 text-accent-700 dark:text-accent-400 w-5 h-5 rounded" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kimi SEO logo">
+    <path d="M17 21 L30 32 L17 43" fill="none" stroke="currentColor" stroke-width="5.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="34" y="39.25" width="14" height="5.5" rx="2.75" fill="currentColor"/>
+</svg>
+ Kimi SEO</p>
+                <p class="muted leading-relaxed">
+                    Free, open-source SEO analysis suite for
+                    <a href="https://www.kimi.com/code" target="_blank" rel="noopener" class="muted-strong hover:text-accent-700 dark:hover:text-accent-300 underline underline-offset-2">Kimi Code CLI</a>.
+                    Released under the MIT license.
+                </p>
+            </div>
+            <div>
+                <p class="font-semibold mb-2 muted-strong">Project</p>
+                <ul class="space-y-1.5 muted">
+                    <li><a href="https://github.com/bentocodeing/kimi-seo" target="_blank" rel="noopener" class="hover:text-accent-700 dark:hover:text-accent-300">GitHub repository</a></li>
+                    <li><a href="https://kimi-seo.com/docs" class="hover:text-accent-700 dark:hover:text-accent-300">Documentation</a></li>
+                    <li><a href="https://kimi-seo.com/advertise" class="hover:text-accent-700 dark:hover:text-accent-300">Advertise</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold mb-2 muted-strong">Credits</p>
+                <ul class="space-y-1.5 muted">
+                    <li>Community fork by <a href="https://github.com/bentocodeing/kimi-seo" target="_blank" rel="noopener" class="hover:text-accent-700 dark:hover:text-accent-300">bentocodeing</a></li>
+                    <li>Upstream <a href="https://github.com/AgriciDaniel/claude-seo" target="_blank" rel="noopener" class="hover:text-accent-700 dark:hover:text-accent-300">claude-seo</a> by AgriciDaniel</li>
+                    <li>Not affiliated with Moonshot AI</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <button type="button" data-back-to-top aria-label="Back to top"
+        class="back-to-top fixed bottom-6 right-6 z-40 inline-flex items-center justify-center w-10 h-10 rounded-full border border-zinc-300 bg-white/90 text-zinc-600 shadow-md hover:text-accent-700 hover:border-accent-600/60 backdrop-blur dark:border-ink-600 dark:bg-ink-800/90 dark:text-ink-300 dark:hover:text-accent-300">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5"/>
+    </svg>
+</button>
+</body>
+</html>

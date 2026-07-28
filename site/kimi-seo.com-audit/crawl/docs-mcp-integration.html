@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MCP Integration — Kimi SEO Docs</title>
+    <meta name="description" content="Kimi SEO is a free, open-source SEO analysis plugin for Kimi Code CLI: 25 skills, 18 subagents, 53 scripts.">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <script>
+        (function () {
+            var theme = 'light';
+            try { theme = localStorage.getItem('theme') || 'light'; } catch (e) {}
+            if (theme === 'dark') { document.documentElement.classList.add('dark'); }
+            window.toggleTheme = function () {
+                var dark = document.documentElement.classList.toggle('dark');
+                try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+            };
+        })();
+    </script>
+    <link rel="preload" as="style" href="https://kimi-seo.com/build/assets/app-3xJMJwLJ.css" /><link rel="modulepreload" as="script" href="https://kimi-seo.com/build/assets/app-CYj1iTne.js" /><link rel="stylesheet" href="https://kimi-seo.com/build/assets/app-3xJMJwLJ.css" /><script type="module" src="https://kimi-seo.com/build/assets/app-CYj1iTne.js"></script></head>
+<body class="min-h-screen font-sans antialiased flex flex-col">
+    <header data-sticky-header class="site-header sticky top-0 z-40 border-b border-zinc-200 bg-[#fafafa]/80 backdrop-blur dark:border-ink-800 dark:bg-ink-950/80">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+            <a href="https://kimi-seo.com" class="flex items-center gap-2 font-mono text-sm sm:text-base font-semibold tracking-tight heading">
+                <svg class="w-6 h-6 text-accent-700 dark:text-accent-400" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kimi SEO logo">
+    <path d="M17 21 L30 32 L17 43" fill="none" stroke="currentColor" stroke-width="5.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="34" y="39.25" width="14" height="5.5" rx="2.75" fill="currentColor"/>
+</svg>
+                <span class="logo-typing">Kimi&nbsp;SEO</span>
+            </a>
+            <div class="flex items-center gap-4 sm:gap-6 text-sm">
+                <a href="https://kimi-seo.com/docs" class="nav-link">Docs</a>
+                <a href="https://kimi-seo.com/advertise" class="nav-link">Advertise</a>
+                <a href="https://github.com/bentocodeing/kimi-seo" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-1.5 nav-link">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" clip-rule="evenodd"/></svg>
+                    <span class="hidden sm:inline">GitHub</span>
+                </a>
+                <button type="button" onclick="toggleTheme()" aria-label="Toggle color theme"
+        class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-zinc-300 text-zinc-600 hover:text-zinc-900 hover:border-accent-600/60 transition-colors dark:border-ink-600 dark:text-ink-300 dark:hover:text-white">
+    
+    <svg class="w-4 h-4 dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"/>
+    </svg>
+    
+    <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/>
+    </svg>
+</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-1 w-full">
+        
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:grid lg:grid-cols-[240px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)_220px] lg:gap-10">
+        
+        <details class="lg:hidden mb-6 card">
+            <summary class="px-4 py-3 text-sm font-semibold cursor-pointer select-none heading">Documentation menu</summary>
+            <nav class="px-4 pb-4">
+                <ul class="space-y-1 text-sm">
+                    <li>
+                        <a href="https://kimi-seo.com/docs" class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">Overview</a>
+                    </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/getting-started"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Getting Started
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/installation"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Installation
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/commands"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Commands
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/architecture"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Architecture
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/mcp-integration"
+                               class="block rounded px-2 py-1.5 text-accent-700 bg-zinc-100 dark:text-accent-300 dark:bg-ink-800">
+                                MCP Integration
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/migration-v1-to-v2"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Migration v1 → v2
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/troubleshooting"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Troubleshooting
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/workflow"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Workflow
+                            </a>
+                        </li>
+                                    </ul>
+            </nav>
+        </details>
+
+        
+        <aside class="hidden lg:block">
+            <div class="sticky top-8">
+                <p class="font-mono text-xs uppercase tracking-widest muted mb-3">Documentation</p>
+                <nav>
+                    <ul class="space-y-1 text-sm border-l border-zinc-200 dark:border-ink-800">
+                        <li>
+                            <a href="https://kimi-seo.com/docs"
+                               class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Overview
+                            </a>
+                        </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/getting-started"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Getting Started
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/installation"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Installation
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/commands"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Commands
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/architecture"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Architecture
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/mcp-integration"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-accent-600 text-accent-700 dark:border-accent-500 dark:text-accent-300">
+                                    MCP Integration
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/migration-v1-to-v2"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Migration v1 → v2
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/troubleshooting"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Troubleshooting
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/workflow"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Workflow
+                                </a>
+                            </li>
+                                            </ul>
+                </nav>
+
+                <div class="mt-8">
+                    <div class="">
+    
+    <a href="https://kimi-seo.com/advertise"
+       class="mt-4 block rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-6 text-center hover:border-accent-600/60 transition-colors group dark:border-ink-600 dark:bg-ink-900/50">
+        <span class="block text-[10px] font-mono uppercase tracking-widest muted mb-2">Advertisement</span>
+        <span class="block text-lg font-semibold heading group-hover:text-accent-700 dark:group-hover:text-accent-300 transition-colors">Your ad here?</span>
+        <span class="block mt-1 text-sm muted">Reach developers who care about SEO.</span>
+        <span class="inline-block mt-3 rounded-lg bg-accent-600 px-4 py-1.5 text-sm font-medium text-white group-hover:bg-accent-500 transition-colors">Advertise with us</span>
+    </a>
+</div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="min-w-0">
+                <article class="prose dark:prose-invert max-w-none
+        prose-headings:tracking-tight prose-headings:scroll-mt-20 prose-a:text-accent-700 dark:prose-a:text-accent-400 prose-a:no-underline hover:prose-a:text-accent-600 dark:hover:prose-a:text-accent-300
+        prose-code:text-accent-700 dark:prose-code:text-accent-300 prose-code:before:content-none prose-code:after:content-none
+        prose-pre:bg-zinc-100 prose-pre:text-zinc-800 prose-pre:border prose-pre:border-zinc-200 dark:prose-pre:bg-ink-900 dark:prose-pre:text-ink-100 dark:prose-pre:border-ink-700
+        prose-img:rounded-xl prose-hr:border-zinc-200 dark:prose-hr:border-ink-800 prose-strong:text-zinc-900 dark:prose-strong:text-ink-100
+        prose-table:text-sm prose-th:text-left">
+        <h1 id="mcp-integration">MCP Integration</h1>
+<h2 id="overview">Overview</h2>
+<p>Kimi SEO can integrate with Model Context Protocol (MCP) servers to access external APIs and enhance analysis capabilities.</p>
+<h2 id="available-integrations">Available Integrations</h2>
+<h3 id="pagespeed-insights-api">PageSpeed Insights API</h3>
+<p>Use Google's PageSpeed Insights API directly for real Core Web Vitals data.</p>
+<p><strong>Configuration:</strong></p>
+<ol>
+<li>Get an API key from <a href="https://console.cloud.google.com/">Google Cloud Console</a></li>
+<li>Enable the PageSpeed Insights API</li>
+<li>Use in your analysis:</li>
+</ol>
+<pre><code class="language-bash">curl -H &quot;X-Goog-Api-Key: $GOOGLE_API_KEY&quot; \
+  &quot;https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=URL&quot;
+</code></pre>
+<h3 id="google-search-console">Google Search Console</h3>
+<p>For organic search data, use the <code>mcp-server-gsc</code> MCP server by <a href="https://github.com/ahonn/mcp-server-gsc">ahonn</a>. Provides search performance data, URL inspection, and sitemap management.</p>
+<p><strong>Configuration:</strong></p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;google-search-console&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;mcp-server-gsc&quot;],
+      &quot;env&quot;: {
+        &quot;GOOGLE_CREDENTIALS_PATH&quot;: &quot;/path/to/credentials.json&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<h3 id="pagespeed-insights-mcp-server">PageSpeed Insights MCP Server</h3>
+<p>Use <code>mcp-server-pagespeed</code> by <a href="https://github.com/enemyrr/mcp-server-pagespeed">enemyrr</a> for Lighthouse audits, CWV metrics, and performance scoring via MCP.</p>
+<p><strong>Configuration:</strong></p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;pagespeed&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;mcp-server-pagespeed&quot;],
+      &quot;env&quot;: {
+        &quot;PAGESPEED_API_KEY&quot;: &quot;your-api-key&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<h3 id="official-seo-mcp-servers-2025-2026">Official SEO MCP Servers (2025-2026)</h3>
+<p>The MCP ecosystem for SEO has matured significantly. These are production-ready integrations:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Package / Endpoint</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ahrefs</strong></td>
+<td><code>@ahrefs/mcp</code></td>
+<td>Official</td>
+<td>Launched July 2025. Supports local and remote modes. Backlinks, keywords, site audit data.</td>
+</tr>
+<tr>
+<td><strong>Semrush</strong></td>
+<td><code>https://mcp.semrush.com/v1/mcp</code></td>
+<td>Official (remote)</td>
+<td>Full API access via remote MCP endpoint. Domain analytics, keyword research, backlink data.</td>
+</tr>
+<tr>
+<td><strong>Google Search Console</strong></td>
+<td><code>mcp-server-gsc</code></td>
+<td>Community</td>
+<td>By ahonn. Search performance, URL inspection, sitemaps.</td>
+</tr>
+<tr>
+<td><strong>PageSpeed Insights</strong></td>
+<td><code>mcp-server-pagespeed</code></td>
+<td>Community</td>
+<td>By enemyrr. Lighthouse audits, CWV metrics, performance scoring.</td>
+</tr>
+<tr>
+<td><strong>DataForSEO</strong></td>
+<td><code>dataforseo-mcp-server</code></td>
+<td>Official extension</td>
+<td>9 modules, 79 tools, 23 commands. Install: <code>./extensions/dataforseo/install.sh</code>. See <a href="../extensions/dataforseo/README.md">extension docs</a>.</td>
+</tr>
+<tr>
+<td><strong>kwrds.ai</strong></td>
+<td>kwrds MCP server</td>
+<td>Community</td>
+<td>Keyword research, search volume, difficulty scoring.</td>
+</tr>
+<tr>
+<td><strong>SEO Review Tools</strong></td>
+<td>SEO Review Tools MCP</td>
+<td>Community</td>
+<td>Site auditing and on-page analysis API.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="api-usage-examples">API Usage Examples</h2>
+<h3 id="pagespeed-insights">PageSpeed Insights</h3>
+<pre><code class="language-python">import requests
+
+def get_pagespeed_data(url: str, api_key: str) -&gt; dict:
+    &quot;&quot;&quot;Fetch PageSpeed Insights data for a URL.&quot;&quot;&quot;
+    endpoint = &quot;https://www.googleapis.com/pagespeedonline/v5/runPagespeed&quot;
+    params = {
+        &quot;url&quot;: url,
+        &quot;strategy&quot;: &quot;mobile&quot;,  # or &quot;desktop&quot;
+        &quot;category&quot;: [&quot;performance&quot;, &quot;accessibility&quot;, &quot;best-practices&quot;, &quot;seo&quot;]
+    }
+    headers = {&quot;X-Goog-Api-Key&quot;: api_key}
+    response = requests.get(endpoint, params=params, headers=headers)
+    return response.json()
+</code></pre>
+<h3 id="core-web-vitals-from-crux">Core Web Vitals from CrUX</h3>
+<pre><code class="language-python">def get_crux_data(url: str, api_key: str) -&gt; dict:
+    &quot;&quot;&quot;Fetch Chrome UX Report data for a URL.&quot;&quot;&quot;
+    endpoint = &quot;https://chromeuxreport.googleapis.com/v1/records:queryRecord&quot;
+    payload = {
+        &quot;url&quot;: url,
+        &quot;formFactor&quot;: &quot;PHONE&quot;  # or &quot;DESKTOP&quot;
+    }
+    headers = {&quot;Content-Type&quot;: &quot;application/json&quot;, &quot;X-Goog-Api-Key&quot;: api_key}
+    response = requests.post(endpoint, json=payload, headers=headers)
+    return response.json()
+</code></pre>
+<h2 id="metrics-available">Metrics Available</h2>
+<h3 id="from-pagespeed-insights">From PageSpeed Insights</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LCP</td>
+<td>Largest Contentful Paint (lab)</td>
+</tr>
+<tr>
+<td>INP</td>
+<td>Interaction to Next Paint (estimated)</td>
+</tr>
+<tr>
+<td>CLS</td>
+<td>Cumulative Layout Shift (lab)</td>
+</tr>
+<tr>
+<td>FCP</td>
+<td>First Contentful Paint</td>
+</tr>
+<tr>
+<td>TBT</td>
+<td>Total Blocking Time</td>
+</tr>
+<tr>
+<td>Speed Index</td>
+<td>Visual progress speed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="from-crux-field-data">From CrUX (Field Data)</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LCP</td>
+<td>75th percentile, real users</td>
+</tr>
+<tr>
+<td>INP</td>
+<td>75th percentile, real users</td>
+</tr>
+<tr>
+<td>CLS</td>
+<td>75th percentile, real users</td>
+</tr>
+<tr>
+<td>TTFB</td>
+<td>Time to First Byte</td>
+</tr>
+</tbody>
+</table>
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li><strong>Rate Limiting</strong>: Respect API quotas (typically 25k requests/day for PageSpeed)</li>
+<li><strong>Caching</strong>: Cache results to avoid redundant API calls</li>
+<li><strong>Field vs Lab</strong>: Prioritize field data (CrUX) for ranking signals</li>
+<li><strong>Error Handling</strong>: Handle API errors gracefully</li>
+</ol>
+<h2 id="without-api-keys">Without API Keys</h2>
+<p>If you don't have API keys, Kimi SEO can still:</p>
+<ol>
+<li>Analyze HTML source for potential issues</li>
+<li>Identify common performance problems</li>
+<li>Check for render-blocking resources</li>
+<li>Evaluate image optimization opportunities</li>
+<li>Detect JavaScript-heavy implementations</li>
+</ol>
+<p>The analysis will note that actual Core Web Vitals measurements require field data from real users.</p>
+
+    </article>
+
+    
+    <nav class="mt-12 pt-6 border-t border-zinc-200 dark:border-ink-800 flex items-center justify-between gap-4 text-sm">
+                    <a href="https://kimi-seo.com/docs/architecture" class="muted-strong hover:text-accent-700 dark:hover:text-accent-300 transition-colors">
+                &larr; Architecture
+            </a>
+                            <a href="https://kimi-seo.com/docs/migration-v1-to-v2" class="muted-strong hover:text-accent-700 dark:hover:text-accent-300 transition-colors">
+                Migration v1 → v2 &rarr;
+            </a>
+            </nav>
+
+            
+            <div class="lg:hidden mt-10 max-w-sm">
+                <div class="">
+    
+    <a href="https://kimi-seo.com/advertise"
+       class="mt-4 block rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-6 text-center hover:border-accent-600/60 transition-colors group dark:border-ink-600 dark:bg-ink-900/50">
+        <span class="block text-[10px] font-mono uppercase tracking-widest muted mb-2">Advertisement</span>
+        <span class="block text-lg font-semibold heading group-hover:text-accent-700 dark:group-hover:text-accent-300 transition-colors">Your ad here?</span>
+        <span class="block mt-1 text-sm muted">Reach developers who care about SEO.</span>
+        <span class="inline-block mt-3 rounded-lg bg-accent-600 px-4 py-1.5 text-sm font-medium text-white group-hover:bg-accent-500 transition-colors">Advertise with us</span>
+    </a>
+</div>
+            </div>
+        </div>
+
+        
+                    <aside class="hidden xl:block xl:pl-6">
+                <nav class="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto overscroll-contain pr-2" aria-label="On this page">
+                    <p class="font-mono text-xs uppercase tracking-widest muted mb-3">On this page</p>
+                    <ul class="space-y-1.5 text-sm border-l border-zinc-200 dark:border-ink-800">
+                                                    <li>
+                                <a href="#overview"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Overview
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#available-integrations"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Available Integrations
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#pagespeed-insights-api"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    PageSpeed Insights API
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#google-search-console"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Google Search Console
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#pagespeed-insights-mcp-server"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    PageSpeed Insights MCP Server
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#official-seo-mcp-servers-2025-2026"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Official SEO MCP Servers (2025-2026)
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#api-usage-examples"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    API Usage Examples
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#pagespeed-insights"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    PageSpeed Insights
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#core-web-vitals-from-crux"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    Core Web Vitals from CrUX
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#metrics-available"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Metrics Available
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#from-pagespeed-insights"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    From PageSpeed Insights
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#from-crux-field-data"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    From CrUX (Field Data)
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#best-practices"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Best Practices
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#without-api-keys"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Without API Keys
+                                </a>
+                            </li>
+                                            </ul>
+                </nav>
+            </aside>
+            </div>
+    </main>
+
+    <footer class="border-t border-zinc-200 dark:border-ink-800 mt-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 grid gap-8 sm:grid-cols-3 text-sm">
+            <div>
+                <p class="font-mono font-semibold mb-2 heading flex items-center gap-2"><svg class="w-6 h-6 text-accent-700 dark:text-accent-400 w-5 h-5 rounded" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kimi SEO logo">
+    <path d="M17 21 L30 32 L17 43" fill="none" stroke="currentColor" stroke-width="5.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="34" y="39.25" width="14" height="5.5" rx="2.75" fill="currentColor"/>
+</svg>
+ Kimi SEO</p>
+                <p class="muted leading-relaxed">
+                    Free, open-source SEO analysis suite for
+                    <a href="https://www.kimi.com/code" target="_blank" rel="noopener" class="muted-strong hover:text-accent-700 dark:hover:text-accent-300 underline underline-offset-2">Kimi Code CLI</a>.
+                    Released under the MIT license.
+                </p>
+            </div>
+            <div>
+                <p class="font-semibold mb-2 muted-strong">Project</p>
+                <ul class="space-y-1.5 muted">
+                    <li><a href="https://github.com/bentocodeing/kimi-seo" target="_blank" rel="noopener" class="hover:text-accent-700 dark:hover:text-accent-300">GitHub repository</a></li>
+                    <li><a href="https://kimi-seo.com/docs" class="hover:text-accent-700 dark:hover:text-accent-300">Documentation</a></li>
+                    <li><a href="https://kimi-seo.com/advertise" class="hover:text-accent-700 dark:hover:text-accent-300">Advertise</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold mb-2 muted-strong">Credits</p>
+                <ul class="space-y-1.5 muted">
+                    <li>Community fork by <a href="https://github.com/bentocodeing/kimi-seo" target="_blank" rel="noopener" class="hover:text-accent-700 dark:hover:text-accent-300">bentocodeing</a></li>
+                    <li>Upstream <a href="https://github.com/AgriciDaniel/claude-seo" target="_blank" rel="noopener" class="hover:text-accent-700 dark:hover:text-accent-300">claude-seo</a> by AgriciDaniel</li>
+                    <li>Not affiliated with Moonshot AI</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <button type="button" data-back-to-top aria-label="Back to top"
+        class="back-to-top fixed bottom-6 right-6 z-40 inline-flex items-center justify-center w-10 h-10 rounded-full border border-zinc-300 bg-white/90 text-zinc-600 shadow-md hover:text-accent-700 hover:border-accent-600/60 backdrop-blur dark:border-ink-600 dark:bg-ink-800/90 dark:text-ink-300 dark:hover:text-accent-300">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5"/>
+    </svg>
+</button>
+</body>
+</html>

@@ -1,0 +1,98 @@
+{
+  "ok": true,
+  "exit_code": 0,
+  "target": "https://kimi-seo.com",
+  "output_dir": "/var/folders/8_/xk2dnl41759708rs4v7f83th0000gn/T/kimi-seo-unlighthouse-efn4l6bm",
+  "summary": [
+    {
+      "path": "/",
+      "score": 0.97,
+      "performance": 0.97,
+      "accessibility": 0.92,
+      "best-practices": 1,
+      "seo": 1
+    },
+    {
+      "path": "/advertise",
+      "score": 0.98,
+      "performance": 1,
+      "accessibility": 0.92,
+      "best-practices": 1,
+      "seo": 1
+    },
+    {
+      "path": "/docs",
+      "score": 0.99,
+      "performance": 1,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1
+    },
+    {
+      "path": "/docs/architecture",
+      "score": 0.98,
+      "performance": 0.95,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1
+    },
+    {
+      "path": "/docs/commands",
+      "score": 0.98,
+      "performance": 0.95,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1
+    },
+    {
+      "path": "/docs/getting-started",
+      "score": 0.9,
+      "performance": 0.66,
+      "accessibility": 0.95,
+      "best-practices": 1,
+      "seo": 1
+    },
+    {
+      "path": "/docs/installation",
+      "score": 0.99,
+      "performance": 1,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1
+    },
+    {
+      "path": "/docs/mcp-integration",
+      "score": 0.99,
+      "performance": 1,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1
+    },
+    {
+      "path": "/docs/migration-v1-to-v2",
+      "score": 0.99,
+      "performance": 1,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1
+    },
+    {
+      "path": "/docs/troubleshooting",
+      "score": 0.99,
+      "performance": 1,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1
+    },
+    {
+      "path": "/docs/workflow",
+      "score": 0.99,
+      "performance": 1,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1
+    }
+  ],
+  "stdout_tail": "o-v2. (Time Taken: 0.2s 38.75 KB 45% complete)\n[Unlighthouse] \u2714 Completed inspectHtmlTask for /docs/troubleshooting. (Time Taken: 0.1s 31.51 KB 48% complete)\n[Unlighthouse] \u2714 Completed inspectHtmlTask for /docs/workflow. (Time Taken: 0.2s 27.04 KB 50% complete)\n[Unlighthouse] \u2139 Skipping /cdn-cgi/l/email-protection. Invalid response from URL https://kimi-seo.com/cdn-cgi/l/email-protection code: 404.\n[Unlighthouse] \u2714 Completed runLighthouseTask for /docs. (Time Taken: 17.0s Score: 0.99 Samples: 1 57% complete)\n[Unlighthouse] \u2714 Completed runLighthouseTask for /. (Time Taken: 19.2s Score: 0.97 Samples: 1 61% complete)\n[Unlighthouse] \u2714 Completed runLighthouseTask for /docs/architecture. (Time Taken: 16.4s Score: 0.98 Samples: 1 65% complete)\n[Unlighthouse] \u2714 Completed runLighthouseTask for /advertise. (Time Taken: 18.6s Score: 0.98 Samples: 1 70% complete)\n[Unlighthouse] \u2714 Completed runLighthouseTask for /docs/commands. (Time Taken: 17.0s Score: 0.98 Samples: 1 74% complete)\n[Unlighthouse] \u2714 Completed runLighthouseTask for /docs/mcp-integration. (Time Taken: 16.6s Score: 0.99 Samples: 1 78% complete)\n[Unlighthouse] \u2714 Completed runLighthouseTask for /docs/getting-started. (Time Taken: 20.8s Score: 0.9 Samples: 1 83% complete)\n[Unlighthouse] \u2714 Completed runLighthouseTask for /docs/workflow. (Time Taken: 11.2s Score: 0.99 Samples: 1 87% complete)\n[Unlighthouse] \u2714 Completed runLighthouseTask for /docs/migration-v1-to-v2. (Time Taken: 11.4s Score: 0.99 Samples: 1 91% complete)\n[Unlighthouse] \u2714 Completed runLighthouseTask for /docs/installation. (Time Taken: 11.5s Score: 0.99 Samples: 1 96% complete)\n[Unlighthouse] \u2714 Completed runLighthouseTask for /docs/troubleshooting. (Time Taken: 11.3s Score: 0.99 Samples: 1 100% complete)\n[Unlighthouse] \u2714 Unlighthouse has finished scanning https://kimi-seo.com: 11 routes in 35s.\n[Unlighthouse] \u2714 Generated jsonSimple report ./../../../../../../../var/folders/8_/xk2dnl41759708rs4v7f83th0000gn/T/kimi-seo-unlighthouse-efn4l6bm/ci-result.json\n",
+  "stderr_tail": "ton\" id=\"cf-footer-ip-reveal\" class=\"cf-footer-ip-reveal-btn\">Click to reveal</button>\n        <span class=\"hidden\" id=\"cf-footer-ip\">2001:861:51cc:1f10:e49a:aefd:234a:6d78</span>\n        <span class=\"cf-footer-separator sm:hidden\">&bull;</span>\n      </span>\n      <span class=\"cf-footer-item sm:block sm:mb-1\"><span>Performance &amp; security by</span> <a rel=\"noopener noreferrer\" href=\"https://www.cloudflare.com/5xx-error-landing\" id=\"brand_link\" target=\"_blank\">Cloudflare</a></span>\n      \n    </p>\n    <script>(function(){function d(){var b=a.getElementById(\"cf-footer-item-ip\"),c=a.getElementById(\"cf-footer-ip-reveal\");b&&\"classList\"in b&&(b.classList.remove(\"hidden\"),c.addEventListener(\"click\",function(){c.classList.add(\"hidden\");a.getElementById(\"cf-footer-ip\").classList.remove(\"hidden\")}))}var a=document;document.addEventListener&&a.addEventListener(\"DOMContentLoaded\",d)})();</script>\n  </div><!-- /.error-footer -->\n\n    </div><!-- /#cf-error-details -->\n  </div><!-- /#cf-wrapper -->\n\n   <script>\n    window._cf_translation = {};\n    \n    \n  </script> \n</body>\n</html>\n\n\n\n[Unlighthouse]  ERROR  Axios error response status: 404\n\n\n[Unlighthouse]  ERROR  Axios error response headers: Object [AxiosHeaders] {\n  date: 'Tue, 28 Jul 2026 19:43:29 GMT',\n  'content-type': 'text/html',\n  'transfer-encoding': 'chunked',\n  connection: 'keep-alive',\n  'x-frame-options': 'DENY, SAMEORIGIN',\n  'cache-control':\n   'private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0',\n  expires: 'Thu, 01 Jan 1970 00:00:01 GMT',\n  'referrer-policy': 'same-origin',\n  nel: '{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}',\n  'report-to':\n   '{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=atHZ3Wr%2BSY6znmefmS0b1Vpx3eex8hvrVtMv3MIGRl6SmPh6vxdUP9iWYY%2BBS4iOLKb4Nii7ISWV1Iv8J2HzPCFMQC8XAXBsGtoSgAxFONXPtwNZDUlgnY%2FukX5i0tNTdD8S5Lu58tHTPaI%3D\"}]}',\n  server: 'cloudflare',\n  'cf-ray': 'a2265f81e95d2d04-MRS' }\n\n"
+}

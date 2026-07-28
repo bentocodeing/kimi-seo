@@ -1,0 +1,152 @@
+{
+  "title": "Kimi SEO \u2014 SEO analysis suite for Kimi Code CLI",
+  "meta_description": "Kimi SEO is a free, open-source SEO analysis plugin for Kimi Code CLI: 25 skills, 18 subagents, 53 scripts.",
+  "meta_robots": null,
+  "canonical": null,
+  "h1": [
+    "Kimi SEO"
+  ],
+  "h2": [
+    "Everything an SEO audit needs",
+    "How Kimi SEO works",
+    "See it in action",
+    "A community fork of claude-seo",
+    "Support the project"
+  ],
+  "h3": [
+    "Support upstream",
+    "Support Kimi SEO"
+  ],
+  "images": [
+    {
+      "src": "https://kimi-seo.com/media/assets/demo-command.svg",
+      "alt": "Animated terminal demo: running a /kimi-seo:seo audit in Kimi Code CLI with Kimi SEO loaded",
+      "width": null,
+      "height": null,
+      "loading": "lazy",
+      "lazy_method": "native"
+    },
+    {
+      "src": "https://kimi-seo.com/media/assets/demo-audit.svg",
+      "alt": "Animated terminal demo: reading the FULL-AUDIT-REPORT.md report produced by the audit",
+      "width": null,
+      "height": null,
+      "loading": "lazy",
+      "lazy_method": "native"
+    }
+  ],
+  "links": {
+    "internal": [
+      {
+        "href": "https://kimi-seo.com",
+        "text": "Kimi\u00a0SEO",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs",
+        "text": "Docs",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/advertise",
+        "text": "Advertise",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs",
+        "text": "Read the docs",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/commands",
+        "text": "much more",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/advertise",
+        "text": "AdvertisementYour ad here?Reach developers who care about SEO.Advertise with us",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs",
+        "text": "Documentation",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/advertise",
+        "text": "Advertise",
+        "rel": []
+      }
+    ],
+    "external": [
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "GitHub",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "View on GitHub",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/AgriciDaniel/claude-seo",
+        "text": "claude-seo",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/AgriciDaniel/claude-seo",
+        "text": "claude-seo on GitHub",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://www.skool.com/ai-marketing-hub-pro",
+        "text": "AI Marketing Hub community",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://www.kimi.com/code",
+        "text": "Kimi Code CLI",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "GitHub repository",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "bentocodeing",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/AgriciDaniel/claude-seo",
+        "text": "claude-seo",
+        "rel": [
+          "noopener"
+        ]
+      }
+    ]
+  },
+  "schema": [],
+  "open_graph": {},
+  "twitter_card": {},
+  "word_count": 433,
+  "hreflang": []
+}

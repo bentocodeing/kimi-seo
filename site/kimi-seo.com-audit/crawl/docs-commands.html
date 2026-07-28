@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Commands — Kimi SEO Docs</title>
+    <meta name="description" content="Kimi SEO is a free, open-source SEO analysis plugin for Kimi Code CLI: 25 skills, 18 subagents, 53 scripts.">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <script>
+        (function () {
+            var theme = 'light';
+            try { theme = localStorage.getItem('theme') || 'light'; } catch (e) {}
+            if (theme === 'dark') { document.documentElement.classList.add('dark'); }
+            window.toggleTheme = function () {
+                var dark = document.documentElement.classList.toggle('dark');
+                try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+            };
+        })();
+    </script>
+    <link rel="preload" as="style" href="https://kimi-seo.com/build/assets/app-3xJMJwLJ.css" /><link rel="modulepreload" as="script" href="https://kimi-seo.com/build/assets/app-CYj1iTne.js" /><link rel="stylesheet" href="https://kimi-seo.com/build/assets/app-3xJMJwLJ.css" /><script type="module" src="https://kimi-seo.com/build/assets/app-CYj1iTne.js"></script></head>
+<body class="min-h-screen font-sans antialiased flex flex-col">
+    <header data-sticky-header class="site-header sticky top-0 z-40 border-b border-zinc-200 bg-[#fafafa]/80 backdrop-blur dark:border-ink-800 dark:bg-ink-950/80">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+            <a href="https://kimi-seo.com" class="flex items-center gap-2 font-mono text-sm sm:text-base font-semibold tracking-tight heading">
+                <svg class="w-6 h-6 text-accent-700 dark:text-accent-400" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kimi SEO logo">
+    <path d="M17 21 L30 32 L17 43" fill="none" stroke="currentColor" stroke-width="5.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="34" y="39.25" width="14" height="5.5" rx="2.75" fill="currentColor"/>
+</svg>
+                <span class="logo-typing">Kimi&nbsp;SEO</span>
+            </a>
+            <div class="flex items-center gap-4 sm:gap-6 text-sm">
+                <a href="https://kimi-seo.com/docs" class="nav-link">Docs</a>
+                <a href="https://kimi-seo.com/advertise" class="nav-link">Advertise</a>
+                <a href="https://github.com/bentocodeing/kimi-seo" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-1.5 nav-link">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" clip-rule="evenodd"/></svg>
+                    <span class="hidden sm:inline">GitHub</span>
+                </a>
+                <button type="button" onclick="toggleTheme()" aria-label="Toggle color theme"
+        class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-zinc-300 text-zinc-600 hover:text-zinc-900 hover:border-accent-600/60 transition-colors dark:border-ink-600 dark:text-ink-300 dark:hover:text-white">
+    
+    <svg class="w-4 h-4 dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"/>
+    </svg>
+    
+    <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/>
+    </svg>
+</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-1 w-full">
+        
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:grid lg:grid-cols-[240px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)_220px] lg:gap-10">
+        
+        <details class="lg:hidden mb-6 card">
+            <summary class="px-4 py-3 text-sm font-semibold cursor-pointer select-none heading">Documentation menu</summary>
+            <nav class="px-4 pb-4">
+                <ul class="space-y-1 text-sm">
+                    <li>
+                        <a href="https://kimi-seo.com/docs" class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">Overview</a>
+                    </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/getting-started"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Getting Started
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/installation"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Installation
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/commands"
+                               class="block rounded px-2 py-1.5 text-accent-700 bg-zinc-100 dark:text-accent-300 dark:bg-ink-800">
+                                Commands
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/architecture"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Architecture
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/mcp-integration"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                MCP Integration
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/migration-v1-to-v2"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Migration v1 → v2
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/troubleshooting"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Troubleshooting
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="https://kimi-seo.com/docs/workflow"
+                               class="block rounded px-2 py-1.5 muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Workflow
+                            </a>
+                        </li>
+                                    </ul>
+            </nav>
+        </details>
+
+        
+        <aside class="hidden lg:block">
+            <div class="sticky top-8">
+                <p class="font-mono text-xs uppercase tracking-widest muted mb-3">Documentation</p>
+                <nav>
+                    <ul class="space-y-1 text-sm border-l border-zinc-200 dark:border-ink-800">
+                        <li>
+                            <a href="https://kimi-seo.com/docs"
+                               class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                Overview
+                            </a>
+                        </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/getting-started"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Getting Started
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/installation"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Installation
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/commands"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-accent-600 text-accent-700 dark:border-accent-500 dark:text-accent-300">
+                                    Commands
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/architecture"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Architecture
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/mcp-integration"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    MCP Integration
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/migration-v1-to-v2"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Migration v1 → v2
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/troubleshooting"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Troubleshooting
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://kimi-seo.com/docs/workflow"
+                                   class="block -ml-px border-l-2 pl-3 py-1.5 border-transparent muted-strong hover:text-zinc-900 dark:hover:text-white">
+                                    Workflow
+                                </a>
+                            </li>
+                                            </ul>
+                </nav>
+
+                <div class="mt-8">
+                    <div class="">
+    
+    <a href="https://kimi-seo.com/advertise"
+       class="mt-4 block rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-6 text-center hover:border-accent-600/60 transition-colors group dark:border-ink-600 dark:bg-ink-900/50">
+        <span class="block text-[10px] font-mono uppercase tracking-widest muted mb-2">Advertisement</span>
+        <span class="block text-lg font-semibold heading group-hover:text-accent-700 dark:group-hover:text-accent-300 transition-colors">Your ad here?</span>
+        <span class="block mt-1 text-sm muted">Reach developers who care about SEO.</span>
+        <span class="inline-block mt-3 rounded-lg bg-accent-600 px-4 py-1.5 text-sm font-medium text-white group-hover:bg-accent-500 transition-colors">Advertise with us</span>
+    </a>
+</div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="min-w-0">
+                <article class="prose dark:prose-invert max-w-none
+        prose-headings:tracking-tight prose-headings:scroll-mt-20 prose-a:text-accent-700 dark:prose-a:text-accent-400 prose-a:no-underline hover:prose-a:text-accent-600 dark:hover:prose-a:text-accent-300
+        prose-code:text-accent-700 dark:prose-code:text-accent-300 prose-code:before:content-none prose-code:after:content-none
+        prose-pre:bg-zinc-100 prose-pre:text-zinc-800 prose-pre:border prose-pre:border-zinc-200 dark:prose-pre:bg-ink-900 dark:prose-pre:text-ink-100 dark:prose-pre:border-ink-700
+        prose-img:rounded-xl prose-hr:border-zinc-200 dark:prose-hr:border-ink-800 prose-strong:text-zinc-900 dark:prose-strong:text-ink-100
+        prose-table:text-sm prose-th:text-left">
+        <h1 id="commands-reference">Commands Reference</h1>
+<h2 id="overview">Overview</h2>
+<p>All Kimi SEO commands start with <code>/kimi-seo:seo</code> followed by a subcommand.</p>
+<p><strong>Invocation in Kimi Code:</strong> <code>/kimi-seo:seo ...</code> is documentation shorthand. In the CLI,
+use the plugin slash command <code>/kimi-seo:seo &lt;subcommand&gt; [args]</code> or
+<code>/skill:seo &lt;subcommand&gt; [args]</code>. Analysis commands write their artifacts
+(<code>{domain}-audit/</code> reports, action plan, screenshots) into your current
+working directory — never into the plugin installation.</p>
+<h2 id="command-list">Command List</h2>
+<h3 id="kimi-seoseo-setup"><code>/kimi-seo:seo setup</code></h3>
+<p>Explicitly create or refresh the isolated Python runtime and Playwright Chromium.
+This is required once after a marketplace plugin install. Manual installers run
+the same setup automatically. It never installs packages globally.</p>
+<h3 id="kimi-seoseo-doctor"><code>/kimi-seo:seo doctor</code></h3>
+<p>Check runtime, dependency, and Chromium readiness without changing the system.
+Diagnostic output omits absolute paths and environment values.</p>
+<h3 id="kimi-seoseo-audit-url"><code>/kimi-seo:seo audit &lt;url&gt;</code></h3>
+<p>Full website SEO audit with parallel analysis.</p>
+<p><strong>Example:</strong></p>
+<pre><code>/kimi-seo:seo audit https://example.com
+</code></pre>
+<p><strong>What it does:</strong></p>
+<ol>
+<li>Crawls up to 500 pages</li>
+<li>Detects business type</li>
+<li>Delegates to up to 15 specialist subagents in parallel (8 always-on + 7 conditional)</li>
+<li>Generates SEO Health Score (0-100)</li>
+<li>Creates prioritized action plan</li>
+</ol>
+<p><strong>Output:</strong></p>
+<ul>
+<li><code>FULL-AUDIT-REPORT.md</code></li>
+<li><code>ACTION-PLAN.md</code></li>
+<li><code>screenshots/</code> (if Playwright available)</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-page-url"><code>/kimi-seo:seo page &lt;url&gt;</code></h3>
+<p>Deep single-page analysis.</p>
+<p><strong>Example:</strong></p>
+<pre><code>/kimi-seo:seo page https://example.com/about
+</code></pre>
+<p><strong>What it analyzes:</strong></p>
+<ul>
+<li>On-page SEO (title, meta, headings, URLs)</li>
+<li>Content quality (word count, readability, E-E-A-T)</li>
+<li>Technical elements (canonical, robots, Open Graph)</li>
+<li>Schema markup</li>
+<li>Images (alt text, sizes, formats)</li>
+<li>Core Web Vitals potential issues</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-technical-url"><code>/kimi-seo:seo technical &lt;url&gt;</code></h3>
+<p>Technical SEO audit across 9 categories.</p>
+<p><strong>Example:</strong></p>
+<pre><code>/kimi-seo:seo technical https://example.com
+</code></pre>
+<p><strong>Categories:</strong></p>
+<ol>
+<li>Crawlability</li>
+<li>Indexability</li>
+<li>Security</li>
+<li>URL Structure</li>
+<li>Mobile Optimization</li>
+<li>Core Web Vitals (LCP, INP, CLS)</li>
+<li>Structured Data</li>
+<li>JavaScript Rendering</li>
+<li>IndexNow Protocol</li>
+</ol>
+<hr />
+<h3 id="kimi-seoseo-content-url"><code>/kimi-seo:seo content &lt;url&gt;</code></h3>
+<p>E-E-A-T and content quality analysis.</p>
+<p><strong>Example:</strong></p>
+<pre><code>/kimi-seo:seo content https://example.com/blog/post
+</code></pre>
+<p><strong>What it evaluates:</strong></p>
+<ul>
+<li>Experience signals (first-hand knowledge)</li>
+<li>Expertise (author credentials)</li>
+<li>Authoritativeness (external recognition)</li>
+<li>Trustworthiness (transparency, security)</li>
+<li>AI citation readiness</li>
+<li>Content freshness</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-content-brief-topic-or-url"><code>/kimi-seo:seo content-brief &lt;topic or url&gt;</code></h3>
+<p>Generate a detailed SEO content brief: target keywords, search intent, heading outline, internal link targets, and competitor angle.</p>
+<p><strong>Example:</strong></p>
+<pre><code>/kimi-seo:seo content-brief &quot;best running shoes for flat feet&quot;
+</code></pre>
+<p><strong>What it produces:</strong></p>
+<ul>
+<li>Primary and secondary target keywords</li>
+<li>Search intent and audience</li>
+<li>Section-by-section heading outline</li>
+<li>Internal link recommendations</li>
+<li>Competitor content angles to beat</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-schema-url"><code>/kimi-seo:seo schema &lt;url&gt;</code></h3>
+<p>Schema markup detection, validation, and generation.</p>
+<p><strong>Example:</strong></p>
+<pre><code>/kimi-seo:seo schema https://example.com
+</code></pre>
+<p><strong>What it does:</strong></p>
+<ul>
+<li>Detects existing schema (JSON-LD, Microdata, RDFa)</li>
+<li>Validates against Google's requirements</li>
+<li>Identifies missing opportunities</li>
+<li>Generates ready-to-use JSON-LD</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-geo-url"><code>/kimi-seo:seo geo &lt;url&gt;</code></h3>
+<p>AI Overviews / Generative Engine Optimization.</p>
+<p><strong>Example:</strong></p>
+<pre><code>/kimi-seo:seo geo https://example.com/blog/guide
+</code></pre>
+<p><strong>What it analyzes:</strong></p>
+<ul>
+<li>Citability score (quotable facts, statistics)</li>
+<li>Structural readability (headings, lists, tables)</li>
+<li>Entity clarity (definitions, context)</li>
+<li>Authority signals (credentials, sources)</li>
+<li>Structured data support</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-images-url"><code>/kimi-seo:seo images &lt;url&gt;</code></h3>
+<p>Image optimization analysis. Subcommands: <code>serp &lt;keyword&gt;</code> (image SERP / visual-search analysis), <code>optimize &lt;path&gt;</code> (local file optimization + IPTC AI labeling).</p>
+<p><strong>Examples:</strong></p>
+<pre><code>/kimi-seo:seo images https://example.com
+/kimi-seo:seo images serp &quot;running shoes&quot;
+/kimi-seo:seo images optimize ./hero.webp
+</code></pre>
+<p><strong>What it checks:</strong></p>
+<ul>
+<li>Alt text presence and quality</li>
+<li>File sizes (flag &gt;200KB)</li>
+<li>Formats (WebP/AVIF recommendations)</li>
+<li>Responsive images (srcset, sizes)</li>
+<li>Lazy loading</li>
+<li>CLS prevention (dimensions)</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-sitemap-url"><code>/kimi-seo:seo sitemap &lt;url&gt;</code></h3>
+<p>Analyze existing XML sitemap.</p>
+<p><strong>Example:</strong></p>
+<pre><code>/kimi-seo:seo sitemap https://example.com/sitemap.xml
+</code></pre>
+<p><strong>What it validates:</strong></p>
+<ul>
+<li>XML format</li>
+<li>URL count (&lt;50k per file)</li>
+<li>URL status codes</li>
+<li>lastmod accuracy</li>
+<li>Deprecated tags (priority, changefreq)</li>
+<li>Coverage vs crawled pages</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-sitemap-generate"><code>/kimi-seo:seo sitemap generate</code></h3>
+<p>Generate new sitemap with industry templates.</p>
+<p><strong>Example:</strong></p>
+<pre><code>/kimi-seo:seo sitemap generate
+</code></pre>
+<p><strong>Process:</strong></p>
+<ol>
+<li>Select or auto-detect business type</li>
+<li>Interactive structure planning</li>
+<li>Apply quality gates (30/50 location page limits)</li>
+<li>Generate valid XML</li>
+<li>Create documentation</li>
+</ol>
+<hr />
+<h3 id="kimi-seoseo-plan-type"><code>/kimi-seo:seo plan &lt;type&gt;</code></h3>
+<p>Strategic SEO planning.</p>
+<p><strong>Types:</strong> <code>saas</code>, <code>local</code>, <code>ecommerce</code>, <code>publisher</code>, <code>agency</code></p>
+<p><strong>Example:</strong></p>
+<pre><code>/kimi-seo:seo plan saas
+</code></pre>
+<p><strong>What it creates:</strong></p>
+<ul>
+<li>Complete SEO strategy</li>
+<li>Competitive analysis</li>
+<li>Content calendar</li>
+<li>Implementation roadmap (4 phases)</li>
+<li>Site architecture design</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-competitor-pages-urlgenerate"><code>/kimi-seo:seo competitor-pages [url|generate]</code></h3>
+<p>Competitor comparison page generation.</p>
+<p><strong>Examples:</strong></p>
+<pre><code>/kimi-seo:seo competitor-pages https://example.com/vs/competitor
+/kimi-seo:seo competitor-pages generate
+</code></pre>
+<p><strong>Capabilities:</strong></p>
+<ul>
+<li>Generate &quot;X vs Y&quot; comparison page layouts</li>
+<li>Create &quot;Alternatives to X&quot; page structures</li>
+<li>Build feature comparison matrices with scoring</li>
+<li>Generate Product + AggregateRating schema markup</li>
+<li>Apply conversion-optimized CTA placement</li>
+<li>Enforce fairness guidelines (accurate data, source citations)</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-hreflang-url"><code>/kimi-seo:seo hreflang [url]</code></h3>
+<p>Hreflang and international SEO audit and generation. Subcommand: <code>audit &lt;directory-or-url&gt;</code> (audit hreflang across a local build directory or a live URL set).</p>
+<p><strong>Examples:</strong></p>
+<pre><code>/kimi-seo:seo hreflang https://example.com
+/kimi-seo:seo hreflang audit ./dist
+</code></pre>
+<p><strong>Capabilities:</strong></p>
+<ul>
+<li>Validate self-referencing hreflang tags</li>
+<li>Check return tag reciprocity (A→B requires B→A)</li>
+<li>Verify x-default tag presence</li>
+<li>Validate ISO 639-1 language and ISO 3166-1 region codes</li>
+<li>Check canonical URL alignment with hreflang</li>
+<li>Detect protocol mismatches (HTTP vs HTTPS)</li>
+<li>Generate correct hreflang link tags and sitemap XML</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-programmatic-urlplan"><code>/kimi-seo:seo programmatic [url|plan]</code></h3>
+<p>Programmatic SEO analysis and planning for pages generated at scale.</p>
+<p><strong>Examples:</strong></p>
+<pre><code>/kimi-seo:seo programmatic https://example.com/tools/
+/kimi-seo:seo programmatic plan
+</code></pre>
+<p><strong>Capabilities:</strong></p>
+<ul>
+<li>Assess data source quality (CSV, JSON, API, database)</li>
+<li>Plan template engines with unique content per page</li>
+<li>Design URL pattern strategies (<code>/tools/[tool-name]</code>, <code>/[city]/[service]</code>)</li>
+<li>Automate internal linking (hub/spoke, related items, breadcrumbs)</li>
+<li>Enforce thin content safeguards (quality gates, word count thresholds)</li>
+<li>Prevent index bloat (noindex low-value, pagination, faceted nav)</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-local-url"><code>/kimi-seo:seo local &lt;url&gt;</code></h3>
+<p>Local SEO analysis covering Google Business Profile, citations, reviews, and the map pack.</p>
+<p><strong>Example:</strong></p>
+<pre><code>/kimi-seo:seo local https://example.com
+</code></pre>
+<p><strong>What it analyzes:</strong></p>
+<ul>
+<li>Google Business Profile signals (categories, hours, photos, posts)</li>
+<li>NAP (Name, Address, Phone) consistency across the page and external citations</li>
+<li>Review velocity, response rate, and sentiment</li>
+<li>Local schema markup (LocalBusiness, Restaurant, Service-specific types)</li>
+<li>Industry-specific local factors (brick-and-mortar, SAB, hybrid)</li>
+<li>Map pack visibility signals</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-maps-command-args"><code>/kimi-seo:seo maps [command] [args]</code></h3>
+<p>Maps intelligence: geo-grid rank tracking, GBP profile audits, review intelligence, cross-platform NAP verification, competitor radius mapping.</p>
+<p><strong>Examples:</strong></p>
+<pre><code>/kimi-seo:seo maps &quot;Joe's Coffee&quot; &quot;austin tx&quot;
+/kimi-seo:seo maps grid &quot;coffee shop&quot; &quot;austin tx&quot;
+/kimi-seo:seo maps gbp &quot;Joe's Coffee&quot; &quot;austin tx&quot;
+/kimi-seo:seo maps reviews &quot;Joe's Coffee&quot; &quot;austin tx&quot;
+/kimi-seo:seo maps competitors &quot;auto repair&quot; &quot;denver&quot;
+/kimi-seo:seo maps nap &quot;Joe's Coffee&quot; &quot;austin tx&quot;
+/kimi-seo:seo maps schema &quot;Joe's Coffee&quot; &quot;austin tx&quot;
+</code></pre>
+<p><strong>Capabilities:</strong></p>
+<ul>
+<li>Rank tracking on a geographic grid (typically 49 points)</li>
+<li>GBP profile audit with completeness scoring</li>
+<li>Review aggregation across Google, Yelp, Facebook, Bing</li>
+<li>Competitor discovery within a configurable radius</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-backlinks-url"><code>/kimi-seo:seo backlinks &lt;url&gt;</code></h3>
+<p>Backlink profile analysis with a 3-tier data cascade: free (Common Crawl + verification), free with signup (Moz, Bing Webmaster Tools), paid (DataForSEO).</p>
+<p><strong>Examples:</strong></p>
+<pre><code>/kimi-seo:seo backlinks https://example.com
+/kimi-seo:seo backlinks gap https://example.com https://competitor.com
+/kimi-seo:seo backlinks toxic https://example.com
+/kimi-seo:seo backlinks new https://example.com
+/kimi-seo:seo backlinks verify https://example.com --links known-links.txt
+/kimi-seo:seo backlinks setup
+</code></pre>
+<p><strong>What it analyzes:</strong></p>
+<ul>
+<li>Domain Authority and Page Authority (Moz)</li>
+<li>Referring domain count and growth</li>
+<li>Anchor text distribution (branded, exact, partial, naked URL)</li>
+<li>Toxic / spammy backlink detection</li>
+<li>Lost backlinks</li>
+<li>Competitor link gap</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-cluster-command-seed-keyword"><code>/kimi-seo:seo cluster [command] &lt;seed-keyword&gt;</code></h3>
+<p>SERP-based semantic topic clustering for content architecture planning. Built on the Pro Hub Challenge Semantic Cluster Engine. Subcommands: <code>plan &lt;seed&gt;</code> (full planning workflow; also <code>plan --from strategy</code> to import a <code>/kimi-seo:seo plan</code> output), <code>execute</code> (create content via a blog-writing skill or output briefs), <code>map</code> (regenerate the interactive visualization). Bare <code>/kimi-seo:seo cluster &lt;seed&gt;</code> is shorthand for <code>plan</code>.</p>
+<p><strong>Examples:</strong></p>
+<pre><code>/kimi-seo:seo cluster plan &quot;kimi code skills&quot;
+/kimi-seo:seo cluster plan --from strategy
+/kimi-seo:seo cluster execute
+/kimi-seo:seo cluster map
+</code></pre>
+<p><strong>What it produces:</strong></p>
+<ul>
+<li>Keyword expansion from the seed (50-200 candidates)</li>
+<li>Pairwise SERP overlap comparison to detect semantic clusters</li>
+<li>Intent classification per cluster (informational, commercial, transactional, navigational)</li>
+<li>Hub-and-spoke content architecture proposal</li>
+<li>Internal link matrix between cluster pages</li>
+<li>Interactive <code>cluster-map.html</code> visualization</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-sxo-url"><code>/kimi-seo:seo sxo &lt;url&gt;</code></h3>
+<p>Search Experience Optimization: SERP backwards analysis, page-type mismatch detection, persona scoring. Subcommands: <code>&lt;url&gt; &lt;keyword&gt;</code> (analyze for a specific keyword), <code>wireframe &lt;url&gt;</code> (IST/SOLL wireframe), <code>personas &lt;url&gt;</code> (persona-only scoring, skips SERP).</p>
+<p><strong>Examples:</strong></p>
+<pre><code>/kimi-seo:seo sxo https://example.com/blog/how-to-x
+/kimi-seo:seo sxo https://example.com/page &quot;target keyword&quot;
+/kimi-seo:seo sxo wireframe https://example.com/page
+/kimi-seo:seo sxo personas https://example.com/page
+</code></pre>
+<p><strong>What it produces:</strong></p>
+<ul>
+<li>Page-type taxonomy classification (article, landing, product, tool, listing)</li>
+<li>SERP intent vs page-type alignment check</li>
+<li>User stories derived from SERP signals</li>
+<li>Multi-persona scoring (researcher, buyer, expert, casual visitor)</li>
+<li>Wireframe-level recommendations for fixing mismatches</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-drift-baselinecomparehistory-url"><code>/kimi-seo:seo drift baseline|compare|history &lt;url&gt;</code></h3>
+<p>SEO drift monitoring. Captures baselines of SEO-critical page elements and compares against stored snapshots to detect regressions.</p>
+<p><strong>Examples:</strong></p>
+<pre><code>/kimi-seo:seo drift baseline https://example.com
+/kimi-seo:seo drift compare https://example.com
+/kimi-seo:seo drift history https://example.com
+</code></pre>
+<p><strong>What it tracks:</strong> title, meta description, canonical, hreflang, Open Graph, schema, headings, internal links, robots, sitemap entry, indexability, Core Web Vitals, response status, redirect chain.</p>
+<p><strong>17 comparison rules</strong> classify changes by severity (CRITICAL, HIGH, MEDIUM). SQLite-backed baselines.</p>
+<hr />
+<h3 id="kimi-seoseo-ecommerce-url"><code>/kimi-seo:seo ecommerce &lt;url&gt;</code></h3>
+<p>E-commerce SEO covering product schema, marketplace intelligence, and pricing gap analysis. Subcommands: <code>products &lt;keyword&gt;</code> (Google Shopping competitive analysis), <code>gaps &lt;domain&gt;</code> (organic-vs-Shopping visibility gap), <code>schema &lt;url&gt;</code> (product schema validation + enhancement).</p>
+<p><strong>Examples:</strong></p>
+<pre><code>/kimi-seo:seo ecommerce https://shop.example.com/product/x
+/kimi-seo:seo ecommerce products &quot;running shoes&quot;
+/kimi-seo:seo ecommerce gaps shop.example.com
+/kimi-seo:seo ecommerce schema https://shop.example.com/product/x
+</code></pre>
+<p><strong>What it analyzes:</strong></p>
+<ul>
+<li>Product schema (Product, Offer, AggregateRating, Review)</li>
+<li>Google Shopping visibility</li>
+<li>Amazon marketplace presence</li>
+<li>Pricing gap vs competitors</li>
+<li>Out-of-stock and availability signals</li>
+<li>Faceted navigation crawl traps</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-flow-stage-urltopic"><code>/kimi-seo:seo flow [stage] [url|topic]</code></h3>
+<p>FLOW framework integration: evidence-led prompts for the Find, Leverage, Optimize, Win, and Local stages of a content campaign.</p>
+<p><strong>Examples:</strong></p>
+<pre><code>/kimi-seo:seo flow find &quot;topic&quot;
+/kimi-seo:seo flow leverage https://example.com
+/kimi-seo:seo flow optimize https://example.com/page
+/kimi-seo:seo flow win https://example.com/page
+/kimi-seo:seo flow local https://example.com
+/kimi-seo:seo flow prompts
+/kimi-seo:seo flow sync
+</code></pre>
+<p><strong>41 prompts</strong> sourced from FLOW (CC BY 4.0). Each prompt is grounded in a specific evidence source (SERP data, GSC, GA4, customer interviews) with attribution preserved.</p>
+<hr />
+<h3 id="kimi-seoseo-google-command-url"><code>/kimi-seo:seo google [command] [url]</code></h3>
+<p>Google SEO APIs. 4-tier credential system covering PageSpeed Insights, CrUX, CrUX History, Search Console, URL Inspection, Indexing API, GA4, and Keyword Planner.</p>
+<p><strong>Setup &amp; reporting:</strong></p>
+<pre><code>/kimi-seo:seo google setup                      # Configure/check credentials
+/kimi-seo:seo google quotas                     # Show per-API quota usage
+/kimi-seo:seo google report full                # Generate full PDF/HTML report
+/kimi-seo:seo google report cwv-audit           # CWV-focused report
+/kimi-seo:seo google report gsc-performance     # Search performance report
+/kimi-seo:seo google report indexation          # Indexation status report
+</code></pre>
+<p><strong>PageSpeed / CrUX (Tier 0):</strong></p>
+<pre><code>/kimi-seo:seo google pagespeed &lt;url&gt;            # PageSpeed Insights (lab) + CWV
+/kimi-seo:seo google crux &lt;url&gt;                 # CrUX field data
+/kimi-seo:seo google crux-history &lt;url&gt;         # 25-week CrUX history
+</code></pre>
+<p><strong>Search Console / Indexing (Tier 1):</strong></p>
+<pre><code>/kimi-seo:seo google gsc &lt;property&gt;             # Search Analytics (clicks/impressions/CTR/position)
+/kimi-seo:seo google inspect &lt;url&gt;              # URL Inspection (indexation status)
+/kimi-seo:seo google inspect-batch &lt;file&gt;       # Batch URL inspection
+/kimi-seo:seo google sitemaps &lt;property&gt;        # List submitted sitemaps + status
+/kimi-seo:seo google index &lt;url&gt;                # Indexing API notify
+/kimi-seo:seo google index-batch &lt;file&gt;         # Batch indexing notify
+</code></pre>
+<p>Use Indexing API commands only for pages with JobPosting or BroadcastEvent embedded in VideoObject. Route ordinary URLs to URL Inspection or sitemaps; <code>URL_UPDATED</code> does not guarantee indexing.</p>
+<p><strong>GA4 (Tier 2):</strong></p>
+<pre><code>/kimi-seo:seo google ga4 [property-id]          # Organic traffic report
+/kimi-seo:seo google ga4-pages [property-id]    # Top organic landing pages
+</code></pre>
+<p><strong>NLP / Keywords / YouTube:</strong></p>
+<pre><code>/kimi-seo:seo google nlp &lt;url-or-text&gt;          # NLP content analysis
+/kimi-seo:seo google entities &lt;url-or-text&gt;     # Entity extraction
+/kimi-seo:seo google entity &lt;query&gt;             # Entity lookup
+/kimi-seo:seo google keywords &lt;seed&gt;            # Keyword Planner ideas (Tier 3)
+/kimi-seo:seo google volume &lt;keywords&gt;          # Keyword search volume (Tier 3)
+/kimi-seo:seo google youtube &lt;query&gt;            # YouTube search
+/kimi-seo:seo google youtube-video &lt;video_id&gt;   # YouTube video analysis
+/kimi-seo:seo google safety &lt;url&gt;               # Safe Browsing check
+</code></pre>
+<p><strong>Tiers:</strong></p>
+<ul>
+<li>Tier 0 (API key only): PSI, CrUX, CrUX History</li>
+<li>Tier 1 (+ OAuth or Service Account): GSC, URL Inspection, Indexing API</li>
+<li>Tier 2 (+ GA4 property config): GA4 organic traffic</li>
+<li>Tier 3 (+ Google Ads developer token): Keyword Planner</li>
+</ul>
+<p>PDF and HTML reports generated via WeasyPrint and matplotlib.</p>
+<hr />
+<h3 id="kimi-seoseo-image-gen-use-case-description"><code>/kimi-seo:seo image-gen [use-case] &lt;description&gt;</code></h3>
+<p>AI image generation for SEO assets (extension). Powered by Gemini via nanobanana-mcp.</p>
+<p><strong>Prerequisites:</strong> Banana extension installed (<code>./extensions/banana/install.sh</code>)</p>
+<p><strong>Use Cases:</strong></p>
+<pre><code>/kimi-seo:seo image-gen og &lt;description&gt;          # OG/social preview image (16:9, 1K)
+/kimi-seo:seo image-gen hero &lt;description&gt;        # Blog hero image (16:9, 2K)
+/kimi-seo:seo image-gen product &lt;description&gt;     # Product photography (4:3, 2K)
+/kimi-seo:seo image-gen infographic &lt;description&gt; # Infographic visual (2:3, 4K)
+/kimi-seo:seo image-gen custom &lt;description&gt;      # Custom with full Creative Director pipeline
+/kimi-seo:seo image-gen batch &lt;description&gt; [N]   # Generate N variations (default: 3)
+</code></pre>
+<p><strong>What it does:</strong></p>
+<ol>
+<li>Maps SEO use case to optimized domain mode, aspect ratio, and resolution</li>
+<li>Constructs 6-component Reasoning Brief (Creative Director pipeline)</li>
+<li>Generates image via Gemini API</li>
+<li>Provides SEO checklist (alt text, file naming, WebP, schema markup)</li>
+</ol>
+<p>Generated images are saved by the MCP server to <code>~/Documents/nanobanana_generated/</code>.</p>
+<hr />
+<h3 id="kimi-seoseo-firecrawl-command-url"><code>/kimi-seo:seo firecrawl [command] &lt;url&gt;</code></h3>
+<p>Full-site crawling and URL discovery via Firecrawl MCP (extension).</p>
+<p><strong>Prerequisites:</strong> Firecrawl extension installed (<code>./extensions/firecrawl/install.sh</code>)</p>
+<p><strong>Examples:</strong></p>
+<pre><code>/kimi-seo:seo firecrawl crawl https://example.com
+/kimi-seo:seo firecrawl map https://example.com
+/kimi-seo:seo firecrawl scrape https://example.com/page
+/kimi-seo:seo firecrawl search &quot;query&quot; https://example.com
+</code></pre>
+<p><strong>What it does:</strong></p>
+<ul>
+<li><code>crawl</code> walks the site discovering URLs and capturing content</li>
+<li><code>map</code> returns the full URL inventory for a domain</li>
+<li><code>scrape</code> extracts a single page in a model-friendly format</li>
+<li><code>search</code> searches within a crawled site for a query</li>
+</ul>
+<hr />
+<h3 id="kimi-seoseo-dataforseo-command"><code>/kimi-seo:seo dataforseo [command]</code></h3>
+<p>Live SEO data via DataForSEO MCP server (extension). 23 data commands across 9 API modules, plus cost-tracking commands.</p>
+<p><strong>Prerequisites:</strong> DataForSEO extension installed (<code>./extensions/dataforseo/install.sh</code>)</p>
+<p><strong>SERP Analysis:</strong></p>
+<pre><code>/kimi-seo:seo dataforseo serp &lt;keyword&gt;              # Google organic results (also Bing/Yahoo)
+/kimi-seo:seo dataforseo serp-images &lt;keyword&gt;       # Google Images SERP results
+/kimi-seo:seo dataforseo serp-youtube &lt;keyword&gt;      # YouTube search results
+/kimi-seo:seo dataforseo youtube &lt;video_id&gt;          # YouTube video deep analysis
+</code></pre>
+<p><strong>Keyword Research:</strong></p>
+<pre><code>/kimi-seo:seo dataforseo keywords &lt;seed&gt;             # Keyword ideas and suggestions
+/kimi-seo:seo dataforseo volume &lt;keywords&gt;           # Search volume metrics
+/kimi-seo:seo dataforseo difficulty &lt;keywords&gt;       # Keyword difficulty scores
+/kimi-seo:seo dataforseo intent &lt;keywords&gt;           # Search intent classification
+/kimi-seo:seo dataforseo trends &lt;keyword&gt;            # Google Trends data
+</code></pre>
+<p><strong>Domain &amp; Competitors:</strong></p>
+<pre><code>/kimi-seo:seo dataforseo backlinks &lt;domain&gt;          # Full backlink profile
+/kimi-seo:seo dataforseo competitors &lt;domain&gt;        # Competitor analysis
+/kimi-seo:seo dataforseo ranked &lt;domain&gt;             # Ranked keywords
+/kimi-seo:seo dataforseo intersection &lt;domains&gt;      # Keyword/backlink overlap
+/kimi-seo:seo dataforseo traffic &lt;domains&gt;           # Traffic estimation
+/kimi-seo:seo dataforseo subdomains &lt;domain&gt;         # Subdomains with ranking data
+/kimi-seo:seo dataforseo top-searches &lt;domain&gt;       # Top queries mentioning domain
+</code></pre>
+<p><strong>Technical / On-Page:</strong></p>
+<pre><code>/kimi-seo:seo dataforseo onpage &lt;url&gt;                # On-page analysis (Lighthouse)
+/kimi-seo:seo dataforseo tech &lt;domain&gt;               # Technology detection
+/kimi-seo:seo dataforseo whois &lt;domain&gt;              # WHOIS data
+</code></pre>
+<p><strong>Content &amp; Business Data:</strong></p>
+<pre><code>/kimi-seo:seo dataforseo content &lt;keyword/url&gt;       # Content analysis and trends
+/kimi-seo:seo dataforseo listings &lt;keyword&gt;          # Business listings search
+</code></pre>
+<p><strong>AI Visibility / GEO:</strong></p>
+<pre><code>/kimi-seo:seo dataforseo ai-scrape &lt;query&gt;           # ChatGPT web scraper for GEO
+/kimi-seo:seo dataforseo ai-mentions &lt;keyword&gt;       # LLM mention tracking
+</code></pre>
+<p><strong>Cost Tracking:</strong></p>
+<pre><code>/kimi-seo:seo dataforseo costs today                            # Today's DataForSEO spend
+/kimi-seo:seo dataforseo costs summary                          # Spend summary across periods
+/kimi-seo:seo dataforseo costs config --mode threshold --threshold 0.50   # Set cost-control mode/threshold
+</code></pre>
+<hr />
+<h3 id="kimi-seoseo-ahrefs-command-urltopic"><code>/kimi-seo:seo ahrefs [command] &lt;url|topic&gt;</code></h3>
+<p>Ahrefs API metrics (extension). <strong>Prerequisites:</strong> Ahrefs extension installed (<code>./extensions/ahrefs/install.sh</code>).</p>
+<pre><code>/kimi-seo:seo ahrefs metrics &lt;url&gt;       # DR/UR, referring-domain count, organic traffic estimate
+/kimi-seo:seo ahrefs backlinks &lt;url&gt;     # Top referring domains, anchor distribution, follow/nofollow ratio
+/kimi-seo:seo ahrefs organic &lt;url&gt;       # Organic keywords, ranking distribution, traffic by country
+/kimi-seo:seo ahrefs content &lt;topic&gt;     # Content Explorer top results, social shares, referring domains
+</code></pre>
+<hr />
+<h3 id="kimi-seoseo-bing-command"><code>/kimi-seo:seo bing [command]</code></h3>
+<p>Bing Webmaster Tools + IndexNow (extension). <strong>Prerequisites:</strong> Bing extension installed (<code>./extensions/bing-webmaster/install.sh</code>).</p>
+<pre><code>/kimi-seo:seo bing links &lt;url&gt;                 # Inbound links from Bing Webmaster
+/kimi-seo:seo bing compare &lt;urlA&gt; &lt;urlB&gt;       # Compare two URLs' Bing link profiles
+/kimi-seo:seo bing submit &lt;url&gt; --host &lt;host&gt;                # IndexNow single-URL submit (requires key)
+/kimi-seo:seo bing submit-batch &lt;file&gt; --host &lt;host&gt;         # IndexNow batch submit (requires key)
+/kimi-seo:seo bing verify-indexnow --host &lt;host&gt;             # Verify the IndexNow key is published
+</code></pre>
+<hr />
+<h3 id="kimi-seoseo-profound-command-brand"><code>/kimi-seo:seo profound [command] &lt;brand&gt;</code></h3>
+<p>LLM brand-citation tracking via Profound (extension). <strong>Prerequisites:</strong> Profound extension installed.</p>
+<pre><code>/kimi-seo:seo profound citations &lt;brand&gt;     # Citation rate per LLM + 30-day trend
+/kimi-seo:seo profound prompts &lt;brand&gt;       # Top prompts that surface (or miss) the brand
+/kimi-seo:seo profound competitors &lt;brand&gt;   # Brands cited alongside yours for the same prompts
+/kimi-seo:seo profound alerts &lt;brand&gt;        # Spike/drop alerts vs 7-day baseline
+</code></pre>
+<hr />
+<h3 id="kimi-seoseo-seranking-command-brandkeywordurl"><code>/kimi-seo:seo seranking [command] &lt;brand|keyword|url&gt;</code></h3>
+<p>AI-visibility + SERP via SE Ranking (extension). <strong>Prerequisites:</strong> SE Ranking extension installed.</p>
+<pre><code>/kimi-seo:seo seranking ai-visibility &lt;brand&gt;   # Share-of-voice across ChatGPT/Gemini/Perplexity/AI Overviews/AI Mode
+/kimi-seo:seo seranking serp &lt;keyword&gt;          # Top 100 organic positions + SERP features
+/kimi-seo:seo seranking backlinks &lt;url&gt;         # Backlink profile (free-tier alternative to Ahrefs/DataForSEO)
+/kimi-seo:seo seranking competitors &lt;url&gt;       # Top 10 organic competitors + shared-keyword gaps
+</code></pre>
+<hr />
+<h3 id="kimi-seoseo-unlighthouse-url"><code>/kimi-seo:seo unlighthouse &lt;url&gt;</code></h3>
+<p>Multi-page Lighthouse audit via Unlighthouse (extension, MIT, no API quota). <strong>Prerequisites:</strong> Node 18+ and the unlighthouse npm package (<code>./extensions/unlighthouse/install.sh</code>).</p>
+<pre><code>/kimi-seo:seo unlighthouse https://example.com
+/kimi-seo:seo unlighthouse https://example.com --device desktop
+/kimi-seo:seo unlighthouse https://example.com --max-routes 50 --output-dir ./reports
+</code></pre>
+<hr />
+<h2 id="quick-reference">Quick Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/kimi-seo:seo audit &lt;url&gt;</code></td>
+<td>Full website audit with parallel subagents</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo page &lt;url&gt;</code></td>
+<td>Single page analysis</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo technical &lt;url&gt;</code></td>
+<td>Technical SEO across 9 categories</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo content &lt;url&gt;</code></td>
+<td>E-E-A-T and content quality</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo content-brief &lt;topic&gt;</code></td>
+<td>Detailed content brief: keywords, outline, internal links</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo schema &lt;url&gt;</code></td>
+<td>Schema markup detection, validation, generation</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo sitemap &lt;url&gt;</code></td>
+<td>Sitemap validation</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo sitemap generate</code></td>
+<td>Create new sitemap with industry templates</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo images &lt;url&gt;</code></td>
+<td>Image optimization</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo geo &lt;url&gt;</code></td>
+<td>AI search optimization (GEO)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo local &lt;url&gt;</code></td>
+<td>Local SEO (GBP, citations, reviews)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo maps [command]</code></td>
+<td>Maps intelligence (geo-grid, GBP audit, competitors)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo backlinks &lt;url&gt;</code></td>
+<td>Backlink profile analysis</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo cluster &lt;seed&gt;</code></td>
+<td>SERP-based semantic clustering</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo sxo &lt;url&gt;</code></td>
+<td>Search Experience Optimization</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo drift baseline|compare|history &lt;url&gt;</code></td>
+<td>SEO drift monitoring</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo ecommerce &lt;url&gt;</code></td>
+<td>E-commerce SEO</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo hreflang [url]</code></td>
+<td>Hreflang and international SEO</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo plan &lt;type&gt;</code></td>
+<td>Strategic planning by industry</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo programmatic [url|plan]</code></td>
+<td>Programmatic SEO analysis</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo competitor-pages [url|generate]</code></td>
+<td>Competitor comparison pages</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo flow [stage] [url|topic]</code></td>
+<td>FLOW framework prompts</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo google [command] [url]</code></td>
+<td>Google SEO APIs (GSC, PSI, CrUX, GA4)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo dataforseo [command]</code></td>
+<td>Live SEO data (extension)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo image-gen [use-case] &lt;desc&gt;</code></td>
+<td>AI image generation (extension)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo firecrawl [command] &lt;url&gt;</code></td>
+<td>Full-site crawling (extension)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo ahrefs [command] &lt;url&gt;</code></td>
+<td>Backlinks, organic keywords, and content data via the official Ahrefs MCP (extension)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo seranking [command]</code></td>
+<td>AI Share-of-Voice across ChatGPT, Gemini, Perplexity, AI Overviews, AI Mode (extension)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo profound [command]</code></td>
+<td>LLM citation tracking with time-series data (extension)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo bing [command] &lt;url&gt;</code></td>
+<td>Bing Webmaster Tools + IndexNow URL submission (extension)</td>
+</tr>
+<tr>
+<td><code>/kimi-seo:seo unlighthouse &lt;url&gt;</code></td>
+<td>Multi-page Lighthouse runner, runs locally (extension)</td>
+</tr>
+</tbody>
+</table>
+
+    </article>
+
+    
+    <nav class="mt-12 pt-6 border-t border-zinc-200 dark:border-ink-800 flex items-center justify-between gap-4 text-sm">
+                    <a href="https://kimi-seo.com/docs/installation" class="muted-strong hover:text-accent-700 dark:hover:text-accent-300 transition-colors">
+                &larr; Installation
+            </a>
+                            <a href="https://kimi-seo.com/docs/architecture" class="muted-strong hover:text-accent-700 dark:hover:text-accent-300 transition-colors">
+                Architecture &rarr;
+            </a>
+            </nav>
+
+            
+            <div class="lg:hidden mt-10 max-w-sm">
+                <div class="">
+    
+    <a href="https://kimi-seo.com/advertise"
+       class="mt-4 block rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-6 text-center hover:border-accent-600/60 transition-colors group dark:border-ink-600 dark:bg-ink-900/50">
+        <span class="block text-[10px] font-mono uppercase tracking-widest muted mb-2">Advertisement</span>
+        <span class="block text-lg font-semibold heading group-hover:text-accent-700 dark:group-hover:text-accent-300 transition-colors">Your ad here?</span>
+        <span class="block mt-1 text-sm muted">Reach developers who care about SEO.</span>
+        <span class="inline-block mt-3 rounded-lg bg-accent-600 px-4 py-1.5 text-sm font-medium text-white group-hover:bg-accent-500 transition-colors">Advertise with us</span>
+    </a>
+</div>
+            </div>
+        </div>
+
+        
+                    <aside class="hidden xl:block xl:pl-6">
+                <nav class="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto overscroll-contain pr-2" aria-label="On this page">
+                    <p class="font-mono text-xs uppercase tracking-widest muted mb-3">On this page</p>
+                    <ul class="space-y-1.5 text-sm border-l border-zinc-200 dark:border-ink-800">
+                                                    <li>
+                                <a href="#overview"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Overview
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#command-list"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Command List
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-setup"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo setup
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-doctor"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo doctor
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-audit-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo audit &lt;url&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-page-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo page &lt;url&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-technical-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo technical &lt;url&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-content-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo content &lt;url&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-content-brief-topic-or-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo content-brief &lt;topic or url&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-schema-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo schema &lt;url&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-geo-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo geo &lt;url&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-images-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo images &lt;url&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-sitemap-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo sitemap &lt;url&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-sitemap-generate"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo sitemap generate
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-plan-type"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo plan &lt;type&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-competitor-pages-urlgenerate"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo competitor-pages [url|generate]
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-hreflang-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo hreflang [url]
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-programmatic-urlplan"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo programmatic [url|plan]
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-local-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo local &lt;url&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-maps-command-args"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo maps [command] [args]
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-backlinks-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo backlinks &lt;url&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-cluster-command-seed-keyword"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo cluster [command] &lt;seed-keyword&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-sxo-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo sxo &lt;url&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-drift-baselinecomparehistory-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo drift baseline|compare|history &lt;url&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-ecommerce-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo ecommerce &lt;url&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-flow-stage-urltopic"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo flow [stage] [url|topic]
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-google-command-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo google [command] [url]
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-image-gen-use-case-description"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo image-gen [use-case] &lt;description&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-firecrawl-command-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo firecrawl [command] &lt;url&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-dataforseo-command"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo dataforseo [command]
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-ahrefs-command-urltopic"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo ahrefs [command] &lt;url|topic&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-bing-command"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo bing [command]
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-profound-command-brand"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo profound [command] &lt;brand&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-seranking-command-brandkeywordurl"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo seranking [command] &lt;brand|keyword|url&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#kimi-seoseo-unlighthouse-url"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-7">
+                                    /kimi-seo:seo unlighthouse &lt;url&gt;
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="#quick-reference"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors pl-3">
+                                    Quick Reference
+                                </a>
+                            </li>
+                                            </ul>
+                </nav>
+            </aside>
+            </div>
+    </main>
+
+    <footer class="border-t border-zinc-200 dark:border-ink-800 mt-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 grid gap-8 sm:grid-cols-3 text-sm">
+            <div>
+                <p class="font-mono font-semibold mb-2 heading flex items-center gap-2"><svg class="w-6 h-6 text-accent-700 dark:text-accent-400 w-5 h-5 rounded" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kimi SEO logo">
+    <path d="M17 21 L30 32 L17 43" fill="none" stroke="currentColor" stroke-width="5.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="34" y="39.25" width="14" height="5.5" rx="2.75" fill="currentColor"/>
+</svg>
+ Kimi SEO</p>
+                <p class="muted leading-relaxed">
+                    Free, open-source SEO analysis suite for
+                    <a href="https://www.kimi.com/code" target="_blank" rel="noopener" class="muted-strong hover:text-accent-700 dark:hover:text-accent-300 underline underline-offset-2">Kimi Code CLI</a>.
+                    Released under the MIT license.
+                </p>
+            </div>
+            <div>
+                <p class="font-semibold mb-2 muted-strong">Project</p>
+                <ul class="space-y-1.5 muted">
+                    <li><a href="https://github.com/bentocodeing/kimi-seo" target="_blank" rel="noopener" class="hover:text-accent-700 dark:hover:text-accent-300">GitHub repository</a></li>
+                    <li><a href="https://kimi-seo.com/docs" class="hover:text-accent-700 dark:hover:text-accent-300">Documentation</a></li>
+                    <li><a href="https://kimi-seo.com/advertise" class="hover:text-accent-700 dark:hover:text-accent-300">Advertise</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold mb-2 muted-strong">Credits</p>
+                <ul class="space-y-1.5 muted">
+                    <li>Community fork by <a href="https://github.com/bentocodeing/kimi-seo" target="_blank" rel="noopener" class="hover:text-accent-700 dark:hover:text-accent-300">bentocodeing</a></li>
+                    <li>Upstream <a href="https://github.com/AgriciDaniel/claude-seo" target="_blank" rel="noopener" class="hover:text-accent-700 dark:hover:text-accent-300">claude-seo</a> by AgriciDaniel</li>
+                    <li>Not affiliated with Moonshot AI</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <button type="button" data-back-to-top aria-label="Back to top"
+        class="back-to-top fixed bottom-6 right-6 z-40 inline-flex items-center justify-center w-10 h-10 rounded-full border border-zinc-300 bg-white/90 text-zinc-600 shadow-md hover:text-accent-700 hover:border-accent-600/60 backdrop-blur dark:border-ink-600 dark:bg-ink-800/90 dark:text-ink-300 dark:hover:text-accent-300">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5"/>
+    </svg>
+</button>
+</body>
+</html>

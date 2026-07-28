@@ -1,0 +1,90 @@
+[
+  {
+    "path": "/",
+    "score": 0.97,
+    "performance": 0.97,
+    "accessibility": 0.92,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/advertise",
+    "score": 0.98,
+    "performance": 1,
+    "accessibility": 0.92,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/docs",
+    "score": 0.99,
+    "performance": 1,
+    "accessibility": 0.96,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/docs/architecture",
+    "score": 0.98,
+    "performance": 0.95,
+    "accessibility": 0.96,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/docs/commands",
+    "score": 0.98,
+    "performance": 0.95,
+    "accessibility": 0.96,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/docs/getting-started",
+    "score": 0.9,
+    "performance": 0.66,
+    "accessibility": 0.95,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/docs/installation",
+    "score": 0.99,
+    "performance": 1,
+    "accessibility": 0.96,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/docs/mcp-integration",
+    "score": 0.99,
+    "performance": 1,
+    "accessibility": 0.96,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/docs/migration-v1-to-v2",
+    "score": 0.99,
+    "performance": 1,
+    "accessibility": 0.96,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/docs/troubleshooting",
+    "score": 0.99,
+    "performance": 1,
+    "accessibility": 0.96,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/docs/workflow",
+    "score": 0.99,
+    "performance": 1,
+    "accessibility": 0.96,
+    "best-practices": 1,
+    "seo": 1
+  }
+]

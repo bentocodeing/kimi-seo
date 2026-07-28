@@ -1,0 +1,12 @@
+slug,status,bytes
+home,200,31347
+docs,200,21856
+docs-architecture,200,46867
+docs-commands,200,69584
+docs-getting-started,200,88184
+docs-installation,200,33646
+docs-mcp-integration,200,32720
+docs-migration-v1-to-v2,200,39728
+docs-troubleshooting,200,32278
+docs-workflow,200,27757
+advertise,200,10800

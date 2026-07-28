@@ -1,0 +1,216 @@
+{
+  "title": "Migration v1 \u2192 v2 \u2014 Kimi SEO Docs",
+  "meta_description": "Kimi SEO is a free, open-source SEO analysis plugin for Kimi Code CLI: 25 skills, 18 subagents, 53 scripts.",
+  "meta_robots": null,
+  "canonical": null,
+  "h1": [
+    "Migrating from kimi-seo v1.x to v2.0.0"
+  ],
+  "h2": [
+    "What's new in v2",
+    "Breaking changes (full list)",
+    "Things that were going to break but didn't",
+    "How to upgrade",
+    "Test coverage"
+  ],
+  "h3": [
+    "Foundation",
+    "Content quality (Phase B)",
+    "Technical / CWV depth (Phase C)",
+    "Schema completeness (Phase D)",
+    "AI search + 5 new extensions (Phase E)",
+    "Local + International + Privacy polish (Phase F)",
+    "Multi-platform portability (Phase G)",
+    "Release signing (Phase H)",
+    "Hardening",
+    "1.backlinks_auth.pyhard-fails withouturl_safety",
+    "2.seo-schemaflags retired rich-result types as Critical"
+  ],
+  "images": [],
+  "links": {
+    "internal": [
+      {
+        "href": "https://kimi-seo.com",
+        "text": "Kimi\u00a0SEO",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs",
+        "text": "Docs",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/advertise",
+        "text": "Advertise",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs",
+        "text": "Overview",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/getting-started",
+        "text": "Getting Started",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/installation",
+        "text": "Installation",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/commands",
+        "text": "Commands",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/architecture",
+        "text": "Architecture",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/mcp-integration",
+        "text": "MCP Integration",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/migration-v1-to-v2",
+        "text": "Migration v1 \u2192 v2",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/troubleshooting",
+        "text": "Troubleshooting",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/workflow",
+        "text": "Workflow",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs",
+        "text": "Overview",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/getting-started",
+        "text": "Getting Started",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/installation",
+        "text": "Installation",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/commands",
+        "text": "Commands",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/architecture",
+        "text": "Architecture",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/mcp-integration",
+        "text": "MCP Integration",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/migration-v1-to-v2",
+        "text": "Migration v1 \u2192 v2",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/troubleshooting",
+        "text": "Troubleshooting",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/workflow",
+        "text": "Workflow",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/advertise",
+        "text": "AdvertisementYour ad here?Reach developers who care about SEO.Advertise with us",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/CHANGELOG.md",
+        "text": "../CHANGELOG.md",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/mcp-integration",
+        "text": "\u2190 MCP Integration",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/troubleshooting",
+        "text": "Troubleshooting \u2192",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/advertise",
+        "text": "AdvertisementYour ad here?Reach developers who care about SEO.Advertise with us",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs",
+        "text": "Documentation",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/advertise",
+        "text": "Advertise",
+        "rel": []
+      }
+    ],
+    "external": [
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "GitHub",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://www.kimi.com/code",
+        "text": "Kimi Code CLI",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "GitHub repository",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "bentocodeing",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/AgriciDaniel/claude-seo",
+        "text": "claude-seo",
+        "rel": [
+          "noopener"
+        ]
+      }
+    ]
+  },
+  "schema": [],
+  "open_graph": {},
+  "twitter_card": {},
+  "word_count": 1261,
+  "hreflang": []
+}

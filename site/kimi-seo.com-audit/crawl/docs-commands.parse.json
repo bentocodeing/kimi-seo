@@ -1,0 +1,231 @@
+{
+  "title": "Commands \u2014 Kimi SEO Docs",
+  "meta_description": "Kimi SEO is a free, open-source SEO analysis plugin for Kimi Code CLI: 25 skills, 18 subagents, 53 scripts.",
+  "meta_robots": null,
+  "canonical": null,
+  "h1": [
+    "Commands Reference"
+  ],
+  "h2": [
+    "Overview",
+    "Command List",
+    "Quick Reference"
+  ],
+  "h3": [
+    "/kimi-seo:seo setup",
+    "/kimi-seo:seo doctor",
+    "/kimi-seo:seo audit <url>",
+    "/kimi-seo:seo page <url>",
+    "/kimi-seo:seo technical <url>",
+    "/kimi-seo:seo content <url>",
+    "/kimi-seo:seo content-brief <topic or url>",
+    "/kimi-seo:seo schema <url>",
+    "/kimi-seo:seo geo <url>",
+    "/kimi-seo:seo images <url>",
+    "/kimi-seo:seo sitemap <url>",
+    "/kimi-seo:seo sitemap generate",
+    "/kimi-seo:seo plan <type>",
+    "/kimi-seo:seo competitor-pages [url|generate]",
+    "/kimi-seo:seo hreflang [url]",
+    "/kimi-seo:seo programmatic [url|plan]",
+    "/kimi-seo:seo local <url>",
+    "/kimi-seo:seo maps [command] [args]",
+    "/kimi-seo:seo backlinks <url>",
+    "/kimi-seo:seo cluster [command] <seed-keyword>",
+    "/kimi-seo:seo sxo <url>",
+    "/kimi-seo:seo drift baseline|compare|history <url>",
+    "/kimi-seo:seo ecommerce <url>",
+    "/kimi-seo:seo flow [stage] [url|topic]",
+    "/kimi-seo:seo google [command] [url]",
+    "/kimi-seo:seo image-gen [use-case] <description>",
+    "/kimi-seo:seo firecrawl [command] <url>",
+    "/kimi-seo:seo dataforseo [command]",
+    "/kimi-seo:seo ahrefs [command] <url|topic>",
+    "/kimi-seo:seo bing [command]",
+    "/kimi-seo:seo profound [command] <brand>",
+    "/kimi-seo:seo seranking [command] <brand|keyword|url>",
+    "/kimi-seo:seo unlighthouse <url>"
+  ],
+  "images": [],
+  "links": {
+    "internal": [
+      {
+        "href": "https://kimi-seo.com",
+        "text": "Kimi\u00a0SEO",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs",
+        "text": "Docs",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/advertise",
+        "text": "Advertise",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs",
+        "text": "Overview",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/getting-started",
+        "text": "Getting Started",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/installation",
+        "text": "Installation",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/commands",
+        "text": "Commands",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/architecture",
+        "text": "Architecture",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/mcp-integration",
+        "text": "MCP Integration",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/migration-v1-to-v2",
+        "text": "Migration v1 \u2192 v2",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/troubleshooting",
+        "text": "Troubleshooting",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/workflow",
+        "text": "Workflow",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs",
+        "text": "Overview",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/getting-started",
+        "text": "Getting Started",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/installation",
+        "text": "Installation",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/commands",
+        "text": "Commands",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/architecture",
+        "text": "Architecture",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/mcp-integration",
+        "text": "MCP Integration",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/migration-v1-to-v2",
+        "text": "Migration v1 \u2192 v2",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/troubleshooting",
+        "text": "Troubleshooting",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/workflow",
+        "text": "Workflow",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/advertise",
+        "text": "AdvertisementYour ad here?Reach developers who care about SEO.Advertise with us",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/installation",
+        "text": "\u2190 Installation",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs/architecture",
+        "text": "Architecture \u2192",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/advertise",
+        "text": "AdvertisementYour ad here?Reach developers who care about SEO.Advertise with us",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/docs",
+        "text": "Documentation",
+        "rel": []
+      },
+      {
+        "href": "https://kimi-seo.com/advertise",
+        "text": "Advertise",
+        "rel": []
+      }
+    ],
+    "external": [
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "GitHub",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://www.kimi.com/code",
+        "text": "Kimi Code CLI",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "GitHub repository",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/bentocodeing/kimi-seo",
+        "text": "bentocodeing",
+        "rel": [
+          "noopener"
+        ]
+      },
+      {
+        "href": "https://github.com/AgriciDaniel/claude-seo",
+        "text": "claude-seo",
+        "rel": [
+          "noopener"
+        ]
+      }
+    ]
+  },
+  "schema": [],
+  "open_graph": {},
+  "twitter_card": {},
+  "word_count": 3428,
+  "hreflang": []
+}

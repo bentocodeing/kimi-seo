@@ -1,0 +1,22 @@
+{
+  "status": "success",
+  "data": {
+    "domain": "kimi-seo.com",
+    "in_crawl": false,
+    "in_rankings": false,
+    "pagerank": null,
+    "pagerank_rank": null,
+    "harmonic_centrality": null,
+    "harmonic_centrality_rank": null,
+    "n_hosts": null,
+    "note": "Domain not found in Common Crawl data. It may be too new, too small, or not yet crawled."
+  },
+  "error": null,
+  "metadata": {
+    "source": "commoncrawl",
+    "release": "cc-main-2026-jan-feb-mar",
+    "from_cache": false,
+    "timestamp": "2026-07-28T19:41:12Z",
+    "cached_at": 1785267672.005097
+  }
+}
