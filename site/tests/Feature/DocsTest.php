@@ -67,6 +67,14 @@ class DocsTest extends TestCase
             ->assertSee('href="#2-run-your-first-audit"', false);
     }
 
+    public function test_brand_name_in_headings_uses_accent_gradient(): void
+    {
+        // GETTING-STARTED.md's H1 is "Getting Started with Kimi SEO".
+        $this->get('/docs/getting-started')
+            ->assertOk()
+            ->assertSee('<span class="brand-mark">Kimi SEO</span>', false);
+    }
+
     public function test_repo_internal_markdown_links_are_rewritten_to_docs_pages(): void
     {
         // GETTING-STARTED.md links to INSTALLATION.md and COMMANDS.md.

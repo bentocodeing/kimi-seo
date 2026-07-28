@@ -105,7 +105,15 @@ class DocsController extends Controller
                     $toc[] = ['level' => (int) $m[1], 'id' => $slug, 'text' => trim($text)];
                 }
 
-                return '<h'.$m[1].' id="'.$slug.'">'.$m[2].'</h'.$m[1].'>';
+                // The brand name inside headings gets the accent gradient
+                // (.brand-mark), in the heading's own font.
+                $inner = str_replace(
+                    'Kimi SEO',
+                    '<span class="brand-mark">Kimi SEO</span>',
+                    $m[2],
+                );
+
+                return '<h'.$m[1].' id="'.$slug.'">'.$inner.'</h'.$m[1].'>';
             },
             $html,
         );

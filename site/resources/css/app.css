@@ -73,6 +73,61 @@ body {
         @apply text-accent-700 hover:text-accent-600 dark:text-accent-400 dark:hover:text-accent-300;
     }
 
+    /* Brand name inside doc headings: accent gradient, same as the wordmark */
+    .brand-mark {
+        background: linear-gradient(120deg, var(--color-accent-600), var(--color-accent-400));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    .dark .brand-mark {
+        background: linear-gradient(120deg, var(--color-accent-300), var(--color-accent-500));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    /* Key words inside landing h2s: italic serif counterpoint */
+    .h2-accent {
+        font-family: 'Instrument Serif', Georgia, serif;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 1.06em;
+        letter-spacing: normal;
+        color: var(--color-accent-600);
+    }
+    .dark .h2-accent {
+        color: var(--color-accent-400);
+    }
+
+    /* Landing stats strip */
+    .stats-number {
+        background: linear-gradient(180deg, var(--color-accent-600), var(--color-accent-400));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    .dark .stats-number {
+        background: linear-gradient(180deg, var(--color-accent-300), var(--color-accent-500));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    .stats-item {
+        transition: transform 0.25s ease;
+    }
+    .stats-item:hover {
+        transform: translateY(-2px);
+    }
+    .stats-dots {
+        background-image: radial-gradient(circle, var(--color-accent-500) 1px, transparent 1.4px);
+        background-size: 26px 26px;
+        opacity: 0.07;
+    }
+    .dark .stats-dots {
+        opacity: 0.10;
+    }
+
     /* Buttons */
     .btn-primary {
         @apply rounded-lg bg-accent-600 px-6 py-3 text-sm font-semibold text-white hover:bg-accent-500 transition-colors;

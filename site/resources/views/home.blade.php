@@ -47,26 +47,28 @@
     </section>
 
     {{-- Stats --}}
-    <section class="border-y border-zinc-200 bg-zinc-100/60 dark:border-ink-800 dark:bg-ink-900/40">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 grid grid-cols-3 gap-4 text-center" data-reveal>
-            <div>
-                <p class="text-3xl sm:text-4xl font-bold font-mono accent-text">25</p>
-                <p class="mt-1 text-xs sm:text-sm muted">SEO skills</p>
-            </div>
-            <div>
-                <p class="text-3xl sm:text-4xl font-bold font-mono accent-text">18</p>
-                <p class="mt-1 text-xs sm:text-sm muted">subagents</p>
-            </div>
-            <div>
-                <p class="text-3xl sm:text-4xl font-bold font-mono accent-text">53</p>
-                <p class="mt-1 text-xs sm:text-sm muted">Python scripts</p>
-            </div>
+    <section class="relative border-y border-zinc-200 bg-zinc-100/60 dark:border-ink-800 dark:bg-ink-900/40 overflow-hidden">
+        <div class="absolute inset-0 stats-dots pointer-events-none" aria-hidden="true"></div>
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-12 grid grid-cols-1 sm:grid-cols-3 gap-y-10 text-center" data-reveal>
+            @php
+                $stats = [
+                    ['25', 'SEO skills'],
+                    ['18', 'subagents'],
+                    ['53', 'Python scripts'],
+                ];
+            @endphp
+            @foreach ($stats as [$value, $label])
+                <div class="stats-item px-4{{ $loop->first ? '' : ' sm:border-l sm:border-zinc-300/70 sm:dark:border-ink-700/60' }}">
+                    <p class="stats-number text-3xl sm:text-4xl font-bold font-mono">{{ $value }}</p>
+                    <p class="mt-1.5 text-xs sm:text-sm muted">{{ $label }}</p>
+                </div>
+            @endforeach
         </div>
     </section>
 
     {{-- Features --}}
     <section class="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-center heading" data-reveal>Everything an SEO audit needs</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-center heading" data-reveal>Everything an <em class="h2-accent">SEO audit</em> needs</h2>
         <p class="mt-3 text-center muted max-w-2xl mx-auto" data-reveal>
             One plugin, a full toolbox. Each command delegates to specialized skills and subagents.
         </p>
@@ -102,7 +104,7 @@
     {{-- Architecture diagram --}}
     <section class="border-y border-zinc-200 bg-zinc-100/60 dark:border-ink-800 dark:bg-ink-900/40 scroll-mt-16" id="how-it-works">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
-            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-center heading" data-reveal>How Kimi SEO works</h2>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-center heading" data-reveal>How Kimi SEO <em class="h2-accent">works</em></h2>
             <p class="mt-3 text-center muted max-w-2xl mx-auto" data-reveal>
                 One command in your terminal fans out to specialized skills — and comes back as a single, actionable report.
             </p>
@@ -183,7 +185,7 @@
 
     {{-- Demo --}}
     <section class="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20" id="demo">
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-center heading" data-reveal>See it in action</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-center heading" data-reveal>See it in <em class="h2-accent">action</em></h2>
         <p class="mt-3 text-center muted max-w-2xl mx-auto" data-reveal>
             Real Kimi SEO sessions inside Kimi Code CLI — from a single command to a full audit report.
         </p>
@@ -208,7 +210,7 @@
     <section class="border-b border-zinc-200 dark:border-ink-800">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-center" data-reveal>
             <p class="font-mono text-xs uppercase tracking-widest accent-text mb-4">Standing on the shoulders of giants</p>
-            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight heading">A community fork of claude-seo</h2>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight heading">A <em class="h2-accent">community fork</em> of claude-seo</h2>
             <p class="mt-4 muted-strong leading-relaxed">
                 Kimi SEO is a free, open-source community fork of
                 <a href="{{ config('kimiseo.upstream_url') }}" target="_blank" rel="noopener" class="accent-text-hover underline underline-offset-2">claude-seo</a>
@@ -224,7 +226,7 @@
 
     {{-- Support / donate --}}
     <section class="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-center heading" data-reveal>Support the project</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-center heading" data-reveal><em class="h2-accent">Support</em> the project</h2>
         <p class="mt-3 text-center muted max-w-2xl mx-auto" data-reveal>
             Both the upstream project and this fork are free and open source. If they help you, consider giving back.
         </p>

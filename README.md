@@ -190,23 +190,23 @@ kimi
 
 ### What Core Web Vitals does Kimi SEO check?
 
-Kimi SEO measures the current three Core Web Vitals: **LCP** (Largest Contentful Paint, target under 2.5s), **INP** (Interaction to Next Paint, target under 200ms), and **CLS** (Cumulative Layout Shift, target under 0.1). [INP replaced FID](https://web.dev/articles/inp) on March 12, 2024; FID was removed from Chrome's field-data tools (CrUX API, PageSpeed Insights) on September 9, 2024 (Lighthouse is a lab tool and never reported FID), and Kimi SEO never references FID. Field data comes from the Chrome User Experience Report (CrUX) when available; lab data falls back to Lighthouse via PageSpeed Insights. LCP can be decomposed into subparts (TTFB, load delay, load duration, render delay) via the `/kimi-seo:seo google` CrUX integration to localize bottlenecks. Mobile and desktop are measured separately. CrUX History (25-week trend) is included in the Tier 0 free credential set.
+It measures the three metrics Google ranks on today: **LCP** — how fast the main content loads (target: under 2.5s), **INP** — how fast the page reacts to clicks and taps (target: under 200ms), and **CLS** — how much the layout jumps (target: under 0.1). When real-user data exists it comes from the Chrome User Experience Report (CrUX), including a 25-week history; otherwise it falls back to a Lighthouse lab run. LCP can be split into subparts (TTFB, load delay, load duration, render delay) to pinpoint the bottleneck. Mobile and desktop are measured separately. ([INP replaced FID](https://web.dev/articles/inp) in 2024 — Kimi SEO never reports FID.)
 
 ### How does Kimi SEO assess E-E-A-T?
 
-E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) is evaluated against the Search Quality Rater Guidelines, last updated September 2025 with YMYL expanded to include political and social topics. Experience signals: original research, case studies, first-hand photos. Expertise: author credentials and topical depth. Authoritativeness: external citations and brand mentions. Trustworthiness, the most heavily weighted of the four: contact info, secure HTTPS, transparent corrections, date stamps. Before scoring sub-factors, Kimi SEO applies Google's own Who / How / Why heuristic from the [helpful-content guide](https://developers.google.com/search/docs/fundamentals/creating-helpful-content). Generative AI content is fine if it meets Search Essentials; it crosses into spam when used to scale low-value pages, which `seo-content humanize` and `seo-content verify` are designed to detect.
+E-E-A-T is Google's quality lens — Experience, Expertise, Authoritativeness, Trustworthiness — from the Search Quality Rater Guidelines (September 2025 update). In plain terms: **Experience** is proof you did the thing (original research, case studies, first-hand photos). **Expertise** is credentials and depth. **Authoritativeness** is others citing you. **Trustworthiness** — weighted the most — is contact info, HTTPS, corrections, date stamps. Before scoring, Kimi SEO applies Google's own Who / How / Why check from the [helpful-content guide](https://developers.google.com/search/docs/fundamentals/creating-helpful-content). AI-written content is fine when it's helpful; it becomes spam when used to mass-produce thin pages, which `seo-content humanize` and `seo-content verify` are built to catch.
 
 ### What Schema.org types does Kimi SEO support?
 
-JSON-LD is the preferred format (Google's stated preference). Kimi SEO detects, validates, and generates the active Schema.org types documented in [skills/seo/references/schema-types.md](skills/seo/references/schema-types.md), including organization, article, product, local, event, job, course, software/application, service, Q&A, and video patterns. FAQPage: Google stopped showing FAQ rich results for all sites on May 7, 2026; it has no Google rich-result benefit. Keep it only for non-Google or internal semantics if needed. Deprecated and never recommended: HowTo (rich results removed September 2023), SpecialAnnouncement (July 2025), ClaimReview, VehicleListing, EstimatedSalary, LearningVideo, CourseInfo carousel (all retired June 2025). Replacement guidance: [skills/seo-schema/references/deprecated-types-2024-2026.md](skills/seo-schema/references/deprecated-types-2024-2026.md).
+JSON-LD, the format Google prefers. Kimi SEO detects, validates, and generates the active types — organization, article, product, local, event, job, course, software, service, Q&A, video (full list: [schema-types.md](skills/seo/references/schema-types.md)). Just as important, it tracks what Google retired so you don't ship dead markup: HowTo (2023), ClaimReview, VehicleListing, EstimatedSalary, LearningVideo, SpecialAnnouncement, CourseInfo carousel (2025), and FAQ rich results (retired for all sites May 7, 2026). What to use instead: [deprecated-types-2024-2026.md](skills/seo-schema/references/deprecated-types-2024-2026.md).
 
 ### How does Kimi SEO optimize for AI search?
 
-Aligned with [Google's AI Optimization Guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide), which states that "AEO" and "GEO" are rebranded labels for SEO. AI Overviews and AI Mode are grounded in the same ranking systems as classic Search; pages must be indexed and eligible for snippet display to appear in any AI feature. Kimi SEO scores passage citability (optimal 134-167 word self-contained answer blocks), question-based heading hierarchy, attribution density, structured data coverage, and entity presence across Wikipedia, Reddit, YouTube, and LinkedIn. The `seo-geo` skill includes evidence-based reframes of three popular myths: llms.txt is not currently a citation lever ([primary-source evidence](skills/seo-geo/references/llmstxt-evidence.md)), content chunking is not required, and AI-specific keyword rewriting is unnecessary because synonym understanding is sufficient.
+Short version: "AI SEO" is just SEO. Per [Google's AI Optimization Guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide), AI Overviews and AI Mode run on the same ranking systems as classic search — if your page is indexed and snippet-eligible, it can appear in AI features. So Kimi SEO scores what actually helps: self-contained answer blocks (134-167 words), question-shaped headings, clear attribution, structured data, and brand presence on Wikipedia, Reddit, YouTube, and LinkedIn. And it tells you what *not* to waste time on, with primary-source evidence: llms.txt is not a citation lever, content chunking is not required, and AI-specific keyword rewrites are unnecessary ([evidence](skills/seo-geo/references/llmstxt-evidence.md)).
 
 ### Which Google SEO APIs does Kimi SEO integrate with?
 
-A 4-tier credential system lets you start with zero keys and add data as needed. Every tier delivers real value at its level:
+None are required — you start with zero keys and add data in tiers when you want it:
 
 | Tier | Credentials | APIs Unlocked |
 |------|------|------|
@@ -215,13 +215,18 @@ A 4-tier credential system lets you start with zero keys and add data as needed.
 | 2 | + GA4 property config | + GA4 organic traffic, top landing pages, device / country breakdown |
 | 3 | + Ads developer token | + Keyword Planner search volume and competition data |
 
-PDF reports are generated via [WeasyPrint](https://weasyprint.org/) (A4 layout) with matplotlib charts at 200 DPI. Run `/kimi-seo:seo google setup` for the credential wizard. All credentials live under `~/.config/kimi-seo/` with `0o600` permissions; nothing is checked into the repo.
+Setup wizard: `/kimi-seo:seo google setup`. Credentials live in `~/.config/kimi-seo/` with owner-only permissions — never in the repo. PDF reports (A4 layout, matplotlib charts) are generated with [WeasyPrint](https://weasyprint.org/).
 
 ### How does Kimi SEO handle local SEO?
 
-Three layers. **Google Business Profile signals**: categories, hours, photos, posts, products, attributes. **NAP consistency** across citations: name, address, phone matched against major directories with deviation flagging. **Review intelligence**: rating trends, sentiment, response coverage. For multi-location businesses, Kimi SEO enforces a 30-page warning threshold and a 50-page hard stop to prevent doorway-page violations (configurable). The `/kimi-seo:seo maps` workflow adds geo-grid rank tracking, GBP profile auditing, and competitor radius mapping. Local schema generation covers `LocalBusiness` with all required and recommended properties (geo coordinates, opening hours, areaServed). A GBP deprecation linter also detects retired chat-field references and `.business.site` URLs.
+Three layers: your **Google Business Profile** (categories, hours, photos, posts, products), **NAP consistency** (name / address / phone matched across directories, with deviations flagged), and **review intelligence** (rating trends, sentiment, response coverage). Multi-location sites get doorway-page guardrails: a warning at 30 location pages, a hard stop at 50. The `/kimi-seo:seo maps` workflow adds geo-grid rank tracking, GBP auditing, and competitor radius mapping. Schema generation covers `LocalBusiness` with geo coordinates, opening hours, and service area. A GBP deprecation linter also catches retired chat-field references and `.business.site` URLs.
 
 ## Compared to manual / agency / commercial tools
+
+The short version: a 10-15 minute audit, free and fully local, repeatable, no lock-in — and every finding comes with a way to check it. Details:
+
+<details>
+<summary>Full comparison table</summary>
 
 | | Manual audit | Agency engagement | Commercial SEO audit tool | **Kimi SEO** |
 |---|---|---|---|---|
@@ -237,13 +242,15 @@ Three layers. **Google Business Profile signals**: categories, hours, photos, po
 
 > Cost benchmarks: manual audit assumes a senior SEO consultant at typical agency billable rates; agency engagement based on common discovery/audit deliverable scopes; commercial-tool subscriptions reflect published mid-tier pricing across the SEO audit category (Ahrefs, Semrush, Sitebulb, Screaming Frog). Your numbers may differ.
 
+</details>
+
 ## Use cases
 
-**SEO agency lead running 10 client sites.** Replaces the quarterly "deep audit" ritual with a weekly Monday-morning `/kimi-seo:seo audit` run per site. Time to deliver a client health-score email drops from 4 hours to 12 minutes; coverage goes from quarterly to weekly without billing more hours. The drift baseline catches regressions between audits so the client conversation moves from "look at this snapshot" to "here is what changed this week."
+**SEO agency lead, 10 client sites.** A `/kimi-seo:seo audit` per client every Monday replaces the quarterly deep dive. The client health-score email drops from 4 hours to 12 minutes, and drift baselines catch regressions between runs — the conversation becomes "here's what changed this week," not "here's a snapshot."
 
-**In-house SEO lead at a 50-person SaaS company.** Runs `/kimi-seo:seo audit` 24 hours before each quarterly business review. Catches the items the platform UI buries (broken canonical chains on programmatic pages, schema deprecation after Google's June 2025 retirement wave, AI-citability gaps that erode SERP-to-AI-Overview pickup, expired-domain heritage on acquired blog assets) before the CMO asks why organic traffic is down in front of the board.
+**In-house SEO lead at a SaaS company.** Run the audit 24 hours before each quarterly review. It catches what dashboards bury — broken canonical chains, retired schema, AI-citability gaps, expired-domain heritage — before the CMO asks why traffic dipped.
 
-**Freelance SEO consultant onboarding a new client.** Runs `/kimi-seo:seo audit` on the discovery call. Anchors the engagement scope with a real 0-100 score, 3 prioritized critical findings, and a falsifiability check on each recommendation, instead of a vague "I'll take a look and get back to you." Closes more retainers because the proof of value happens during the call, not after the proposal.
+**Freelance consultant on a discovery call.** Run the audit live. You walk out with a real 0-100 score and prioritized critical findings — proof of value during the call, not after the proposal.
 
 ## Sample Output
 
@@ -324,11 +331,11 @@ Full methodology: [skills/seo/references/thinking-framework.md](skills/seo/refer
 
 ## Limitations
 
-Two real boundaries worth being upfront about.
+Two boundaries worth knowing up front.
 
-**Heavy client-side hydration timing.** The built-in headless renderer handles most SPAs out of the box (`--render auto` detects empty `<div id="root">` shells and switches to Playwright). Edge cases that still produce noisy findings: pages with hydration tied to scroll position past the fold, pages that fetch critical content after user interaction (modal opens, tab clicks), pages with race-condition-prone third-party widget mounts. For these, manually triggering the `seo-visual` subagent and comparing its Playwright snapshot to the raw-HTML subagents' findings is the recommended workflow.
+**Some JavaScript-heavy pages still read noisy.** The built-in headless renderer handles most SPAs, but pages that load key content on scroll or after a click (modals, tabs) can confuse it. For those, compare the `seo-visual` Playwright snapshot against the raw-HTML findings.
 
-**Local-only without enrichment.** The free tier makes no third-party API calls by default (audits still fetch the target URLs you point them at). Adding Google API credentials (Tier 0 through 3) unlocks real field data and live indexation status; without them, Core Web Vitals are lab estimates only and indexation is inferred from page-level signals. Adding MCP extensions (Ahrefs, DataForSEO, SE Ranking, Profound) similarly unlocks competitive and AI-citation data but requires their respective accounts.
+**No keys, no field data.** Without Google credentials, Core Web Vitals are lab estimates and indexation is inferred from page signals. Everything still works — the numbers are just less authoritative. Paid extensions (Ahrefs, DataForSEO, SE Ranking, Profound) similarly need their own accounts.
 
 ## Requirements
 
@@ -435,27 +442,27 @@ Kimi SEO sits in a small ecosystem of related projects it interoperates with:
 
 ### What is Kimi SEO?
 
-Kimi SEO is an open-source SEO analysis plugin for Kimi Code. It runs 25 sub-skills and 18 specialist agents in parallel across technical SEO, content quality, Schema.org markup, AI search optimization, local SEO, e-commerce, and international SEO. Audits produce a prioritized action plan where each recommendation carries the first-principle observation it rests on, its dependency relationship to other recommendations, a "how would we know this failed?" check, and a leading indicator. The plugin is MIT-licensed, ships zero proprietary tracking, and works without third-party API enrichment; audits still contact the target URLs you analyze. Aligned with [Google's AI Optimization Guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide) and the September 2025 Quality Rater Guidelines.
+An open-source SEO plugin for Kimi Code: 25 sub-skills that audit technical SEO, content quality, schema, AI search, local, e-commerce, and international SEO, then hand you a prioritized action plan where every recommendation carries a "how would we know this failed?" check. MIT-licensed, no tracking, works with zero API keys (audits do fetch the URLs you point at). Aligned with [Google's AI Optimization Guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide) and the September 2025 Quality Rater Guidelines.
 
 ### How is Kimi SEO different from Screaming Frog or Ahrefs Site Audit?
 
-Different surface area, different tradeoffs. **Screaming Frog** crawls deeper and faster at the link-graph level; it is purpose-built as a crawler and Kimi SEO does not attempt to replace it. **Ahrefs Site Audit** brings a proprietary backlink index and link intelligence; Kimi SEO integrates with Ahrefs via its MCP extension rather than competing. Where Kimi SEO leads: conversational LLM-native workflow, recommendation falsifiability (every finding carries an explicit failure-mode check), open-source MIT licensing with zero per-domain pricing, AI search optimization aligned with Google's primary-source guidance, and primary-source schema-deprecation tracking. Use Screaming Frog or Ahrefs for what they are best at; use Kimi SEO when you want LLM-driven synthesis, conversational iteration, and AI-search-first audits in the same environment as your other Kimi Code workflows.
+They complement it, not compete. Screaming Frog is a better raw crawler; Ahrefs owns the backlink data (Kimi SEO integrates via its extension instead of duplicating it). Kimi SEO's edge is the workflow: it's conversational and LLM-native, so you audit, ask follow-ups, and fix in the same session — free, MIT-licensed, and every finding ships with a falsifiability check.
 
 ### Does Kimi SEO work on single-page applications (Next.js, React, Vue)?
 
-Yes. Kimi SEO ships a shared headless renderer (`scripts/render_page.py`) backed by Playwright Chromium. Audit subagents call `render_page.py --mode auto`, which auto-detects SPA hallmarks (empty `<div id="root">` shells, single bundle script, hydration markers) and switches to a rendered fetch. The lower-level `scripts/fetch_page.py` wrapper supports `--render auto` as an opt-in wrapper mode; its default is `--render never` for raw HTTP. Use `render_page.py --mode always` or `fetch_page.py --render always` to force rendering. Content extraction uses [trafilatura](https://github.com/adbar/trafilatura) for boilerplate removal. Publication dates come from [htmldate](https://github.com/adbar/htmldate). Known nuance: pages with scroll-bound hydration or post-interaction content fetches still produce noisy findings; see the [Limitations](#limitations) section for the recommended `seo-visual` cross-check workflow on those edge cases.
+Yes. A shared headless renderer (`scripts/render_page.py`, Playwright Chromium) auto-detects SPA shells — an empty `<div id="root">`, a single bundle script — and renders before auditing. Plain sites skip rendering and go over raw HTTP. Content extraction uses [trafilatura](https://github.com/adbar/trafilatura); publication dates come from [htmldate](https://github.com/adbar/htmldate). Pages that load content on scroll or after clicks can still read noisy — see [Limitations](#limitations).
 
 ### What Google APIs does Kimi SEO use, and are they required?
 
-None are required. Kimi SEO is fully functional with zero API keys. A 4-tier credential system lets you upgrade gradually: Tier 0 (API key only) unlocks PageSpeed Insights, CrUX, and CrUX History (25-week trend data). Tier 1 (+ OAuth or service account) adds Search Console with queries, URL Inspection, sitemap status, and the Indexing API for eligible JobPosting pages or BroadcastEvent in VideoObject pages; the API does not guarantee indexing. Tier 2 (+ GA4 property config) adds organic traffic, top landing pages, and device / country breakdowns. Tier 3 (+ Ads developer token) adds Keyword Planner search volume and competition data. The credential setup wizard runs via `/kimi-seo:seo google setup`. All credentials live under `~/.config/kimi-seo/` with `0o600` file permissions; nothing is checked into the repo and nothing is transmitted beyond Google's own endpoints.
+None are required. Add credentials in tiers when you want real field data: an API key unlocks PageSpeed and CrUX; OAuth adds Search Console and the Indexing API; GA4 config adds organic traffic; an Ads developer token adds Keyword Planner volumes. Wizard: `/kimi-seo:seo google setup`. Credentials live in `~/.config/kimi-seo/` with owner-only permissions and never leave your machine except to Google's own endpoints.
 
 ### Is Kimi SEO free?
 
-Yes. MIT licensed, fully open source, no per-domain pricing, no telemetry, no API quotas imposed by the plugin itself. The core plugin and all 25 sub-skills work without any paid service. Some optional MCP extensions wrap paid services (DataForSEO, Ahrefs, Profound, SE Ranking) where you bring your own account credentials; their use is opt-in and the plugin works fully without them. Google APIs (PageSpeed Insights, Search Console, Indexing, GA4) are free from Google with normal account quota limits and require your own credentials. If you want commercial support or enterprise features beyond the open-source plugin, that is not part of this project.
+Yes. MIT, no per-domain pricing, no telemetry, no quotas imposed by the plugin. The core and all 25 sub-skills work without any paid service. Optional extensions wrap paid services (DataForSEO, Ahrefs, Profound, SE Ranking) using your own accounts — the plugin works fully without them. Google's APIs are free within normal account quotas.
 
 ### How is Kimi SEO different from regular SEO tools when it comes to AI search?
 
-Most SEO tools treat AI search as a separate optimization discipline. Kimi SEO follows [Google's own position](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide) that AEO and GEO are rebranded labels for SEO. AI Overviews and AI Mode are grounded in the same ranking systems as classic Search; the eligibility floor is normal indexation. Kimi SEO scores passage citability (134-167 word self-contained answer blocks), question-based heading hierarchy, attribution density, and entity presence across Wikipedia, Reddit, YouTube, and LinkedIn. It explicitly rejects three influencer myths: llms.txt as a citation lever, content chunking for AI, and AI-specific keyword rewriting. For commerce sites, Kimi SEO audits the IPTC `TrainedAlgorithmicMedia` requirement on AI-generated product images per Google Merchant Center policy.
+It follows [Google's own position](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide): "AEO" and "GEO" are rebranded SEO, not a separate discipline. So no llms.txt tricks, no content chunking, no AI-specific keyword rewrites — Kimi SEO scores the things with evidence behind them (citability, question-shaped headings, attribution, entity presence on Wikipedia, Reddit, YouTube, LinkedIn). For commerce sites it also checks the IPTC `TrainedAlgorithmicMedia` flag Google Merchant Center requires on AI-generated product images.
 
 ## Community Contributors
 

@@ -23,7 +23,7 @@ class LandingTest extends TestCase
             ->assertSee('not affiliated with Moonshot AI')
             ->assertSee('Support upstream')
             ->assertSee('Support Kimi SEO')
-            ->assertSee('How Kimi SEO works')
+            ->assertSee('How Kimi SEO <em class="h2-accent">works</em>', false)
             ->assertSee('Kimi SEO')
             ->assertSee('orchestrator')
             ->assertSee('how-it-works')
@@ -32,7 +32,7 @@ class LandingTest extends TestCase
             ->assertSee('data-back-to-top', false)
             ->assertSee('sticky top-0', false)
             ->assertSee('data-sticky-header', false)
-            ->assertSee('See it in action')
+            ->assertSee('See it in <em class="h2-accent">action</em>', false)
             ->assertSee('/media/assets/demo-command.svg')
             ->assertSee('/media/assets/demo-audit.svg');
     }
