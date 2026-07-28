@@ -80,7 +80,7 @@
     <g class="caret1-wrap"><rect class="caret" x="52" y="74" width="9" height="18" fill="#5ea2f7"/></g>
 
     <!-- report header -->
-    <text class="a" style="animation-name: k-hdr" x="32" y="124"><tspan fill="#5ea2f7"># rankenstein.pro</tspan><tspan fill="#8b8b98"> — prioritized action plan</tspan></text>
+    <text class="a" style="animation-name: k-hdr" x="32" y="124"><tspan fill="#5ea2f7"># example.com</tspan><tspan fill="#8b8b98"> — prioritized action plan</tspan></text>
 
     <!-- finding 1 -->
     <text class="a" style="animation-name: k-f1" x="32" y="162"><tspan fill="#f87171">[CRITICAL]</tspan><tspan fill="#ececf1">  /pricing missing &lt;title&gt; + meta description</tspan></text>

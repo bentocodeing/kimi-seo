@@ -2,7 +2,7 @@
      aria-label="Kimi SEO terminal demo: typing /kimi-seo:seo audit, parallel agents running, report written"
      font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace">
   <title>Kimi SEO — /kimi-seo:seo audit demo</title>
-  <desc>Dark terminal window. The command /kimi-seo:seo audit https://rankenstein.pro is typed, the orchestrator detects the industry, five agents run in parallel, and a summary line confirms the report.</desc>
+  <desc>Dark terminal window. The command /kimi-seo:seo audit https://example.com is typed, the orchestrator detects the industry, five agents run in parallel, and a summary line confirms the report.</desc>
   <style>
     text { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace; }
 
@@ -78,7 +78,7 @@
     <clipPath id="cmdclip" class="type-clip" clipPathUnits="userSpaceOnUse">
       <rect x="52" y="74" width="0" height="22"/>
     </clipPath>
-    <text x="52" y="90" fill="#ececf1" clip-path="url(#cmdclip)">/kimi-seo:seo audit https://rankenstein.pro</text>
+    <text x="52" y="90" fill="#ececf1" clip-path="url(#cmdclip)">/kimi-seo:seo audit https://example.com</text>
     <g class="caret1-wrap"><rect class="caret" x="52" y="76" width="9" height="18" fill="#5ea2f7"/></g>
 
     <!-- line 2: industry detection -->
