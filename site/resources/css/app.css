@@ -128,6 +128,15 @@ body {
         opacity: 0.10;
     }
 
+    /* Landing hero ambient glow */
+    .hero-glow {
+        background: radial-gradient(closest-side, var(--color-accent-500), transparent 72%);
+        opacity: 0.10;
+    }
+    .dark .hero-glow {
+        opacity: 0.16;
+    }
+
     /* Buttons */
     .btn-primary {
         @apply rounded-lg bg-accent-600 px-6 py-3 text-sm font-semibold text-white hover:bg-accent-500 transition-colors;

@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Kimi SEO — SEO analysis suite for Kimi Code CLI')</title>
     <meta name="description" content="@yield('meta_description', 'Kimi SEO is a free, open-source SEO analysis plugin for Kimi Code CLI: 25 skills, 18 subagents, 53 scripts.')">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="@yield('title', 'Kimi SEO — SEO analysis suite for Kimi Code CLI')">
+    <meta property="og:description" content="@yield('meta_description', 'Kimi SEO is a free, open-source SEO analysis plugin for Kimi Code CLI: 25 skills, 18 subagents, 53 scripts.')">
+    <meta property="og:image" content="{{ asset('og-cover.png') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('title', 'Kimi SEO — SEO analysis suite for Kimi Code CLI')">
+    <meta name="twitter:description" content="@yield('meta_description', 'Kimi SEO is a free, open-source SEO analysis plugin for Kimi Code CLI: 25 skills, 18 subagents, 53 scripts.')">
+    <meta name="twitter:image" content="{{ asset('og-cover.png') }}">
     <link rel="icon" href="/favicon.ico" sizes="32x32">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <script>

@@ -2,13 +2,17 @@
 
 @section('content')
     {{-- Hero --}}
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-24 sm:pt-36 pb-20 sm:pb-28 text-center">
+    <section class="relative isolate max-w-6xl mx-auto px-4 sm:px-6 pt-24 sm:pt-36 pb-20 sm:pb-28 text-center">
+        <div class="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+            <div class="absolute inset-0 stats-dots"></div>
+            <div class="hero-glow absolute left-1/2 top-[38%] -translate-x-1/2 -translate-y-1/2 w-[760px] h-[440px]"></div>
+        </div>
         <p class="anim-rise font-mono text-xs sm:text-sm accent-text mb-4">$ kimi /plugins install — seo suite loaded</p>
-        <h1 class="anim-rise anim-d1 text-4xl sm:text-6xl font-bold tracking-tight heading">Kimi SEO</h1>
+        <h1 class="anim-rise anim-d1 text-4xl sm:text-6xl font-bold tracking-tight heading brand-mark">Kimi SEO</h1>
         <p class="anim-rise anim-d2 mt-4 text-lg sm:text-xl muted max-w-2xl mx-auto leading-relaxed">
-            A full SEO analysis suite for <span class="heading">Kimi Code CLI</span> —
-            audits, technical checks, content quality, schema, backlinks and more,
-            right from your terminal.
+            The SEO analysis suite for <span class="heading">Kimi Code CLI</span>: audit any site
+            in 10 minutes and get a prioritized action plan — every finding tells you
+            how to verify it. Free, local, no API keys.
         </p>
 
         <div class="anim-rise anim-d3 mt-10 max-w-xl mx-auto">
@@ -37,8 +41,8 @@
         </div>
 
         <div class="anim-rise anim-d4 mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a href="{{ route('docs.index') }}" class="w-full sm:w-auto btn-primary">
-                Read the docs
+            <a href="{{ route('docs.show', 'getting-started') }}" class="w-full sm:w-auto btn-primary">
+                Get started in 10 minutes
             </a>
             <a href="{{ config('kimiseo.github_url') }}" target="_blank" rel="noopener" class="w-full sm:w-auto btn-outline">
                 View on GitHub
@@ -53,7 +57,7 @@
             @php
                 $stats = [
                     ['25', 'SEO skills'],
-                    ['18', 'subagents'],
+                    ['18', 'specialist agents'],
                     ['53', 'Python scripts'],
                 ];
             @endphp
@@ -76,20 +80,23 @@
         <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             @php
                 $features = [
-                    ['/kimi-seo:seo audit', 'Full website audit with parallel subagent delegation across every SEO category.'],
-                    ['/kimi-seo:seo page', 'Deep single-page analysis: tags, headings, content, links, performance.'],
-                    ['/kimi-seo:seo technical', 'Technical SEO audit across 9 categories, from crawlability to Core Web Vitals.'],
-                    ['/kimi-seo:seo content', 'E-E-A-T and content quality analysis with actionable recommendations.'],
-                    ['/kimi-seo:seo schema', 'Schema.org detection, validation and JSON-LD generation.'],
-                    ['/kimi-seo:seo geo', 'Optimize for AI Overviews and generative search engines.'],
-                    ['/kimi-seo:seo backlinks', 'Backlink profile analysis with free API integrations.'],
-                    ['/kimi-seo:seo cluster', 'SERP-based semantic clustering and content architecture.'],
-                    ['/kimi-seo:seo drift', 'Capture baselines and monitor SEO drift over time.'],
+                    ['/kimi-seo:seo audit', 'Full website audit with parallel subagent delegation across every SEO category.', 'crawl'],
+                    ['/kimi-seo:seo page', 'Deep single-page analysis: tags, headings, content, links, performance.', 'crawl'],
+                    ['/kimi-seo:seo technical', 'Technical SEO audit across 9 categories, from crawlability to Core Web Vitals.', 'crawl'],
+                    ['/kimi-seo:seo content', 'E-E-A-T and content quality analysis with actionable recommendations.', 'content'],
+                    ['/kimi-seo:seo schema', 'Schema.org detection, validation and JSON-LD generation.', 'markup'],
+                    ['/kimi-seo:seo geo', 'Optimize for AI Overviews and generative search engines.', 'AI search'],
+                    ['/kimi-seo:seo backlinks', 'Backlink profile analysis with free API integrations.', 'authority'],
+                    ['/kimi-seo:seo cluster', 'SERP-based semantic clustering and content architecture.', 'content'],
+                    ['/kimi-seo:seo drift', 'Capture baselines and monitor SEO drift over time.', 'monitoring'],
                 ];
             @endphp
-            @foreach ($features as [$command, $description])
+            @foreach ($features as [$command, $description, $tag])
                 <div class="card p-5 hover:border-accent-600/50 transition-colors" data-reveal data-reveal-delay="{{ $loop->index % 3 + 1 }}">
-                    <p class="font-mono text-sm accent-text">{{ $command }}</p>
+                    <div class="flex items-center justify-between gap-3">
+                        <p class="font-mono text-sm accent-text">{{ $command }}</p>
+                        <span class="shrink-0 font-mono text-[10px] uppercase tracking-wider muted">{{ $tag }}</span>
+                    </div>
                     <p class="mt-2 text-sm muted-strong leading-relaxed">{{ $description }}</p>
                 </div>
             @endforeach
@@ -206,11 +213,11 @@
         </div>
     </section>
 
-    {{-- Attribution --}}
+    {{-- Attribution & support --}}
     <section class="border-b border-zinc-200 dark:border-ink-800">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 py-16 text-center" data-reveal>
             <p class="font-mono text-xs uppercase tracking-widest accent-text mb-4">Standing on the shoulders of giants</p>
-            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight heading">A <em class="h2-accent">community fork</em> of claude-seo</h2>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight heading">Built on a <em class="h2-accent">proven foundation</em></h2>
             <p class="mt-4 muted-strong leading-relaxed">
                 Kimi SEO is a free, open-source community fork of
                 <a href="{{ config('kimiseo.upstream_url') }}" target="_blank" rel="noopener" class="accent-text-hover underline underline-offset-2">claude-seo</a>
@@ -221,48 +228,40 @@
             <p class="mt-3 text-sm muted">
                 Kimi SEO is a community project and is not affiliated with Moonshot AI.
             </p>
-        </div>
-    </section>
 
-    {{-- Support / donate --}}
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-center heading" data-reveal><em class="h2-accent">Support</em> the project</h2>
-        <p class="mt-3 text-center muted max-w-2xl mx-auto" data-reveal>
-            Both the upstream project and this fork are free and open source. If they help you, consider giving back.
-        </p>
-
-        <div class="mt-10 grid gap-4 sm:grid-cols-2 max-w-3xl mx-auto">
-            <div class="card p-6 flex flex-col" data-reveal data-reveal-delay="1">
-                <h3 class="text-lg font-semibold heading">Support upstream</h3>
-                <p class="mt-2 text-sm muted leading-relaxed flex-1">
-                    Star and contribute to claude-seo, or join AgriciDaniel's AI marketing community.
-                </p>
-                <div class="mt-4 flex flex-col gap-2">
-                    <a href="{{ config('kimiseo.upstream_url') }}" target="_blank" rel="noopener"
-                       class="rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-center text-zinc-800 hover:border-accent-600/60 hover:text-accent-700 transition-colors dark:border-ink-600 dark:text-ink-100 dark:hover:text-accent-300">
-                        claude-seo on GitHub
-                    </a>
-                    <a href="{{ config('kimiseo.upstream_community_url') }}" target="_blank" rel="noopener"
-                       class="rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-center text-zinc-800 hover:border-accent-600/60 hover:text-accent-700 transition-colors dark:border-ink-600 dark:text-ink-100 dark:hover:text-accent-300">
-                        AI Marketing Hub community
+            <div class="mt-10 grid gap-4 sm:grid-cols-2 text-left">
+                <div class="card p-6 flex flex-col">
+                    <h3 class="text-lg font-semibold heading">Support upstream</h3>
+                    <p class="mt-2 text-sm muted leading-relaxed flex-1">
+                        Star and contribute to claude-seo, or join AgriciDaniel's AI marketing community.
+                    </p>
+                    <div class="mt-4 flex flex-col gap-2">
+                        <a href="{{ config('kimiseo.upstream_url') }}" target="_blank" rel="noopener"
+                           class="rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-center text-zinc-800 hover:border-accent-600/60 hover:text-accent-700 transition-colors dark:border-ink-600 dark:text-ink-100 dark:hover:text-accent-300">
+                            claude-seo on GitHub
+                        </a>
+                        <a href="{{ config('kimiseo.upstream_community_url') }}" target="_blank" rel="noopener"
+                           class="rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-center text-zinc-800 hover:border-accent-600/60 hover:text-accent-700 transition-colors dark:border-ink-600 dark:text-ink-100 dark:hover:text-accent-300">
+                            AI Marketing Hub community
+                        </a>
+                    </div>
+                </div>
+                <div class="card p-6 flex flex-col">
+                    <h3 class="text-lg font-semibold heading">Support Kimi SEO</h3>
+                    <p class="mt-2 text-sm muted leading-relaxed flex-1">
+                        Help keep this fork maintained and in sync with upstream.
+                    </p>
+                    <a href="{{ config('kimiseo.donate_url') }}" target="_blank" rel="noopener"
+                       class="mt-4 rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-center text-white hover:bg-accent-500 transition-colors">
+                        Donate / Sponsor
                     </a>
                 </div>
-            </div>
-            <div class="card p-6 flex flex-col" data-reveal data-reveal-delay="2">
-                <h3 class="text-lg font-semibold heading">Support Kimi SEO</h3>
-                <p class="mt-2 text-sm muted leading-relaxed flex-1">
-                    Help keep this fork maintained and in sync with upstream.
-                </p>
-                <a href="{{ config('kimiseo.donate_url') }}" target="_blank" rel="noopener"
-                   class="mt-4 rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-center text-white hover:bg-accent-500 transition-colors">
-                    Donate / Sponsor
-                </a>
             </div>
         </div>
     </section>
 
     {{-- Ad slot --}}
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
         <div class="max-w-2xl mx-auto" data-reveal>
             <x-ad-slot :ads="$ads" :visible="2" />
         </div>
