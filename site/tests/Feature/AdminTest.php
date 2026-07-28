@@ -111,6 +111,60 @@ class AdminTest extends TestCase
         $this->assertDatabaseMissing('ads', ['id' => $ad->id]);
     }
 
+    public function test_admin_index_shows_the_reorderable_list(): void
+    {
+        $this->actingAs($this->admin)
+            ->get('/admin/ads')
+            ->assertOk()
+            ->assertSee('data-reorder-list', false)
+            ->assertSee(route('admin.ads.reorder'), false);
+    }
+
+    public function test_reorder_persists_the_new_order(): void
+    {
+        $first = Ad::create(['title' => 'First', 'image_url' => 'https://example.com/a.png', 'link_url' => 'https://example.com/a', 'sort_order' => 0]);
+        $second = Ad::create(['title' => 'Second', 'image_url' => 'https://example.com/b.png', 'link_url' => 'https://example.com/b', 'sort_order' => 1]);
+        $third = Ad::create(['title' => 'Third', 'image_url' => 'https://example.com/c.png', 'link_url' => 'https://example.com/c', 'sort_order' => 2]);
+
+        $this->actingAs($this->admin)
+            ->postJson('/admin/ads/reorder', [
+                'ids' => [$third->id, $first->id, $second->id],
+            ])
+            ->assertNoContent();
+
+        $this->assertSame(0, $third->fresh()->sort_order);
+        $this->assertSame(1, $first->fresh()->sort_order);
+        $this->assertSame(2, $second->fresh()->sort_order);
+    }
+
+    public function test_reorder_rejects_unauthenticated_users(): void
+    {
+        $this->postJson('/admin/ads/reorder', ['ids' => [1]])
+            ->assertUnauthorized();
+    }
+
+    public function test_reorder_validates_ids(): void
+    {
+        $this->actingAs($this->admin)
+            ->postJson('/admin/ads/reorder', ['ids' => [999]])
+            ->assertUnprocessable();
+    }
+
+    public function test_new_ads_default_to_the_end_of_the_list(): void
+    {
+        Ad::create(['title' => 'Existing', 'image_url' => 'https://example.com/a.png', 'link_url' => 'https://example.com/a', 'sort_order' => 7]);
+
+        $this->actingAs($this->admin)
+            ->post('/admin/ads', [
+                'title' => 'New At End',
+                'image_url' => 'https://example.com/b.png',
+                'link_url' => 'https://example.com/b',
+                'is_active' => '1',
+            ]);
+
+        $this->assertSame(8, Ad::where('title', 'New At End')->value('sort_order'));
+    }
+
     public function test_admin_can_manage_inquiries(): void
     {
         $inquiry = AdInquiry::create([

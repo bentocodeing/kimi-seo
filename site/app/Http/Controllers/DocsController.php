@@ -11,6 +11,7 @@ class DocsController extends Controller
     {
         return view('docs.index', [
             'pages' => config('docs.pages'),
+            'ads' => Ad::activeOrdered(),
         ]);
     }
 
@@ -29,13 +30,15 @@ class DocsController extends Controller
         $html = Str::markdown($markdown);
         $html = $this->rewriteMediaUrls($html);
         $html = $this->rewriteDocLinks($html);
+        [$html, $toc] = $this->addHeadingAnchors($html);
 
         return view('docs.show', [
             'slug' => $slug,
             'title' => $page['title'],
             'content' => $html,
+            'toc' => $toc,
             'pages' => $pages,
-            'ad' => Ad::current(),
+            'ads' => Ad::activeOrdered(),
         ]);
     }
 
@@ -71,5 +74,54 @@ class DocsController extends Controller
                 : $m[0],
             $html,
         );
+    }
+
+    /**
+     * Add GitHub-style id attributes to h1–h4 headings so the markdown's
+     * in-page TOC links (#quick-start, #commands, …) work, and collect the
+     * h2/h3 entries for the right-rail table of contents.
+     *
+     * @return array{0: string, 1: array<int, array{level: int, id: string, text: string}>}
+     */
+    private function addHeadingAnchors(string $html): array
+    {
+        $seen = [];
+        $toc = [];
+
+        $html = preg_replace_callback(
+            '#<h([1-4])>(.*?)</h\1>#s',
+            function (array $m) use (&$seen, &$toc) {
+                $text = html_entity_decode(strip_tags($m[2]), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                $base = $this->githubSlug($text);
+
+                $slug = $base;
+                $suffix = 0;
+                while (isset($seen[$slug])) {
+                    $slug = $base.'-'.(++$suffix);
+                }
+                $seen[$slug] = true;
+
+                if (in_array((int) $m[1], [2, 3], true)) {
+                    $toc[] = ['level' => (int) $m[1], 'id' => $slug, 'text' => trim($text)];
+                }
+
+                return '<h'.$m[1].' id="'.$slug.'">'.$m[2].'</h'.$m[1].'>';
+            },
+            $html,
+        );
+
+        return [$html, $toc];
+    }
+
+    /**
+     * GitHub's heading slug algorithm: lowercase, drop every character that
+     * is not a letter, number, space, hyphen or underscore, spaces→hyphens.
+     */
+    private function githubSlug(string $text): string
+    {
+        $slug = mb_strtolower(trim($text));
+        $slug = preg_replace('/[^\p{L}\p{N} _-]+/u', '', $slug);
+
+        return str_replace(' ', '-', $slug);
     }
 }

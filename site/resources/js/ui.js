@@ -51,3 +51,75 @@ export function initBackToTop() {
         window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
     });
 }
+
+/**
+ * Public ad slot carousel: shows `data-visible` slides at a time (the CSS
+ * collapses extra slides to 1 on mobile), rotates the window every 5s with
+ * a per-card countdown (mirrored in an sr-only live region), pauses on
+ * hover, and stays fully static under reduced motion. Hiding is
+ * JS-additive: without JS all ads stay stacked.
+ */
+export function initAdCarousels() {
+    document.querySelectorAll('[data-ad-carousel]').forEach((root) => {
+        const slides = Array.from(root.querySelectorAll('.ad-slide'));
+        if (slides.length === 0) return;
+
+        const visible = Math.min(parseInt(root.dataset.visible || '1', 10), slides.length);
+        root.classList.add('carousel-on');
+
+        let index = 0;
+        const show = () => {
+            slides.forEach((slide) => slide.classList.remove('is-active', 'is-active-extra'));
+            for (let i = 0; i < visible; i += 1) {
+                const slide = slides[(index + i) % slides.length];
+                slide.classList.add('is-active');
+                if (i > 0) slide.classList.add('is-active-extra');
+            }
+        };
+        show();
+
+        // Static when every ad fits in the window, or under reduced motion.
+        if (slides.length <= visible) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        // Per-card countdown labels, kept in sync with the rotation, plus
+        // an sr-only mirror for screen readers.
+        const timerLabels = Array.from(root.querySelectorAll('[data-ad-timer]'));
+        if (timerLabels.length) root.classList.add('has-timer');
+        const srTimer = root.querySelector('[data-ad-sr-timer]');
+
+        const INTERVAL = 5000;
+        let remaining = INTERVAL;
+        let timer = null;
+
+        const renderCountdown = () => {
+            const seconds = Math.ceil(remaining / 1000);
+            timerLabels.forEach((el) => { el.textContent = `${seconds}s`; });
+            if (srTimer) srTimer.textContent = `Next ad in ${seconds} seconds`;
+        };
+
+        const tick = () => {
+            remaining -= 1000;
+            if (remaining <= 0) {
+                index = (index + 1) % slides.length;
+                show();
+                remaining = INTERVAL;
+            }
+            renderCountdown();
+        };
+        const start = () => {
+            if (!timer) {
+                renderCountdown();
+                timer = setInterval(tick, 1000);
+            }
+        };
+        const stop = () => {
+            clearInterval(timer);
+            timer = null;
+        };
+
+        root.addEventListener('mouseenter', stop);
+        root.addEventListener('mouseleave', start);
+        start();
+    });
+}

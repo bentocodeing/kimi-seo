@@ -303,3 +303,50 @@ body {
     pointer-events: auto;
     transform: translateY(0);
 }
+
+/* Ad slot carousel: hiding is JS-additive (.carousel-on is only added by
+   JS), so no-JS shows all ads stacked. Extra window slides (beyond the
+   first) collapse to a single visible slide on mobile. */
+.carousel-on .ad-slide {
+    display: none;
+}
+.carousel-on .ad-slide.is-active {
+    display: block;
+    animation: ad-slide-in 0.45s ease-out;
+}
+@media (max-width: 639px) {
+    .carousel-on .ad-slide.is-active-extra {
+        display: none;
+    }
+}
+@keyframes ad-slide-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Per-card countdown: seconds until the next rotation. Hidden until JS
+   enables rotation (.has-timer); visibility avoids layout shift. */
+[data-ad-timer] {
+    visibility: hidden;
+}
+.has-timer [data-ad-timer] {
+    visibility: visible;
+}
+
+/* Admin ads drag-and-drop ordering */
+.drag-handle {
+    cursor: grab;
+    touch-action: none;
+}
+.drag-handle:active {
+    cursor: grabbing;
+}
+tr.is-dragging {
+    opacity: 0.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .carousel-on .ad-slide.is-active {
+        animation: none !important;
+    }
+}

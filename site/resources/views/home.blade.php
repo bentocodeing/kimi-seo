@@ -191,15 +191,15 @@
         <div class="mt-10 grid gap-6 lg:grid-cols-2">
             <figure data-reveal data-reveal-delay="1">
                 <img src="/media/assets/demo-command.svg"
-                     alt="Animated terminal demo: running a /seo command in Kimi Code CLI with Kimi SEO loaded"
+                     alt="Animated terminal demo: running a /seo audit in Kimi Code CLI with Kimi SEO loaded"
                      class="w-full h-auto rounded-xl border border-zinc-200 dark:border-ink-700 shadow-sm dark:shadow-none" loading="lazy">
-                <figcaption class="mt-2 text-center text-xs muted">Running a command</figcaption>
+                <figcaption class="mt-2 text-center text-xs muted">Run the audit</figcaption>
             </figure>
             <figure data-reveal data-reveal-delay="2">
                 <img src="/media/assets/demo-audit.svg"
-                     alt="Animated terminal demo: a /seo audit run fanning out to subagents and producing a prioritized report"
+                     alt="Animated terminal demo: reading the FULL-AUDIT-REPORT.md report produced by the audit"
                      class="w-full h-auto rounded-xl border border-zinc-200 dark:border-ink-700 shadow-sm dark:shadow-none" loading="lazy">
-                <figcaption class="mt-2 text-center text-xs muted">A full audit run</figcaption>
+                <figcaption class="mt-2 text-center text-xs muted">Read the report</figcaption>
             </figure>
         </div>
     </section>
@@ -261,8 +261,8 @@
 
     {{-- Ad slot --}}
     <section class="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
-        <div class="max-w-sm mx-auto" data-reveal>
-            <x-ad-slot :ad="$ad" />
+        <div class="max-w-2xl mx-auto" data-reveal>
+            <x-ad-slot :ads="$ads" :visible="2" />
         </div>
     </section>
 @endsection

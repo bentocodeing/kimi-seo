@@ -49,9 +49,12 @@ to avoid flashes. `prefers-color-scheme` is intentionally not followed.
 
 ## Advertising
 
-- One sponsored slot is shown on the landing page and in the docs sidebar.
-- The slot displays the latest active ad (ordered by `sort_order`, then newest).
-- When no ad is active, a "Your ad here?" placeholder links to `/advertise`.
+- One ad slot, labeled "Advertisement", is shown on the landing page and in
+  the docs sidebar.
+- The slot is an auto-rotating carousel (5s, pause on hover, no rotation
+  under `prefers-reduced-motion`) cycling through all active ads in
+  `sort_order` order, followed by a permanent "Your ad here?" CTA card
+  linking to `/advertise`. With no active ads it is just the CTA card.
 - `/advertise` has a contact form (honeypot spam protection) that stores
   inquiries in the `ad_inquiries` table.
 - Uploaded ad images are stored in `storage/app/public/ads` and served via the
@@ -72,7 +75,9 @@ The seeder is idempotent (`updateOrCreate`) — re-running it updates the
 password. The admin area provides:
 
 - Dashboard with counts (active ads, unread inquiries)
-- Ads CRUD with image upload (max 2 MB) or external image URL, active toggle
+- Ads CRUD with image upload (max 2 MB) or external image URL, active toggle,
+  and drag-and-drop ordering (persists to `POST /admin/ads/reorder`; new ads
+  are appended at the end of the list)
 - Inquiry list with read/unread toggle and delete
 
 ## Documentation rendering
@@ -104,12 +109,32 @@ php artisan test
 Feature tests cover the landing page, docs rendering, the advertise form,
 the ad slot behaviour and the admin area (auth, ads CRUD, inquiries).
 
-## Deploy note
+## Deployment (Laravel Forge)
 
-Any standard Laravel hosting works (PHP 8.3+, SQLite file or another database).
-On deploy: `composer install --no-dev`, `npm ci && npm run build`,
-`php artisan migrate --force`, `php artisan storage:link`,
-`php artisan config:cache`, and point the web root at `public/`.
-Important: the docs are read from the parent repository directory, so deploy
-the site together with the repo layout intact (or adjust the paths in
-`config/docs.php`).
+Deploy the **repository root** as the Forge site, with the web directory set
+to `site/public`. Docs and media are read from the repo root via
+`base_path('..')` (see `config/docs.php` and `MediaController`), which the
+repo layout provides — do not deploy `site/` standalone. Deploys are light:
+`ms-playwright/` and `.venv/` are git-ignored and `.git` is ~10 MB.
+
+Deploy script:
+
+```bash
+cd site
+composer install --no-dev
+npm ci && npm run build
+php artisan migrate --force
+php artisan storage:link
+php artisan config:cache
+```
+
+Notes:
+
+- `php artisan storage:link` is required once (uploaded ad images are served
+  from `/storage/…` — relative URLs, so no `APP_URL` dependency — but the
+  symlink must exist).
+- Set `APP_URL` to the real domain and the admin env vars (`ADMIN_EMAIL`,
+  `ADMIN_PASSWORD`), then run `php artisan db:seed` once to create the
+  admin user.
+- SQLite works fine at this scale; keep `database/database.sqlite` writable
+  by the deploy user.

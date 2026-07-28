@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Ad;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
@@ -25,6 +26,9 @@ class AdController extends Controller
     public function store(Request $request)
     {
         $data = $this->validateAd($request);
+
+        // New ads go to the end of the list.
+        $data['sort_order'] = ((int) Ad::max('sort_order')) + 1;
 
         if ($request->hasFile('image')) {
             $data['image_path'] = $request->file('image')->store('ads', 'public');
@@ -60,6 +64,25 @@ class AdController extends Controller
         $ad->update($data);
 
         return redirect()->route('admin.ads.index')->with('success', 'Ad updated.');
+    }
+
+    /**
+     * Persist the drag-and-drop ordering from the admin ads index.
+     */
+    public function reorder(Request $request)
+    {
+        $validated = $request->validate([
+            'ids' => ['required', 'array'],
+            'ids.*' => ['integer', 'exists:ads,id'],
+        ]);
+
+        DB::transaction(function () use ($validated) {
+            foreach ($validated['ids'] as $position => $id) {
+                Ad::where('id', $id)->update(['sort_order' => $position]);
+            }
+        });
+
+        return response()->noContent();
     }
 
     public function toggle(Ad $ad)
@@ -101,11 +124,9 @@ class AdController extends Controller
             ],
             'link_url' => ['required', 'url', 'max:2048'],
             'is_active' => ['nullable', 'boolean'],
-            'sort_order' => ['nullable', 'integer', 'min:0', 'max:1000000'],
         ]);
 
         $data['is_active'] = $request->boolean('is_active');
-        $data['sort_order'] = $data['sort_order'] ?? 0;
 
         // Keep the existing external URL when the field is left blank on edit.
         if ($ad && ! $request->hasFile('image') && empty($data['image_url'])) {

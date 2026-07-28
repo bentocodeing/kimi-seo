@@ -7,7 +7,7 @@
         <h1 class="text-3xl sm:text-4xl font-bold tracking-tight heading">Advertise on Kimi SEO</h1>
         <p class="mt-4 muted leading-relaxed">
             Kimi SEO is used by developers and SEO practitioners who live in their terminal.
-            A single, tasteful sponsored slot is displayed on the landing page and alongside
+            A single, tasteful ad slot is displayed on the landing page and alongside
             the documentation — no tracking scripts, no pop-ups, just your message in front of
             a technical audience.
         </p>
@@ -15,9 +15,9 @@
         <div class="mt-8 card p-6">
             <h2 class="font-semibold text-lg heading">How it works</h2>
             <ul class="mt-3 space-y-2 text-sm muted-strong list-disc list-inside">
-                <li>One sponsored slot: landing page + docs sidebar.</li>
+                <li>One ad slot: landing page + docs sidebar, rotating through all active ads.</li>
                 <li>Static image (uploaded or hosted) with a link of your choice.</li>
-                <li>Clearly labeled as sponsored. No JavaScript, no cookies.</li>
+                <li>Clearly labeled as an advertisement. No third-party scripts, no cookies.</li>
                 <li>Send us an inquiry below and we'll get back to you with pricing and availability.</li>
             </ul>
         </div>

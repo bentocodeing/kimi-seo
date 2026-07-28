@@ -9,7 +9,7 @@ use App\Models\Ad;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home', ['ad' => Ad::current()]);
+    return view('home', ['ads' => Ad::activeOrdered()]);
 })->name('home');
 
 Route::get('/docs', [DocsController::class, 'index'])->name('docs.index');
@@ -25,6 +25,7 @@ Route::post('/advertise', [AdvertiseController::class, 'store'])->name('advertis
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::post('ads/reorder', [AdController::class, 'reorder'])->name('ads.reorder');
     Route::resource('ads', AdController::class)->except(['show']);
     Route::patch('ads/{ad}/toggle', [AdController::class, 'toggle'])->name('ads.toggle');
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 lg:grid lg:grid-cols-[240px_1fr] lg:gap-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:grid lg:grid-cols-[240px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)_220px] lg:gap-10">
         {{-- Mobile: collapsible nav --}}
         <details class="lg:hidden mb-6 card">
             <summary class="px-4 py-3 text-sm font-semibold cursor-pointer select-none heading">Documentation menu</summary>
@@ -46,7 +46,7 @@
                 </nav>
 
                 <div class="mt-8">
-                    <x-ad-slot :ad="$ad ?? null" />
+                    <x-ad-slot :ads="$ads ?? collect()" :visible="1" />
                 </div>
             </div>
         </aside>
@@ -56,8 +56,27 @@
 
             {{-- Mobile: ad below content --}}
             <div class="lg:hidden mt-10 max-w-sm">
-                <x-ad-slot :ad="$ad ?? null" />
+                <x-ad-slot :ads="$ads ?? collect()" :visible="1" />
             </div>
         </div>
+
+        {{-- Right rail: on-page table of contents (xl and up only) --}}
+        @if (! empty($toc))
+            <aside class="hidden xl:block">
+                <nav class="sticky top-24" aria-label="On this page">
+                    <p class="font-mono text-xs uppercase tracking-widest muted mb-3">On this page</p>
+                    <ul class="space-y-1.5 text-sm border-l border-zinc-200 dark:border-ink-800">
+                        @foreach ($toc as $heading)
+                            <li>
+                                <a href="#{{ $heading['id'] }}"
+                                   class="block -ml-px border-l-2 border-transparent py-1 muted-strong hover:text-zinc-900 dark:hover:text-white hover:border-accent-500 transition-colors {{ $heading['level'] === 3 ? 'pl-7' : 'pl-3' }}">
+                                    {{ $heading['text'] }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </nav>
+            </aside>
+        @endif
     </div>
 @endsection

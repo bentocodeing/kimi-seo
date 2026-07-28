@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class Ad extends Model
 {
@@ -22,22 +21,25 @@ class Ad extends Model
     ];
 
     /**
-     * The ad currently displayed in the slot: active, lowest sort_order first,
-     * then newest.
+     * Active ads for the public slot, in display order: lowest sort_order
+     * first, then newest. The slot rotates through all of them.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection<int, self>
      */
-    public static function current(): ?self
+    public static function activeOrdered()
     {
         return static::query()
             ->where('is_active', true)
             ->orderBy('sort_order')
             ->orderByDesc('created_at')
-            ->first();
+            ->get();
     }
 
     public function image(): ?string
     {
         if ($this->image_path) {
-            return Storage::disk('public')->url($this->image_path);
+            // Relative URL: host-independent, works regardless of APP_URL.
+            return '/storage/'.$this->image_path;
         }
 
         return $this->image_url;
