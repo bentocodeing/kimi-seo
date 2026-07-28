@@ -102,6 +102,3 @@ anywhere.
 
 - [Commands Reference](COMMANDS.md) — every command in depth
 - [Troubleshooting](TROUBLESHOOTING.md) — install and runtime issues
-- Coming from **claude-seo v1.x** (the upstream project)? See
-  [Migration v1 → v2](MIGRATION-v1-to-v2.md). New to Kimi SEO? There is
-  nothing to migrate — the fork starts on the v2 codebase.

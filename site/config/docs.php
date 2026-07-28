@@ -38,10 +38,6 @@ return [
             'title' => 'MCP Integration',
             'path' => base_path('../docs/MCP-INTEGRATION.md'),
         ],
-        'migration-v1-to-v2' => [
-            'title' => 'Migration (claude-seo v1 → v2)',
-            'path' => base_path('../docs/MIGRATION-v1-to-v2.md'),
-        ],
         'troubleshooting' => [
             'title' => 'Troubleshooting',
             'path' => base_path('../docs/TROUBLESHOOTING.md'),
