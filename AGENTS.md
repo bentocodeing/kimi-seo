@@ -202,6 +202,10 @@ cannot create merge conflicts during syncs. Setup and deploy notes:
 
 ## Credits
 
-Created by [@AgriciDaniel](https://github.com/AgriciDaniel).
-v1.9.0 community contributions by Lutfiya Miller, Chris Muller, Florian Schmitz,
+Kimi SEO is created and maintained by [bentocodeing](https://github.com/bentocodeing).
+No Kimi SEO community contributors yet — see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+Kimi SEO is based on [claude-seo](https://github.com/AgriciDaniel/claude-seo),
+created by [@AgriciDaniel](https://github.com/AgriciDaniel). Upstream v1.9.0
+community contributions by Lutfiya Miller, Chris Muller, Florian Schmitz,
 Dan Colta, and Matej Marjanovic. See [CONTRIBUTORS.md](CONTRIBUTORS.md).

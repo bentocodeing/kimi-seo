@@ -1,4 +1,11 @@
-# Migrating from kimi-seo v1.x to v2.0.0
+# Migration: claude-seo v1 → v2 (upstream history)
+
+> **Kimi SEO users: there is nothing to migrate.** Kimi SEO is a fork based
+> on the claude-seo **v2** codebase — there is no Kimi SEO v1. If this is
+> your first install, go to [Getting Started](GETTING-STARTED.md) instead.
+> This page only matters if you previously used the **upstream
+> [claude-seo](https://github.com/AgriciDaniel/claude-seo) v1.x** and want
+> to know what changed in v2.
 
 v2 is **backward-compatible by design**. Every v1.x CLI invocation, every
 script signature, and every skill command still works. The breaking
@@ -160,7 +167,11 @@ We considered but ultimately did **not** break the following:
 - All v1.x command names (`/kimi-seo:seo audit`, `/kimi-seo:seo content`, …). Every
   one of them works in v2.
 
-## How to upgrade
+## How v1.x users upgraded (historical)
+
+This was the upgrade path for upstream claude-seo v1.x installs at the
+v2.0.0 release. Fresh Kimi SEO installs do not need it — see
+[Getting Started](GETTING-STARTED.md).
 
 Caution: Prefer downloading, inspecting, then running remote scripts; the pipe-to-shell form below is the less-safe convenience option.
 

@@ -16,6 +16,10 @@ return [
     'pages' => [
         'getting-started' => [
             'title' => 'Getting Started',
+            'path' => base_path('../docs/GETTING-STARTED.md'),
+        ],
+        'overview' => [
+            'title' => 'Overview',
             'path' => base_path('../README.md'),
         ],
         'installation' => [
@@ -35,7 +39,7 @@ return [
             'path' => base_path('../docs/MCP-INTEGRATION.md'),
         ],
         'migration-v1-to-v2' => [
-            'title' => 'Migration v1 → v2',
+            'title' => 'Migration (claude-seo v1 → v2)',
             'path' => base_path('../docs/MIGRATION-v1-to-v2.md'),
         ],
         'troubleshooting' => [

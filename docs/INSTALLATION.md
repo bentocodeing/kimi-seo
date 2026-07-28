@@ -1,6 +1,10 @@
 # Installation Guide
 
 > This guide covers the Kimi fork. Upstream project: [`AgriciDaniel/claude-seo`](https://github.com/AgriciDaniel/claude-seo).
+>
+> **No API keys or accounts are needed** for your first audit — every
+> credential is optional. New here? [Getting Started](GETTING-STARTED.md)
+> is the faster entry point; this page is the detailed reference.
 
 ## Prerequisites
 

@@ -38,8 +38,8 @@ class DocsTest extends TestCase
 
     public function test_repo_relative_images_are_rewritten_to_the_media_route(): void
     {
-        // README.md (getting-started) embeds assets/cover.svg.
-        $this->get('/docs/getting-started')
+        // README.md (overview) embeds assets/cover.svg.
+        $this->get('/docs/overview')
             ->assertOk()
             ->assertSee('/media/assets/cover.svg', false)
             ->assertDontSee('src="assets/cover.svg', false);
@@ -49,9 +49,12 @@ class DocsTest extends TestCase
     {
         $this->get('/docs/getting-started')
             ->assertOk()
-            ->assertSee('id="quick-start"', false)
-            ->assertSee('id="commands"', false)
-            // Slashes are stripped, leaving double hyphens — GitHub-style.
+            ->assertSee('id="1-install"', false)
+            ->assertSee('id="2-run-your-first-audit"', false);
+
+        // Slashes are stripped, leaving double hyphens — GitHub-style.
+        $this->get('/docs/overview')
+            ->assertOk()
             ->assertSee('id="compared-to-manual--agency--commercial-tools"', false);
     }
 
@@ -60,13 +63,13 @@ class DocsTest extends TestCase
         $this->get('/docs/getting-started')
             ->assertOk()
             ->assertSee('On this page')
-            ->assertSee('href="#quick-start"', false)
-            ->assertSee('href="#commands"', false);
+            ->assertSee('href="#1-install"', false)
+            ->assertSee('href="#2-run-your-first-audit"', false);
     }
 
     public function test_repo_internal_markdown_links_are_rewritten_to_docs_pages(): void
     {
-        // README.md links to docs/INSTALLATION.md and docs/COMMANDS.md.
+        // GETTING-STARTED.md links to INSTALLATION.md and COMMANDS.md.
         $this->get('/docs/getting-started')
             ->assertOk()
             ->assertSee('href="/docs/installation"', false)

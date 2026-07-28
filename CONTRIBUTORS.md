@@ -1,12 +1,24 @@
 # Contributors
 
-Claude SEO is created and maintained by [@AgriciDaniel](https://github.com/AgriciDaniel).
+## Kimi SEO (this fork)
 
-This project thrives thanks to community contributions from the
+Kimi SEO is created and maintained by [bentocodeing](https://github.com/bentocodeing).
+
+No community contributors yet — be the first. See
+[CONTRIBUTING.md](CONTRIBUTING.md) for how to get involved.
+
+## Claude SEO (upstream)
+
+Kimi SEO is based on [claude-seo](https://github.com/AgriciDaniel/claude-seo),
+which is created and maintained by [@AgriciDaniel](https://github.com/AgriciDaniel).
+The sections below are the upstream credits, preserved in full — Kimi SEO
+inherits every contribution listed here.
+
+The upstream project thrives thanks to community contributions from the
 [AI Marketing Hub](https://www.skool.com/ai-marketing-hub) Pro Hub Challenge
 and open-source pull requests.
 
-## Pro Hub Challenge (v1.9.0)
+### Pro Hub Challenge (v1.9.0)
 
 The Pro Hub Challenge invited community members to build extensions for Claude SEO
 and Claude Blog. These submissions were reviewed, security-audited, and integrated
@@ -21,7 +33,7 @@ into v1.9.0 with the contributors' permission.
 | **Matej Marjanovic** | E-commerce + DataForSEO Cost Config + ASO + Platform Support | [matej-marjanovic/claude-seo](https://github.com/matej-marjanovic/claude-seo) | `seo-ecommerce` (core), cost infrastructure, `seo-aso` (extension), `AGENTS.md` |
 | **Benjamin Samar** | SEO Dungeon | n/a | Reviewed (not integrated in v1.9.0) |
 
-## Framework Integration (v1.9.5)
+### Framework Integration (v1.9.5)
 
 | Source | Type | License | Integrated As |
 |--------|------|---------|--------------|
@@ -29,9 +41,9 @@ into v1.9.0 with the contributors' permission.
 
 Attribution header on every bundled prompt file (automated by `scripts/sync_flow.py`).
 
-## Community Pull Requests
+### Community Pull Requests
 
-### 2026 maintenance review cycle
+#### 2026 maintenance review cycle
 
 These contributors supplied implementation work or substantive design proposals.
 Credit is preserved when a patch was superseded, selectively reimplemented, or
@@ -53,7 +65,7 @@ not merged after review.
 | [@mukulcodezz](https://github.com/mukulcodezz) | [#140](https://github.com/AgriciDaniel/claude-seo/pull/140) | Public marketplace branding correction | Superseded by the public branding already shipped on the release branch |
 | [@us](https://github.com/us) | [#136](https://github.com/AgriciDaniel/claude-seo/pull/136) | fastCRW crawling extension proposal | Fully reviewed; not integrated because installer, safety, and integration contracts need redesign |
 
-### v2.2.0
+#### v2.2.0
 
 | Contributor | PR | What |
 |------------|-----|------|
@@ -68,7 +80,7 @@ not merged after review.
 | [@PenthouseWaldkirchen](https://github.com/PenthouseWaldkirchen) | [#118](https://github.com/AgriciDaniel/claude-seo/pull/118) | Add authors and keywords to `pyproject.toml` |
 | [@chat2deskmx](https://github.com/chat2deskmx) | [#123](https://github.com/AgriciDaniel/claude-seo/pull/123) | Add ruff config and lint cleanup |
 
-### v1.9.7
+#### v1.9.7
 
 | Contributor | PR | What |
 |------------|-----|------|
@@ -82,7 +94,7 @@ not merged after review.
 | [@AndronMan](https://github.com/AndronMan) | [#74](https://github.com/AgriciDaniel/claude-seo/pull/74) | Add `Write` tool to `seo-geo` agent |
 | [@puneetindersingh](https://github.com/puneetindersingh) | [#56](https://github.com/AgriciDaniel/claude-seo/pull/56) | Add `seo-content-brief` skill |
 
-### v1.9.0 and earlier
+#### v1.9.0 and earlier
 
 | Contributor | PR | What |
 |------------|-----|------|
@@ -90,9 +102,9 @@ not merged after review.
 | [@MalteBerlin](https://github.com/MalteBerlin) | [#45](https://github.com/AgriciDaniel/claude-seo/pull/45) | Sub-skills count correction |
 | [@olivierroy](https://github.com/olivierroy) | [#43](https://github.com/AgriciDaniel/claude-seo/pull/43) | Extension install fix |
 
-## Community Issue Reports
+### Community Issue Reports
 
-### 2026 maintenance review cycle
+#### 2026 maintenance review cycle
 
 | Reporter | Issue | Contribution category |
 |----------|-------|-----------------------|
@@ -106,7 +118,7 @@ not merged after review.
 | [@atahan150](https://github.com/atahan150) | [#137](https://github.com/AgriciDaniel/claude-seo/issues/137), [#138](https://github.com/AgriciDaniel/claude-seo/issues/138), [#139](https://github.com/AgriciDaniel/claude-seo/issues/139), [#148](https://github.com/AgriciDaniel/claude-seo/issues/148) | Plugin provisioning, Windows Python resolution, portable script roots, and DataForSEO MCP permissions |
 | [@maulikvora](https://github.com/maulikvora) | [#142](https://github.com/AgriciDaniel/claude-seo/issues/142) | Non-default WordPress sitemap discovery |
 
-## Security Disclosures
+### Security Disclosures
 
 Responsible disclosures incorporated into v2.2.0. Thank you for reporting privately or via issues:
 

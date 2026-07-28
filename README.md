@@ -42,6 +42,7 @@ Run a full audit and watch parallel agents fan out across the site:
 - [Who this is for](#who-this-is-for)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
+- [Getting Started guide](docs/GETTING-STARTED.md)
 - [Commands](#commands)
 - [Features](#features)
 - [Compared to manual / agency / commercial tools](#compared-to-manual--agency--commercial-tools)
@@ -109,6 +110,12 @@ powershell -ExecutionPolicy Bypass -File kimi-seo\install.ps1
 > **Why `git clone` instead of `irm | iex`?** Kimi Code's own security guardrails flag `irm ... | iex` as a supply chain risk: downloading and executing remote code without verification. The `git clone` approach lets you inspect `kimi-seo\install.ps1` before running it.
 
 ## Quick Start
+
+> **New here?** Read [Getting Started](docs/GETTING-STARTED.md) first —
+> install to first fixed issue in about 10 minutes. Mental model: `audit`
+> is the all-in-one diagnosis (it runs most specialists for you); the other
+> commands are focused re-checks and generators you use while fixing; and
+> **no API keys are required** for any of it.
 
 > **Invocation in Kimi Code:** the commands below are written in their
 > documentation shorthand `/kimi-seo:seo ...`. In the CLI, run them through the plugin
@@ -318,6 +325,10 @@ Full methodology: [skills/seo/references/thinking-framework.md](skills/seo/refer
 
 ## What's New in v2
 
+> v2 is upstream history the fork inherited: Kimi SEO is based on the
+> claude-seo v2 codebase, so everything below was already included in your
+> first install. The migration notes matter only if you used claude-seo v1.x.
+
 v2.0.0 is the largest release in the plugin's history. Six build phases, all shipped:
 
 - **Phase A: Headless rendering everywhere.** Shared `scripts/render_page.py` with Playwright Chromium plus [trafilatura](https://github.com/adbar/trafilatura) and [htmldate](https://github.com/adbar/htmldate). Every audit subagent gets SPA-aware fetching via `--render auto` (auto-detected on Next.js, React, Vue, Nuxt, Astro islands). Closes the SPA limitation that capped v1.x.
@@ -327,7 +338,7 @@ v2.0.0 is the largest release in the plugin's history. Six build phases, all shi
 - **Phase E: AI search reframing and 5 new MCP extensions.** Ahrefs, SE Ranking (AI Share-of-Voice), Profound (LLM citation tracker), Bing Webmaster plus IndexNow, Unlighthouse. Plus the parasite-SEO risk scanner per Google's November 2024 [site reputation abuse policy](https://developers.google.com/search/blog/2024/11/site-reputation-abuse-update).
 - **Phase F: Local, international, and privacy polish.** Google Business Profile deprecation linter (chat field and `.business.site` URLs, with Q&A treated as category/region-limited), DMA consent-mode-v2 click-through diagnostic, machine-translation QA flag per January 2025 QRG.
 
-Test coverage grew from 39 (v1.9.9) to 410 across the v2 line; the url_safety suite alone runs 91 SSRF and DNS-rebinding bypass cases, closing the obfuscated-IPv4, FQDN-trailing-dot, and redirect-rebinding bypass classes. Full migration notes and breaking changes: [docs/MIGRATION-v1-to-v2.md](docs/MIGRATION-v1-to-v2.md).
+Test coverage grew from 39 (v1.9.9) to 410 across the v2 line; the url_safety suite alone runs 91 SSRF and DNS-rebinding bypass cases, closing the obfuscated-IPv4, FQDN-trailing-dot, and redirect-rebinding bypass classes. Migration notes and breaking changes (only relevant if you used claude-seo v1.x): [docs/MIGRATION-v1-to-v2.md](docs/MIGRATION-v1-to-v2.md).
 
 ### Since v2.0.0
 
@@ -439,10 +450,11 @@ Kimi SEO sits in a small ecosystem of related projects it interoperates with:
 
 ## Documentation
 
+- [Getting Started](docs/GETTING-STARTED.md): install to first fixed issue in 10 minutes — start here
 - [Installation Guide](docs/INSTALLATION.md)
 - [Commands Reference](docs/COMMANDS.md): every `/kimi-seo:seo` command in depth
 - [Architecture](docs/ARCHITECTURE.md): 3-layer design, auto-discovery, parallel dispatch
-- [Migration v1 → v2](docs/MIGRATION-v1-to-v2.md): breaking changes, six phases of work
+- [Migration v1 → v2](docs/MIGRATION-v1-to-v2.md): upstream history, only relevant if you used claude-seo v1.x
 - [MCP Integration](docs/MCP-INTEGRATION.md): integration notes; extension setup lives under `extensions/<name>/docs/`
 - [Troubleshooting](docs/TROUBLESHOOTING.md)
 - [Contributors](CONTRIBUTORS.md): community credits
@@ -475,7 +487,13 @@ Most SEO tools treat AI search as a separate optimization discipline. Kimi SEO f
 
 ## Community Contributors
 
-v1.9.0 includes contributions from the [AI Marketing Hub](https://www.skool.com/ai-marketing-hub) Pro Hub Challenge:
+### Kimi SEO (this fork)
+
+No community contributors yet — be the first. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to get involved.
+
+### Claude SEO (upstream: [AgriciDaniel/claude-seo](https://github.com/AgriciDaniel/claude-seo))
+
+Kimi SEO is based on [claude-seo](https://github.com/AgriciDaniel/claude-seo). The upstream v1.9.0 release included contributions from the [AI Marketing Hub](https://www.skool.com/ai-marketing-hub) Pro Hub Challenge, which this fork inherits:
 
 | Contributor | Contribution |
 |------------|-------------|
@@ -499,7 +517,9 @@ Contributions welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before sub
 
 ## Author
 
-Built by **[Agrici Daniel](https://agricidaniel.com/about)**, AI Workflow Architect. Single maintainer, open to community contributions via the [Pro Skool community](https://www.skool.com/ai-marketing-hub-pro). Background in marketing automation, AI-assisted content workflows, and open-source tooling for AI coding agents.
+**Kimi SEO** is created and maintained by **[bentocodeing](https://github.com/bentocodeing)**.
+
+Kimi SEO is based on **[claude-seo](https://github.com/AgriciDaniel/claude-seo)**, created by **[Agrici Daniel](https://agricidaniel.com/about)**, AI Workflow Architect. Full credit for the original SEO workflow goes to him and the [upstream contributors](CONTRIBUTORS.md):
 
 - [Blog](https://agricidaniel.com/blog): deep dives on AI marketing automation
 - [AI Marketing Hub (free)](https://www.skool.com/ai-marketing-hub): open community
