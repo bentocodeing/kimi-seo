@@ -62,7 +62,7 @@
 
         {{-- Right rail: on-page table of contents (xl and up only) --}}
         @if (! empty($toc))
-            <aside class="hidden xl:block">
+            <aside class="hidden xl:block xl:pl-6">
                 <nav class="sticky top-24" aria-label="On this page">
                     <p class="font-mono text-xs uppercase tracking-widest muted mb-3">On this page</p>
                     <ul class="space-y-1.5 text-sm border-l border-zinc-200 dark:border-ink-800">

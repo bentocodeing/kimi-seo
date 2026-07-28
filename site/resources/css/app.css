@@ -350,3 +350,13 @@ tr.is-dragging {
         animation: none !important;
     }
 }
+
+/* Docs right-rail TOC: active section, toggled by the scroll-spy */
+.toc-link-active {
+    border-color: var(--color-accent-600) !important;
+    color: var(--color-accent-700);
+}
+.dark .toc-link-active {
+    border-color: var(--color-accent-500) !important;
+    color: var(--color-accent-300);
+}

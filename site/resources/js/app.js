@@ -1,5 +1,5 @@
 import { initReveal } from './reveal';
-import { initAdCarousels, initBackToTop, initCopyCommand, initStickyHeader } from './ui';
+import { initAdCarousels, initBackToTop, initCopyCommand, initDocsToc, initStickyHeader } from './ui';
 import { initAdReorder } from './admin';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,4 +9,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initBackToTop();
     initAdCarousels();
     initAdReorder();
+    initDocsToc();
 });
