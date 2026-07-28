@@ -1,6 +1,6 @@
 ![Kimi SEO cover: a Kimi Code command palette with /kimi-seo:seo audit, schema, geo, content, and backlinks commands over a dark CRT panel](assets/cover.svg)
 
-# Kimi SEO: SEO Skill for Kimi Code
+# Kimi SEO
 
 **Kimi SEO is an open-source SEO analysis plugin for Kimi Code (Moonshot AI).** It runs 25 sub-skills and 18 specialist agents in parallel across technical SEO, content quality (E-E-A-T), Schema.org markup, AI search optimization (GEO), local SEO, e-commerce, and international SEO. Every audit produces a prioritized action plan with testable recommendations grounded in primary-source guidance from Google.
 
