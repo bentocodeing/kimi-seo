@@ -40,6 +40,6 @@ os.chmod(tmp, 0o600); os.replace(tmp, path)
 print(f"✓ Wrote env.PROFOUND_API_KEY to {path}")
 PY
 
-    echo "Done. Try: /seo profound citations brandname"
+    echo "Done. Try: /kimi-seo:seo profound citations brandname"
 }
 main "$@"

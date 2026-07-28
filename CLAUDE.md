@@ -155,37 +155,37 @@ kimi-seo/
 
 | Command | Use Case |
 |---------|----------|
-| `/seo audit <url>` | Full website audit with parallel subagents |
-| `/seo page <url>` | Single page analysis |
-| `/seo technical <url>` | Technical SEO across 9 categories |
-| `/seo content <url>` | E-E-A-T and content quality |
-| `/seo content-brief <topic>` | Detailed content brief: keywords, outline, internal links |
-| `/seo schema <url>` | Schema markup detection, validation, generation |
-| `/seo sitemap <url>` | Sitemap validation |
-| `/seo sitemap generate` | Create new sitemap with industry templates |
-| `/seo images <url>` | Image optimization |
-| `/seo geo <url>` | AI search optimization (GEO) |
-| `/seo local <url>` | Local SEO (GBP, citations, reviews) |
-| `/seo maps [command]` | Maps intelligence (geo-grid, GBP audit, competitors) |
-| `/seo backlinks <url>` | Backlink profile analysis |
-| `/seo cluster <seed>` | SERP-based semantic clustering |
-| `/seo sxo <url>` | Search Experience Optimization |
-| `/seo drift baseline\|compare\|history <url>` | SEO drift monitoring |
-| `/seo ecommerce <url>` | E-commerce SEO |
-| `/seo hreflang [url]` | Hreflang and international SEO |
-| `/seo plan <type>` | Strategic planning by industry |
-| `/seo programmatic [url\|plan]` | Programmatic SEO analysis |
-| `/seo competitor-pages [url\|generate]` | Competitor comparison pages |
-| `/seo flow [stage] [url\|topic]` | FLOW framework prompts |
-| `/seo google [command] [url]` | Google SEO APIs (GSC, PSI, CrUX, GA4) |
-| `/seo dataforseo [command]` | Live SEO data (extension) |
-| `/seo image-gen [use-case] <desc>` | AI image generation (extension) |
-| `/seo firecrawl [command] <url>` | Full-site crawling (extension) |
-| `/seo ahrefs [command] <url>` | Backlinks, organic keywords, and content data via the official Ahrefs MCP (extension) |
-| `/seo seranking [command]` | AI Share-of-Voice across ChatGPT, Gemini, Perplexity, AI Overviews, AI Mode (extension) |
-| `/seo profound [command]` | LLM citation tracking with time-series data (extension) |
-| `/seo bing [command] <url>` | Bing Webmaster Tools + IndexNow URL submission (extension) |
-| `/seo unlighthouse <url>` | Multi-page Lighthouse runner, runs locally (extension) |
+| `/kimi-seo:seo audit <url>` | Full website audit with parallel subagents |
+| `/kimi-seo:seo page <url>` | Single page analysis |
+| `/kimi-seo:seo technical <url>` | Technical SEO across 9 categories |
+| `/kimi-seo:seo content <url>` | E-E-A-T and content quality |
+| `/kimi-seo:seo content-brief <topic>` | Detailed content brief: keywords, outline, internal links |
+| `/kimi-seo:seo schema <url>` | Schema markup detection, validation, generation |
+| `/kimi-seo:seo sitemap <url>` | Sitemap validation |
+| `/kimi-seo:seo sitemap generate` | Create new sitemap with industry templates |
+| `/kimi-seo:seo images <url>` | Image optimization |
+| `/kimi-seo:seo geo <url>` | AI search optimization (GEO) |
+| `/kimi-seo:seo local <url>` | Local SEO (GBP, citations, reviews) |
+| `/kimi-seo:seo maps [command]` | Maps intelligence (geo-grid, GBP audit, competitors) |
+| `/kimi-seo:seo backlinks <url>` | Backlink profile analysis |
+| `/kimi-seo:seo cluster <seed>` | SERP-based semantic clustering |
+| `/kimi-seo:seo sxo <url>` | Search Experience Optimization |
+| `/kimi-seo:seo drift baseline\|compare\|history <url>` | SEO drift monitoring |
+| `/kimi-seo:seo ecommerce <url>` | E-commerce SEO |
+| `/kimi-seo:seo hreflang [url]` | Hreflang and international SEO |
+| `/kimi-seo:seo plan <type>` | Strategic planning by industry |
+| `/kimi-seo:seo programmatic [url\|plan]` | Programmatic SEO analysis |
+| `/kimi-seo:seo competitor-pages [url\|generate]` | Competitor comparison pages |
+| `/kimi-seo:seo flow [stage] [url\|topic]` | FLOW framework prompts |
+| `/kimi-seo:seo google [command] [url]` | Google SEO APIs (GSC, PSI, CrUX, GA4) |
+| `/kimi-seo:seo dataforseo [command]` | Live SEO data (extension) |
+| `/kimi-seo:seo image-gen [use-case] <desc>` | AI image generation (extension) |
+| `/kimi-seo:seo firecrawl [command] <url>` | Full-site crawling (extension) |
+| `/kimi-seo:seo ahrefs [command] <url>` | Backlinks, organic keywords, and content data via the official Ahrefs MCP (extension) |
+| `/kimi-seo:seo seranking [command]` | AI Share-of-Voice across ChatGPT, Gemini, Perplexity, AI Overviews, AI Mode (extension) |
+| `/kimi-seo:seo profound [command]` | LLM citation tracking with time-series data (extension) |
+| `/kimi-seo:seo bing [command] <url>` | Bing Webmaster Tools + IndexNow URL submission (extension) |
+| `/kimi-seo:seo unlighthouse <url>` | Multi-page Lighthouse runner, runs locally (extension) |
 
 ## Development Rules
 
@@ -218,7 +218,7 @@ kimi-seo/
 - **No `page-break-inside: avoid`** on any element (causes white gaps in WeasyPrint)
 - **Post-generation review**: `_review_pdf()` runs automatically, checking for empty images, thin sections, duplicates
 - **Before presenting any PDF to the user**: verify the review passes (`"status": "PASS"`)
-- **Cross-skill enforcement**: After completing ANY analysis command (audit, page, technical, content, schema, geo, local, maps), offer: "Generate a PDF report? Use `/seo google report`"
+- **Cross-skill enforcement**: After completing ANY analysis command (audit, page, technical, content, schema, geo, local, maps), offer: "Generate a PDF report? Use `/kimi-seo:seo google report`"
 - **Google logo** appears on title page when using Google API data ("Powered by Google APIs")
 
 ## Ecosystem

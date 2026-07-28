@@ -4,7 +4,7 @@
 
 ### Skill Not Loading
 
-**Symptom:** `/seo` command not recognized
+**Symptom:** `/kimi-seo:seo` command not recognized
 
 **Solutions:**
 
@@ -51,8 +51,8 @@ curl -fsSL https://raw.githubusercontent.com/bentocodeing/kimi-seo/kimi/install.
 Dependencies belong in the managed runtime. For a plugin install, run:
 
 ```bash
-/seo doctor
-/seo setup
+/kimi-seo:seo doctor
+/kimi-seo:seo setup
 ```
 
 For a manual install, run:
@@ -94,7 +94,7 @@ curl -fsSL https://raw.githubusercontent.com/bentocodeing/kimi-seo/kimi/requirem
 
 1. Install Python from [python.org](https://python.org) and check "Add to PATH"
 2. Rerun `install.ps1`; it resolves `py -3`, `python3`, then `python`
-3. Run `/seo doctor` after installation
+3. Run `/kimi-seo:seo doctor` after installation
 
 ---
 
@@ -105,8 +105,8 @@ curl -fsSL https://raw.githubusercontent.com/bentocodeing/kimi-seo/kimi/requirem
 **Solution:** rerun managed setup so the browser is installed through the same
 interpreter and persistent browser directory:
 ```bash
-/seo setup
-/seo doctor
+/kimi-seo:seo setup
+/kimi-seo:seo doctor
 ```
 
 ---
@@ -188,7 +188,7 @@ cp /path/to/kimi-seo/agents/*.md ~/.agents/agents/
 
 1. Audit crawls up to 500 pages: large sites take time
 2. Subagents run in parallel to speed up analysis
-3. For faster checks, use `/seo page` on specific URLs
+3. For faster checks, use `/kimi-seo:seo page` on specific URLs
 4. Check if site has slow response times
 
 ---

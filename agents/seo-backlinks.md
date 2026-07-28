@@ -70,8 +70,8 @@ across remaining factors. Always note which factors were scored and which were s
 
 - For toxic link patterns beyond basic Moz Spam Score, load `skills/seo/references/backlink-quality.md`
 - For anchor text industry benchmarks, load `skills/seo/references/backlink-quality.md`
-- Do NOT duplicate seo-content analysis. Recommend `/seo content <url>` for E-E-A-T.
-- Do NOT duplicate seo-technical analysis. Recommend `/seo technical <url>` for crawlability.
+- Do NOT duplicate seo-content analysis. Recommend `/kimi-seo:seo content <url>` for E-E-A-T.
+- Do NOT duplicate seo-technical analysis. Recommend `/kimi-seo:seo technical <url>` for crawlability.
 
 ## Output Format
 
@@ -106,7 +106,7 @@ If any check fails, fix the report before returning it.
 
 - If Moz rate-limits mid-analysis, return partial data and note "rate_limited: true"
 - If Common Crawl download times out, skip CC metrics and note the timeout
-- If no sources return data, report: "No backlink data available. Run `/seo backlinks setup`."
+- If no sources return data, report: "No backlink data available. Run `/kimi-seo:seo backlinks setup`."
 - Never fail silently, always report what succeeded and what failed
 - If all free sources fail, suggest DataForSEO extension: `./extensions/dataforseo/install.sh`
 
@@ -114,7 +114,7 @@ If any check fails, fix the report before returning it.
 
 Use `kimi-seo run render_page.py <URL> --mode auto --json` for page HTML. `auto` does a raw fetch and only spins up Playwright when an SPA shell is detected; use `--mode always` to force a render or `--mode never` to skip Playwright entirely. The JSON exposes `raw_content` (pre-JS), `content` (post-JS), `is_spa`, `extracted_text` (boilerplate-stripped via trafilatura), and `publication_date` (htmldate). SSRF and DNS-rebinding protection live in `scripts/url_safety.py`, never call `requests.get` directly on user-supplied URLs.
 
-Backlink verification (`/seo backlinks verify`) primarily reads outbound `<a>` tags, which are reliably present in raw HTML. `--mode never` is the right choice for speed on bulk verification jobs.
+Backlink verification (`/kimi-seo:seo backlinks verify`) primarily reads outbound `<a>` tags, which are reliably present in raw HTML. `--mode never` is the right choice for speed on bulk verification jobs.
 
 ## Audit Persistence
 

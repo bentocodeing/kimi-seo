@@ -91,6 +91,8 @@ Load from `assets/` directory:
 
 ## Output
 
+All outputs are written to the current working directory, never the plugin root.
+
 ### Deliverables
 - `SEO-STRATEGY.md`: Complete strategic plan
 - `COMPETITOR-ANALYSIS.md`: Competitive insights

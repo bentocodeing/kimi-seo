@@ -36,4 +36,4 @@ with os.fdopen(fd, 'w') as fh:
 os.replace(tmp, path)
 "@
 $pyScript | python - $SettingsJson $Plain
-Write-Host "Done. Try: /seo seranking ai-visibility brandname"
+Write-Host "Done. Try: /kimi-seo:seo seranking ai-visibility brandname"

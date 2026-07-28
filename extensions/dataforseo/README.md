@@ -38,54 +38,54 @@ The installer will:
 
 | Command | Description |
 |---------|-------------|
-| `/seo dataforseo serp <keyword>` | Google organic SERP results (also supports Bing/Yahoo via `se` parameter) |
-| `/seo dataforseo serp-images <keyword>` | Google Images SERP results |
-| `/seo dataforseo serp-youtube <keyword>` | YouTube search results |
-| `/seo dataforseo youtube <video_id>` | YouTube video deep analysis (info, comments, subtitles) |
+| `/kimi-seo:seo dataforseo serp <keyword>` | Google organic SERP results (also supports Bing/Yahoo via `se` parameter) |
+| `/kimi-seo:seo dataforseo serp-images <keyword>` | Google Images SERP results |
+| `/kimi-seo:seo dataforseo serp-youtube <keyword>` | YouTube search results |
+| `/kimi-seo:seo dataforseo youtube <video_id>` | YouTube video deep analysis (info, comments, subtitles) |
 
 ### Keyword Research
 
 | Command | Description |
 |---------|-------------|
-| `/seo dataforseo keywords <seed>` | Keyword ideas, suggestions, and related terms |
-| `/seo dataforseo volume <keywords>` | Search volume for keyword list |
-| `/seo dataforseo difficulty <keywords>` | Keyword difficulty scores |
-| `/seo dataforseo intent <keywords>` | Search intent classification |
-| `/seo dataforseo trends <keyword>` | Google Trends data over time |
+| `/kimi-seo:seo dataforseo keywords <seed>` | Keyword ideas, suggestions, and related terms |
+| `/kimi-seo:seo dataforseo volume <keywords>` | Search volume for keyword list |
+| `/kimi-seo:seo dataforseo difficulty <keywords>` | Keyword difficulty scores |
+| `/kimi-seo:seo dataforseo intent <keywords>` | Search intent classification |
+| `/kimi-seo:seo dataforseo trends <keyword>` | Google Trends data over time |
 
 ### Domain & Competitor Analysis
 
 | Command | Description |
 |---------|-------------|
-| `/seo dataforseo backlinks <domain>` | Full backlink profile with spam scores |
-| `/seo dataforseo competitors <domain>` | Competing domains and traffic estimates |
-| `/seo dataforseo ranked <domain>` | Keywords a domain ranks for |
-| `/seo dataforseo intersection <domains>` | Keyword/backlink overlap (2-20 domains) |
-| `/seo dataforseo traffic <domains>` | Bulk traffic estimation |
-| `/seo dataforseo subdomains <domain>` | Subdomains with ranking data |
-| `/seo dataforseo top-searches <domain>` | Top queries mentioning domain |
+| `/kimi-seo:seo dataforseo backlinks <domain>` | Full backlink profile with spam scores |
+| `/kimi-seo:seo dataforseo competitors <domain>` | Competing domains and traffic estimates |
+| `/kimi-seo:seo dataforseo ranked <domain>` | Keywords a domain ranks for |
+| `/kimi-seo:seo dataforseo intersection <domains>` | Keyword/backlink overlap (2-20 domains) |
+| `/kimi-seo:seo dataforseo traffic <domains>` | Bulk traffic estimation |
+| `/kimi-seo:seo dataforseo subdomains <domain>` | Subdomains with ranking data |
+| `/kimi-seo:seo dataforseo top-searches <domain>` | Top queries mentioning domain |
 
 ### Technical / On-Page
 
 | Command | Description |
 |---------|-------------|
-| `/seo dataforseo onpage <url>` | On-page analysis (Lighthouse + content parsing) |
-| `/seo dataforseo tech <domain>` | Technology stack detection |
-| `/seo dataforseo whois <domain>` | WHOIS registration data |
+| `/kimi-seo:seo dataforseo onpage <url>` | On-page analysis (Lighthouse + content parsing) |
+| `/kimi-seo:seo dataforseo tech <domain>` | Technology stack detection |
+| `/kimi-seo:seo dataforseo whois <domain>` | WHOIS registration data |
 
 ### Content & Business Data
 
 | Command | Description |
 |---------|-------------|
-| `/seo dataforseo content <keyword/url>` | Content analysis, search, and phrase trends |
-| `/seo dataforseo listings <keyword>` | Business listings search |
+| `/kimi-seo:seo dataforseo content <keyword/url>` | Content analysis, search, and phrase trends |
+| `/kimi-seo:seo dataforseo listings <keyword>` | Business listings search |
 
 ### AI Visibility / GEO
 
 | Command | Description |
 |---------|-------------|
-| `/seo dataforseo ai-scrape <query>` | ChatGPT web scraper for GEO visibility |
-| `/seo dataforseo ai-mentions <keyword>` | LLM mention tracking across AI platforms |
+| `/kimi-seo:seo dataforseo ai-scrape <query>` | ChatGPT web scraper for GEO visibility |
+| `/kimi-seo:seo dataforseo ai-mentions <keyword>` | LLM mention tracking across AI platforms |
 
 ## API Modules
 
@@ -123,11 +123,11 @@ The extension includes a custom `field-config.json` that reduces API response si
 
 When installed, other Kimi SEO skills automatically detect DataForSEO availability and use live data:
 
-- **`/seo audit`**:Uses real SERP, backlink, and on-page data
-- **`/seo technical`**:Uses on-page analysis for real technical data
-- **`/seo content`**:Uses keyword volume, difficulty, and intent data
-- **`/seo geo`**:Uses ChatGPT scraper and LLM mentions for GEO signals
-- **`/seo plan`**:Uses competitor and keyword data for strategy
+- **`/kimi-seo:seo audit`**:Uses real SERP, backlink, and on-page data
+- **`/kimi-seo:seo technical`**:Uses on-page analysis for real technical data
+- **`/kimi-seo:seo content`**:Uses keyword volume, difficulty, and intent data
+- **`/kimi-seo:seo geo`**:Uses ChatGPT scraper and LLM mentions for GEO signals
+- **`/kimi-seo:seo plan`**:Uses competitor and keyword data for strategy
 
 ## Troubleshooting
 

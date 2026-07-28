@@ -83,7 +83,7 @@ PY
 
     echo
     echo "Done. Open a new Claude Code session and run:"
-    echo "  /seo ahrefs metrics https://example.com"
+    echo "  /kimi-seo:seo ahrefs metrics https://example.com"
     echo
     echo "Full docs: extensions/ahrefs/docs/AHREFS-SETUP.md"
 }

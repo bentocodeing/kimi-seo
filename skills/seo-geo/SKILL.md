@@ -254,6 +254,8 @@ Google added many AI citation/source surfaces across AI Overviews **and** AI Mod
 
 ## Output
 
+All outputs are written to the current working directory, never the plugin root.
+
 Generate `GEO-ANALYSIS.md` with:
 
 1. **GEO Readiness Score: XX/100**
@@ -311,4 +313,4 @@ If DataForSEO MCP tools are available, use `ai_optimization_chat_gpt_scraper` to
 
 ## FLOW Framework Integration
 
-For prompt-guided AI content optimization, use `/seo flow optimize <url>`, FLOW's 21 optimize-stage prompts complement GEO's citability and structure analysis with evidence-led AI prompts.
+For prompt-guided AI content optimization, use `/kimi-seo:seo flow optimize <url>`, FLOW's 21 optimize-stage prompts complement GEO's citability and structure analysis with evidence-led AI prompts.

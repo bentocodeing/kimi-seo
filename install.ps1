@@ -359,14 +359,14 @@ if ($Claude) {
     Write-Host ""
     Write-Host "Usage:" -ForegroundColor Cyan
     Write-Host "  1. Start Claude Code:  claude"
-    Write-Host "  2. Run commands:       /seo audit https://example.com"
+    Write-Host "  2. Run commands:       /kimi-seo:seo audit https://example.com"
 } else {
     Write-Host "[+] Kimi SEO installed successfully (kimi target)!" -ForegroundColor Green
     Write-Host ""
     Write-Host "Usage:" -ForegroundColor Cyan
     Write-Host "  1. Start Kimi Code:    kimi"
     Write-Host "  2. Reload skills:      /reload"
-    Write-Host "  3. Run commands:       /seo audit https://example.com"
+    Write-Host "  3. Run commands:       /kimi-seo:seo audit https://example.com"
     Write-Host ""
     Write-Host "Managed alternative (recommended): install as a Kimi Code plugin instead:" -ForegroundColor Cyan
     Write-Host "  /plugins install $RepoUrl"

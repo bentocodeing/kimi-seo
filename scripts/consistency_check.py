@@ -191,7 +191,7 @@ def check_runtime_invocations(texts):
 
 
 def check_routing(files):
-    cmd_pat = re.compile(r'`/seo(?:\s+([a-z][a-z0-9-]*))?')
+    cmd_pat = re.compile(r'`/kimi-seo:seo(?:\s+([a-z][a-z0-9-]*))?')
     tables = {src: {m for m in cmd_pat.findall(read(src)) if m}
               for src in ("skills/seo/SKILL.md", "docs/COMMANDS.md")}
     skill_tokens = {d.split("/")[1][4:] for d in files
@@ -202,11 +202,11 @@ def check_routing(files):
     a, b = tables["skills/seo/SKILL.md"], tables["docs/COMMANDS.md"]
     errors = []
     for c in sorted(a - b):
-        errors.append(f"routing: `/seo {c}` in orchestrator but not docs/COMMANDS.md")
+        errors.append(f"routing: `/kimi-seo:seo {c}` in orchestrator but not docs/COMMANDS.md")
     for c in sorted(b - a):
-        errors.append(f"routing: `/seo {c}` in docs/COMMANDS.md but not orchestrator")
+        errors.append(f"routing: `/kimi-seo:seo {c}` in docs/COMMANDS.md but not orchestrator")
     for c in sorted((a | b) - known - RUNTIME_UTILITY_COMMANDS):
-        errors.append(f"routing: `/seo {c}` has no matching skill directory")
+        errors.append(f"routing: `/kimi-seo:seo {c}` has no matching skill directory")
     return errors
 
 

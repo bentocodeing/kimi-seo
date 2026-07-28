@@ -68,3 +68,28 @@ def test_audit_agents_document_output_dir_findings_contract() -> None:
 def test_seo_audit_report_command_keeps_outputs_in_audit_dir() -> None:
     text = (REPO_ROOT / "skills" / "seo-audit" / "SKILL.md").read_text(encoding="utf-8")
     assert "--output-dir {domain}-audit/" in text
+
+
+def test_orchestrator_audit_flow_requires_persistent_artifacts() -> None:
+    """The seo orchestrator's inline audit flow must demand on-disk artifacts.
+
+    Background: in Kimi Code the audit runs through the orchestrator body (the
+    seo-audit sub-skill is not auto-loaded), and the flow previously never
+    mentioned FULL-AUDIT-REPORT.md — audits were delivered as chat text only.
+    """
+    text = (REPO_ROOT / "skills" / "seo" / "SKILL.md").read_text(encoding="utf-8")
+    flow = text[text.index("## Orchestration Logic"):text.index("## Synthesis Methodology")]
+    assert "REQUIRED" in flow
+    assert "{domain}-audit/" in flow
+    for artifact in ("FULL-AUDIT-REPORT.md", "ACTION-PLAN.md", "audit-data.json",
+                     "findings/", "screenshots/"):
+        assert artifact in flow, f"orchestrator audit flow must mention {artifact}"
+    assert "capture_screenshot.py" in flow
+    assert "current working directory" in flow
+
+
+def test_seo_audit_captures_screenshots_via_script() -> None:
+    """seo-audit must capture screenshots deterministically via the script."""
+    text = (REPO_ROOT / "skills" / "seo-audit" / "SKILL.md").read_text(encoding="utf-8")
+    assert "capture_screenshot.py" in text
+    assert "--output {domain}-audit/screenshots/" in text

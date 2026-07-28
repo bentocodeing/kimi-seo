@@ -23,7 +23,7 @@ be driven by structured, evidence-backed AI prompts rather than improvised queri
 
 > Framework and prompts © Daniel Agrici, CC BY 4.0: github.com/AgriciDaniel/flow
 
-**Runtime context:** Load `references/flow-framework.md` on every `/seo flow` activation.
+**Runtime context:** Load `references/flow-framework.md` on every `/kimi-seo:seo flow` activation.
 Load prompt files on demand, only for the stage the user requests.
 
 ---
@@ -32,56 +32,56 @@ Load prompt files on demand, only for the stage the user requests.
 
 | Command | What it does |
 |---------|-------------|
-| `/seo flow` | Show FLOW overview + stage menu |
-| `/seo flow find [url\|topic]` | Find-stage: keyword research, gap analysis, SERP intent mapping (5 prompts) |
-| `/seo flow leverage [url]` | Leverage-stage: backlink strategy, off-site authority (1 prompt) |
-| `/seo flow optimize [url]` | Optimize-stage: select 2-3 most relevant of 21 prompts based on context |
-| `/seo flow win [url]` | Win-stage: BOFU, conversion rate, dual-surface scorecard (3 prompts) |
-| `/seo flow local [url]` | Local-stage: GBP optimization, meta, title tags, local audits (11 prompts) |
-| `/seo flow prompts` | Full index of all 41 prompts (stage, name, trigger conditions) |
-| `/seo flow sync` | Pull latest prompt files from github.com/AgriciDaniel/flow |
+| `/kimi-seo:seo flow` | Show FLOW overview + stage menu |
+| `/kimi-seo:seo flow find [url\|topic]` | Find-stage: keyword research, gap analysis, SERP intent mapping (5 prompts) |
+| `/kimi-seo:seo flow leverage [url]` | Leverage-stage: backlink strategy, off-site authority (1 prompt) |
+| `/kimi-seo:seo flow optimize [url]` | Optimize-stage: select 2-3 most relevant of 21 prompts based on context |
+| `/kimi-seo:seo flow win [url]` | Win-stage: BOFU, conversion rate, dual-surface scorecard (3 prompts) |
+| `/kimi-seo:seo flow local [url]` | Local-stage: GBP optimization, meta, title tags, local audits (11 prompts) |
+| `/kimi-seo:seo flow prompts` | Full index of all 41 prompts (stage, name, trigger conditions) |
+| `/kimi-seo:seo flow sync` | Pull latest prompt files from github.com/AgriciDaniel/flow |
 
 ---
 
 ## Orchestration Logic
 
-### On `/seo flow` (no sub-command)
+### On `/kimi-seo:seo flow` (no sub-command)
 1. Read `references/flow-framework.md`
 2. Show the FLOW stage overview with a one-line description of each stage
 3. Ask: which stage matches the user's current situation?
 
-### On `/seo flow find [url|topic]`
+### On `/kimi-seo:seo flow find [url|topic]`
 1. Read all files in `references/prompts/find/`
 2. Apply each prompt to the URL or topic
-3. Cross-reference: "For deeper SERP clustering, see `/seo cluster <seed-keyword>`"
+3. Cross-reference: "For deeper SERP clustering, see `/kimi-seo:seo cluster <seed-keyword>`"
 
-### On `/seo flow leverage [url]`
+### On `/kimi-seo:seo flow leverage [url]`
 1. Read the file in `references/prompts/leverage/`
 2. Apply to the URL's current backlink context
-3. Cross-reference: "For raw backlink data, see `/seo backlinks <url>`"
+3. Cross-reference: "For raw backlink data, see `/kimi-seo:seo backlinks <url>`"
 
-### On `/seo flow optimize [url]`
+### On `/kimi-seo:seo flow optimize [url]`
 1. Read all file names in `references/prompts/optimize/`
 2. Read prior analysis context (URL, industry vertical, any prior skill output in conversation)
 3. Select 2-3 most relevant prompts; load only those files
-4. Apply selected prompts; note the others are accessible via `/seo flow prompts`
-5. Cross-reference: "For full content quality analysis, see `/seo content <url>` and `/seo geo <url>`"
+4. Apply selected prompts; note the others are accessible via `/kimi-seo:seo flow prompts`
+5. Cross-reference: "For full content quality analysis, see `/kimi-seo:seo content <url>` and `/kimi-seo:seo geo <url>`"
 
-### On `/seo flow win [url]`
+### On `/kimi-seo:seo flow win [url]`
 1. Read all files in `references/prompts/win/`
 2. Apply each prompt to the URL's conversion and BOFU context
-3. Cross-reference: "For SXO persona scoring, see `/seo sxo <url>`"
+3. Cross-reference: "For SXO persona scoring, see `/kimi-seo:seo sxo <url>`"
 
-### On `/seo flow local [url]`
+### On `/kimi-seo:seo flow local [url]`
 1. Read all files in `references/prompts/local/`
 2. Apply to the URL's local SEO context
-3. Cross-reference: "For full local SEO analysis, see `/seo local <url>` and `/seo maps [command]`"
+3. Cross-reference: "For full local SEO analysis, see `/kimi-seo:seo local <url>` and `/kimi-seo:seo maps [command]`"
 
-### On `/seo flow prompts`
+### On `/kimi-seo:seo flow prompts`
 1. Read `references/prompts/README.md`
 2. Display the full index: all 41 prompts with stage, name, trigger conditions
 
-### On `/seo flow sync`
+### On `/kimi-seo:seo flow sync`
 1. Run: `kimi-seo run sync_flow.py`
 2. Display the JSON summary (files added, updated, unchanged)
 3. Show attribution notice after sync completes
@@ -103,20 +103,20 @@ Always surface exactly 2-3 prompts. State which prompts you chose and why.
 ## Reference Files
 
 Load on-demand, do NOT load all at startup:
-- `references/flow-framework.md`: FLOW operating model (load on every `/seo flow` activation)
+- `references/flow-framework.md`: FLOW operating model (load on every `/kimi-seo:seo flow` activation)
 - `references/bibliography.md`: Evidence sources; load when citing studies or statistics
-- `references/prompts/README.md`: Prompt index; load for `/seo flow prompts`
-- `references/prompts/find/`: 5 prompts; load for `/seo flow find`
-- `references/prompts/leverage/`: 1 prompt; load for `/seo flow leverage`
-- `references/prompts/optimize/`: 21 prompts; load selectively for `/seo flow optimize`
-- `references/prompts/win/`: 3 prompts; load for `/seo flow win`
-- `references/prompts/local/`: 11 prompts; load for `/seo flow local`
+- `references/prompts/README.md`: Prompt index; load for `/kimi-seo:seo flow prompts`
+- `references/prompts/find/`: 5 prompts; load for `/kimi-seo:seo flow find`
+- `references/prompts/leverage/`: 1 prompt; load for `/kimi-seo:seo flow leverage`
+- `references/prompts/optimize/`: 21 prompts; load selectively for `/kimi-seo:seo flow optimize`
+- `references/prompts/win/`: 3 prompts; load for `/kimi-seo:seo flow win`
+- `references/prompts/local/`: 11 prompts; load for `/kimi-seo:seo flow local`
 
 ---
 
 ## Attribution
 
-Every `/seo flow` activation (any sub-command) outputs before analysis:
+Every `/kimi-seo:seo flow` activation (any sub-command) outputs before analysis:
 
 ```
 Framework and prompts © Daniel Agrici, CC BY 4.0: github.com/AgriciDaniel/flow
@@ -130,7 +130,7 @@ Do not omit or modify the attribution.
 
 | Scenario | Action |
 |----------|--------|
-| `references/flow-framework.md` missing | "FLOW reference files not synced. Run: `/seo flow sync`" |
-| Prompt file missing | "Run `/seo flow sync` to pull the latest prompts from the FLOW repo." |
+| `references/flow-framework.md` missing | "FLOW reference files not synced. Run: `/kimi-seo:seo flow sync`" |
+| Prompt file missing | "Run `/kimi-seo:seo flow sync` to pull the latest prompts from the FLOW repo." |
 | `sync_flow.py` network error | Display the script's stderr. Check rate limits: `gh api rate_limit`. |
 | `sync_flow.py` auth error | Run `gh auth login` then retry. |

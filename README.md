@@ -1,4 +1,4 @@
-![Kimi SEO cover: a Kimi Code command palette with /seo audit, schema, geo, content, and backlinks commands over a dark CRT panel](assets/cover.svg)
+![Kimi SEO cover: a Kimi Code command palette with /kimi-seo:seo audit, schema, geo, content, and backlinks commands over a dark CRT panel](assets/cover.svg)
 
 # Kimi SEO: SEO Skill for Kimi Code
 
@@ -31,11 +31,11 @@ Google Search Console for a site started 23 March 2026 and run on this workflow:
 - **In-house SEO leads at SaaS / publisher / e-commerce companies.** Second-pair-of-eyes before executive reviews. Catches what GSC and Lighthouse hide: schema deprecation, AI-citability gaps, expired-domain heritage risk, parasite-SEO exposure, machine-translation drift.
 - **Freelance SEO consultants.** Anchor day-one client scope with a 15-minute audit and a real 0-100 score. Win the engagement with concrete proof of value before you spend an hour writing the proposal.
 
-![Kimi SEO /seo command demo in Kimi Code terminal](screenshots/seo-command-demo.gif)
+![Kimi SEO /kimi-seo:seo command demo in Kimi Code terminal](screenshots/seo-command-demo.gif)
 
 Run a full audit and watch parallel agents fan out across the site:
 
-![Kimi SEO /seo audit demo: parallel subagents producing a prioritized action plan](screenshots/seo-audit-demo.gif)
+![Kimi SEO /kimi-seo:seo audit demo: parallel subagents producing a prioritized action plan](screenshots/seo-audit-demo.gif)
 
 ## Table of Contents
 
@@ -73,10 +73,10 @@ Inside Kimi Code, install this fork directly from GitHub:
 ```
 /plugins install https://github.com/bentocodeing/kimi-seo
 /reload
-/seo setup
+/kimi-seo:seo setup
 ```
 
-The plugin manager copies the repo to Kimi Code's managed plugins directory and loads `kimi.plugin.json`: all 25 skills, the session-start orientation skill, and the schema-validation hook. `/seo setup` is an explicit, one-time provisioning step for the isolated Python runtime.
+The plugin manager copies the repo to Kimi Code's managed plugins directory and loads `kimi.plugin.json`: all 25 skills, the session-start orientation skill, and the schema-validation hook. `/kimi-seo:seo setup` is an explicit, one-time provisioning step for the isolated Python runtime.
 
 ### Manual Install (Unix / macOS / Linux)
 
@@ -110,72 +110,81 @@ powershell -ExecutionPolicy Bypass -File kimi-seo\install.ps1
 
 ## Quick Start
 
+> **Invocation in Kimi Code:** the commands below are written in their
+> documentation shorthand `/kimi-seo:seo ...`. In the CLI, run them through the plugin
+> slash command — `/kimi-seo:seo audit https://example.com` — or via
+> `/skill:seo audit https://example.com`. You can also simply describe what
+> you need in natural language ("audit example.com") — the `seo` orchestrator
+> skill routes the request automatically. Every audit writes its artifacts
+> (`FULL-AUDIT-REPORT.md`, `ACTION-PLAN.md`, `audit-data.json`, `findings/`,
+> `screenshots/`) into a `{domain}-audit/` folder in your current project.
+
 ```bash
 # Start Kimi Code
 kimi
 
 # Full site audit: parallel sub-agents produce a prioritized action plan
-/seo audit https://example.com
+/kimi-seo:seo audit https://example.com
 
 # Deep single-page analysis: on-page elements, content quality, schema
-/seo page https://example.com/about
+/kimi-seo:seo page https://example.com/about
 
 # Schema markup audit: detect, validate, generate
-/seo schema https://example.com
+/kimi-seo:seo schema https://example.com
 
 # AI search optimization: passage citability + primary-source-aligned recommendations
-/seo geo https://example.com
+/kimi-seo:seo geo https://example.com
 
 # Generate a sitemap with industry templates
-/seo sitemap generate
+/kimi-seo:seo sitemap generate
 ```
 
 ## Commands
 
 ![Kimi SEO sub-skill ecosystem: 25 modules grouped into 8 categories (audit, content, schema, technical, AI search, local + maps, commerce + intl, extensions) around the central orchestrator](assets/sub-skills.svg)
 
-32 user-invocable `/seo` commands across the orchestrator, its sub-skills, and 8 MCP extensions. Full reference in [docs/COMMANDS.md](docs/COMMANDS.md).
+32 user-invocable `/kimi-seo:seo` commands across the orchestrator, its sub-skills, and 8 MCP extensions. Full reference in [docs/COMMANDS.md](docs/COMMANDS.md).
 
 | Command | Description |
 |---------|-------------|
-| `/seo setup` | Create or refresh the isolated Python runtime and Chromium |
-| `/seo doctor` | Check runtime readiness without changing the system |
-| `/seo audit <url>` | Full website audit with parallel sub-agent delegation |
-| `/seo page <url>` | Deep single-page analysis |
-| `/seo technical <url>` | Technical SEO audit across 9 categories |
-| `/seo content <url>` | E-E-A-T and content quality analysis |
-| `/seo content-brief <topic>` | Detailed content brief: target keywords, outline, internal links |
-| `/seo schema <url>` | Detect, validate, and generate Schema.org markup |
-| `/seo geo <url>` | AI Overviews / Generative Engine Optimization |
-| `/seo sitemap <url \| generate>` | Analyze or generate XML sitemaps |
-| `/seo images <url>` | Image optimization analysis |
-| `/seo plan <type>` | Strategic SEO planning (saas, local, ecommerce, publisher, agency) |
-| `/seo programmatic <url>` | Programmatic SEO analysis and planning |
-| `/seo competitor-pages <url>` | Competitor comparison page generation |
-| `/seo local <url>` | Local SEO analysis (GBP, citations, reviews, map pack) |
-| `/seo maps [command]` | Maps intelligence (geo-grid, GBP audit, reviews, competitors) |
-| `/seo hreflang <url>` | Hreflang / i18n SEO audit and generation |
-| `/seo google [command]` | Google SEO APIs (GSC, PageSpeed, CrUX, Indexing, GA4, PDF reports) |
-| `/seo backlinks <url>` | Backlink profile analysis (Moz, Bing, Common Crawl) |
-| `/seo cluster <keyword>` | SERP-based semantic clustering |
-| `/seo sxo <url>` | Search Experience Optimization (page-type, user stories, personas) |
-| `/seo drift baseline \| compare \| history <url>` | SEO drift monitoring with SQLite snapshots |
-| `/seo ecommerce <url>` | E-commerce SEO and marketplace intelligence |
-| `/seo flow [stage]` | FLOW framework prompts (CC BY 4.0, evidence-led) |
-| `/seo firecrawl [command] <url>` | Full-site crawling (extension) |
-| `/seo dataforseo [command]` | Live SEO data (extension) |
-| `/seo image-gen [use-case]` | AI image generation for SEO assets (extension) |
-| `/seo ahrefs [command] <url>` | Backlinks, organic keywords, and content data via the official Ahrefs MCP (extension) |
-| `/seo seranking [command]` | AI Share-of-Voice across ChatGPT, Gemini, Perplexity, AI Overviews, AI Mode (extension) |
-| `/seo profound [command]` | LLM citation tracking with time-series data (extension) |
-| `/seo bing [command] <url>` | Bing Webmaster Tools + IndexNow URL submission (extension) |
-| `/seo unlighthouse <url>` | Multi-page Lighthouse runner, runs locally (extension) |
+| `/kimi-seo:seo setup` | Create or refresh the isolated Python runtime and Chromium |
+| `/kimi-seo:seo doctor` | Check runtime readiness without changing the system |
+| `/kimi-seo:seo audit <url>` | Full website audit with parallel sub-agent delegation |
+| `/kimi-seo:seo page <url>` | Deep single-page analysis |
+| `/kimi-seo:seo technical <url>` | Technical SEO audit across 9 categories |
+| `/kimi-seo:seo content <url>` | E-E-A-T and content quality analysis |
+| `/kimi-seo:seo content-brief <topic>` | Detailed content brief: target keywords, outline, internal links |
+| `/kimi-seo:seo schema <url>` | Detect, validate, and generate Schema.org markup |
+| `/kimi-seo:seo geo <url>` | AI Overviews / Generative Engine Optimization |
+| `/kimi-seo:seo sitemap <url \| generate>` | Analyze or generate XML sitemaps |
+| `/kimi-seo:seo images <url>` | Image optimization analysis |
+| `/kimi-seo:seo plan <type>` | Strategic SEO planning (saas, local, ecommerce, publisher, agency) |
+| `/kimi-seo:seo programmatic <url>` | Programmatic SEO analysis and planning |
+| `/kimi-seo:seo competitor-pages <url>` | Competitor comparison page generation |
+| `/kimi-seo:seo local <url>` | Local SEO analysis (GBP, citations, reviews, map pack) |
+| `/kimi-seo:seo maps [command]` | Maps intelligence (geo-grid, GBP audit, reviews, competitors) |
+| `/kimi-seo:seo hreflang <url>` | Hreflang / i18n SEO audit and generation |
+| `/kimi-seo:seo google [command]` | Google SEO APIs (GSC, PageSpeed, CrUX, Indexing, GA4, PDF reports) |
+| `/kimi-seo:seo backlinks <url>` | Backlink profile analysis (Moz, Bing, Common Crawl) |
+| `/kimi-seo:seo cluster <keyword>` | SERP-based semantic clustering |
+| `/kimi-seo:seo sxo <url>` | Search Experience Optimization (page-type, user stories, personas) |
+| `/kimi-seo:seo drift baseline \| compare \| history <url>` | SEO drift monitoring with SQLite snapshots |
+| `/kimi-seo:seo ecommerce <url>` | E-commerce SEO and marketplace intelligence |
+| `/kimi-seo:seo flow [stage]` | FLOW framework prompts (CC BY 4.0, evidence-led) |
+| `/kimi-seo:seo firecrawl [command] <url>` | Full-site crawling (extension) |
+| `/kimi-seo:seo dataforseo [command]` | Live SEO data (extension) |
+| `/kimi-seo:seo image-gen [use-case]` | AI image generation for SEO assets (extension) |
+| `/kimi-seo:seo ahrefs [command] <url>` | Backlinks, organic keywords, and content data via the official Ahrefs MCP (extension) |
+| `/kimi-seo:seo seranking [command]` | AI Share-of-Voice across ChatGPT, Gemini, Perplexity, AI Overviews, AI Mode (extension) |
+| `/kimi-seo:seo profound [command]` | LLM citation tracking with time-series data (extension) |
+| `/kimi-seo:seo bing [command] <url>` | Bing Webmaster Tools + IndexNow URL submission (extension) |
+| `/kimi-seo:seo unlighthouse <url>` | Multi-page Lighthouse runner, runs locally (extension) |
 
 ## Features
 
 ### What Core Web Vitals does Kimi SEO check?
 
-Kimi SEO measures the current three Core Web Vitals: **LCP** (Largest Contentful Paint, target under 2.5s), **INP** (Interaction to Next Paint, target under 200ms), and **CLS** (Cumulative Layout Shift, target under 0.1). [INP replaced FID](https://web.dev/articles/inp) on March 12, 2024; FID was removed from Chrome's field-data tools (CrUX API, PageSpeed Insights) on September 9, 2024 (Lighthouse is a lab tool and never reported FID), and Kimi SEO never references FID. Field data comes from the Chrome User Experience Report (CrUX) when available; lab data falls back to Lighthouse via PageSpeed Insights. LCP can be decomposed into subparts (TTFB, load delay, load duration, render delay) via the `/seo google` CrUX integration to localize bottlenecks. Mobile and desktop are measured separately. CrUX History (25-week trend) is included in the Tier 0 free credential set.
+Kimi SEO measures the current three Core Web Vitals: **LCP** (Largest Contentful Paint, target under 2.5s), **INP** (Interaction to Next Paint, target under 200ms), and **CLS** (Cumulative Layout Shift, target under 0.1). [INP replaced FID](https://web.dev/articles/inp) on March 12, 2024; FID was removed from Chrome's field-data tools (CrUX API, PageSpeed Insights) on September 9, 2024 (Lighthouse is a lab tool and never reported FID), and Kimi SEO never references FID. Field data comes from the Chrome User Experience Report (CrUX) when available; lab data falls back to Lighthouse via PageSpeed Insights. LCP can be decomposed into subparts (TTFB, load delay, load duration, render delay) via the `/kimi-seo:seo google` CrUX integration to localize bottlenecks. Mobile and desktop are measured separately. CrUX History (25-week trend) is included in the Tier 0 free credential set.
 
 ### How does Kimi SEO assess E-E-A-T?
 
@@ -200,11 +209,11 @@ A 4-tier credential system lets you start with zero keys and add data as needed.
 | 2 | + GA4 property config | + GA4 organic traffic, top landing pages, device / country breakdown |
 | 3 | + Ads developer token | + Keyword Planner search volume and competition data |
 
-PDF reports are generated via [WeasyPrint](https://weasyprint.org/) (A4 layout) with matplotlib charts at 200 DPI. Run `/seo google setup` for the credential wizard. All credentials live under `~/.config/kimi-seo/` with `0o600` permissions; nothing is checked into the repo.
+PDF reports are generated via [WeasyPrint](https://weasyprint.org/) (A4 layout) with matplotlib charts at 200 DPI. Run `/kimi-seo:seo google setup` for the credential wizard. All credentials live under `~/.config/kimi-seo/` with `0o600` permissions; nothing is checked into the repo.
 
 ### How does Kimi SEO handle local SEO?
 
-Three layers. **Google Business Profile signals**: categories, hours, photos, posts, products, attributes. **NAP consistency** across citations: name, address, phone matched against major directories with deviation flagging. **Review intelligence**: rating trends, sentiment, response coverage. For multi-location businesses, Kimi SEO enforces a 30-page warning threshold and a 50-page hard stop to prevent doorway-page violations (configurable). The `/seo maps` workflow adds geo-grid rank tracking, GBP profile auditing, and competitor radius mapping. Local schema generation covers `LocalBusiness` with all required and recommended properties (geo coordinates, opening hours, areaServed). Phase F (v2) added a GBP deprecation linter that detects retired chat-field references and `.business.site` URLs.
+Three layers. **Google Business Profile signals**: categories, hours, photos, posts, products, attributes. **NAP consistency** across citations: name, address, phone matched against major directories with deviation flagging. **Review intelligence**: rating trends, sentiment, response coverage. For multi-location businesses, Kimi SEO enforces a 30-page warning threshold and a 50-page hard stop to prevent doorway-page violations (configurable). The `/kimi-seo:seo maps` workflow adds geo-grid rank tracking, GBP profile auditing, and competitor radius mapping. Local schema generation covers `LocalBusiness` with all required and recommended properties (geo coordinates, opening hours, areaServed). Phase F (v2) added a GBP deprecation linter that detects retired chat-field references and `.business.site` URLs.
 
 ## Compared to manual / agency / commercial tools
 
@@ -224,15 +233,15 @@ Three layers. **Google Business Profile signals**: categories, hours, photos, po
 
 ## Use cases
 
-**SEO agency lead running 10 client sites.** Replaces the quarterly "deep audit" ritual with a weekly Monday-morning `/seo audit` run per site. Time to deliver a client health-score email drops from 4 hours to 12 minutes; coverage goes from quarterly to weekly without billing more hours. The drift baseline catches regressions between audits so the client conversation moves from "look at this snapshot" to "here is what changed this week."
+**SEO agency lead running 10 client sites.** Replaces the quarterly "deep audit" ritual with a weekly Monday-morning `/kimi-seo:seo audit` run per site. Time to deliver a client health-score email drops from 4 hours to 12 minutes; coverage goes from quarterly to weekly without billing more hours. The drift baseline catches regressions between audits so the client conversation moves from "look at this snapshot" to "here is what changed this week."
 
-**In-house SEO lead at a 50-person SaaS company.** Runs `/seo audit` 24 hours before each quarterly business review. Catches the items the platform UI buries (broken canonical chains on programmatic pages, schema deprecation after Google's June 2025 retirement wave, AI-citability gaps that erode SERP-to-AI-Overview pickup, expired-domain heritage on acquired blog assets) before the CMO asks why organic traffic is down in front of the board.
+**In-house SEO lead at a 50-person SaaS company.** Runs `/kimi-seo:seo audit` 24 hours before each quarterly business review. Catches the items the platform UI buries (broken canonical chains on programmatic pages, schema deprecation after Google's June 2025 retirement wave, AI-citability gaps that erode SERP-to-AI-Overview pickup, expired-domain heritage on acquired blog assets) before the CMO asks why organic traffic is down in front of the board.
 
-**Freelance SEO consultant onboarding a new client.** Runs `/seo audit` on the discovery call. Anchors the engagement scope with a real 0-100 score, 3 prioritized critical findings, and a falsifiability check on each recommendation, instead of a vague "I'll take a look and get back to you." Closes more retainers because the proof of value happens during the call, not after the proposal.
+**Freelance SEO consultant onboarding a new client.** Runs `/kimi-seo:seo audit` on the discovery call. Anchors the engagement scope with a real 0-100 score, 3 prioritized critical findings, and a falsifiability check on each recommendation, instead of a vague "I'll take a look and get back to you." Closes more retainers because the proof of value happens during the call, not after the proposal.
 
 ## Sample Output
 
-Kimi SEO writes real markdown reports as its primary deliverable. Below is the first ~50 lines of a `/seo schema https://rankenstein.pro/about` audit verbatim. The actual structure, headers, and grading format the plugin produces follows.
+Kimi SEO writes real markdown reports as its primary deliverable. Below is the first ~50 lines of a `/kimi-seo:seo schema https://rankenstein.pro/about` audit verbatim. The actual structure, headers, and grading format the plugin produces follows.
 
 <details>
 <summary><code>SCHEMA-REPORT.md</code>: first 50 lines of a real audit</summary>
@@ -288,7 +297,7 @@ Other audit outputs follow the same shape: `FULL-AUDIT-REPORT.md` (umbrella audi
 
 ## Architecture
 
-![Kimi SEO audit signal flow: /seo audit enters the orchestrator, fans out to 25 sub-skills and up to 15 parallel audit agents, and converges through the scoring engine into a prioritized report](assets/signal-flow.svg)
+![Kimi SEO audit signal flow: /kimi-seo:seo audit enters the orchestrator, fans out to 25 sub-skills and up to 15 parallel audit agents, and converges through the scoring engine into a prioritized report](assets/signal-flow.svg)
 
 The plugin follows the open Agent Skills standard (SKILL.md format) with a 3-layer architecture (directive, orchestration, execution). Skills and agents are auto-discovered from `skills/seo-*/` and `agents/seo-*.md`. The orchestrator (`skills/seo/SKILL.md`) handles industry detection (SaaS, local, ecommerce, publisher, agency), parallel sub-agent dispatch up to 15 simultaneously, and synthesis through the [10-principle framework](#methodology) before emitting the action plan. Full architecture: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
@@ -324,7 +333,7 @@ Test coverage grew from 39 (v1.9.9) to 410 across the v2 line; the url_safety su
 
 - **v2.1.0 (May 2026): currency refresh.** May 2026 core update, Google I/O 2026 (custom version of Gemini 2.5 powers AI Mode), FAQ rich results retired 2026-05-07 (QAPage remains the type for genuine Q&A pages, FAQ markup itself just no longer yields rich results).
 - **v2.2.0 (June 2026): security + portability.** Installer credential-injection fix, SSRF authority-confusion bypass closed, Google API keys moved to the `X-Goog-Api-Key` header, secret-scan CI gate, Windows/macOS fixes; suite at 326.
-- **v2.2.1 (June 2026): Google-currency reconfirmation + full command audit.** Lighthouse 13.4.0 with the new Agentic Browsing category, Google Search ignores llms.txt, an internally-reweighted E-E-A-T scorecard (Trust highest, per Google's 'trust is most important'); every `/seo` command and subcommand audited and COMMANDS.md brought to 100% coverage.
+- **v2.2.1 (June 2026): Google-currency reconfirmation + full command audit.** Lighthouse 13.4.0 with the new Agentic Browsing category, Google Search ignores llms.txt, an internally-reweighted E-E-A-T scorecard (Trust highest, per Google's 'trust is most important'); every `/kimi-seo:seo` command and subcommand audited and COMMANDS.md brought to 100% coverage.
 - **v2.2.2 (July 2026): full-review maintenance.** Corrected GBP Q&A handling, AI Mode model naming, image-model IDs, hook input behavior, and added a strict reference-graph consistency gate.
 - **v2.2.3 (July 2026): prompt-hygiene alignment.** Normalized emphasis and punctuation across the prompt surface without changing behavior, routing, or output contracts.
 - **v2.2.4 (July 2026): community maintenance.** Added the managed cross-platform runtime and safe sitemap discovery, repaired GSC pagination and totals, replaced removed Bing endpoints, fixed extension and Windows portability gaps, and reconciled every open issue and pull request.
@@ -342,7 +351,7 @@ Two real boundaries worth being upfront about.
 - Python 3.10+
 - Kimi Code CLI
 - Optional: Playwright Chromium — install.sh offers to install it (you can skip the prompt); needed only for SPA rendering and screenshots
-- Optional: Google API credentials for enriched CWV / GSC / GA4 data (see `/seo google setup`)
+- Optional: Google API credentials for enriched CWV / GSC / GA4 data (see `/kimi-seo:seo google setup`)
 
 ## Uninstall
 
@@ -370,8 +379,8 @@ Live SERP data, keyword research, backlinks, on-page analysis, content analysis,
 
 ```bash
 ./extensions/dataforseo/install.sh   # requires DataForSEO account
-/seo dataforseo serp best coffee shops
-/seo dataforseo ai-mentions your brand
+/kimi-seo:seo dataforseo serp best coffee shops
+/kimi-seo:seo dataforseo ai-mentions your brand
 ```
 
 Full DataForSEO docs: [extensions/dataforseo/README.md](extensions/dataforseo/README.md).
@@ -382,7 +391,7 @@ Full-site crawling and URL discovery via the [Firecrawl](https://www.firecrawl.d
 
 ```bash
 ./extensions/firecrawl/install.sh
-/seo firecrawl crawl https://example.com
+/kimi-seo:seo firecrawl crawl https://example.com
 ```
 
 Full Firecrawl docs: [extensions/firecrawl/README.md](extensions/firecrawl/README.md).
@@ -393,7 +402,7 @@ SEO image generation (OG previews, blog heroes, product photos, infographics) vi
 
 ```bash
 ./extensions/banana/install.sh
-/seo image-gen og "Professional SaaS dashboard"
+/kimi-seo:seo image-gen og "Professional SaaS dashboard"
 ```
 
 Full Banana docs: [extensions/banana/README.md](extensions/banana/README.md).
@@ -422,16 +431,16 @@ Kimi SEO sits in a small ecosystem of related projects it interoperates with:
 
 **Workflow example:**
 
-1. `/seo audit https://example.com`: identify content gaps and technical issues
-2. `/seo backlinks https://example.com`: analyze link profile and competitor gaps
-3. `/seo geo https://example.com/blog/post`: score AI-citation readiness
-4. `/seo content-brief "target keyword"`: produce a brief for the next post
-5. `/seo image-gen hero "blog topic"`: generate hero image (Banana extension)
+1. `/kimi-seo:seo audit https://example.com`: identify content gaps and technical issues
+2. `/kimi-seo:seo backlinks https://example.com`: analyze link profile and competitor gaps
+3. `/kimi-seo:seo geo https://example.com/blog/post`: score AI-citation readiness
+4. `/kimi-seo:seo content-brief "target keyword"`: produce a brief for the next post
+5. `/kimi-seo:seo image-gen hero "blog topic"`: generate hero image (Banana extension)
 
 ## Documentation
 
 - [Installation Guide](docs/INSTALLATION.md)
-- [Commands Reference](docs/COMMANDS.md): every `/seo` command in depth
+- [Commands Reference](docs/COMMANDS.md): every `/kimi-seo:seo` command in depth
 - [Architecture](docs/ARCHITECTURE.md): 3-layer design, auto-discovery, parallel dispatch
 - [Migration v1 → v2](docs/MIGRATION-v1-to-v2.md): breaking changes, six phases of work
 - [MCP Integration](docs/MCP-INTEGRATION.md): integration notes; extension setup lives under `extensions/<name>/docs/`
@@ -454,7 +463,7 @@ Yes. Phase A of v2 shipped a shared headless renderer (`scripts/render_page.py`)
 
 ### What Google APIs does Kimi SEO use, and are they required?
 
-None are required. Kimi SEO is fully functional with zero API keys. A 4-tier credential system lets you upgrade gradually: Tier 0 (API key only) unlocks PageSpeed Insights, CrUX, and CrUX History (25-week trend data). Tier 1 (+ OAuth or service account) adds Search Console with queries, URL Inspection, sitemap status, and the Indexing API for eligible JobPosting pages or BroadcastEvent in VideoObject pages; the API does not guarantee indexing. Tier 2 (+ GA4 property config) adds organic traffic, top landing pages, and device / country breakdowns. Tier 3 (+ Ads developer token) adds Keyword Planner search volume and competition data. The credential setup wizard runs via `/seo google setup`. All credentials live under `~/.config/kimi-seo/` with `0o600` file permissions; nothing is checked into the repo and nothing is transmitted beyond Google's own endpoints.
+None are required. Kimi SEO is fully functional with zero API keys. A 4-tier credential system lets you upgrade gradually: Tier 0 (API key only) unlocks PageSpeed Insights, CrUX, and CrUX History (25-week trend data). Tier 1 (+ OAuth or service account) adds Search Console with queries, URL Inspection, sitemap status, and the Indexing API for eligible JobPosting pages or BroadcastEvent in VideoObject pages; the API does not guarantee indexing. Tier 2 (+ GA4 property config) adds organic traffic, top landing pages, and device / country breakdowns. Tier 3 (+ Ads developer token) adds Keyword Planner search volume and competition data. The credential setup wizard runs via `/kimi-seo:seo google setup`. All credentials live under `~/.config/kimi-seo/` with `0o600` file permissions; nothing is checked into the repo and nothing is transmitted beyond Google's own endpoints.
 
 ### Is Kimi SEO free?
 

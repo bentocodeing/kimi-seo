@@ -27,7 +27,7 @@ The installer:
 Open a new Claude Code session and ask:
 
 ```
-/seo ahrefs metrics https://example.com
+/kimi-seo:seo ahrefs metrics https://example.com
 ```
 
 If you see "Ahrefs MCP not connected", the npm package is not yet cached.
@@ -64,4 +64,4 @@ wiring Ahrefs accounting.
 |---|---|---|
 | `Error: AHREFS_API_TOKEN is empty` | Installer didn't capture input | Re-run installer; type token at the prompt, then press Enter |
 | `npx: package not found` | Offline run / fresh machine | Run with internet on; the installer pre-warms but the cache needs network |
-| 401 from any `/seo ahrefs *` command | Token revoked / expired | Generate a new token at https://ahrefs.com/api and re-run the installer |
+| 401 from any `/kimi-seo:seo ahrefs *` command | Token revoked / expired | Generate a new token at https://ahrefs.com/api and re-run the installer |

@@ -25,6 +25,6 @@ main() {
     mkdir -p "${SKILL_DIR}/seo-unlighthouse"
     cp "${SOURCE_DIR}/skills/seo-unlighthouse/SKILL.md" "${SKILL_DIR}/seo-unlighthouse/SKILL.md"
     echo "✓ Installed skill: ${SKILL_DIR}/seo-unlighthouse"
-    echo "Done. Try: /seo unlighthouse https://example.com"
+    echo "Done. Try: /kimi-seo:seo unlighthouse https://example.com"
 }
 main "$@"

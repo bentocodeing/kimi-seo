@@ -28,10 +28,10 @@ DataForSEO Merchant API for live Google Shopping and Amazon data.
 
 | Command | Purpose | DataForSEO? |
 |---------|---------|-------------|
-| `/seo ecommerce <url>` | Full e-commerce SEO analysis of a product page or store | Optional |
-| `/seo ecommerce products <keyword>` | Google Shopping competitive analysis | Required |
-| `/seo ecommerce gaps <domain>` | Keyword gap: organic vs Shopping visibility | Required |
-| `/seo ecommerce schema <url>` | Product schema validation and enhancement | No |
+| `/kimi-seo:seo ecommerce <url>` | Full e-commerce SEO analysis of a product page or store | Optional |
+| `/kimi-seo:seo ecommerce products <keyword>` | Google Shopping competitive analysis | Required |
+| `/kimi-seo:seo ecommerce gaps <domain>` | Keyword gap: organic vs Shopping visibility | Required |
+| `/kimi-seo:seo ecommerce schema <url>` | Product schema validation and enhancement | No |
 
 ---
 
@@ -346,7 +346,7 @@ UCP itself is live; what's early is broad merchant adoption. Flag a literal
 | Empty Shopping results | No products for keyword | Suggest broader keyword, check location settings |
 | Amazon API timeout | Network/rate limit | Retry with backoff, fall back to Google-only |
 | Invalid URL | Malformed input | Validate via `google_auth.validate_url()`, show error |
-| Non-product page | URL is category/homepage | Detect page type, suggest `/seo ecommerce schema` instead |
+| Non-product page | URL is category/homepage | Detect page type, suggest `/kimi-seo:seo ecommerce schema` instead |
 
 ---
 
@@ -375,5 +375,5 @@ UCP itself is live; what's early is broad merchant adoption. Flag a literal
 2. [High] ...
 3. [Medium] ...
 
-Generate a PDF report? Use `/seo google report`
+Generate a PDF report? Use `/kimi-seo:seo google report`
 ```

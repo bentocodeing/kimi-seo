@@ -199,7 +199,7 @@ Sorted by file size impact (largest savings first):
 
 When DataForSEO MCP is available, enhance the image audit with competitive data.
 
-### `/seo images serp <keyword>`
+### `/kimi-seo:seo images serp <keyword>`
 
 Cross-reference on-page images with Google Images SERP rankings.
 
@@ -228,7 +228,7 @@ If DataForSEO MCP is not available, inform user and suggest installing the exten
 
 Optimize image files for SEO: format conversion, metadata injection, compression.
 
-### `/seo images optimize <path>`
+### `/kimi-seo:seo images optimize <path>`
 
 Optimize image file(s) for web and SEO. Converts to WebP/AVIF, injects IPTC
 metadata, compresses, and generates responsive variants.
@@ -379,7 +379,7 @@ Google extracts these IPTC `DigitalSourceType` values:
 > text alone. No new published image-SEO lever yet; keep descriptive alt text +
 > clean structured data.
 
-When `/seo images optimize` is run on AI-generated assets, prompt the user to
+When `/kimi-seo:seo images optimize` is run on AI-generated assets, prompt the user to
 confirm the source type and inject the matching IPTC value automatically.
 
 For **AI-generated product titles and descriptions**, Google Merchant Center

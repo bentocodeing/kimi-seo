@@ -26,9 +26,9 @@ Git for your SEO. Capture baselines, detect regressions, track changes over time
 
 | Command | Purpose |
 |---------|---------|
-| `/seo drift baseline <url>` | Capture current SEO state as a "known good" snapshot |
-| `/seo drift compare <url>` | Compare current page state to stored baseline |
-| `/seo drift history <url>` | Show change history and past comparisons |
+| `/kimi-seo:seo drift baseline <url>` | Capture current SEO state as a "known good" snapshot |
+| `/kimi-seo:seo drift compare <url>` | Compare current page state to stored baseline |
+| `/kimi-seo:seo drift history <url>` | Show change history and past comparisons |
 
 ---
 
@@ -160,14 +160,14 @@ When drift is detected, recommend the appropriate specialized skill:
 
 | Finding | Recommendation |
 |---------|----------------|
-| Schema removed or modified | Run `/seo schema <url>` for full validation |
-| CWV regression | Run `/seo technical <url>` for performance audit |
-| Title or meta description changed | Run `/seo page <url>` for content analysis |
-| Canonical changed or removed | Run `/seo technical <url>` for indexability check |
-| Noindex added | Run `/seo technical <url>` for crawlability audit |
-| H1/heading structure changed | Run `/seo content <url>` for E-E-A-T review |
-| OG tags removed | Run `/seo page <url>` for social sharing analysis |
-| Status code changed to error | Run `/seo technical <url>` for full diagnostics |
+| Schema removed or modified | Run `/kimi-seo:seo schema <url>` for full validation |
+| CWV regression | Run `/kimi-seo:seo technical <url>` for performance audit |
+| Title or meta description changed | Run `/kimi-seo:seo page <url>` for content analysis |
+| Canonical changed or removed | Run `/kimi-seo:seo technical <url>` for indexability check |
+| Noindex added | Run `/kimi-seo:seo technical <url>` for crawlability audit |
+| H1/heading structure changed | Run `/kimi-seo:seo content <url>` for E-E-A-T review |
+| OG tags removed | Run `/kimi-seo:seo page <url>` for social sharing analysis |
+| Status code changed to error | Run `/kimi-seo:seo technical <url>` for full diagnostics |
 
 ---
 
@@ -199,21 +199,21 @@ When drift is detected, recommend the appropriate specialized skill:
 
 ### Pre/Post Deployment Check
 ```
-/seo drift baseline https://example.com     # Before deploy
+/kimi-seo:seo drift baseline https://example.com     # Before deploy
 # ... deploy happens ...
-/seo drift compare https://example.com      # After deploy
+/kimi-seo:seo drift compare https://example.com      # After deploy
 ```
 
 ### Ongoing Monitoring
 ```
-/seo drift baseline https://example.com     # Initial capture
+/kimi-seo:seo drift baseline https://example.com     # Initial capture
 # ... weeks later ...
-/seo drift compare https://example.com      # Check for drift
-/seo drift history https://example.com      # Review all changes
+/kimi-seo:seo drift compare https://example.com      # Check for drift
+/kimi-seo:seo drift history https://example.com      # Review all changes
 ```
 
 ### Investigating a Traffic Drop
 ```
-/seo drift compare https://example.com      # What changed?
-/seo drift history https://example.com      # When did it change?
+/kimi-seo:seo drift compare https://example.com      # What changed?
+/kimi-seo:seo drift history https://example.com      # When did it change?
 ```

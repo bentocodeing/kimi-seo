@@ -17,7 +17,9 @@ metadata:
 1. **Render homepage**: use `kimi-seo run render_page.py <url> --mode auto --json` to capture raw HTML, rendered HTML, extracted text, SPA status, and accessibility data when needed
 2. **Detect business type**: analyze homepage signals per seo orchestrator
 3. **Crawl site**: follow internal links up to 500 pages, respect robots.txt
-4. **Delegate to subagents** (if available, otherwise run inline sequentially):
+4. **Delegate to subagents** (Kimi Code does not load `agents/seo-*.md` as tool
+   subagents — run each specialist **inline, sequentially**, following the
+   matching agent brief):
    - `seo-technical` -- robots.txt, sitemaps, canonicals, Core Web Vitals, security headers
    - `seo-content` -- E-E-A-T, readability, thin content, AI citation readiness
    - `seo-schema` -- detection, validation, generation recommendations
@@ -34,8 +36,9 @@ metadata:
    - `seo-drift` -- Drift analysis: compare against stored baseline (spawn when drift baseline exists for the URL via `kimi-seo run drift_history.py <url>`)
    - `seo-ecommerce` -- Product schema, marketplace intelligence (spawn when E-commerce industry detected)
 5. **Score** -- aggregate into SEO Health Score (0-100)
-6. **Persist audit artifacts** -- write all outputs under `{domain}-audit/`
-7. **Report** -- generate prioritized action plan and optional PDF/HTML report
+6. **Capture screenshots** -- `kimi-seo run capture_screenshot.py <url> --all --output {domain}-audit/screenshots/` (skip only when `kimi-seo doctor` reports Chromium unavailable, and note the omission in the report)
+7. **Persist audit artifacts (REQUIRED)** -- write all outputs under `{domain}-audit/` in the **current working directory** (the user's project, not the plugin root). An audit delivered as chat text only is incomplete: the files below must exist on disk before you summarize.
+8. **Report** -- generate prioritized action plan and optional PDF/HTML report
 
 ## Crawl Configuration
 
@@ -49,6 +52,9 @@ Delay between requests: 1 second
 ```
 
 ## Output Files
+
+All paths are relative to the **current working directory** (the user's
+project), never to the plugin root.
 
 - `{domain}-audit/FULL-AUDIT-REPORT.md`: Comprehensive findings
 - `{domain}-audit/ACTION-PLAN.md`: Prioritized recommendations (Critical > High > Medium > Low)

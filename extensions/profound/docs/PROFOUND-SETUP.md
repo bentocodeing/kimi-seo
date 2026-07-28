@@ -15,7 +15,7 @@ Stores `PROFOUND_API_KEY` in `~/.claude/settings.json` env block, mode 0o600.
 ## Verify
 
 ```
-/seo profound citations "Kimi SEO"
+/kimi-seo:seo profound citations "Kimi SEO"
 ```
 
 ## Uninstall

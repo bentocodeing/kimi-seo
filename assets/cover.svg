@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 1680 768" width="100%" preserveAspectRatio="xMidYMid meet" role="img"
-     aria-label="Kimi SEO - animated cover: wordmark, a search field typing /seo commands, and a rotating globe ringed with SEO questions"
+     aria-label="Kimi SEO - animated cover: wordmark, a search field typing /kimi-seo:seo commands, and a rotating globe ringed with SEO questions"
      font-family="Inter, system-ui, sans-serif">
   <title>Kimi SEO</title>
-  <desc>Warm dark banner. A kimi seo wordmark over a query field that types example /seo commands, beside a slowly rotating earth ringed with floating SEO questions.</desc>
+  <desc>Warm dark banner. A kimi seo wordmark over a query field that types example /kimi-seo:seo commands, beside a slowly rotating earth ringed with floating SEO questions.</desc>
   <defs>
     <style type="text/css"><![CDATA[
       .wordmark {

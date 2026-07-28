@@ -215,11 +215,11 @@ main() {
     echo "Usage:"
     if [ "${TARGET}" = "claude" ]; then
         echo "  1. Start Claude Code:  claude"
-        echo "  2. Run commands:       /seo audit https://example.com"
+        echo "  2. Run commands:       /kimi-seo:seo audit https://example.com"
     else
         echo "  1. Start Kimi Code:    kimi"
         echo "  2. Reload skills:      /reload"
-        echo "  3. Run commands:       /seo audit https://example.com"
+        echo "  3. Run commands:       /kimi-seo:seo audit https://example.com"
         echo ""
         echo "Managed alternative (recommended): install as a Kimi Code plugin instead:"
         echo "  /plugins install ${REPO_URL}"

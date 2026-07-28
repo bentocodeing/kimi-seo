@@ -20,7 +20,7 @@ Inside Kimi Code:
 ```
 /plugins install https://github.com/bentocodeing/kimi-seo
 /reload
-/seo setup
+/kimi-seo:seo setup
 ```
 
 Kimi Code copies the repository into its managed plugins directory
@@ -30,9 +30,9 @@ session-start orientation skill (`kimi-seo-runtime`), and the schema
 validation hook (`PostToolUse` on `Edit|Write`). Hook commands run with the
 plugin root as working directory.
 
-`/seo setup` is an explicit, one-time provisioning step that writes the
+`/kimi-seo:seo setup` is an explicit, one-time provisioning step that writes the
 virtual environment and browser to Kimi SEO's persistent data directory. Use
-`/seo doctor` for a read-only check.
+`/kimi-seo:seo doctor` for a read-only check.
 
 ### Manual skills/agents layout (Kimi Code, no plugin manager)
 
@@ -117,7 +117,7 @@ kimi
 2. Check that the skill is loaded:
 
 ```
-/seo
+/kimi-seo:seo
 ```
 
 You should see a help message or prompt for a URL.

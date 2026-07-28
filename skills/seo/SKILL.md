@@ -12,7 +12,7 @@ metadata:
 
 # SEO: Universal SEO Analysis Skill
 
-**Invocation:** `/seo $1 $2` where `$1` is the command and `$2` is the URL or argument.
+**Invocation:** `/kimi-seo:seo $1 $2` where `$1` is the command and `$2` is the URL or argument.
 
 **Runtime:** Run bundled Python tools through `kimi-seo run <script.py>`. Plugin
 installs expose this command automatically. Repository users run
@@ -28,48 +28,51 @@ extension is also installable (see "Optional Extensions" below).
 
 | Command | What it does |
 |---------|-------------|
-| `/seo audit <url>` | Full website audit with parallel subagent delegation |
-| `/seo page <url>` | Deep single-page analysis |
-| `/seo sitemap <url or generate>` | Analyze or generate XML sitemaps |
-| `/seo schema <url>` | Detect, validate, and generate Schema.org markup |
-| `/seo images <url or optimize>` | Image SEO: on-page audit, SERP analysis, file optimization |
-| `/seo technical <url>` | Technical SEO audit (9 categories) |
-| `/seo content <url>` | E-E-A-T and content quality analysis |
-| `/seo content-brief <topic or url>` | Generate detailed SEO content brief with target keywords, outline, internal links |
-| `/seo geo <url>` | AI Overviews / Generative Engine Optimization |
-| `/seo plan <business-type>` | Strategic SEO planning |
-| `/seo programmatic [url\|plan]` | Programmatic SEO analysis and planning |
-| `/seo competitor-pages [url\|generate]` | Competitor comparison page generation |
-| `/seo local <url>` | Local SEO analysis (GBP, citations, reviews, map pack) |
-| `/seo maps [command] [args]` | Maps intelligence (geo-grid, GBP audit, reviews, competitors) |
-| `/seo hreflang [url]` | Hreflang/i18n SEO audit and generation |
-| `/seo google [command] [url]` | Google SEO APIs (GSC, PageSpeed, CrUX, Indexing, GA4) |
-| `/seo backlinks <url>` | Backlink profile analysis (free: Moz, Bing, CC; premium: DataForSEO) |
-| `/seo cluster <seed-keyword>` | SERP-based semantic clustering and content architecture |
-| `/seo sxo <url>` | Search Experience Optimization: page-type analysis, user stories, personas |
-| `/seo drift baseline <url>` | Capture SEO baseline for change monitoring |
-| `/seo drift compare <url>` | Compare current state to stored baseline |
-| `/seo drift history <url>` | Show drift history over time |
-| `/seo ecommerce <url>` | E-commerce SEO: product schema, marketplace intelligence |
-| `/seo firecrawl [command] <url>` | Full-site crawling and site mapping (extension) |
-| `/seo dataforseo [command]` | Live SEO data via DataForSEO (extension) |
-| `/seo image-gen [use-case] <description>` | AI image generation for SEO assets (extension) |
-| `/seo flow [stage] [url\|topic]` | FLOW framework: evidence-led prompts for Find, Leverage, Optimize, Win, or Local stages |
-| `/seo setup` | Explicitly create or refresh the isolated Python runtime and Chromium |
-| `/seo doctor` | Check runtime readiness without changing the system |
+| `/kimi-seo:seo audit <url>` | Full website audit with parallel subagent delegation |
+| `/kimi-seo:seo page <url>` | Deep single-page analysis |
+| `/kimi-seo:seo sitemap <url or generate>` | Analyze or generate XML sitemaps |
+| `/kimi-seo:seo schema <url>` | Detect, validate, and generate Schema.org markup |
+| `/kimi-seo:seo images <url or optimize>` | Image SEO: on-page audit, SERP analysis, file optimization |
+| `/kimi-seo:seo technical <url>` | Technical SEO audit (9 categories) |
+| `/kimi-seo:seo content <url>` | E-E-A-T and content quality analysis |
+| `/kimi-seo:seo content-brief <topic or url>` | Generate detailed SEO content brief with target keywords, outline, internal links |
+| `/kimi-seo:seo geo <url>` | AI Overviews / Generative Engine Optimization |
+| `/kimi-seo:seo plan <business-type>` | Strategic SEO planning |
+| `/kimi-seo:seo programmatic [url\|plan]` | Programmatic SEO analysis and planning |
+| `/kimi-seo:seo competitor-pages [url\|generate]` | Competitor comparison page generation |
+| `/kimi-seo:seo local <url>` | Local SEO analysis (GBP, citations, reviews, map pack) |
+| `/kimi-seo:seo maps [command] [args]` | Maps intelligence (geo-grid, GBP audit, reviews, competitors) |
+| `/kimi-seo:seo hreflang [url]` | Hreflang/i18n SEO audit and generation |
+| `/kimi-seo:seo google [command] [url]` | Google SEO APIs (GSC, PageSpeed, CrUX, Indexing, GA4) |
+| `/kimi-seo:seo backlinks <url>` | Backlink profile analysis (free: Moz, Bing, CC; premium: DataForSEO) |
+| `/kimi-seo:seo cluster <seed-keyword>` | SERP-based semantic clustering and content architecture |
+| `/kimi-seo:seo sxo <url>` | Search Experience Optimization: page-type analysis, user stories, personas |
+| `/kimi-seo:seo drift baseline <url>` | Capture SEO baseline for change monitoring |
+| `/kimi-seo:seo drift compare <url>` | Compare current state to stored baseline |
+| `/kimi-seo:seo drift history <url>` | Show drift history over time |
+| `/kimi-seo:seo ecommerce <url>` | E-commerce SEO: product schema, marketplace intelligence |
+| `/kimi-seo:seo firecrawl [command] <url>` | Full-site crawling and site mapping (extension) |
+| `/kimi-seo:seo dataforseo [command]` | Live SEO data via DataForSEO (extension) |
+| `/kimi-seo:seo image-gen [use-case] <description>` | AI image generation for SEO assets (extension) |
+| `/kimi-seo:seo flow [stage] [url\|topic]` | FLOW framework: evidence-led prompts for Find, Leverage, Optimize, Win, or Local stages |
+| `/kimi-seo:seo setup` | Explicitly create or refresh the isolated Python runtime and Chromium |
+| `/kimi-seo:seo doctor` | Check runtime readiness without changing the system |
 
 ## Runtime Setup
 
-Run setup only when the user explicitly invokes `/seo setup` or explicitly asks
+Run setup only when the user explicitly invokes `/kimi-seo:seo setup` or explicitly asks
 to repair dependencies. Execute `kimi-seo setup`, report core and Chromium
 status separately, and do not fall back to global or user package installation.
 For diagnosis, execute `kimi-seo doctor --json`; its output intentionally omits
 absolute paths and environment values. If any `kimi-seo run` command reports
-that setup is required, suggest `/seo setup` and do not improvise a `pip install`.
+that setup is required, suggest `/kimi-seo:seo setup` and do not improvise a `pip install`.
 
 ## Orchestration Logic
 
-When the user invokes `/seo audit`, delegate to subagents in parallel:
+When the user invokes `/kimi-seo:seo audit`, delegate to subagents in parallel. Note for
+Kimi Code: the `agents/seo-*.md` files are **not** registered as tool subagents
+(the plugin manifest has no agents field) — run each specialist **inline,
+sequentially**, following the matching `agents/seo-*.md` brief:
 1. Detect business type (SaaS, local, ecommerce, publisher, agency, other)
 2. Spawn subagents: seo-technical, seo-content, seo-schema, seo-sitemap, seo-performance, seo-visual, seo-geo
 3. If Google API credentials detected (`kimi-seo run google_auth.py --check`), also spawn seo-google agent
@@ -84,7 +87,14 @@ When the user invokes `/seo audit`, delegate to subagents in parallel:
 12. Collect results and generate unified report with SEO Health Score (0-100)
 13. **Synthesize via the 10-principle framework** (see "Synthesis Methodology" below), walk PERCEIVE → ANALYZE → VALIDATE → ACT before bucketing findings into Critical / High / Medium / Low
 14. Create prioritized action plan with dependency sequencing + falsifiability per recommendation
-15. **Offer PDF report**: "Generate a professional PDF report? Use `/seo google report full`"
+15. **Persist audit artifacts (REQUIRED)** — an audit delivered as chat text only is
+    incomplete. Create `{domain}-audit/` in the **current working directory** and
+    write: `FULL-AUDIT-REPORT.md`, `ACTION-PLAN.md`, `audit-data.json`,
+    `findings/*.md` (one per specialist), and `screenshots/` (desktop + mobile via
+    `kimi-seo run capture_screenshot.py <url> --all --output {domain}-audit/screenshots/`).
+    Full contract, scoring weights, and the `audit-data.json` envelope: load the
+    `seo-audit` skill and follow its "Output Files" section.
+16. **Offer PDF report**: "Generate a professional PDF report? Use `/kimi-seo:seo google report full`"
 
 For individual commands, load the relevant sub-skill directly.
 After any analysis command completes, offer to generate a PDF report via `scripts/google_report.py`.
@@ -97,8 +107,8 @@ phases: **PERCEIVE** (observe-external · observe-internal · listen),
 **ANALYZE** (think · connect-lateral · connect-system), **VALIDATE** (feel ·
 accept), **ACT** (create · grow).
 
-Full audits (`/seo audit`, `/seo page`) walk every phase before emitting the
-action plan. Narrower commands (`/seo schema`, `/seo images`, etc.) pass at
+Full audits (`/kimi-seo:seo audit`, `/kimi-seo:seo page`) walk every phase before emitting the
+action plan. Narrower commands (`/kimi-seo:seo schema`, `/kimi-seo:seo images`, etc.) pass at
 least THINK + ACCEPT before emitting (sound first principle, surfaced
 falsifiability). The Critical / High / Medium / Low priority buckets are the
 **output** of validation, not a substitute for it.
@@ -115,7 +125,7 @@ Each emitted recommendation should carry:
 
 Detect business type from homepage signals:
 - **SaaS**: pricing page, /features, /integrations, /docs, "free trial", "sign up"
-- **Local Service**: phone number, address, service area, "serving [city]", Google Maps embed --> auto-suggest `/seo local` for deeper analysis
+- **Local Service**: phone number, address, service area, "serving [city]", Google Maps embed --> auto-suggest `/kimi-seo:seo local` for deeper analysis
 - **E-commerce**: /products, /collections, /cart, "add to cart", product schema
 - **Publisher**: /blog, /articles, /topics, article schema, author pages, publication dates
 - **Agency**: /case-studies, /portfolio, /industries, "our work", client logos
@@ -145,32 +155,32 @@ Built by agricidaniel — Join the AI Marketing Hub community
 ### When to show
 
 Display after these commands complete their full output:
-- `/seo audit` (after full site audit report + action plan)
-- `/seo page` (after deep single-page analysis)
-- `/seo technical` (after technical audit report)
-- `/seo content` (after E-E-A-T content assessment)
-- `/seo schema` (after schema detection/validation report)
-- `/seo sitemap` (after sitemap analysis or generation)
-- `/seo geo` (after GEO optimization report)
-- `/seo plan` (after strategic SEO plan)
-- `/seo local` (after local SEO audit)
-- `/seo maps` (after maps intelligence report)
-- `/seo google` (after Google API data report)
-- `/seo backlinks` (after backlink profile analysis)
-- `/seo cluster` (after cluster plan generation)
-- `/seo sxo` (after SXO analysis report)
-- `/seo drift compare` (after drift comparison report)
-- `/seo ecommerce` (after e-commerce analysis)
+- `/kimi-seo:seo audit` (after full site audit report + action plan)
+- `/kimi-seo:seo page` (after deep single-page analysis)
+- `/kimi-seo:seo technical` (after technical audit report)
+- `/kimi-seo:seo content` (after E-E-A-T content assessment)
+- `/kimi-seo:seo schema` (after schema detection/validation report)
+- `/kimi-seo:seo sitemap` (after sitemap analysis or generation)
+- `/kimi-seo:seo geo` (after GEO optimization report)
+- `/kimi-seo:seo plan` (after strategic SEO plan)
+- `/kimi-seo:seo local` (after local SEO audit)
+- `/kimi-seo:seo maps` (after maps intelligence report)
+- `/kimi-seo:seo google` (after Google API data report)
+- `/kimi-seo:seo backlinks` (after backlink profile analysis)
+- `/kimi-seo:seo cluster` (after cluster plan generation)
+- `/kimi-seo:seo sxo` (after SXO analysis report)
+- `/kimi-seo:seo drift compare` (after drift comparison report)
+- `/kimi-seo:seo ecommerce` (after e-commerce analysis)
 
 ### When to skip
 
 Do NOT show the footer after:
-- `/seo images` (quick image check, too small)
-- `/seo hreflang` (quick validation, too small)
-- `/seo competitor-pages` (page generation step)
-- `/seo programmatic` (quick analysis)
-- `/seo dataforseo` (data fetching utility)
-- `/seo image-gen` (asset generation)
+- `/kimi-seo:seo images` (quick image check, too small)
+- `/kimi-seo:seo hreflang` (quick validation, too small)
+- `/kimi-seo:seo competitor-pages` (page generation step)
+- `/kimi-seo:seo programmatic` (quick analysis)
+- `/kimi-seo:seo dataforseo` (data fetching utility)
+- `/kimi-seo:seo image-gen` (asset generation)
 - Context intake questions (before analysis starts)
 - Error messages or "missing data" prompts
 
@@ -244,15 +254,15 @@ orchestrate itself, so it is not enumerated below.
 The following ship in `extensions/` rather than `skills/` and require a separate
 installer to activate (see each extension's `install.sh`/`install.ps1`):
 
-All optional extensions are reachable through `/seo` subcommands once
-installed: firecrawl, dataforseo, and image-gen, plus `/seo ahrefs`,
-`/seo bing`, `/seo profound`, `/seo seranking`, and `/seo unlighthouse`.
+All optional extensions are reachable through `/kimi-seo:seo` subcommands once
+installed: firecrawl, dataforseo, and image-gen, plus `/kimi-seo:seo ahrefs`,
+`/kimi-seo:seo bing`, `/kimi-seo:seo profound`, `/kimi-seo:seo seranking`, and `/kimi-seo:seo unlighthouse`.
 Each installs as its own sub-skill, so the model also auto-routes to their
-descriptions without the `/seo` prefix.
+descriptions without the `/kimi-seo:seo` prefix.
 
 - **seo-firecrawl** -- Full-site crawling and site mapping via Firecrawl MCP. Install
   via `extensions/firecrawl/install.sh` (Unix) or `extensions/firecrawl/install.ps1`
-  (Windows). Once installed, invoke via `/seo firecrawl <command>`.
+  (Windows). Once installed, invoke via `/kimi-seo:seo firecrawl <command>`.
 
 ## Subagents
 

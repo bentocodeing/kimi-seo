@@ -102,7 +102,7 @@ Reference files contain static data loaded on-demand to avoid bloating the main 
 
 ## Orchestration Flow
 
-### Full Audit (`/seo audit`)
+### Full Audit (`/kimi-seo:seo audit`)
 
 ```
 User request
@@ -148,7 +148,7 @@ User request
 ### Individual Command
 
 ```
-User Request (e.g., /seo page)
+User Request (e.g., /kimi-seo:seo page)
     │
     ▼
 ┌─────────────────┐

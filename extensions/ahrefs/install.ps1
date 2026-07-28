@@ -58,4 +58,4 @@ print(f'Wrote mcpServers.ahrefs to {path}')
 $pyScript | python - $SettingsJson $Plain
 
 Write-Host ""
-Write-Host "Done. Open a new Claude Code session and run /seo ahrefs metrics <url>."
+Write-Host "Done. Open a new Claude Code session and run /kimi-seo:seo ahrefs metrics <url>."

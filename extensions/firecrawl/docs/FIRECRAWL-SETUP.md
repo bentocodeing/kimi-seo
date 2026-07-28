@@ -40,7 +40,7 @@ If the installer fails, add this to `~/.claude/settings.json` manually:
 Start Claude Code and try:
 
 ```
-/seo firecrawl map https://example.com
+/kimi-seo:seo firecrawl map https://example.com
 ```
 
 You should see a list of discovered URLs. If you get a "tool not available" error, restart Claude Code to reload MCP servers.

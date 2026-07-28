@@ -517,3 +517,20 @@ def test_kimi_plugin_json_hook_command_paths_exist():
             assert (REPO_ROOT / token).is_file(), (
                 f"hook command references missing path: {token}"
             )
+
+
+def test_kimi_plugin_json_commands_paths_exist():
+    """kimi.plugin.json commands roots must exist and contain .md command files."""
+    plugin = json.loads(KIMI_PLUGIN_JSON.read_text(encoding="utf-8"))
+    commands = plugin.get("commands")
+    assert commands, "kimi.plugin.json needs a commands field (plugin slash commands)"
+    entries = [commands] if isinstance(commands, str) else list(commands)
+    for entry in entries:
+        assert entry.startswith("./"), f"commands path must be relative: {entry!r}"
+        root = (REPO_ROOT / entry).resolve()
+        assert root.is_relative_to(REPO_ROOT), f"commands path escapes repo: {entry}"
+        if root.is_file():
+            assert root.suffix == ".md", f"commands file must be .md: {entry}"
+            continue
+        assert root.is_dir(), f"commands root does not exist: {entry}"
+        assert list(root.rglob("*.md")), f"commands root {entry} contains no .md files"

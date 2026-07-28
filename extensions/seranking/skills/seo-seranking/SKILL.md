@@ -20,10 +20,10 @@ Live AI visibility tracking via the SE Ranking REST API.
 
 | Command | Purpose |
 |---|---|
-| `/seo seranking ai-visibility <brand>` | Share-of-voice for `brand` across ChatGPT, Gemini, Perplexity, AI Overviews, AI Mode |
-| `/seo seranking serp <keyword>` | Top 100 organic positions + SERP features |
-| `/seo seranking backlinks <url>` | Backlink profile (alternative vendor source to Ahrefs / DataForSEO) |
-| `/seo seranking competitors <url>` | Top 10 organic competitors and shared-keyword gaps |
+| `/kimi-seo:seo seranking ai-visibility <brand>` | Share-of-voice for `brand` across ChatGPT, Gemini, Perplexity, AI Overviews, AI Mode |
+| `/kimi-seo:seo seranking serp <keyword>` | Top 100 organic positions + SERP features |
+| `/kimi-seo:seo seranking backlinks <url>` | Backlink profile (alternative vendor source to Ahrefs / DataForSEO) |
+| `/kimi-seo:seo seranking competitors <url>` | Top 10 organic competitors and shared-keyword gaps |
 
 ## AI Share-of-Voice scoring
 

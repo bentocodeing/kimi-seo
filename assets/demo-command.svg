@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" width="880" height="500" role="img"
-     aria-label="Kimi SEO terminal demo: typing /seo audit, parallel agents running, report written"
+     aria-label="Kimi SEO terminal demo: typing /kimi-seo:seo audit, parallel agents running, report written"
      font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace">
-  <title>Kimi SEO — /seo audit demo</title>
-  <desc>Dark terminal window. The command /seo audit https://rankenstein.pro is typed, the orchestrator detects the industry, five agents run in parallel, and a summary line confirms the report.</desc>
+  <title>Kimi SEO — /kimi-seo:seo audit demo</title>
+  <desc>Dark terminal window. The command /kimi-seo:seo audit https://rankenstein.pro is typed, the orchestrator detects the industry, five agents run in parallel, and a summary line confirms the report.</desc>
   <style>
     text { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace; }
 
@@ -31,20 +31,20 @@
     @keyframes k-sum    { 0%, 74%  { opacity: 0; } 75.5%, 100% { opacity: 1; } }
     @keyframes k-p2     { 0%, 78%  { opacity: 0; } 79.5%, 100% { opacity: 1; } }
 
-    /* ---- typing: 35 chars, 0.3s -> 2.3s (3% -> 23% of loop) ---- */
-    .type-clip rect { animation: typew 10s steps(35, end) infinite; }
+    /* ---- typing: 44 chars, 0.3s -> 2.3s (3% -> 23% of loop) ---- */
+    .type-clip rect { animation: typew 10s steps(44, end) infinite; }
     @keyframes typew {
       0%, 3%   { width: 0; }
-      23%, 100% { width: 320px; }
+      23%, 100% { width: 400px; }
     }
     .caret {
       animation:
-        caret-move 10s steps(35, end) infinite,
+        caret-move 10s steps(44, end) infinite,
         caret-blink 1s step-end infinite;
     }
     @keyframes caret-move {
       0%, 3%   { x: 52px; }
-      23%, 100% { x: 367px; }
+      23%, 100% { x: 448px; }
     }
     @keyframes caret-blink {
       0%, 100% { opacity: 1; }
@@ -78,7 +78,7 @@
     <clipPath id="cmdclip" class="type-clip" clipPathUnits="userSpaceOnUse">
       <rect x="52" y="74" width="0" height="22"/>
     </clipPath>
-    <text x="52" y="90" fill="#ececf1" clip-path="url(#cmdclip)">/seo audit https://rankenstein.pro</text>
+    <text x="52" y="90" fill="#ececf1" clip-path="url(#cmdclip)">/kimi-seo:seo audit https://rankenstein.pro</text>
     <g class="caret1-wrap"><rect class="caret" x="52" y="76" width="9" height="18" fill="#5ea2f7"/></g>
 
     <!-- line 2: industry detection -->

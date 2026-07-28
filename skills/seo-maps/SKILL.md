@@ -25,7 +25,7 @@ how a business appears on Google Maps, Bing Places, Apple Maps, and OpenStreetMa
 
 **Boundary with seo-local:** This skill analyzes the business on maps PLATFORMS
 (via APIs). seo-local analyzes local SEO signals on the WEBSITE (via HTML fetch).
-Do not duplicate seo-local on-page analysis. Recommend `/seo local <url>` for
+Do not duplicate seo-local on-page analysis. Recommend `/kimi-seo:seo local <url>` for
 website-level checks.
 
 ---
@@ -34,13 +34,13 @@ website-level checks.
 
 | Command | What it does | Tier |
 |---------|-------------|------|
-| `/seo maps <url>` | Full maps presence audit (auto-selects tier) | 0+ |
-| `/seo maps grid <keyword> <location>` | Geo-grid rank scan (7x7, 1 keyword default) | 1+ |
-| `/seo maps reviews <business> <location>` | Cross-platform review intelligence | 1+ |
-| `/seo maps competitors <keyword> <location>` | Competitor radius mapping | 0+ |
-| `/seo maps nap <business-name>` | Cross-platform NAP verification | 0+ |
-| `/seo maps schema <business-name>` | Generate LocalBusiness JSON-LD from data | 0+ |
-| `/seo maps gbp <business> <location>` | GBP completeness audit | 1+ |
+| `/kimi-seo:seo maps <url>` | Full maps presence audit (auto-selects tier) | 0+ |
+| `/kimi-seo:seo maps grid <keyword> <location>` | Geo-grid rank scan (7x7, 1 keyword default) | 1+ |
+| `/kimi-seo:seo maps reviews <business> <location>` | Cross-platform review intelligence | 1+ |
+| `/kimi-seo:seo maps competitors <keyword> <location>` | Competitor radius mapping | 0+ |
+| `/kimi-seo:seo maps nap <business-name>` | Cross-platform NAP verification | 0+ |
+| `/kimi-seo:seo maps schema <business-name>` | Generate LocalBusiness JSON-LD from data | 0+ |
+| `/kimi-seo:seo maps gbp <business> <location>` | GBP completeness audit | 1+ |
 
 ---
 
@@ -231,6 +231,8 @@ Load on-demand as needed (do NOT load all at startup):
 
 ## Output
 
+All outputs are written to the current working directory, never the plugin root.
+
 Generate `MAPS-ANALYSIS-{domain}.md` with:
 
 1. **Maps Health Score: XX/100** with dimension breakdown table
@@ -249,10 +251,10 @@ Generate `MAPS-ANALYSIS-{domain}.md` with:
 
 ## Cross-Skill Delegation
 
-- Website on-page local signals: recommend `/seo local <url>`
-- Full AI search visibility: recommend `/seo geo <url>`
-- Schema validation and fixes: recommend `/seo schema <url>`
-- Live SERP and keyword data: recommend `/seo dataforseo [command]`
+- Website on-page local signals: recommend `/kimi-seo:seo local <url>`
+- Full AI search visibility: recommend `/kimi-seo:seo geo <url>`
+- Schema validation and fixes: recommend `/kimi-seo:seo schema <url>`
+- Live SERP and keyword data: recommend `/kimi-seo:seo dataforseo [command]`
 
 ---
 

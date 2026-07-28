@@ -195,7 +195,7 @@ Stop strategizing. Produce the artifact:
 
 The audit is a snapshot, not a verdict. Build the feedback loop:
 
-- Capture a baseline via `/seo drift baseline <url>` so subsequent
+- Capture a baseline via `/kimi-seo:seo drift baseline <url>` so subsequent
   audits can prove what changed.
 - Define one or two leading indicators the user should monitor (CrUX
   trend, GSC impressions for a target cluster, brand-mention growth on
@@ -213,12 +213,12 @@ audit should look for.
 
 ## How to invoke the framework
 
-Every full-site audit (`/seo audit`) and deep-page audit (`/seo page`)
+Every full-site audit (`/kimi-seo:seo audit`) and deep-page audit (`/kimi-seo:seo page`)
 walks through PERCEIVE → ANALYZE → VALIDATE → ACT before emitting the
 action plan. The Critical / High / Medium / Low priority bucketing
 happens **after** the validation phase, not instead of it.
 
-Single-purpose commands (`/seo schema`, `/seo images`, `/seo technical`,
+Single-purpose commands (`/kimi-seo:seo schema`, `/kimi-seo:seo images`, `/kimi-seo:seo technical`,
 etc.) can skip the full loop when the user is asking a narrow question
 — but their recommendations should still pass at least THINK + ACCEPT
 before being emitted (does this rest on a sound first principle, and is

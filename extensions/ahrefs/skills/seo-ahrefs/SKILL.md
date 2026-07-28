@@ -26,10 +26,10 @@ provide the install command above.
 
 | Command | Action |
 |---|---|
-| `/seo ahrefs metrics <url>` | Domain / URL rating, referring domain count, organic traffic estimate |
-| `/seo ahrefs backlinks <url>` | Top referring domains, anchor distribution, follow/nofollow ratio |
-| `/seo ahrefs organic <url>` | Organic keywords, ranking distribution, traffic by country |
-| `/seo ahrefs content <topic>` | Content Explorer top results, social shares, referring domains |
+| `/kimi-seo:seo ahrefs metrics <url>` | Domain / URL rating, referring domain count, organic traffic estimate |
+| `/kimi-seo:seo ahrefs backlinks <url>` | Top referring domains, anchor distribution, follow/nofollow ratio |
+| `/kimi-seo:seo ahrefs organic <url>` | Organic keywords, ranking distribution, traffic by country |
+| `/kimi-seo:seo ahrefs content <topic>` | Content Explorer top results, social shares, referring domains |
 
 ## Output conventions
 

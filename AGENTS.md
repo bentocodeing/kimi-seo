@@ -62,40 +62,40 @@ integration + 2 extension mirrors), and 53 Python execution scripts.
 
 | Command | What it does |
 |---------|-------------|
-| `/seo audit <url>` | Full website audit with parallel subagent delegation |
-| `/seo page <url>` | Deep single-page analysis |
-| `/seo technical <url>` | Technical SEO audit (9 categories) |
-| `/seo content <url>` | E-E-A-T and content quality analysis |
-| `/seo content-brief <topic>` | Generate a content brief for a topic |
-| `/seo schema <url>` | Schema.org detection, validation, generation |
-| `/seo sitemap <url>` | XML sitemap analysis or generation |
-| `/seo images <url>` | Image SEO: on-page audit, SERP analysis, file optimization |
-| `/seo geo <url>` | AI Overviews / Generative Engine Optimization |
-| `/seo plan <type>` | Strategic SEO planning |
-| `/seo cluster <keyword>` | SERP-based semantic clustering and content architecture |
-| `/seo sxo <url>` | Search Experience Optimization: page-type analysis, personas |
-| `/seo drift baseline <url>` | Capture SEO baseline for change monitoring |
-| `/seo drift compare <url>` | Compare current state to stored baseline |
-| `/seo drift history <url>` | Show drift history over time |
-| `/seo ecommerce <url>` | E-commerce SEO: product schema, marketplace intelligence |
-| `/seo programmatic [url]` | Programmatic SEO at scale |
-| `/seo competitor-pages [url]` | Competitor comparison pages |
-| `/seo flow [stage]` | FLOW framework prompts (Find, Leverage, Optimize, Win, Local; prompts/sync utilities.) |
-| `/seo local <url>` | Local SEO analysis (GBP, citations, reviews) |
-| `/seo maps [cmd] [args]` | Maps intelligence (geo-grid, GBP audit, competitors) |
-| `/seo hreflang <url>` | Hreflang/i18n SEO audit, cultural profiles, content parity |
-| `/seo google [cmd] [url]` | Google SEO APIs (GSC, PageSpeed, CrUX, Indexing, GA4) |
-| `/seo backlinks <url>` | Backlink profile analysis |
-| `/seo backlinks setup` | Setup free backlink APIs |
-| `/seo backlinks verify <url>` | Verify known backlinks still exist |
-| `/seo dataforseo [cmd]` | Live SEO data via DataForSEO (extension) |
-| `/seo image-gen [use-case]` | AI image generation for SEO assets (extension) |
-| `/seo firecrawl [cmd] <url>` | Full-site crawling and site mapping (extension) |
-| `/seo ahrefs [cmd] <target>` | Ahrefs backlink and keyword data (extension) |
-| `/seo bing [cmd] <url>` | Bing Webmaster data and IndexNow (extension) |
-| `/seo profound [cmd]` | LLM brand-citation tracking (extension) |
-| `/seo seranking [cmd]` | AI share-of-voice tracking (extension) |
-| `/seo unlighthouse <url>` | Multi-page Lighthouse audits (extension) |
+| `/kimi-seo:seo audit <url>` | Full website audit with parallel subagent delegation |
+| `/kimi-seo:seo page <url>` | Deep single-page analysis |
+| `/kimi-seo:seo technical <url>` | Technical SEO audit (9 categories) |
+| `/kimi-seo:seo content <url>` | E-E-A-T and content quality analysis |
+| `/kimi-seo:seo content-brief <topic>` | Generate a content brief for a topic |
+| `/kimi-seo:seo schema <url>` | Schema.org detection, validation, generation |
+| `/kimi-seo:seo sitemap <url>` | XML sitemap analysis or generation |
+| `/kimi-seo:seo images <url>` | Image SEO: on-page audit, SERP analysis, file optimization |
+| `/kimi-seo:seo geo <url>` | AI Overviews / Generative Engine Optimization |
+| `/kimi-seo:seo plan <type>` | Strategic SEO planning |
+| `/kimi-seo:seo cluster <keyword>` | SERP-based semantic clustering and content architecture |
+| `/kimi-seo:seo sxo <url>` | Search Experience Optimization: page-type analysis, personas |
+| `/kimi-seo:seo drift baseline <url>` | Capture SEO baseline for change monitoring |
+| `/kimi-seo:seo drift compare <url>` | Compare current state to stored baseline |
+| `/kimi-seo:seo drift history <url>` | Show drift history over time |
+| `/kimi-seo:seo ecommerce <url>` | E-commerce SEO: product schema, marketplace intelligence |
+| `/kimi-seo:seo programmatic [url]` | Programmatic SEO at scale |
+| `/kimi-seo:seo competitor-pages [url]` | Competitor comparison pages |
+| `/kimi-seo:seo flow [stage]` | FLOW framework prompts (Find, Leverage, Optimize, Win, Local; prompts/sync utilities.) |
+| `/kimi-seo:seo local <url>` | Local SEO analysis (GBP, citations, reviews) |
+| `/kimi-seo:seo maps [cmd] [args]` | Maps intelligence (geo-grid, GBP audit, competitors) |
+| `/kimi-seo:seo hreflang <url>` | Hreflang/i18n SEO audit, cultural profiles, content parity |
+| `/kimi-seo:seo google [cmd] [url]` | Google SEO APIs (GSC, PageSpeed, CrUX, Indexing, GA4) |
+| `/kimi-seo:seo backlinks <url>` | Backlink profile analysis |
+| `/kimi-seo:seo backlinks setup` | Setup free backlink APIs |
+| `/kimi-seo:seo backlinks verify <url>` | Verify known backlinks still exist |
+| `/kimi-seo:seo dataforseo [cmd]` | Live SEO data via DataForSEO (extension) |
+| `/kimi-seo:seo image-gen [use-case]` | AI image generation for SEO assets (extension) |
+| `/kimi-seo:seo firecrawl [cmd] <url>` | Full-site crawling and site mapping (extension) |
+| `/kimi-seo:seo ahrefs [cmd] <target>` | Ahrefs backlink and keyword data (extension) |
+| `/kimi-seo:seo bing [cmd] <url>` | Bing Webmaster data and IndexNow (extension) |
+| `/kimi-seo:seo profound [cmd]` | LLM brand-citation tracking (extension) |
+| `/kimi-seo:seo seranking [cmd]` | AI share-of-voice tracking (extension) |
+| `/kimi-seo:seo unlighthouse <url>` | Multi-page Lighthouse audits (extension) |
 
 ## Using with Cursor / Cursor Cloud
 

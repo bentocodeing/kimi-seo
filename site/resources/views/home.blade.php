@@ -74,15 +74,15 @@
         <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             @php
                 $features = [
-                    ['/seo audit', 'Full website audit with parallel subagent delegation across every SEO category.'],
-                    ['/seo page', 'Deep single-page analysis: tags, headings, content, links, performance.'],
-                    ['/seo technical', 'Technical SEO audit across 9 categories, from crawlability to Core Web Vitals.'],
-                    ['/seo content', 'E-E-A-T and content quality analysis with actionable recommendations.'],
-                    ['/seo schema', 'Schema.org detection, validation and JSON-LD generation.'],
-                    ['/seo geo', 'Optimize for AI Overviews and generative search engines.'],
-                    ['/seo backlinks', 'Backlink profile analysis with free API integrations.'],
-                    ['/seo cluster', 'SERP-based semantic clustering and content architecture.'],
-                    ['/seo drift', 'Capture baselines and monitor SEO drift over time.'],
+                    ['/kimi-seo:seo audit', 'Full website audit with parallel subagent delegation across every SEO category.'],
+                    ['/kimi-seo:seo page', 'Deep single-page analysis: tags, headings, content, links, performance.'],
+                    ['/kimi-seo:seo technical', 'Technical SEO audit across 9 categories, from crawlability to Core Web Vitals.'],
+                    ['/kimi-seo:seo content', 'E-E-A-T and content quality analysis with actionable recommendations.'],
+                    ['/kimi-seo:seo schema', 'Schema.org detection, validation and JSON-LD generation.'],
+                    ['/kimi-seo:seo geo', 'Optimize for AI Overviews and generative search engines.'],
+                    ['/kimi-seo:seo backlinks', 'Backlink profile analysis with free API integrations.'],
+                    ['/kimi-seo:seo cluster', 'SERP-based semantic clustering and content architecture.'],
+                    ['/kimi-seo:seo drift', 'Capture baselines and monitor SEO drift over time.'],
                 ];
             @endphp
             @foreach ($features as [$command, $description])
@@ -112,7 +112,7 @@
                      Each connector is two paths: a faint base line that draws itself
                      on scroll (.diagram-draw, pathLength=100) and an accent dash line
                      with a continuous flow animation (.diagram-flow) on top. -->
-                <svg viewBox="0 0 760 320" class="w-full h-auto" role="img" aria-label="Diagram: a /seo audit command flows through the Kimi SEO orchestrator to specialized skills and converges into an actionable report">
+                <svg viewBox="0 0 760 320" class="w-full h-auto" role="img" aria-label="Diagram: a /kimi-seo:seo audit command flows through the Kimi SEO orchestrator to specialized skills and converges into an actionable report">
                     <!-- Connector: input -> orchestrator -->
                     <path d="M 160 160 L 240 160" pathLength="100" class="diagram-draw fill-none stroke-zinc-300 dark:stroke-ink-600" stroke-width="1.5"/>
                     <path d="M 160 160 L 240 160" class="diagram-flow fill-none stroke-accent-500" stroke-width="1.5"/>
@@ -153,7 +153,7 @@
                     <!-- Input node -->
                     <rect x="10" y="138" width="150" height="44" rx="8" class="fill-white dark:fill-ink-900 stroke-zinc-300 dark:stroke-ink-600" stroke-width="1.5"/>
                     <text x="85" y="156" text-anchor="middle" class="fill-zinc-500 dark:fill-ink-400" font-size="10">You</text>
-                    <text x="85" y="172" text-anchor="middle" class="font-mono fill-zinc-800 dark:fill-ink-100" font-size="12">/seo audit &lt;url&gt;</text>
+                    <text x="85" y="172" text-anchor="middle" class="font-mono fill-zinc-800 dark:fill-ink-100" font-size="9">/kimi-seo:seo audit &lt;url&gt;</text>
 
                     <!-- Orchestrator node -->
                     <rect x="240" y="132" width="170" height="56" rx="10" class="fill-white dark:fill-ink-900 stroke-accent-500" stroke-width="1.5"/>
@@ -162,15 +162,15 @@
 
                     <!-- Skill nodes -->
                     <rect x="480" y="23" width="140" height="34" rx="8" class="fill-white dark:fill-ink-900 stroke-zinc-300 dark:stroke-ink-600" stroke-width="1.5"/>
-                    <text x="550" y="44" text-anchor="middle" class="font-mono fill-zinc-800 dark:fill-ink-100" font-size="11">/seo audit</text>
+                    <text x="550" y="44" text-anchor="middle" class="font-mono fill-zinc-800 dark:fill-ink-100" font-size="9">/kimi-seo:seo audit</text>
                     <rect x="480" y="83" width="140" height="34" rx="8" class="fill-white dark:fill-ink-900 stroke-zinc-300 dark:stroke-ink-600" stroke-width="1.5"/>
-                    <text x="550" y="104" text-anchor="middle" class="font-mono fill-zinc-800 dark:fill-ink-100" font-size="11">/seo technical</text>
+                    <text x="550" y="104" text-anchor="middle" class="font-mono fill-zinc-800 dark:fill-ink-100" font-size="9">/kimi-seo:seo technical</text>
                     <rect x="480" y="143" width="140" height="34" rx="8" class="fill-white dark:fill-ink-900 stroke-zinc-300 dark:stroke-ink-600" stroke-width="1.5"/>
-                    <text x="550" y="164" text-anchor="middle" class="font-mono fill-zinc-800 dark:fill-ink-100" font-size="11">/seo content</text>
+                    <text x="550" y="164" text-anchor="middle" class="font-mono fill-zinc-800 dark:fill-ink-100" font-size="9">/kimi-seo:seo content</text>
                     <rect x="480" y="203" width="140" height="34" rx="8" class="fill-white dark:fill-ink-900 stroke-zinc-300 dark:stroke-ink-600" stroke-width="1.5"/>
-                    <text x="550" y="224" text-anchor="middle" class="font-mono fill-zinc-800 dark:fill-ink-100" font-size="11">/seo schema</text>
+                    <text x="550" y="224" text-anchor="middle" class="font-mono fill-zinc-800 dark:fill-ink-100" font-size="9">/kimi-seo:seo schema</text>
                     <rect x="480" y="263" width="140" height="34" rx="8" class="fill-white dark:fill-ink-900 stroke-zinc-300 dark:stroke-ink-600" stroke-width="1.5"/>
-                    <text x="550" y="284" text-anchor="middle" class="font-mono fill-zinc-800 dark:fill-ink-100" font-size="11">/seo geo</text>
+                    <text x="550" y="284" text-anchor="middle" class="font-mono fill-zinc-800 dark:fill-ink-100" font-size="9">/kimi-seo:seo geo</text>
 
                     <!-- Report node -->
                     <rect x="650" y="138" width="100" height="44" rx="8" class="fill-white dark:fill-ink-900 stroke-accent-500" stroke-width="1.5"/>
@@ -191,7 +191,7 @@
         <div class="mt-10 grid gap-6 lg:grid-cols-2">
             <figure data-reveal data-reveal-delay="1">
                 <img src="/media/assets/demo-command.svg"
-                     alt="Animated terminal demo: running a /seo audit in Kimi Code CLI with Kimi SEO loaded"
+                     alt="Animated terminal demo: running a /kimi-seo:seo audit in Kimi Code CLI with Kimi SEO loaded"
                      class="w-full h-auto rounded-xl border border-zinc-200 dark:border-ink-700 shadow-sm dark:shadow-none" loading="lazy">
                 <figcaption class="mt-2 text-center text-xs muted">Run the audit</figcaption>
             </figure>

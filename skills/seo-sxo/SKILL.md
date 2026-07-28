@@ -34,10 +34,10 @@ well-optimized it is.
 
 | Command | Purpose |
 |---------|---------|
-| `/seo sxo <url>` | Full SXO analysis (auto-detect keyword from page) |
-| `/seo sxo <url> <keyword>` | Full SXO analysis for a specific keyword |
-| `/seo sxo wireframe <url>` | Generate IST/SOLL wireframe with concrete placeholders |
-| `/seo sxo personas <url>` | Persona-only scoring (skip SERP analysis) |
+| `/kimi-seo:seo sxo <url>` | Full SXO analysis (auto-detect keyword from page) |
+| `/kimi-seo:seo sxo <url> <keyword>` | Full SXO analysis for a specific keyword |
+| `/kimi-seo:seo sxo wireframe <url>` | Generate IST/SOLL wireframe with concrete placeholders |
+| `/kimi-seo:seo sxo personas <url>` | Persona-only scoring (skip SERP analysis) |
 
 ## Execution Pipeline
 
@@ -151,7 +151,7 @@ Read `references/persona-scoring.md` for methodology.
 
 ### Step 7: Wireframe Generation (Optional)
 
-Only execute when `/seo sxo wireframe` is invoked.
+Only execute when `/kimi-seo:seo sxo wireframe` is invoked.
 
 Read `references/wireframe-templates.md` for templates.
 
@@ -187,12 +187,12 @@ The SXO score is **separate** from the main SEO Health Score.
 
 | Finding | Hand Off To |
 |---------|-------------|
-| E-E-A-T gaps in persona scoring | `/seo content` for deep E-E-A-T audit |
-| Missing schema types | `/seo schema` for generation |
-| Local intent detected in SERP | `/seo local` for GBP analysis |
-| Content depth gaps | `/seo page` for deep page analysis |
-| Technical issues found during fetch | `/seo technical` for full audit |
-| Image/media gaps | `/seo images` for optimization |
+| E-E-A-T gaps in persona scoring | `/kimi-seo:seo content` for deep E-E-A-T audit |
+| Missing schema types | `/kimi-seo:seo schema` for generation |
+| Local intent detected in SERP | `/kimi-seo:seo local` for GBP analysis |
+| Content depth gaps | `/kimi-seo:seo page` for deep page analysis |
+| Technical issues found during fetch | `/kimi-seo:seo technical` for full audit |
+| Image/media gaps | `/kimi-seo:seo images` for optimization |
 
 ## Output Format
 

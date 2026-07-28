@@ -30,12 +30,12 @@ The installer will:
 
 | Command | What it does |
 |---------|-------------|
-| `/seo image-gen og <description>` | OG/social preview image (1200x630 feel) |
-| `/seo image-gen hero <description>` | Blog hero image (widescreen, dramatic) |
-| `/seo image-gen product <description>` | Product photography (clean, white BG) |
-| `/seo image-gen infographic <description>` | Infographic visual (vertical, data-heavy) |
-| `/seo image-gen custom <description>` | Custom with full Creative Director pipeline |
-| `/seo image-gen batch <description> [N]` | Generate N variations (default: 3) |
+| `/kimi-seo:seo image-gen og <description>` | OG/social preview image (1200x630 feel) |
+| `/kimi-seo:seo image-gen hero <description>` | Blog hero image (widescreen, dramatic) |
+| `/kimi-seo:seo image-gen product <description>` | Product photography (clean, white BG) |
+| `/kimi-seo:seo image-gen infographic <description>` | Infographic visual (vertical, data-heavy) |
+| `/kimi-seo:seo image-gen custom <description>` | Custom with full Creative Director pipeline |
+| `/kimi-seo:seo image-gen batch <description> [N]` | Generate N variations (default: 3) |
 
 CSV batch planning helper:
 ```bash
@@ -77,7 +77,7 @@ After every generation, Claude provides:
 
 ## Audit Integration
 
-During `/seo audit`, the extension optionally spawns an image analysis agent that:
+During `/kimi-seo:seo audit`, the extension optionally spawns an image analysis agent that:
 - Audits existing OG/social images across the site
 - Identifies missing or low-quality images
 - Creates a prioritized generation plan with prompt suggestions

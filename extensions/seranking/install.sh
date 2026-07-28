@@ -52,7 +52,7 @@ print(f"✓ Wrote env.SERANKING_API_KEY to {path}")
 PY
 
     echo
-    echo "Done. Try: /seo seranking ai-visibility brandname"
+    echo "Done. Try: /kimi-seo:seo seranking ai-visibility brandname"
     echo "Full docs: extensions/seranking/docs/SERANKING-SETUP.md"
 }
 

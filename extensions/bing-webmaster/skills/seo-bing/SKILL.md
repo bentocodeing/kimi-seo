@@ -24,11 +24,11 @@ specifically for **Amazon/Bing/Naver/Seznam.cz/Yandex/Yep indexing** and
 
 | Command | Underlying script |
 |---|---|
-| `/seo bing links <url>` | `kimi-seo run bing_webmaster.py links <url>` |
-| `/seo bing compare <urlA> <urlB>` | `kimi-seo run bing_webmaster.py compare <urlA> <urlB>`; both properties must be registered to the API account |
-| `/seo bing submit <url>` (single URL) | `kimi-seo run indexnow_submit.py --host ... --urls <url>` |
-| `/seo bing submit-batch <file>` | `kimi-seo run indexnow_submit.py --host ... --urls-file <file>` |
-| `/seo bing verify-indexnow` | `kimi-seo run indexnow_submit.py --host ... --verify-only` |
+| `/kimi-seo:seo bing links <url>` | `kimi-seo run bing_webmaster.py links <url>` |
+| `/kimi-seo:seo bing compare <urlA> <urlB>` | `kimi-seo run bing_webmaster.py compare <urlA> <urlB>`; both properties must be registered to the API account |
+| `/kimi-seo:seo bing submit <url>` (single URL) | `kimi-seo run indexnow_submit.py --host ... --urls <url>` |
+| `/kimi-seo:seo bing submit-batch <file>` | `kimi-seo run indexnow_submit.py --host ... --urls-file <file>` |
+| `/kimi-seo:seo bing verify-indexnow` | `kimi-seo run indexnow_submit.py --host ... --verify-only` |
 
 ## When this skill applies
 

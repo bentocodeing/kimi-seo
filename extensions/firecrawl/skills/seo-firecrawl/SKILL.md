@@ -31,10 +31,10 @@ installed and provide install instructions.
 
 | Command | Purpose |
 |---------|---------|
-| `/seo firecrawl crawl <url>` | Full-site crawl with content extraction |
-| `/seo firecrawl map <url>` | Discover site structure (URLs only, fast) |
-| `/seo firecrawl scrape <url>` | Single-page scrape with JS rendering |
-| `/seo firecrawl search <query> <url>` | Search within a crawled site |
+| `/kimi-seo:seo firecrawl crawl <url>` | Full-site crawl with content extraction |
+| `/kimi-seo:seo firecrawl map <url>` | Discover site structure (URLs only, fast) |
+| `/kimi-seo:seo firecrawl scrape <url>` | Single-page scrape with JS rendering |
+| `/kimi-seo:seo firecrawl search <query> <url>` | Search within a crawled site |
 
 ## Commands
 
@@ -60,7 +60,7 @@ metadata, and links for all discovered pages.
 4. **Content inventory**: Extract all page titles, meta descriptions, H1s at scale
 5. **SPA/JS-rendered sites**: Firecrawl renders JavaScript, solving the Issue #11 problem
 
-**Example orchestration for `/seo audit`:**
+**Example orchestration for `/kimi-seo:seo audit`:**
 ```
 1. firecrawl_map(url) -> get all URLs (fast, no content)
 2. Filter to top 50 most important pages (homepage, key sections)
@@ -158,7 +158,7 @@ related to a topic without crawling everything.
 ## Cross-Skill Integration
 
 ### With seo-audit (full audit)
-When Firecrawl is available during `/seo audit`:
+When Firecrawl is available during `/kimi-seo:seo audit`:
 1. Use `firecrawl_map` to discover all site URLs
 2. Compare with XML sitemap (seo-sitemap) to find orphan/missing pages
 3. Select top pages for deep analysis

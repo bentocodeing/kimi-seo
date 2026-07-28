@@ -150,6 +150,8 @@ When generating schema for a page:
 
 ## Output
 
+All outputs are written to the current working directory, never the plugin root.
+
 - `SCHEMA-REPORT.md`: detection and validation results
 - `generated-schema.json`: ready-to-use JSON-LD snippets
 

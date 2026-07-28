@@ -25,7 +25,7 @@ body:
     id: command
     attributes:
       label: Command that failed
-      description: e.g. `/seo audit https://example.com`
+      description: e.g. `/kimi-seo:seo audit https://example.com`
     validations:
       required: true
   - type: textarea

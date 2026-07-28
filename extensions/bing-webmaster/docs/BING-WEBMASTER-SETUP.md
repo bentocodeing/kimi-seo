@@ -33,7 +33,7 @@ writes only the env vars you provide.
    served at `https://example.com/<key>.txt`. The file body is the key.
 3. Run:
    ```
-   /seo bing verify-indexnow
+   /kimi-seo:seo bing verify-indexnow
    ```
    The verifier fetches your keyLocation URL and confirms the body
    matches the key, the #1 onboarding mistake.

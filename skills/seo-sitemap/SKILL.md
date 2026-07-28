@@ -144,6 +144,8 @@ Google documents three subtypes with their own rules, validate per-subtype:
 
 ## Output
 
+All outputs are written to the current working directory, never the plugin root.
+
 ### For Analysis
 - `VALIDATION-REPORT.md`: analysis results
 - Issues list with severity

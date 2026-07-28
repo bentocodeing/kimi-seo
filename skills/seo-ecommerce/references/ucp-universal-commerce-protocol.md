@@ -91,7 +91,7 @@ Exact identifiers are governed by the live spec. The namespace pattern is
 
 ## What kimi-seo audits
 
-`/seo ecommerce <url>` should report:
+`/kimi-seo:seo ecommerce <url>` should report:
 
 1. **Presence:** does `/.well-known/ucp` resolve to a valid JSON document?
 2. **Capability coverage:** which capabilities are declared? Flag missing

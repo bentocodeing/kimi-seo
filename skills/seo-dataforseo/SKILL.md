@@ -61,9 +61,9 @@ kimi-seo run dataforseo_costs.py log <endpoint> <actual_cost>
 ```
 
 **User commands for cost management:**
-- `/seo dataforseo costs today` → show today's spending breakdown
-- `/seo dataforseo costs summary` → show 7-day spending history
-- `/seo dataforseo costs config --mode threshold --threshold 0.50` → configure approval mode
+- `/kimi-seo:seo dataforseo costs today` → show today's spending breakdown
+- `/kimi-seo:seo dataforseo costs summary` → show 7-day spending history
+- `/kimi-seo:seo dataforseo costs config --mode threshold --threshold 0.50` → configure approval mode
 
 Load `references/cost-tiers.md` for the full pricing table, budget presets, and cost reduction tips.
 
@@ -71,35 +71,35 @@ Load `references/cost-tiers.md` for the full pricing table, budget presets, and 
 
 | Command | What it does |
 |---------|-------------|
-| `/seo dataforseo serp <keyword>` | Google organic SERP results |
-| `/seo dataforseo serp-images <keyword>` | Google Images SERP results |
-| `/seo dataforseo serp-youtube <keyword>` | YouTube search results |
-| `/seo dataforseo youtube <video_id>` | YouTube video deep analysis |
-| `/seo dataforseo keywords <seed>` | Keyword ideas and suggestions |
-| `/seo dataforseo volume <keywords>` | Search volume for keywords |
-| `/seo dataforseo difficulty <keywords>` | Keyword difficulty scores |
-| `/seo dataforseo intent <keywords>` | Search intent classification |
-| `/seo dataforseo trends <keyword>` | Google Trends data |
-| `/seo dataforseo backlinks <domain>` | Full backlink profile |
-| `/seo dataforseo competitors <domain>` | Competitor domain analysis |
-| `/seo dataforseo ranked <domain>` | Ranked keywords for domain |
-| `/seo dataforseo intersection <domains>` | Keyword/backlink overlap |
-| `/seo dataforseo traffic <domains>` | Bulk traffic estimation |
-| `/seo dataforseo subdomains <domain>` | Subdomains with ranking data |
-| `/seo dataforseo top-searches <domain>` | Top queries mentioning domain |
-| `/seo dataforseo onpage <url>` | On-page analysis (Lighthouse + parsing) |
-| `/seo dataforseo tech <domain>` | Technology stack detection |
-| `/seo dataforseo whois <domain>` | WHOIS registration data |
-| `/seo dataforseo content <keyword/url>` | Content analysis and trends |
-| `/seo dataforseo listings <keyword>` | Business listings search |
-| `/seo dataforseo ai-scrape <query>` | ChatGPT web scraper for GEO |
-| `/seo dataforseo ai-mentions <keyword>` | LLM mention tracking for GEO |
+| `/kimi-seo:seo dataforseo serp <keyword>` | Google organic SERP results |
+| `/kimi-seo:seo dataforseo serp-images <keyword>` | Google Images SERP results |
+| `/kimi-seo:seo dataforseo serp-youtube <keyword>` | YouTube search results |
+| `/kimi-seo:seo dataforseo youtube <video_id>` | YouTube video deep analysis |
+| `/kimi-seo:seo dataforseo keywords <seed>` | Keyword ideas and suggestions |
+| `/kimi-seo:seo dataforseo volume <keywords>` | Search volume for keywords |
+| `/kimi-seo:seo dataforseo difficulty <keywords>` | Keyword difficulty scores |
+| `/kimi-seo:seo dataforseo intent <keywords>` | Search intent classification |
+| `/kimi-seo:seo dataforseo trends <keyword>` | Google Trends data |
+| `/kimi-seo:seo dataforseo backlinks <domain>` | Full backlink profile |
+| `/kimi-seo:seo dataforseo competitors <domain>` | Competitor domain analysis |
+| `/kimi-seo:seo dataforseo ranked <domain>` | Ranked keywords for domain |
+| `/kimi-seo:seo dataforseo intersection <domains>` | Keyword/backlink overlap |
+| `/kimi-seo:seo dataforseo traffic <domains>` | Bulk traffic estimation |
+| `/kimi-seo:seo dataforseo subdomains <domain>` | Subdomains with ranking data |
+| `/kimi-seo:seo dataforseo top-searches <domain>` | Top queries mentioning domain |
+| `/kimi-seo:seo dataforseo onpage <url>` | On-page analysis (Lighthouse + parsing) |
+| `/kimi-seo:seo dataforseo tech <domain>` | Technology stack detection |
+| `/kimi-seo:seo dataforseo whois <domain>` | WHOIS registration data |
+| `/kimi-seo:seo dataforseo content <keyword/url>` | Content analysis and trends |
+| `/kimi-seo:seo dataforseo listings <keyword>` | Business listings search |
+| `/kimi-seo:seo dataforseo ai-scrape <query>` | ChatGPT web scraper for GEO |
+| `/kimi-seo:seo dataforseo ai-mentions <keyword>` | LLM mention tracking for GEO |
 
 ---
 
 ## SERP Analysis
 
-### `/seo dataforseo serp <keyword>`
+### `/kimi-seo:seo dataforseo serp <keyword>`
 
 Fetch live Google organic search results.
 
@@ -111,7 +111,7 @@ Fetch live Google organic search results.
 
 **Output:** Rank, URL, title, description, domain, featured snippets, AI overview references, People Also Ask.
 
-### `/seo dataforseo serp-youtube <keyword>`
+### `/kimi-seo:seo dataforseo serp-youtube <keyword>`
 
 Fetch YouTube search results. Valuable for GEO. YouTube mentions correlate most strongly with AI citations.
 
@@ -119,7 +119,7 @@ Fetch YouTube search results. Valuable for GEO. YouTube mentions correlate most 
 
 **Output:** Video title, channel, views, upload date, description, URL.
 
-### `/seo dataforseo youtube <video_id>`
+### `/kimi-seo:seo dataforseo youtube <video_id>`
 
 Deep analysis of a specific YouTube video: info, comments, and subtitles. Some third-party studies report a 0.737 correlation between YouTube mentions and AI visibility, so treat this as a methodology-dependent GEO signal.
 
@@ -129,7 +129,7 @@ Deep analysis of a specific YouTube video: info, comments, and subtitles. Some t
 
 **Output:** Video metadata (title, channel, views, likes, description), top comments with engagement, subtitle/transcript text.
 
-### `/seo dataforseo serp-images <keyword>`
+### `/kimi-seo:seo dataforseo serp-images <keyword>`
 
 Fetch live Google Images search results. See which images rank for a keyword,
 which domains dominate image results, and identify visual content opportunities.
@@ -154,7 +154,7 @@ which domains dominate image results, and identify visual content opportunities.
 
 ## Keyword Research
 
-### `/seo dataforseo keywords <seed>`
+### `/kimi-seo:seo dataforseo keywords <seed>`
 
 Generate keyword ideas, suggestions, and related terms from a seed keyword.
 
@@ -164,7 +164,7 @@ Generate keyword ideas, suggestions, and related terms from a seed keyword.
 
 **Output:** Keyword, search volume, CPC, competition level, keyword difficulty, trend.
 
-### `/seo dataforseo volume <keywords>`
+### `/kimi-seo:seo dataforseo volume <keywords>`
 
 Get search volume and metrics for a list of keywords.
 
@@ -174,7 +174,7 @@ Get search volume and metrics for a list of keywords.
 
 **Output:** Keyword, monthly search volume, CPC, competition, monthly trend data.
 
-### `/seo dataforseo difficulty <keywords>`
+### `/kimi-seo:seo dataforseo difficulty <keywords>`
 
 Calculate keyword difficulty scores for ranking competitiveness.
 
@@ -184,7 +184,7 @@ Calculate keyword difficulty scores for ranking competitiveness.
 
 **Output:** Keyword, difficulty score (0-100), interpretation (Easy/Medium/Hard/Very Hard).
 
-### `/seo dataforseo intent <keywords>`
+### `/kimi-seo:seo dataforseo intent <keywords>`
 
 Classify keywords by user search intent.
 
@@ -194,7 +194,7 @@ Classify keywords by user search intent.
 
 **Output:** Keyword, intent type (informational, navigational, commercial, transactional), confidence score.
 
-### `/seo dataforseo trends <keyword>`
+### `/kimi-seo:seo dataforseo trends <keyword>`
 
 Analyze keyword trends over time using Google Trends data.
 
@@ -208,7 +208,7 @@ Analyze keyword trends over time using Google Trends data.
 
 ## Domain & Competitor Analysis
 
-### `/seo dataforseo backlinks <domain>`
+### `/kimi-seo:seo dataforseo backlinks <domain>`
 
 Comprehensive backlink profile analysis.
 
@@ -218,7 +218,7 @@ Comprehensive backlink profile analysis.
 
 **Output:** Total backlinks, referring domains, domain rank, spam score, top anchors, new/lost backlinks over time, dofollow ratio, top referring domains.
 
-### `/seo dataforseo competitors <domain>`
+### `/kimi-seo:seo dataforseo competitors <domain>`
 
 Identify competing domains and estimate traffic.
 
@@ -226,7 +226,7 @@ Identify competing domains and estimate traffic.
 
 **Output:** Competitor domains, keyword overlap %, estimated traffic, domain rank, common keywords.
 
-### `/seo dataforseo ranked <domain>`
+### `/kimi-seo:seo dataforseo ranked <domain>`
 
 List keywords a domain ranks for with positions and page data.
 
@@ -236,7 +236,7 @@ List keywords a domain ranks for with positions and page data.
 
 **Output:** Keyword, position, URL, search volume, traffic share, SERP features.
 
-### `/seo dataforseo intersection <domain1> <domain2> [...]`
+### `/kimi-seo:seo dataforseo intersection <domain1> <domain2> [...]`
 
 Find shared keywords and backlink sources across 2-20 domains.
 
@@ -246,7 +246,7 @@ Find shared keywords and backlink sources across 2-20 domains.
 
 **Output:** Shared keywords with positions per domain, shared backlink sources, unique keywords per domain.
 
-### `/seo dataforseo traffic <domains>`
+### `/kimi-seo:seo dataforseo traffic <domains>`
 
 Estimate organic search traffic for one or more domains.
 
@@ -256,7 +256,7 @@ Estimate organic search traffic for one or more domains.
 
 **Output:** Domain, estimated organic traffic, estimated traffic cost, top keywords.
 
-### `/seo dataforseo subdomains <domain>`
+### `/kimi-seo:seo dataforseo subdomains <domain>`
 
 Enumerate subdomains with their ranking data and traffic estimates.
 
@@ -266,7 +266,7 @@ Enumerate subdomains with their ranking data and traffic estimates.
 
 **Output:** Subdomain, ranked keywords count, estimated traffic, organic cost.
 
-### `/seo dataforseo top-searches <domain>`
+### `/kimi-seo:seo dataforseo top-searches <domain>`
 
 Find the most popular search queries that mention a specific domain in results.
 
@@ -280,7 +280,7 @@ Find the most popular search queries that mention a specific domain in results.
 
 ## Technical / On-Page
 
-### `/seo dataforseo onpage <url>`
+### `/kimi-seo:seo dataforseo onpage <url>`
 
 Run on-page analysis including Lighthouse audit and content parsing.
 
@@ -293,7 +293,7 @@ Run on-page analysis including Lighthouse audit and content parsing.
 
 **Output:** Pages crawled, status codes, meta tags, titles, content size, load times, Lighthouse scores, broken links, resource analysis.
 
-### `/seo dataforseo tech <domain>`
+### `/kimi-seo:seo dataforseo tech <domain>`
 
 Detect technologies used on a domain.
 
@@ -301,7 +301,7 @@ Detect technologies used on a domain.
 
 **Output:** Technology name, version, category (CMS, analytics, CDN, framework, etc.).
 
-### `/seo dataforseo whois <domain>`
+### `/kimi-seo:seo dataforseo whois <domain>`
 
 Retrieve WHOIS registration data.
 
@@ -313,7 +313,7 @@ Retrieve WHOIS registration data.
 
 ## Content & Business Data
 
-### `/seo dataforseo content <keyword/url>`
+### `/kimi-seo:seo dataforseo content <keyword/url>`
 
 Analyze content quality, search for content by topic, and track phrase trends.
 
@@ -323,7 +323,7 @@ Analyze content quality, search for content by topic, and track phrase trends.
 
 **Output:** Content matches with quality scores, sentiment analysis, readability metrics, phrase trend data over time.
 
-### `/seo dataforseo listings <keyword>`
+### `/kimi-seo:seo dataforseo listings <keyword>`
 
 Search business listings for local SEO competitive analysis.
 
@@ -337,7 +337,7 @@ Search business listings for local SEO competitive analysis.
 
 ## AI Visibility / GEO
 
-### `/seo dataforseo ai-scrape <query>`
+### `/kimi-seo:seo dataforseo ai-scrape <query>`
 
 Scrape what ChatGPT web search returns for a query. ChatGPT visibility check: see which sources ChatGPT cites for your target keywords. Check Google AI Overviews and AI Mode with GSC gen-AI reports when available.
 
@@ -347,7 +347,7 @@ Scrape what ChatGPT web search returns for a query. ChatGPT visibility check: se
 
 **Output:** ChatGPT response content, cited sources/URLs, referenced domains.
 
-### `/seo dataforseo ai-mentions <keyword>`
+### `/kimi-seo:seo dataforseo ai-mentions <keyword>`
 
 Track how LLMs mention brands, domains, and topics. Critical for GEO. Measures actual AI visibility across multiple LLM platforms.
 

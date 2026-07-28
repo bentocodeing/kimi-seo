@@ -192,6 +192,8 @@ competitive intent keywords with accurate, structured content.
 
 ## Output
 
+All outputs are written to the current working directory, never the plugin root.
+
 ### Comparison Page Template
 - `COMPARISON-PAGE.md`: Ready-to-implement page structure with sections
 - Feature matrix table

@@ -36,6 +36,7 @@
     "websiteURL": "https://github.com/bentocodeing/kimi-seo"
   },
   "skills": ["./skills/", "./plugin-skills/"],
+  "commands": "./commands/",
   "sessionStart": {
     "skill": "kimi-seo-runtime"
   },
