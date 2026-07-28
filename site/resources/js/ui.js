@@ -176,8 +176,9 @@ export function initAdCarousels() {
 /**
  * Docs right-rail TOC scroll-spy: highlights the link of the section
  * currently being read. The active heading is the last one whose top has
- * passed just below the sticky header. Purely additive — without JS all
- * links stay neutral.
+ * passed just below the sticky header. The TOC nav itself is scrollable
+ * (long pages) and auto-scrolls so the active link stays visible.
+ * Purely additive — without JS all links stay neutral.
  */
 export function initDocsToc() {
     const nav = document.querySelector('nav[aria-label="On this page"]');
@@ -199,7 +200,19 @@ export function initDocsToc() {
             if (h.getBoundingClientRect().top <= OFFSET) current = h;
         });
         links.forEach((link) => link.classList.remove('toc-link-active'));
-        links.get(current.id).classList.add('toc-link-active');
+        const activeLink = links.get(current.id);
+        activeLink.classList.add('toc-link-active');
+
+        // Keep the active link visible inside the scrollable TOC nav.
+        // Adjust nav.scrollTop directly so the window itself never scrolls.
+        const navRect = nav.getBoundingClientRect();
+        const linkRect = activeLink.getBoundingClientRect();
+        const MARGIN = 8;
+        if (linkRect.top < navRect.top + MARGIN) {
+            nav.scrollTop -= navRect.top + MARGIN - linkRect.top;
+        } else if (linkRect.bottom > navRect.bottom - MARGIN) {
+            nav.scrollTop += linkRect.bottom - (navRect.bottom - MARGIN);
+        }
     };
 
     let raf = null;
