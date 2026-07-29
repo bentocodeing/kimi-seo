@@ -2,6 +2,18 @@
 
 @section('title', $title . ' — Kimi SEO Docs')
 
+@if ($description)
+    @section('meta_description', $description)
+@endif
+
+@section('json_ld')
+    @foreach ($jsonLd as $block)
+        <script type="application/ld+json">
+            @json($block)
+        </script>
+    @endforeach
+@endsection
+
 @section('docs_content')
     <article class="prose dark:prose-invert max-w-none
         prose-headings:tracking-tight prose-headings:scroll-mt-20 prose-a:text-accent-700 dark:prose-a:text-accent-400 prose-a:no-underline hover:prose-a:text-accent-600 dark:hover:prose-a:text-accent-300

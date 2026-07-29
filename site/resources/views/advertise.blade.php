@@ -2,6 +2,8 @@
 
 @section('title', 'Advertise — Kimi SEO')
 
+@section('meta_description', 'Advertise on kimi-seo.com — one tasteful, tracking-free ad slot in front of developers and SEO practitioners who live in their terminal.')
+
 @section('content')
     <div class="max-w-3xl mx-auto px-4 sm:px-6 py-14">
         <h1 class="text-3xl sm:text-4xl font-bold tracking-tight heading">Advertise on Kimi SEO</h1>

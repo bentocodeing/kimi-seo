@@ -84,4 +84,45 @@ class DocsTest extends TestCase
             ->assertSee('href="/docs/commands"', false)
             ->assertDontSee('href="docs/INSTALLATION.md"', false);
     }
+
+    public function test_every_docs_page_has_a_unique_meta_description(): void
+    {
+        $descriptions = [];
+
+        foreach (array_keys(config('docs.pages')) as $slug) {
+            $response = $this->get("/docs/{$slug}")->assertOk();
+
+            $this->assertMatchesRegularExpression(
+                '/<meta name="description" content="([^"]+)"/',
+                $response->getContent(),
+            );
+            preg_match('/<meta name="description" content="([^"]+)"/', $response->getContent(), $m);
+            $descriptions[$slug] = $m[1];
+        }
+
+        $this->assertSame(
+            count($descriptions),
+            count(array_unique($descriptions)),
+            'Docs pages must not share a meta description: '.print_r($descriptions, true),
+        );
+    }
+
+    public function test_docs_page_has_canonical_and_jsonld(): void
+    {
+        $response = $this->get('/docs/getting-started')->assertOk();
+
+        $response
+            ->assertSee('<link rel="canonical" href="'.url('/docs/getting-started').'">', false)
+            ->assertSee('"@type":"TechArticle"', false)
+            ->assertSee('"@type":"BreadcrumbList"', false)
+            ->assertSee('"dateModified"', false);
+    }
+
+    public function test_docs_images_are_lazy_loaded(): void
+    {
+        // README.md (overview) embeds the two ~1 MB demo GIFs.
+        $this->get('/docs/overview')
+            ->assertOk()
+            ->assertSee('<img loading="lazy" decoding="async"', false);
+    }
 }

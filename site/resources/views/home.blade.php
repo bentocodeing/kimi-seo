@@ -1,5 +1,46 @@
 @extends('layouts.app')
 
+@section('meta_description', 'Audit any website in 10 minutes with Kimi SEO — the free, open-source SEO analysis suite for Kimi Code CLI. 25 skills, 18 subagents, 53 scripts, no API keys required.')
+
+@section('json_ld')
+    @php
+        $jsonLd = ['@context' => 'https://schema.org', '@graph' => [
+            [
+                '@type' => 'Organization',
+                '@id' => url('/').'#organization',
+                'name' => 'Kimi SEO',
+                'url' => url('/'),
+                'logo' => asset('favicon.svg'),
+                'sameAs' => [config('kimiseo.github_url'), config('kimiseo.upstream_url')],
+            ],
+            [
+                '@type' => 'WebSite',
+                '@id' => url('/').'#website',
+                'name' => 'Kimi SEO',
+                'url' => url('/'),
+                'publisher' => ['@id' => url('/').'#organization'],
+            ],
+            [
+                '@type' => 'SoftwareApplication',
+                'name' => 'Kimi SEO',
+                'description' => 'Free, open-source SEO analysis suite for Kimi Code CLI: 25 skills, 18 subagents, 53 Python scripts.',
+                'applicationCategory' => 'DeveloperApplication',
+                'operatingSystem' => 'macOS, Linux, Windows',
+                'codeRepository' => config('kimiseo.github_url'),
+                'author' => ['@id' => url('/').'#organization'],
+                'offers' => [
+                    '@type' => 'Offer',
+                    'price' => '0',
+                    'priceCurrency' => 'USD',
+                ],
+            ],
+        ]];
+    @endphp
+    <script type="application/ld+json">
+        @json($jsonLd)
+    </script>
+@endsection
+
 @section('content')
     {{-- Hero --}}
     <section class="relative isolate max-w-6xl mx-auto px-4 sm:px-6 pt-24 sm:pt-36 pb-20 sm:pb-28 text-center">

@@ -30,16 +30,75 @@ class DocsController extends Controller
         $html = Str::markdown($markdown);
         $html = $this->rewriteMediaUrls($html);
         $html = $this->rewriteDocLinks($html);
+        $html = $this->addImageLoadingAttributes($html);
         [$html, $toc] = $this->addHeadingAnchors($html);
 
         return view('docs.show', [
             'slug' => $slug,
             'title' => $page['title'],
+            'description' => $page['description'] ?? null,
+            'jsonLd' => $this->buildJsonLd($slug, $page),
             'content' => $html,
             'toc' => $toc,
             'pages' => $pages,
             'ads' => Ad::activeOrdered(),
         ]);
+    }
+
+    /**
+     * All docs images (the two ~1 MB demo GIFs in getting-started in
+     * particular) load lazily so off-screen media never blocks the
+     * initial render or burns main-thread time on decode.
+     */
+    private function addImageLoadingAttributes(string $html): string
+    {
+        return preg_replace('#<img #', '<img loading="lazy" decoding="async" ', $html);
+    }
+
+    /**
+     * TechArticle + BreadcrumbList for a docs page. dateModified comes
+     * from the markdown file's mtime — the docs are rendered straight
+     * from the repo, so the file's last edit is the page's last edit.
+     *
+     * @param  array{title: string, path: string, description?: string}  $page
+     * @return array<int, array<string, mixed>>
+     */
+    private function buildJsonLd(string $slug, array $page): array
+    {
+        $pageUrl = route('docs.show', $slug);
+        $organization = ['@id' => url('/').'#organization'];
+
+        return [
+            [
+                '@context' => 'https://schema.org',
+                '@type' => 'TechArticle',
+                'headline' => $page['title'].' — Kimi SEO Docs',
+                'description' => $page['description'] ?? null,
+                'dateModified' => date('Y-m-d', filemtime($page['path'])),
+                'mainEntityOfPage' => $pageUrl,
+                'author' => $organization,
+                'publisher' => $organization,
+                'proficiencyLevel' => 'Beginner',
+            ],
+            [
+                '@context' => 'https://schema.org',
+                '@type' => 'BreadcrumbList',
+                'itemListElement' => [
+                    [
+                        '@type' => 'ListItem',
+                        'position' => 1,
+                        'name' => 'Docs',
+                        'item' => route('docs.index'),
+                    ],
+                    [
+                        '@type' => 'ListItem',
+                        'position' => 2,
+                        'name' => $page['title'],
+                        'item' => $pageUrl,
+                    ],
+                ],
+            ],
+        ];
     }
 
     /**

@@ -45,4 +45,34 @@ class LandingTest extends TestCase
             ->assertSee('Your ad here?')
             ->assertSee(route('advertise'), false);
     }
+
+    public function test_landing_page_has_seo_meta_and_structured_data(): void
+    {
+        $response = $this->get('/');
+
+        $response->assertOk()
+            ->assertSee('<meta name="description" content="Audit any website in 10 minutes', false)
+            ->assertSee('<link rel="canonical" href="'.url('/').'">', false)
+            ->assertSee('"@type":"Organization"', false)
+            ->assertSee('"@type":"WebSite"', false)
+            ->assertSee('"@type":"SoftwareApplication"', false)
+            ->assertSee('"codeRepository"', false);
+    }
+
+    public function test_public_pages_do_not_share_the_default_meta_description(): void
+    {
+        $descriptions = [];
+
+        foreach (['/', '/docs', '/advertise'] as $path) {
+            $response = $this->get($path)->assertOk();
+            preg_match('/<meta name="description" content="([^"]+)"/', $response->getContent(), $m);
+            $descriptions[$path] = $m[1] ?? null;
+        }
+
+        $this->assertSame(
+            count($descriptions),
+            count(array_unique($descriptions)),
+            'Public pages must each have their own meta description: '.print_r($descriptions, true),
+        );
+    }
 }

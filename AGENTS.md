@@ -189,7 +189,14 @@ seeded from `ADMIN_EMAIL`/`ADMIN_PASSWORD` env vars). Repo-relative images in
 the markdown (`assets/…`, `screenshots/…`) are rewritten to `/media/{path}`,
 a whitelisted, realpath-contained route that serves files only from those two
 repo-root directories; inter-document markdown links are rewritten to their
-`/docs/{slug}` equivalents. It is fork-only: upstream never touches it, so it
+`/docs/{slug}` equivalents. SEO plumbing: every page emits a self-referencing
+canonical, a unique meta description (per-page `description` in
+`site/config/docs.php`) and JSON-LD (`Organization` + `WebSite` +
+`SoftwareApplication` on the landing page, `TechArticle` + `BreadcrumbList`
+on docs pages, via the layout's `@yield('json_ld')`); `/sitemap.xml` is a
+dynamic route listing all public routes with `lastmod` from each markdown
+file's mtime, declared in `public/robots.txt`. It is fork-only: upstream
+never touches it, so it
 cannot create merge conflicts during syncs. Setup and deploy notes:
 `site/README.md`. Run its tests with `cd site && php artisan test`.
 

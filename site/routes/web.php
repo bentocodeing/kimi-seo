@@ -19,6 +19,26 @@ Route::get('/media/{path}', [\App\Http\Controllers\MediaController::class, 'show
     ->where('path', '.+')
     ->name('media');
 
+Route::get('/sitemap.xml', function () {
+    $urls = [
+        ['loc' => route('home'), 'lastmod' => null],
+        ['loc' => route('docs.index'), 'lastmod' => null],
+    ];
+
+    foreach (config('docs.pages') as $slug => $page) {
+        $urls[] = [
+            'loc' => route('docs.show', $slug),
+            'lastmod' => is_file($page['path']) ? date('Y-m-d', filemtime($page['path'])) : null,
+        ];
+    }
+
+    $urls[] = ['loc' => route('advertise'), 'lastmod' => null];
+
+    return response()
+        ->view('sitemap', ['urls' => $urls])
+        ->header('Content-Type', 'application/xml; charset=UTF-8');
+})->name('sitemap');
+
 Route::get('/advertise', [AdvertiseController::class, 'create'])->name('advertise');
 Route::post('/advertise', [AdvertiseController::class, 'store'])->name('advertise.store');
 

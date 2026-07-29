@@ -2,6 +2,8 @@
 
 @section('title', 'Documentation — Kimi SEO')
 
+@section('meta_description', 'Kimi SEO documentation: installation, commands, architecture, MCP integration, troubleshooting and workflow guides for the Kimi Code CLI SEO suite.')
+
 @section('docs_content')
     <h1 class="text-3xl font-bold tracking-tight heading">Documentation</h1>
     <p class="mt-3 muted leading-relaxed">

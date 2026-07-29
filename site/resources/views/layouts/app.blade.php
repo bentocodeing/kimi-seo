@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Kimi SEO — SEO analysis suite for Kimi Code CLI')</title>
     <meta name="description" content="@yield('meta_description', 'Kimi SEO is a free, open-source SEO analysis plugin for Kimi Code CLI: 25 skills, 18 subagents, 53 scripts.')">
+    <link rel="canonical" href="{{ url()->current() }}">
     <meta property="og:type" content="website">
     <meta property="og:title" content="@yield('title', 'Kimi SEO — SEO analysis suite for Kimi Code CLI')">
     <meta property="og:description" content="@yield('meta_description', 'Kimi SEO is a free, open-source SEO analysis plugin for Kimi Code CLI: 25 skills, 18 subagents, 53 scripts.')">
@@ -28,11 +29,12 @@
         })();
     </script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @yield('json_ld')
 </head>
 <body class="min-h-screen font-sans antialiased flex flex-col">
     <header data-sticky-header class="site-header sticky top-0 z-40 border-b border-zinc-200 bg-[#fafafa]/80 backdrop-blur dark:border-ink-800 dark:bg-ink-950/80">
         <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
-            <a href="{{ route('home') }}" class="flex items-center gap-2 font-mono text-sm sm:text-base font-semibold tracking-tight heading">
+            <a href="{{ route('home') }}" aria-label="Kimi SEO home" class="flex items-center gap-2 font-mono text-sm sm:text-base font-semibold tracking-tight heading">
                 <x-logo />
                 <span class="logo-typing">Kimi&nbsp;SEO</span>
             </a>
