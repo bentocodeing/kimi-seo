@@ -78,6 +78,8 @@ Inside Kimi Code, install this fork directly from GitHub:
 
 The plugin manager copies the repo to Kimi Code's managed plugins directory and loads `kimi.plugin.json`: all 25 skills, the session-start orientation skill, and the schema-validation hook. `/kimi-seo:seo setup` is an explicit, one-time provisioning step for the isolated Python runtime.
 
+**Update:** repeat the same `/plugins install` command, then `/reload`. **Remove:** `/plugins remove kimi-seo`. Both covered in the [Installation Guide](docs/INSTALLATION.md).
+
 ### Manual Install (Unix / macOS / Linux)
 
 For a git-checkout install into `~/.kimi-code/skills/` and `~/.agents/agents/`:
@@ -254,15 +256,15 @@ The short version: a 10-15 minute audit, free and fully local, repeatable, no lo
 
 ## Sample Output
 
-Kimi SEO writes real markdown reports as its primary deliverable. Below is the first ~50 lines of a `/kimi-seo:seo schema https://rankenstein.pro/about` audit verbatim. The actual structure, headers, and grading format the plugin produces follows.
+Kimi SEO writes real markdown reports as its primary deliverable. Below is the first ~50 lines of a `/kimi-seo:seo schema https://example.com/about` audit verbatim. The actual structure, headers, and grading format the plugin produces follows.
 
 <details>
 <summary><code>SCHEMA-REPORT.md</code>: first 50 lines of a real audit</summary>
 
 ```markdown
-# Schema Markup Report: rankenstein.pro/about
+# Schema Markup Report: example.com/about
 
-**URL:** https://rankenstein.pro/about
+**URL:** https://example.com/about
 **Date:** 2026-02-09
 **Format Detected:** JSON-LD (3 blocks) | No Microdata | No RDFa
 
@@ -289,19 +291,19 @@ Kimi SEO writes real markdown reports as its primary deliverable. Below is the f
 |----------|-------|--------|-------|
 | `@context` | https://schema.org | Valid | |
 | `@type` | Organization | Valid | Active type |
-| `@id` | https://rankenstein.pro#organization | Good | Enables cross-referencing |
-| `name` | Rankenstein | Valid | |
+| `@id` | https://example.com#organization | Good | Enables cross-referencing |
+| `name` | Example | Valid | |
 | `description` | Present, 200+ chars | Good | Descriptive and keyword-rich |
-| `url` | https://rankenstein.pro | Valid | Absolute URL |
+| `url` | https://example.com | Valid | Absolute URL |
 | `logo` | ImageObject with @id, url, width, height, caption | Excellent | Well-structured |
 | `foundingDate` | "2024" | Imprecise | Year-only accepted but ISO 8601 preferred |
 | `areaServed` | "Worldwide" | Text | Works but `GeoShape` is more semantic |
 | `contactPoint` | email + contactType | Valid | Consider adding `telephone` |
-| `founder` | 1 Person (Daniel Agrici) | Incomplete | Page describes two co-founders; second missing |
+| `founder` | 1 Person (Jane Doe) | Incomplete | Page describes two co-founders; second missing |
 | `sameAs` | 5 social profiles | Good | GitHub, X, LinkedIn, YouTube, Reddit |
 | `knowsAbout` | 6 topics | Good | Relevant topical signals |
 
-**Critical Issue:** The `founder` property only includes Daniel Agrici. Benjamin Samar (Co-Founder & Technical Director) is displayed on the page but absent from the schema. This creates a content-schema mismatch that can confuse search engines.
+**Critical Issue:** The `founder` property only includes Jane Doe. John Smith (Co-Founder & Technical Director) is displayed on the page but absent from the schema. This creates a content-schema mismatch that can confuse search engines.
 ```
 
 </details>
@@ -345,6 +347,15 @@ Two boundaries worth knowing up front.
 - Optional: Google API credentials for enriched CWV / GSC / GA4 data (see `/kimi-seo:seo google setup`)
 
 ## Uninstall
+
+**Plugin install** (recommended method):
+
+```
+/plugins remove kimi-seo
+/reload
+```
+
+**Manual install:**
 
 ```bash
 git clone --depth 1 --branch kimi https://github.com/bentocodeing/kimi-seo.git

@@ -18,7 +18,7 @@ Inside Kimi Code:
 scripts run in. Check everything is ready anytime with `/kimi-seo:seo doctor`
 (read-only, changes nothing).
 
-Manual install, Windows, and uninstall: [Installation Guide](INSTALLATION.md).
+Manual install, Windows, updating, and uninstalling: [Installation Guide](INSTALLATION.md).
 
 ## 2. Run your first audit
 
